@@ -126,3 +126,13 @@ html.cur-out .cur-dot,html.cur-out .cur-ring{opacity:0}
 .hs-team .box{max-width:min(520px,38vw)}
 .hs-team h2.serif{font-size:clamp(32px,3.6vw,50px)}
 @media(max-width:900px){.hs-team .box{max-width:none}}
+
+/* páginas internas en celular: barra compacta y portada legible */
+@media(max-width:600px){
+  nav .mark small{display:none}
+  nav .btn{padding:10px 14px;font-size:14px;white-space:nowrap}
+  .phero{min-height:92svh!important}
+  .phero:after{background:linear-gradient(0deg,rgba(5,28,44,.97) 0%,rgba(5,28,44,.88) 42%,rgba(5,28,44,.3) 72%,rgba(5,28,44,.45) 100%)!important}
+  .phero .wrap{padding-bottom:56px!important}
+  .phero h1{font-size:34px!important}
+}
