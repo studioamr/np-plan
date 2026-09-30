@@ -47,22 +47,63 @@
     return $$(mode==="ch" ? ".ch" : ".w>i", el);
   }
 
-  // ── 1. hero: entrada + parallax con scroll y mouse ──
+  // ── 1. portada: entrada y recorrido fijo por las 4 divisiones ──
   const hero = $(".hero");
-  if(hero){
-    const h1 = $("h1", hero), eb = $(".eyebrow", hero), lead = $(".lead", hero), bg = $(".hero-bg", hero);
-    const chars = split(h1, "ch"), lw = split(lead);
+  let heroEnd = 0;
+  if(hero && $(".hs", hero)){
+    const slides = $$(".hs", hero), idx = $$(".hs-index button", hero), first = slides[0];
+    const chars = split($("h1", first), "ch"), lw = split($(".lead", first));
     ready();
     gsap.timeline({ defaults:{ ease: EASE } })
-      .from(bg, { scale: 1.18, duration: 2.4, ease: "power2.out" }, 0)
-      .from(eb, { y: 16, opacity: 0, duration: .8 }, .25)
+      .from($(".hs-bg", first), { scale: 1.18, duration: 2.4, ease: "power2.out" }, 0)
+      .from($(".eyebrow", first), { y: 16, opacity: 0, duration: .8 }, .25)
       .from(chars, { yPercent: 110, opacity: 0, rotateX: -60, stagger: .045, duration: 1.1 }, .35)
-      .from(lw, { yPercent: 100, opacity: 0, stagger: .012, duration: .8 }, .8);
-    gsap.to(bg, { yPercent: 14, scale: 1.08, ease: "none", scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true } });
-    gsap.to($(".wrap", hero), { yPercent: -30, opacity: 0, ease: "none", scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true } });
+      .from(lw, { yPercent: 100, opacity: 0, stagger: .012, duration: .8 }, .8)
+      .from($(".btn", first), { y: 20, opacity: 0, duration: .8 }, 1.1)
+      .from(".hs-index button", { x: 30, opacity: 0, stagger: .08, duration: .8 }, 1)
+      .from(".hs-arrows button", { scale: .6, opacity: 0, stagger: .08, duration: .6 }, 1.2);
+    // carrusel horizontal: una división por pantalla
+    const stage = $(".hs-stage", hero), n = slides.length;
+    // tocar una división abre su página (si no fue un arrastre)
+    let downX = 0;
+    stage.addEventListener("pointerdown", e => downX = e.clientX);
+    slides.forEach(sl => { if(!sl.dataset.href) return; sl.style.cursor = "pointer";
+      sl.addEventListener("click", e => { if(e.target.closest("a,button") || Math.abs(e.clientX - downX) > 8) return;
+        const u = sl.dataset.href; u.startsWith("http") ? window.open(u, "_blank", "noopener") : location.href = u; }); });
+    let cur = 0, auto = null, userTouched = false;
+    const go = i => { i = (i + n) % n; stage.scrollTo({ left: i * stage.clientWidth, behavior: "smooth" }); };
+    const enter = s => { gsap.fromTo([...$(".box", s).children], { y: 50, opacity: 0 }, { y: 0, opacity: 1, stagger: .07, duration: .8, ease: EASE, overwrite: true });
+                         gsap.fromTo($(".hs-bg", s), { scale: 1.15 }, { scale: 1, duration: 1.8, ease: "power2.out", overwrite: "auto" }); };
+    const mark = () => {
+      const f = stage.scrollLeft / stage.clientWidth, i = Math.round(f);
+      idx.forEach((b, k) => { b.classList.toggle("on", k === i); gsap.set($("em", b), { scaleX: k < i ? 1 : k === i ? 1 : 0 }); });
+      if(i !== cur){ cur = i; enter(slides[i]); }
+    };
+    stage.addEventListener("scroll", () => requestAnimationFrame(mark), { passive: true });
+    idx.forEach((b, i) => b.addEventListener("click", () => { stop(); go(i); }));
+    $$(".hs-arrows button", hero).forEach(b => b.addEventListener("click", () => { stop(); go(cur + (+b.dataset.d)); }));
+    // barra de avance del índice y cambio automático cada 7 s hasta que la persona interactúe
+    const stop = () => { userTouched = true; if(auto){ auto.kill(); auto = null; } };
+    const run = () => {
+      if(userTouched) return;
+      const em = $("em", idx[cur]);
+      auto = gsap.fromTo(em, { scaleX: 0 }, { scaleX: 1, duration: 7, ease: "none", onComplete: () => { go(cur + 1); gsap.delayedCall(.9, run); } });
+    };
+    gsap.delayedCall(2, run);
+    ["wheel", "touchstart", "pointerdown", "keydown"].forEach(ev => stage.addEventListener(ev, e => { if(ev !== "wheel" || Math.abs(e.deltaX) > Math.abs(e.deltaY)) stop(); }, { passive: true }));
+    // arrastrar con el mouse
+    let dragX = null, startL = 0;
+    stage.addEventListener("pointerdown", e => { if(e.pointerType !== "mouse" || e.target.closest("a,button")) return; dragX = e.clientX; startL = stage.scrollLeft; stage.classList.add("drag"); });
+    addEventListener("pointermove", e => { if(dragX === null) return; stage.scrollLeft = startL - (e.clientX - dragX); });
+    addEventListener("pointerup", () => { if(dragX === null) return; const f = stage.scrollLeft / stage.clientWidth, d = f - Math.floor(f);
+      stage.classList.remove("drag"); dragX = null; go(stage.scrollLeft > startL ? (d > .15 ? Math.ceil(f) : Math.floor(f)) : (d < .85 ? Math.floor(f) : Math.ceil(f))); });
+    addEventListener("keydown", e => { const r = hero.getBoundingClientRect(); if(r.bottom < 100) return; if(e.key === "ArrowRight"){ stop(); go(cur + 1); } if(e.key === "ArrowLeft"){ stop(); go(cur - 1); } });
+    // parallax vertical suave de la portada completa
+    gsap.to(stage, { yPercent: 12, ease: "none", scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true } });
     if(FINE){
-      const qx = gsap.quickTo(bg, "x", { duration: 1.2, ease: "power3" }), qy = gsap.quickTo(bg, "y", { duration: 1.2, ease: "power3" });
-      hero.addEventListener("mousemove", e => { const r = hero.getBoundingClientRect(); qx((e.clientX/r.width - .5) * -28); qy((e.clientY/r.height - .5) * -18); });
+      const bgs = $$(".hs-bg", hero);
+      const qx = gsap.quickTo(bgs, "x", { duration: 1.2, ease: "power3" }), qy = gsap.quickTo(bgs, "y", { duration: 1.2, ease: "power3" });
+      hero.addEventListener("mousemove", e => { qx((e.clientX/innerWidth - .5) * -28); qy((e.clientY/innerHeight - .5) * -18); });
     }
   } else ready();
 
@@ -195,7 +236,7 @@
       el.addEventListener("mouseleave", () => { rx(0); ry(0); });
     };
     // se aplica cuando ya existen (las tarjetas se generan con JS)
-    requestAnimationFrame(() => $$(".perfil, .pq, .card, .rol").forEach(tilt));
+    requestAnimationFrame(() => $$(".perfil, .pq, .card, .rol, .fp, .svc").forEach(tilt));
   }
 
   // ── 11. banda y compromiso: parallax y recorte ──
