@@ -7,11 +7,11 @@
 <meta name="description" content="Ahorre en la app de NORTHPOINT desde $100 USD. Su saldo trabaja con nuestra mesa de trading y cada mes usted ve el resultado, dentro del riesgo que decide asumir.">
 <meta property="og:title" content="NORTHPOINT · Su ahorro trabaja cada mes">
 <meta property="og:description" content="Ahorre desde $100 USD. Vea cada mes el resultado de su saldo. Retire cuando quiera.">
-<meta property="og:image" content="img/hero.jpg">
+<meta property="og:image" content="img/tiburon-hero.jpg">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400&family=Public+Sans:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --navy:#051C2C; --navy2:#0B2A40; --blue:#2251FF; --blue-dk:#1F40E6; --cyan:#CCF2FF; --cyan-lt:#E6F8FF;
@@ -57,7 +57,7 @@ nav .links a:hover{opacity:1}
 @media(max-width:980px){nav .links a:not(.btn){display:none}}
 
 /* hero */
-.hero{position:relative;min-height:760px;background:var(--navy) url(img/hero.jpg) center right/cover no-repeat;display:flex;align-items:flex-end;padding:0}
+.hero{position:relative;min-height:760px;background:var(--navy) url(img/tiburon-hero.jpg) center right/cover no-repeat;display:flex;align-items:flex-end;padding:0}
 .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,28,44,.92) 0%,rgba(5,28,44,.55) 45%,rgba(5,28,44,0) 75%)}
 .hero .wrap{position:relative;width:100%;padding-bottom:96px}
 .hero .box{max-width:640px;color:#fff}
@@ -100,7 +100,7 @@ nav .links a:hover{opacity:1}
 @media(max-width:560px){.roles{grid-template-columns:1fr}}
 
 /* banda navy */
-.banda{position:relative;background:var(--navy) url(img/estratos.jpg) center/cover no-repeat;color:#fff;padding:140px 0}
+.banda{position:relative;background:var(--navy) url(img/oceano.jpg) center/cover no-repeat;color:#fff;padding:140px 0}
 .banda:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,28,44,.9),rgba(5,28,44,.35))}
 .banda .wrap{position:relative}
 .banda .eyebrow{color:#fff}
@@ -141,6 +141,45 @@ nav .links a:hover{opacity:1}
 .pq.dest .fee{color:#fff}
 .pq .fee+p{font-size:14px;opacity:.75;margin:4px 0 28px}
 @media(max-width:900px){.paquetes{grid-template-columns:1fr}}
+
+/* niveles: tarjetas de miembro */
+.tiers-l{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.tier-l{background:#fff;display:flex;flex-direction:column}
+.tier-l .pic{aspect-ratio:4/3;background:var(--navy) center/cover no-repeat}
+.tier-l .body{padding:22px 22px 26px;display:flex;flex-direction:column;gap:14px;flex:1}
+.tier-l .body .tc{margin-top:-64px;box-shadow:0 14px 30px -14px rgba(5,28,44,.55)}
+.tier-l h3{font:400 26px/1.2 var(--serif);color:var(--ink)}
+.tier-l .rng{font-size:15px;color:var(--ink);font-weight:500}
+.tier-l .prof{font-size:14px;color:var(--muted)}
+.incluye{margin-top:40px;background:#fff;padding:28px 32px}
+.incluye ul{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:12px 32px;margin-top:16px}
+.incluye li{font-size:15px;padding-left:18px;position:relative}
+.incluye li:before{content:"";position:absolute;left:0;top:10px;width:8px;height:1px;background:var(--blue)}
+@media(max-width:1100px){.tiers-l{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.tiers-l{grid-template-columns:1fr}.incluye ul{grid-template-columns:1fr}}
+/* tarjeta digital de miembro */
+.tc{position:relative;aspect-ratio:1.586;border-radius:16px;padding:18px 20px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;font-family:"Inter",system-ui,sans-serif;isolation:isolate;box-shadow:0 1px 2px rgba(14,16,19,.06),0 12px 28px -14px rgba(14,16,19,.35)}
+.tc-lines{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.tc-top,.tc-bot{display:flex;justify-content:space-between;align-items:flex-end}
+.tc-top{align-items:center}
+.tc-brand{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:.18em}
+.tc-brand svg{width:12px;height:12px}
+.tc-kind{font-size:9.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;opacity:.6}
+.tc-name{font-size:26px;font-weight:600;letter-spacing:-.02em;line-height:1}
+.tc-prof{font-size:10.5px;letter-spacing:.06em;opacity:.6;margin-top:6px;font-variant-numeric:tabular-nums}
+.tc-holder{font-size:11.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase}
+.tc-since{font-size:9.5px;opacity:.55;margin-top:3px;letter-spacing:.04em}
+.tc-num{font-size:11px;letter-spacing:.14em;opacity:.7;font-variant-numeric:tabular-nums}
+.tc-barracuda{background:linear-gradient(135deg,#FAFBFC,#E6E9ED);color:#0E1013;border:1px solid rgba(14,16,19,.08)}
+.tc-barracuda .tc-lines{stroke:rgba(14,16,19,.10)}
+.tc-tiburon{background:linear-gradient(135deg,#6B737E,#3F454D);color:#F3F4F6}
+.tc-tiburon .tc-lines{stroke:rgba(255,255,255,.14)}
+.tc-orca{background:radial-gradient(ellipse 17% 11% at 80% 50%,#F1F2F4 97%,transparent 100%),linear-gradient(160deg,#1A1C20,#0E1013);color:#F3F4F6}
+.tc-orca .tc-lines{stroke:rgba(255,255,255,.10)}
+.tc-megalodon{background:radial-gradient(120% 90% at 85% 110%,#1B1812 0%,#07080A 55%);color:#E9E4D8}
+.tc-megalodon .tc-lines{stroke:rgba(201,178,128,.22)}
+.tc-megalodon .tc-name{color:#D8C49A}
+.tc.lock{filter:grayscale(1);opacity:.45}
 
 /* simulador */
 .sim{display:grid;grid-template-columns:380px 1fr;gap:0;border:1px solid var(--line)}
@@ -225,6 +264,7 @@ footer b{color:#fff;font-weight:500}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute"><symbol id="star" viewBox="0 0 64 64"><path fill="currentColor" d="M32 1 37.2 26.8 63 32 37.2 37.2 32 63 26.8 37.2 1 32 26.8 26.8Z"/></symbol></svg>
 
 <nav><div class="wrap">
   <a class="mark" href="#">NORTHPOINT</a>
@@ -238,17 +278,17 @@ footer b{color:#fff;font-weight:500}
 <header class="hero"><div class="wrap"><div class="box">
   <div class="eyebrow">Bienvenido a</div>
   <h1 class="serif">NORTHPOINT</h1>
-  <p class="lead">Somos una mesa de trading profesional que ayuda a personas de todo México a <a class="ul" href="#como">hacer que su ahorro trabaje</a>. Usted guarda su dinero, lo ve en la app y cada mes recibe el resultado de nuestra operación, dentro del riesgo que decide asumir.</p>
+  <p class="lead">Los mercados son un océano. Somos una mesa de trading profesional que se mueve en ellos con la disciplina de un depredador, para que <a class="ul" href="#como">el ahorro de personas de todo México trabaje</a> cada mes, dentro del riesgo que cada una decide asumir.</p>
 </div></div></header>
 
 <section class="intro"><div class="wrap">
-  <p class="lead serif" style="font-weight:300">Creemos que un ahorro no debería quedarse quieto. Por eso ponemos la disciplina de una mesa institucional al servicio de cualquier saldo, desde cien dólares, con un freno de protección en cada plan y transparencia total sobre cada operación.</p>
+  <p class="lead serif" style="font-weight:300">En el océano, lo que no se mueve se hunde. Creemos que un ahorro tampoco debería quedarse quieto. Por eso ponemos la disciplina de una mesa institucional al servicio de cualquier saldo, desde cien dólares, con un freno de protección en cada plan y transparencia total sobre cada operación.</p>
   <p class="lead">Durante años, la gestión profesional estuvo reservada para grandes patrimonios. Nuestro compromiso es abrirla a quien quiera empezar, sin montos mínimos inalcanzables, sin plazos forzosos y sin letras pequeñas.</p>
 </div></section>
 
 <div class="anuncio"><div class="wrap">
-  <h3 class="serif">Presentamos la app de ahorro NORTHPOINT, desde $100 USD</h3>
-  <p>Abra su cuenta con cien dólares, siga su saldo en la app y vea cada mes lo que generó. Deposite más o retire cuando quiera.</p>
+  <h3 class="serif">De Barracuda a Megalodón, desde $100 USD</h3>
+  <p>Abra su cuenta con cien dólares y reciba su tarjeta digital de miembro. Entre más profundo llegue su ahorro, más grande el depredador.</p>
   <a class="btn line" href="app.html">Pruebe la app</a>
 </div></div>
 
@@ -278,7 +318,7 @@ footer b{color:#fff;font-weight:500}
     </ul>
   </div>
   <div>
-    <div class="iphone"><div class="iph-screen"><iframe src="app.html" title="Demo de la app NORTHPOINT" loading="lazy"></iframe><div class="iph-island"></div></div></div>
+    <div class="iphone"><div class="iph-screen"><iframe src="app.html?muestra=1" title="Demo de la app NORTHPOINT" loading="lazy"></iframe><div class="iph-island"></div></div></div>
     <span class="demo">Pruébela aquí: es la app real en modo demostración, sin dinero real. <a class="link" href="app.html" style="font-size:13px">Abrir en pantalla completa</a></span>
   </div>
 </div></section>
@@ -302,8 +342,8 @@ footer b{color:#fff;font-weight:500}
 </div></section>
 
 <section class="banda"><div class="wrap">
-  <div class="eyebrow">Un ahorro que trabaja</div>
-  <h2 class="serif">Hacemos que el ahorro rinda, para que las personas progresen, los hogares prosperen y el patrimonio avance.</h2>
+  <div class="eyebrow">Profundidad</div>
+  <h2 class="serif">La superficie es para quien espera. El patrimonio se construye en lo profundo, un mes a la vez.</h2>
   <a class="btn line inv" href="#simulador">Vea cómo funcionaría</a>
 </div></section>
 
@@ -317,10 +357,11 @@ footer b{color:#fff;font-weight:500}
 
 <section class="paquetes-sec" id="niveles"><div class="wrap">
   <div class="sec-head">
-    <div><div class="eyebrow">Niveles</div><h2 class="serif" style="margin-top:12px">Empiece con cien dólares. Crezca a su ritmo.</h2></div>
-    <p>Su nivel depende de su saldo, en dólares estadounidenses, y cambia solo conforme su ahorro crece. Sin cuota fija: la mesa solo cobra una parte de la ganancia, y la parte es menor mientras mayor es el saldo.</p>
+    <div><div class="eyebrow">Niveles de miembro</div><h2 class="serif" style="margin-top:12px">Entre más profundo, más grande el depredador.</h2></div>
+    <p>Todos los miembros tienen la misma mesa, los mismos planes y la misma comisión. Lo único que cambia con su saldo es su nivel y su tarjeta digital de miembro.</p>
   </div>
-  <div class="paquetes" id="nivelesGrid"></div>
+  <div class="tiers-l" id="nivelesGrid"></div>
+  <div class="incluye"><div class="eyebrow">Incluido en todos los niveles</div><ul id="incluye"></ul></div>
 </div></section>
 
 <section id="simulador"><div class="wrap">
@@ -358,7 +399,7 @@ footer b{color:#fff;font-weight:500}
 </div></section>
 
 <section class="comp"><div class="wrap grid">
-  <img src="img/ciudad.jpg" alt="Ciudad de México al amanecer" loading="lazy">
+  <img src="img/cardumen.jpg" alt="Cardumen de peces plateados en el océano" loading="lazy">
   <div>
     <div class="eyebrow">Nuestro compromiso</div>
     <h2 class="serif">Llevar la gestión profesional a más hogares de México</h2>
@@ -411,12 +452,9 @@ const CONFIG = {
     { id:"mod", nombre:"Moderado", lema:"Crecimiento equilibrado", nivel:3, objetivo:3,   riesgo:3,   horizonte:"12 meses o más", freq:"3 a 4 sesiones por semana", ideal:"Para que su ahorro crezca a buen ritmo sin sobresaltos grandes." },
     { id:"agr", nombre:"Agresivo", lema:"Máximo potencial",        nivel:5, objetivo:6,   riesgo:6,   horizonte:"24 meses o más", freq:"Todas las sesiones",        ideal:"Para pensar a largo plazo y buscar el mayor crecimiento." }
   ],
-  // nivel por SALDO (no por aportación): cambia solo cuando el saldo cruza el mínimo
-  niveles: [
-    { id:"inicial", nombre:"Inicial", min:100,   max:999,  fee:30, items:["App con saldo y cada operación","Resultado mensual","Depósitos y retiros cuando quiera","Atención por WhatsApp"] },
-    { id:"plus",    nombre:"Plus",    min:1000,  max:9999, fee:25, dest:true, items:["Todo lo del nivel Inicial","Revisión trimestral con su trader","Cambio de plan cada mes"] },
-    { id:"privado", nombre:"Privado", min:10000, max:null, fee:20, items:["Todo lo del nivel Plus","Trader asignado","Visita a la oficina de la mesa"] }
-  ],
+  // la comisión es la MISMA para todos; los niveles (tarjetas) son solo estatus
+  fee: 25,
+  incluye: ["La misma mesa de traders","Los tres planes: Básico, Moderado y Agresivo","25% de la ganancia nueva, sin cuota fija","App con saldo y cada operación","Depósitos y retiros cuando quiera","Atención por WhatsApp"],
   saldos: [100,200,300,500,750,1000,1500,2000,3000,5000,7500,10000,15000,20000,30000,50000,75000,100000],
   perspectivas: [
     { tipo:"Nota de la mesa", titulo:"Por qué no prometemos un rendimiento fijo", fecha:"29 de septiembre de 2026",
@@ -442,7 +480,8 @@ $("#perfilesGrid").innerHTML = CONFIG.perfiles.map(p => `
     <div class="riesgo" aria-label="Nivel de riesgo ${p.nivel} de 5">${[1,2,3,4,5].map(i=>`<i class="${i<=p.nivel?"on":""}"></i>`).join("")}<span>Riesgo ${p.nivel} de 5</span></div>
     <p class="ideal">${p.ideal}</p>
     <dl>
-      <div><dt>Objetivo al año</dt><dd>+${(Math.pow(1+p.objetivo/100,12)*100-100).toFixed(0)}% compuesto</dd></div>
+      <div><dt>Objetivo al año</dt><dd>+${(Math.pow(1+p.objetivo/100,12)*100-100).toFixed(0)}% bruto</dd></div>
+      <div><dt>Neto de comisión</dt><dd>+${(Math.pow(1+p.objetivo/100*(1-CONFIG.fee/100),12)*100-100).toFixed(0)}% al año</dd></div>
       <div><dt>Riesgo mensual</dt><dd>${p.riesgo}%</dd></div>
       <div><dt>Horizonte sugerido</dt><dd>${p.horizonte}</dd></div>
       <div><dt>Actividad de la mesa</dt><dd>${p.freq}</dd></div>
@@ -451,17 +490,48 @@ $("#perfilesGrid").innerHTML = CONFIG.perfiles.map(p => `
   </div>`).join("");
 $("#seg").innerHTML = CONFIG.perfiles.map(p => `<button type="button" data-id="${p.id}">${p.nombre}</button>`).join("");
 
+// ── tarjeta digital de miembro (concepto: depredadores del océano; más saldo = más profundidad) ──
+const TIERS = [
+  { id:"barracuda", nombre:"Barracuda", min:100,   prof:"200 m",    lema:"El primer depredador" },
+  { id:"tiburon",   nombre:"Tiburón",   min:1000,  prof:"1,000 m",  lema:"Instinto constante" },
+  { id:"orca",      nombre:"Orca",      min:10000, prof:"3,000 m",  lema:"Estrategia de manada" },
+  { id:"megalodon", nombre:"Megalodón", min:50000, prof:"11,000 m", lema:"La leyenda del fondo" }
+];
+function sonar(seed){
+  // líneas de contorno tipo batimetría, deterministas por nivel
+  let d = "", r = seed;
+  const rnd = () => (r = (r*9301 + 49297) % 233280) / 233280;
+  for(let k=0;k<11;k++){
+    const y = 30 + k*17, a = 5 + rnd()*9, f = 0.8 + rnd()*1.4, ph = rnd()*6;
+    let p = "";
+    for(let x=0;x<=340;x+=10){ const yy = y + Math.sin(x/340*Math.PI*2*f + ph)*a + Math.sin(x/37+ph)*1.6; p += (x?"L":"M")+x+","+yy.toFixed(1); }
+    d += `<path d="${p}"/>`;
+  }
+  return d;
+}
+function tarjetaHTML(t, nombre, desde, numero, bloqueada){
+  const i = TIERS.indexOf(t);
+  return `<div class="tc tc-${t.id} ${bloqueada?"lock":""}">
+    <svg class="tc-lines" viewBox="0 0 340 214" preserveAspectRatio="none" fill="none" stroke-width=".7">${sonar(17+i*31)}</svg>
+    <div class="tc-top"><span class="tc-brand"><svg><use href="#star"/></svg>NORTHPOINT</span><span class="tc-kind">Miembro</span></div>
+    <div class="tc-mid"><div class="tc-name">${t.nombre}</div><div class="tc-prof">−${t.prof} · ${t.lema}</div></div>
+    <div class="tc-bot"><div><div class="tc-holder">${bloqueada ? "Desde " + "$" + t.min.toLocaleString("en-US") : nombre}</div><div class="tc-since">${bloqueada ? "de saldo" : "Miembro desde " + desde}</div></div><div class="tc-num">${bloqueada ? "BLOQUEADA" : numero}</div></div>
+  </div>`;
+}
+
+const IMG = { barracuda:"img/barracuda.jpg", tiburon:"img/tiburon.jpg", orca:"img/orca.jpg", megalodon:"img/megalodon.jpg" };
+CONFIG.niveles = TIERS.map((t,i)=>({ ...t, max: TIERS[i+1] ? TIERS[i+1].min-1 : null }));
 const rango = q => usd(q.min) + (q.max ? " – " + usd(q.max) : " o más");
 $("#nivelesGrid").innerHTML = CONFIG.niveles.map(q => `
-  <div class="pq ${q.dest?"dest":""}">
-    <div class="eyebrow">${q.dest?"El nivel más elegido":"Nivel"}</div>
-    <h3 class="serif" style="margin-top:8px">${q.nombre}</h3>
-    <div class="rng">${rango(q)}</div><div class="cap">de saldo</div>
-    <ul>${q.items.map(i=>`<li>${i}</li>`).join("")}</ul>
-    <div class="fee">${q.fee}% de la ganancia</div>
-    <p>Sin cuota fija. Solo sobre nuevos máximos de su saldo.</p>
-    <a class="btn ${q.dest?"":"line"}" href="#registro" data-nv="${q.id}" style="align-self:flex-start">Empezar en ${q.nombre}</a>
+  <div class="tier-l">
+    <div class="pic" style="background-image:url(${IMG[q.id]})"></div>
+    <div class="body">
+      ${tarjetaHTML(q, "Su nombre", "2026", "NP 0000 0000", false)}
+      <h3>${q.nombre}</h3>
+      <div class="rng">${rango(q)} de saldo</div>
+    </div>
   </div>`).join("");
+$("#incluye").innerHTML = CONFIG.incluye.map(i=>`<li>${i}</li>`).join("");
 
 $("#cards").innerHTML = CONFIG.perspectivas.map(c => `
   <article class="card">
@@ -479,7 +549,7 @@ document.querySelectorAll(".card").forEach(c => c.addEventListener("click", () =
 $("#oficina").innerHTML = CONFIG.oficina || "Dirección por anunciar";
 $("#contactoTxt").innerHTML = [CONFIG.whatsapp && `WhatsApp: +${CONFIG.whatsapp}`, CONFIG.email].filter(Boolean).join("<br>") || "Por medio del registro de esta página";
 
-$("#fNivel").innerHTML = CONFIG.niveles.map(q=>`<option value="${q.id}">${rango(q)} · nivel ${q.nombre}</option>`).join("");
+$("#fNivel").innerHTML = CONFIG.niveles.map(q=>`<option value="${q.id}">${rango(q)} · ${q.nombre}</option>`).join("");
 $("#fPerfil").innerHTML = CONFIG.perfiles.map(p=>`<option value="${p.id}">${p.nombre} · objetivo +${p.objetivo}% al mes</option>`).join("");
 document.querySelectorAll("[data-nv]").forEach(a => a.addEventListener("click", () => $("#fNivel").value = a.dataset.nv));
 
@@ -505,7 +575,7 @@ function sim(){
   for(let m=1; m<=meses; m++){
     const antes = bal;
     bal *= 1 + rEf/100;
-    if(bal > hwm){ const f = (bal-hwm)*nivelDe(antes).fee/100; fees += f; bal -= f; hwm = bal; }
+    if(bal > hwm){ const f = (bal-hwm)*CONFIG.fee/100; fees += f; bal -= f; hwm = bal; }
     serie.push([bal-antes, bal]);
   }
   const gan = bal - dep, nv = nivelDe(dep);
@@ -523,7 +593,7 @@ function sim(){
     : r === p.objetivo
     ? `Si la mesa cumple el objetivo del plan ${p.nombre} (+${p.objetivo}% al mes), el primer mes su saldo crecería ${usd(mes1)} ya descontada la comisión. `
     : `Con este supuesto, el primer mes su saldo cambiaría ${mes1>=0?"+":""}${usd(mes1)} ya descontada la comisión. `)
-    + `Nivel al empezar: <b>${nv.nombre}</b>, ${nv.fee}% de la ganancia. El objetivo es una meta, no un rendimiento garantizado.`;
+    + `Tarjeta al empezar: <b>${nv.nombre}</b>. Comisión de ${CONFIG.fee}% de la ganancia, igual para todos. El objetivo es una meta, no un rendimiento garantizado.`;
   draw(serie, dep);
 }
 
