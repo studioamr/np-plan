@@ -197,63 +197,6 @@ canvas{width:100%;height:300px;display:block}
 @keyframes playpulse{0%{box-shadow:0 0 0 0 rgba(34,81,255,.45)}70%{box-shadow:0 0 0 14px rgba(34,81,255,0)}100%{box-shadow:0 0 0 0 rgba(34,81,255,0)}}
 #simPlay:not(.playing){animation:playpulse 2.2s infinite}
 
-/* el costo de esperar: línea de tiempo de 36 meses */
-.urge{background:radial-gradient(120% 90% at 80% 0%,#0B2A40 0%,#051C2C 55%,#03121D 100%);color:#fff}
-.urge .eyebrow,.urge h2{color:#fff}.urge .sec-head p{color:rgba(255,255,255,.72)}
-.urge-ctrl{display:flex;gap:40px;flex-wrap:wrap;margin-bottom:34px}
-.urge-ctrl span{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:10px}
-.chips{display:flex;gap:8px;flex-wrap:wrap}
-.chips button{border:1px solid rgba(255,255,255,.22);background:transparent;padding:9px 16px;border-radius:999px;font:400 14px var(--sans);cursor:pointer;color:rgba(255,255,255,.85);transition:background .2s,color .2s,border-color .2s}
-.chips button:hover{border-color:#fff}
-.chips button.on{background:#fff;color:var(--navy);border-color:#fff}
-.urge-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.1);margin-bottom:40px}
-.urge-stats>div{padding:22px 24px;background:#061F30}
-.urge-stats span{display:block;font-size:13px;color:rgba(255,255,255,.6)}
-.urge-stats b{display:block;font:300 36px/1.15 var(--serif);color:#fff;margin-top:8px;font-variant-numeric:tabular-nums}
-.urge-stats b.neg{color:#FF7A6B}
-.tl-box{position:relative;padding:54px 0 0}
-.tl-plot{position:relative;height:300px}
-.tl-bars{position:absolute;inset:0;display:grid;grid-template-columns:repeat(36,1fr);gap:4px;align-items:end}
-.tb{position:relative;height:100%;display:flex;align-items:flex-end;cursor:pointer}
-.tb i{display:block;width:100%;border-radius:4px 4px 1px 1px;transform-origin:bottom;transition:filter .2s,opacity .2s}
-.tb.past i{background:repeating-linear-gradient(135deg,rgba(255,122,107,.55) 0 3px,rgba(255,122,107,.18) 3px 7px);box-shadow:inset 0 0 0 1px rgba(255,122,107,.7)}
-.tb.now i{background:#fff;box-shadow:0 0 24px rgba(255,255,255,.45)}
-.tb.fut i{background:linear-gradient(180deg,#5B7CFF,#2251FF 60%,#1A3FCC)}
-.tb:hover i{filter:brightness(1.25)}
-.tl-bars:hover .tb:not(:hover) i{opacity:.55}
-.tl-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
-.tl-now{position:absolute;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none;z-index:2}
-.tl-now b{font:600 11px var(--sans);letter-spacing:.14em;background:#fff;color:var(--navy);padding:5px 10px;border-radius:999px;white-space:nowrap}
-.tl-now i{width:10px;height:10px;border-radius:50%;background:#fff;animation:tlp 1.8s infinite}
-@keyframes tlp{0%{box-shadow:0 0 0 0 rgba(255,255,255,.6)}70%{box-shadow:0 0 0 12px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
-.tl-gap{position:absolute;right:0;text-align:right;pointer-events:none;font-size:12px;color:#FF7A6B;line-height:1.3}
-.tl-gap b{display:block;font:300 22px var(--serif);color:#FF7A6B}
-.tl-x{display:grid;grid-template-columns:repeat(36,1fr);gap:4px;margin-top:10px;font-size:10.5px;color:rgba(255,255,255,.45);text-align:center}
-.tl-x span.now{color:#fff;font-weight:600}
-.tl-yr{display:grid;grid-template-columns:repeat(3,1fr);margin-top:8px;border-top:1px solid rgba(255,255,255,.15)}
-.tl-yr span{padding-top:8px;font:300 18px var(--serif);color:rgba(255,255,255,.8)}
-.tl-tip{position:absolute;z-index:3;pointer-events:none;background:#fff;color:var(--ink);padding:10px 12px;font-size:13px;line-height:1.4;box-shadow:0 18px 40px -16px rgba(0,0,0,.6);transform:translate(-50%,-100%);opacity:0;transition:opacity .15s;white-space:nowrap}
-.tl-tip b{display:block;font:400 20px var(--serif)}
-.tl-leg{display:flex;gap:26px;flex-wrap:wrap;margin-top:22px;font-size:13px;color:rgba(255,255,255,.7)}
-.tl-leg i{display:inline-block;width:14px;height:14px;border-radius:3px;margin-right:8px;vertical-align:-2px}
-.tl-leg .l1{background:repeating-linear-gradient(135deg,rgba(255,122,107,.6) 0 3px,rgba(255,122,107,.2) 3px 6px);box-shadow:inset 0 0 0 1px #FF7A6B}
-.tl-leg .l2{background:#fff}.tl-leg .l3{background:#2251FF}
-.tl-leg .l4{height:0;border-top:2px dashed #FF7A6B;border-radius:0;vertical-align:4px;width:20px}
-.urge-cta{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-top:40px;padding:28px 32px;background:#fff;color:var(--ink);flex-wrap:wrap}
-.urge-cta p{font:300 22px/1.35 var(--serif);max-width:760px}
-.urge-note{font-size:13px;color:rgba(255,255,255,.5);margin-top:14px}
-@media(max-width:900px){
-  .urge-stats{grid-template-columns:1fr 1fr}
-  .urge-stats>div{padding:18px}
-  .urge-stats b{font-size:28px}
-  .tl-plot{height:220px}
-  .tl-bars,.tl-x{gap:2px}
-  .tl-x span{font-size:0}
-  .tl-x span.now{font-size:9px}
-  .tl-gap b{font-size:18px}
-  .tl-yr span{font-size:15px}
-}
-
 /* perspectivas */
 .persp{background:var(--gray)}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -347,7 +290,7 @@ footer .mark{color:#fff;display:block;margin-bottom:24px}
 footer p{max-width:900px;margin-bottom:12px}
 footer b{color:#fff;font-weight:500}
 </style>
-<link rel="stylesheet" href="anim.css?v=1790754890">
+<link rel="stylesheet" href="anim.css?v=1790755021">
 <script>document.documentElement.classList.add("js-anim");setTimeout(function(){document.documentElement.classList.add("anim-ready")},3500)</script>
 </head>
 <body>
@@ -355,7 +298,7 @@ footer b{color:#fff;font-weight:500}
 <nav><div class="wrap">
   <a class="mark" href="#">NORTHPOINT</a>
   <div class="links">
-    <a href="#como">Cómo funciona</a><a href="#app">La app</a><a href="#perfiles">Planes</a><a href="#tiempo">El costo de esperar</a><a href="equipo.html">Equipo</a><a href="activos.html">Activos</a><a href="fundacion.html">Fundación</a>
+    <a href="#como">Cómo funciona</a><a href="#app">La app</a><a href="#perfiles">Planes</a><a href="equipo.html">Equipo</a><a href="activos.html">Activos</a><a href="fundacion.html">Fundación</a>
     <a class="btn" href="#registro">Apartar lugar</a>
   </div>
 </div></nav>
@@ -443,7 +386,7 @@ footer b{color:#fff;font-weight:500}
     </ul>
   </div>
   <div>
-    <div class="iphone"><div class="iph-screen"><iframe src="app.html?muestra=1&v=1790754890" title="Demo de la app NORTHPOINT" loading="lazy"></iframe><div class="iph-island"></div></div></div>
+    <div class="iphone"><div class="iph-screen"><iframe src="app.html?muestra=1&v=1790755021" title="Demo de la app NORTHPOINT" loading="lazy"></iframe><div class="iph-island"></div></div></div>
     <span class="demo">Pruébela aquí: es la app real en modo demostración, sin dinero real. <a class="link" href="app.html" style="font-size:13px">Abrir en pantalla completa</a></span>
   </div>
 </div></section>
@@ -518,34 +461,6 @@ footer b{color:#fff;font-weight:500}
       <p class="nota" id="nota"></p>
     </div>
   </div>
-</div></section>
-
-<section class="urge" id="tiempo"><div class="wrap">
-  <div class="sec-head">
-    <div><div class="eyebrow">El costo de esperar</div><h2 class="serif" style="margin-top:12px">Cada mes que no empieza, no vuelve.</h2></div>
-    <p>Así se ve el tiempo. Las barras rojas son los meses que ya pasaron: lo que su ahorro tendría hoy si hubiera empezado en enero. Las azules muestran cómo crecería si empieza este mes. La distancia entre las dos es lo que cuesta esperar.</p>
-  </div>
-  <div class="urge-ctrl">
-    <div><span>Si empieza con</span><div class="chips" id="uMonto"></div></div>
-    <div><span>En el plan</span><div class="chips" id="uPlan"></div></div>
-  </div>
-  <div class="urge-stats">
-    <div><span>Meses que ya pasaron este año</span><b id="uPast"></b></div>
-    <div><span>Lo que dejó de generar</span><b class="neg" id="uLost"></b></div>
-    <div><span>Cada mes más que espere</span><b class="neg" id="uMes"></b></div>
-    <div><span>Para que termine este mes</span><b id="uClock"></b></div>
-  </div>
-  <div class="tl-box" id="cal">
-    <div class="tl-plot"><div class="tl-bars" id="tlBars"></div><svg class="tl-svg" id="tlSvg" preserveAspectRatio="none"></svg><div class="tl-now" id="tlNow"><b>HOY</b><i></i></div><div class="tl-gap" id="tlGap"></div><div class="tl-tip" id="tlTip"></div></div>
-    <div class="tl-x" id="tlX"></div>
-    <div class="tl-yr" id="tlYr"></div>
-    <div class="tl-leg"><span><i class="l1"></i>Ya pasó: lo que tendría si hubiera empezado en enero</span><span><i class="l2"></i>Hoy</span><span><i class="l3"></i>Si empieza este mes</span><span><i class="l4"></i>El camino de haber empezado antes</span></div>
-  </div>
-  <div class="urge-cta">
-    <p id="uLine"></p>
-    <a class="btn" href="#registro">Empezar este mes</a>
-  </div>
-  <p class="urge-note">Cálculo con el objetivo mensual del plan. Es una meta, no un rendimiento garantizado.</p>
 </div></section>
 
 <section class="persp" id="perspectivas"><div class="wrap">
@@ -830,68 +745,11 @@ $("#form").addEventListener("submit", e => {
 
 (function(){ const b = document.getElementById("privBtn"); if(b && CONFIG.whatsapp){ b.href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent("Hola, me interesa NORTHPOINT Privado. Quiero agendar una conversación sobre invertir un capital.")}`; b.target = "_blank"; } })();
 
-// ── el costo de esperar: calendario de meses ──
-(function(){
-  const cal = document.getElementById("cal"); if(!cal) return;
-  const MES = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
-  const montos = [500, 1000, 5000, 10000];
-  let D = 1000, P = CONFIG.perfiles.find(p=>p.id==="mod") || CONFIG.perfiles[1];
-  const chips = (el, items, on, lbl, pick) => { el.innerHTML = items.map((x,i)=>`<button type="button" data-k="${i}" class="${x===on?"on":""}">${lbl(x)}</button>`).join("");
-    el.querySelectorAll("button").forEach(b => b.onclick = () => { pick(items[+b.dataset.k]); el.querySelectorAll("button").forEach(x=>x.classList.toggle("on", x===b)); draw(); }); };
-  chips(document.getElementById("uMonto"), montos, D, m => usd(m), m => D = m);
-  chips(document.getElementById("uPlan"), CONFIG.perfiles, P, p => `${p.nombre} · +${p.objetivo}%`, p => P = p);
-  function draw(){
-    const now = new Date(), y0 = now.getFullYear(), m0 = now.getMonth();
-    const r = P.objetivo / 100;   // sin comisión
-    const lost = D * (Math.pow(1 + r, m0) - 1);
-    document.getElementById("uPast").textContent = m0 + (m0 === 1 ? " mes" : " meses");
-    document.getElementById("uLost").textContent = "−" + usd(lost);
-    document.getElementById("uMes").textContent = "−" + usd(D * r);
-    // 36 meses: el año pasado a partir de enero ("si hubiera empezado"), hoy, y lo que sigue ("si empieza hoy")
-    const N = 36, pts = [];
-    for(let i = 0; i < N; i++){ const y = y0 + Math.floor(i/12), m = i % 12, k = i - m0;
-      pts.push({ y, m, k, tipo: k < 0 ? "past" : k === 0 ? "now" : "fut", v: k < 0 ? D*Math.pow(1+r, i+1) : D*Math.pow(1+r, k), ante: D*Math.pow(1+r, i+1) }); }
-    const hi = Math.max(...pts.map(p=>p.ante)), lo = D*0.72, h = v => Math.max(4, (v-lo)/(hi-lo)*100);
-    document.getElementById("tlBars").innerHTML = pts.map((p,i)=>`<div class="tb ${p.tipo}" data-i="${i}"><i style="height:${h(p.v)}%"></i></div>`).join("");
-    document.getElementById("tlX").innerHTML = pts.map(p=>`<span class="${p.tipo==="now"?"now":""}">${p.tipo==="now"?"HOY":MES[p.m][0]}</span>`).join("");
-    document.getElementById("tlYr").innerHTML = [y0,y0+1,y0+2].map(y=>`<span>${y}</span>`).join("");
-    const svg = document.getElementById("tlSvg"), W = 1000, H = 1000;
-    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
-    const X = i => (i+.5)/N*W, Y = v => H - h(v)/100*H;
-    svg.innerHTML = `<polyline points="${pts.map((p,i)=>`${X(i)},${Y(p.ante)}`).join(" ")}" fill="none" stroke="#FF7A6B" stroke-width="2" stroke-dasharray="6 6" vector-effect="non-scaling-stroke"/>`;
-    const nw = document.getElementById("tlNow"); nw.style.left = ((m0+.5)/N*100)+"%"; nw.style.top = `calc(${100 - h(pts[m0].v)}% - 52px)`;
-    const last = pts[N-1], gap = last.ante - last.v, g = document.getElementById("tlGap");
-    g.style.top = `calc(${Y(last.ante)/H*100}% - 34px)`; g.style.right = "calc(100% / 36 + 8px)";
-    g.innerHTML = `<b>−${usd(gap)}</b>por empezar en ${MES[m0].toLowerCase()} y no en enero`;
-    const tip = document.getElementById("tlTip");
-    document.querySelectorAll("#tlBars .tb").forEach(el => {
-      el.onmouseenter = () => { const p = pts[+el.dataset.i], R = el.getBoundingClientRect(), B = el.parentNode.getBoundingClientRect();
-        tip.innerHTML = p.tipo==="past" ? `${MES[p.m]} ${p.y} · ya pasó<b>${usd(p.v)}</b><span style="color:#C0392B">si hubiera empezado en enero</span>`
-          : p.tipo==="now" ? `${MES[p.m]} ${p.y} · hoy<b>${usd(p.v)}</b>su punto de partida` : `${MES[p.m]} ${p.y}<b>${usd(p.v)}</b>si empieza este mes`;
-        tip.style.left = Math.min(Math.max(R.left - B.left + R.width/2, 90), B.width-90)+"px"; tip.style.top = (R.top - B.top + R.height - el.firstChild.offsetHeight - 10)+"px"; tip.style.opacity = 1; };
-      el.onmouseleave = () => tip.style.opacity = 0; });
-    const fin = D * Math.pow(1 + r, 24);
-    document.getElementById("uLine").innerHTML = `Si empieza este mes con ${usd(D)}, en dos años su saldo podría llegar a <b>${usd(fin)}</b>. Si espera tres meses más, esos tres meses no regresan.`;
-    if(window.gsap && !matchMedia("(prefers-reduced-motion: reduce)").matches && cal.dataset.seen) gsap.from("#tlBars .tb i", { scaleY: 0, stagger: .012, duration: .5, ease: "power3.out" });
-  }
-  function clock(){
-    const now = new Date(), end = new Date(now.getFullYear(), now.getMonth() + 1, 1), ms = end - now;
-    const d = Math.floor(ms / 864e5), h = Math.floor(ms % 864e5 / 36e5), mi = Math.floor(ms % 36e5 / 6e4);
-    document.getElementById("uClock").textContent = `${d} d ${String(h).padStart(2,"0")} h ${String(mi).padStart(2,"0")} m`;
-  }
-  draw(); clock(); setInterval(clock, 30000);
-  // entrada: los meses pasados se "tachan" uno por uno al aparecer
-  if("IntersectionObserver" in window && window.gsap && !matchMedia("(prefers-reduced-motion: reduce)").matches){
-    const io = new IntersectionObserver(es => { if(!es[0].isIntersecting) return; io.disconnect(); cal.dataset.seen = 1;
-      gsap.from("#tlBars .tb i", { scaleY: 0, stagger: .025, duration: .7, ease: "power3.out" }); gsap.from("#tlSvg polyline", { opacity: 0, duration: 1, delay: .9 }); gsap.from("#tlGap, #tlNow", { opacity: 0, y: 10, duration: .6, delay: 1.1 }); }, { threshold: .3 });
-    io.observe(cal);
-  }
-})();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="anim.js?v=1790754890"></script>
-<script src="menu.js?v=1790754890"></script>
+<script src="anim.js?v=1790755021"></script>
+<script src="menu.js?v=1790755021"></script>
 </body>
 </html>
