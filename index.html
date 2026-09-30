@@ -290,7 +290,7 @@ footer .mark{color:#fff;display:block;margin-bottom:24px}
 footer p{max-width:900px;margin-bottom:12px}
 footer b{color:#fff;font-weight:500}
 </style>
-<link rel="stylesheet" href="anim.css?v=1790785087">
+<link rel="stylesheet" href="anim.css?v=1790785232">
 <script>document.documentElement.classList.add("js-anim");setTimeout(function(){document.documentElement.classList.add("anim-ready")},3500)</script>
 </head>
 <body>
@@ -401,7 +401,7 @@ footer b{color:#fff;font-weight:500}
     </ul>
   </div>
   <div>
-    <div class="iphone"><div class="iph-screen"><iframe src="app.html?muestra=1&v=1790785087" title="Demo de la app NORTHPOINT" loading="lazy"></iframe><div class="iph-island"></div></div></div>
+    <div class="iphone"><div class="iph-screen"><iframe src="app.html?muestra=1&v=1790785232" title="Demo de la app NORTHPOINT" loading="lazy"></iframe><div class="iph-island"></div></div></div>
     <span class="demo">Pruébela aquí: es la app real en modo demostración, sin dinero real. <a class="link" href="app.html" style="font-size:13px">Abrir en pantalla completa</a></span>
   </div>
 </div></section>
@@ -461,7 +461,6 @@ footer b{color:#fff;font-weight:500}
       <label><div class="row"><span>Tiempo</span><b id="vMeses"></b></div><input id="meses" type="range" min="6" max="60" step="6" value="24"></label>
       <label><div class="row"><span>Rendimiento mensual supuesto</span><b id="vRend"></b></div><input id="rend" type="range" min="-3" max="4" step="0.25" value="1"></label>
       <div><div class="row"><span>Plan</span></div><div class="seg" id="seg"></div></div>
-      <button type="button" class="btn" id="simPlay"><span class="pi">▶</span> Reproducir</button>
     </div>
     <div class="out">
       <div class="kpis">
@@ -724,9 +723,6 @@ function draw(serie, dep, upto){
 }
 
 ["saldo","meses","rend"].forEach(id => $("#"+id).addEventListener("input", sim));
-$("#simPlay").addEventListener("click", playSim);
-// se reproduce solo la primera vez que el simulador aparece en pantalla
-if("IntersectionObserver" in window){ const io = new IntersectionObserver(es => { if(es[0].isIntersecting){ io.disconnect(); setTimeout(() => { if(!window.__simAnim) playSim(); }, 500); } }, { threshold: .45 }); io.observe($(".sim")); }
 window.addEventListener("resize", sim);
 setPerfil("mod");
 
@@ -764,7 +760,7 @@ $("#form").addEventListener("submit", e => {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="anim.js?v=1790785087"></script>
-<script src="menu.js?v=1790785087"></script>
+<script src="anim.js?v=1790785232"></script>
+<script src="menu.js?v=1790785232"></script>
 </body>
 </html>
