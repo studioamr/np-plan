@@ -12,8 +12,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="base.css?v=1790787068">
-<link rel="stylesheet" href="anim.css?v=1790787068">
+<link rel="stylesheet" href="base.css?v=1790787441">
+<link rel="stylesheet" href="anim.css?v=1790787441">
 <script>document.documentElement.classList.add("js-anim");setTimeout(function(){document.documentElement.classList.add("anim-ready")},3500)</script>
 <!--
   OVERVIEW v2 · 30-sep-2026 · "NORTHPOINT Ideas", formato revista (identidad propia, distinta a la landing):
@@ -49,6 +49,33 @@ nav{background:#0B0B0C!important}
 .cover p{font:300 20px/1.5 "Source Serif 4",serif;opacity:.9;max-width:680px}
 .byline{display:flex;align-items:center;gap:12px;margin-top:22px;font:400 14px var(--sans)}
 .byline img{width:42px;height:42px;border-radius:50%;object-fit:cover;object-position:center 20%;filter:grayscale(1);border:2px solid rgba(255,255,255,.8);background:#fff}
+
+/* al día: noticias reales, se actualizan solas */
+.aldia{padding:70px 0 10px}
+.ad-top{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;border-top:2px solid var(--ink2);padding-top:14px;margin-bottom:26px}
+.ad-top h3{font:500 30px "Playfair Display",serif;color:var(--ink2)}
+.ad-live{display:inline-flex;align-items:center;gap:8px;font:500 12px var(--sans);letter-spacing:.06em;color:#444;margin-top:6px}
+.ad-live i{width:8px;height:8px;border-radius:50%;background:#E5484D;animation:adp 1.6s infinite}
+@keyframes adp{0%{box-shadow:0 0 0 0 rgba(229,72,77,.5)}70%{box-shadow:0 0 0 8px rgba(229,72,77,0)}100%{box-shadow:0 0 0 0 rgba(229,72,77,0)}}
+.ad-tabs{display:flex;gap:6px;flex-wrap:wrap}
+.ad-tabs button{border:1px solid var(--rule);background:transparent;border-radius:999px;padding:8px 14px;font:500 12.5px var(--sans);color:#333;cursor:pointer}
+.ad-tabs button.on{background:var(--ink2);color:#fff;border-color:var(--ink2)}
+.ad-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px 24px}
+.nw{display:flex;flex-direction:column;text-decoration:none;color:inherit}
+.nw .im{aspect-ratio:16/10;background:#ddd center/cover no-repeat;overflow:hidden}
+.nw .im img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.nw:hover .im img{transform:scale(1.05)}
+.nw .src{display:flex;justify-content:space-between;gap:8px;margin-top:12px;font:600 11px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--acc)}
+.nw .src span{color:#777;font-weight:400;letter-spacing:.02em;text-transform:none}
+.nw h5{font:400 18px/1.3 "Playfair Display",serif;color:var(--ink2);margin-top:6px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.nw:hover h5{color:var(--acc)}
+.nw.big{grid-column:span 2;grid-row:span 2}
+.nw.big .im{aspect-ratio:16/11}
+.nw.big h5{font-size:30px;-webkit-line-clamp:4}
+.ad-more{display:block;margin:30px auto 0;border:1px solid var(--ink2);background:transparent;padding:12px 22px;font:500 14px var(--sans);cursor:pointer}
+.ad-note{font:400 12px var(--sans);color:#888;margin-top:16px}
+@media(max-width:1000px){.ad-grid{grid-template-columns:1fr 1fr}.nw.big{grid-column:span 2;grid-row:auto}}
+@media(max-width:640px){.ad-grid{grid-template-columns:1fr}.nw.big{grid-column:auto}.nw.big h5{font-size:24px}}
 
 .latest{padding:70px 0 40px}
 .hrow{display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid var(--ink2);padding-top:14px;margin-bottom:30px;gap:16px}
@@ -149,7 +176,7 @@ nav{background:#0B0B0C!important}
 <nav><div class="wrap">
   <a class="mark" href="index.html">NORTHPOINT<small>Ideas</small></a>
   <div class="links">
-    <a href="#reciente">Lo más reciente</a><a href="#memos">Memos</a><a href="#ia">IA y datos</a><a href="#equipo">Equipo</a><a href="index.html">NORTHPOINT</a>
+    <a href="#aldia">Al día</a><a href="#reciente">Lo más reciente</a><a href="#memos">Memos</a><a href="#ia">IA y datos</a><a href="#equipo">Equipo</a><a href="index.html">NORTHPOINT</a>
     <a class="btn" href="#boletin">Suscribirme</a>
   </div>
 </div></nav>
@@ -162,6 +189,13 @@ nav{background:#0B0B0C!important}
   <div class="secs" id="secs"></div>
   <article class="cover" id="cover"></article>
 </div></header>
+
+<section class="aldia" id="aldia"><div class="wrap">
+  <div class="ad-top"><div><h3>Al día</h3><div class="ad-live"><i></i><span id="adUpd">Noticias de mercados, economía e IA</span></div></div><div class="ad-tabs" id="adTabs"></div></div>
+  <div class="ad-grid" id="adGrid"></div>
+  <button class="ad-more" id="adMore" type="button">Ver más noticias</button>
+  <p class="ad-note">Titulares de El Financiero, Bloomberg Línea y Expansión; cada nota abre en su sitio original. Se actualizan solos.</p>
+</div></section>
 
 <section class="latest" id="reciente"><div class="wrap">
   <div class="hrow"><h3 id="latT">Lo más reciente</h3><span class="meta" id="latN"></span></div>
@@ -290,11 +324,50 @@ $("#newsForm").addEventListener("submit", e => { e.preventDefault(); const d = O
   try{ const l = JSON.parse(localStorage.getItem("np-boletin")||"[]"); l.push({ ...d, fecha:new Date().toISOString() }); localStorage.setItem("np-boletin", JSON.stringify(l)); }catch(_){}
   $("#newsOk").style.display = "block"; e.target.reset(); });
 render();
+
+// ── Al día: noticias reales. Carga la captura data/noticias.json y luego pide las fuentes en vivo ──
+(function(){
+  const FEEDS = [
+    ["mercados","El Financiero","https://www.elfinanciero.com.mx/arc/outboundfeeds/rss/category/mercados/?outputType=xml"],
+    ["mercados","Bloomberg Línea","https://www.bloomberglinea.com/arc/outboundfeeds/rss/category/mercados/?outputType=xml"],
+    ["mercados","Expansión","https://expansion.mx/rss/mercados"],
+    ["economia","Expansión","https://expansion.mx/rss/economia"],
+    ["ia","Bloomberg Línea","https://www.bloomberglinea.com/arc/outboundfeeds/rss/category/tecnologia/?outputType=xml"],
+    ["ia","Expansión","https://expansion.mx/rss/tecnologia"]
+  ];
+  const CAT = { todo:"Todo", mercados:"Mercados", economia:"Economía", ia:"IA y tecnología" };
+  let items = [], cat = "todo", shown = 9, upd = null;
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+  const hace = iso => { const m = Math.round((Date.now() - new Date(iso)) / 6e4); if(!(m >= 0)) return ""; if(m < 60) return `hace ${Math.max(1,m)} min`; const h = Math.round(m/60); if(h < 24) return `hace ${h} h`; const d = Math.round(h/24); return `hace ${d} ${d===1?"día":"días"}`; };
+  function merge(nuevos){ const seen = new Set(items.map(x=>x.l)); nuevos.forEach(x => { if(x.l && x.img && !seen.has(x.l)){ seen.add(x.l); items.push(x); } }); items.sort((a,b)=> (b.f||"").localeCompare(a.f||"")); }
+  function draw(){
+    const L = items.filter(x => cat==="todo" || x.cat===cat), V = L.slice(0, shown);
+    $("#adGrid").innerHTML = V.map((x,i)=>`<a class="nw ${i===0?"big":""}" href="${esc(x.l)}" target="_blank" rel="noopener"><div class="im"><img src="${esc(x.img)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.nw').remove()"></div><div class="src">${esc(x.fuente)} · ${CAT[x.cat]}<span>${hace(x.f)}</span></div><h5>${esc(x.t)}</h5></a>`).join("") || `<p class="meta">Cargando noticias…</p>`;
+    $("#adMore").style.display = L.length > shown ? "" : "none";
+    $("#adTabs").innerHTML = Object.entries(CAT).map(([k,t])=>`<button type="button" data-k="${k}" class="${k===cat?"on":""}">${t}</button>`).join("");
+    $$("#adTabs button").forEach(b => b.onclick = () => { cat = b.dataset.k; shown = 9; draw(); });
+    if(upd) $("#adUpd").textContent = `Actualizado ${hace(upd)} · mercados, economía e IA`;
+  }
+  $("#adMore").onclick = () => { shown += 8; draw(); };
+  // 1) captura guardada o cache local reciente
+  let cache = null; try{ cache = JSON.parse(localStorage.getItem("np-aldia")||"null"); }catch(_){}
+  if(cache && Date.now() - cache.t < 20*6e4){ merge(cache.items); upd = new Date(cache.t).toISOString(); draw(); }
+  fetch("data/noticias.json", { cache:"no-cache" }).then(r=>r.json()).then(d => { merge(d.items||[]); upd = upd || d.actualizado; draw(); }).catch(()=>{});
+  // 2) en vivo, directo de las fuentes
+  if(cache && Date.now() - cache.t < 20*6e4) return;
+  const img = it => it.thumbnail || (it.enclosure && it.enclosure.link) || ((it.description||"").match(/<img[^>]+src="([^"]+)"/)||[])[1] || "";
+  Promise.allSettled(FEEDS.map(([c,f,u]) => fetch("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(u)).then(r=>r.json())
+      .then(d => (d.items||[]).slice(0,12).map(it => ({ cat:c, fuente:f, t:it.title, l:it.link, img:img(it), f: it.pubDate ? new Date(it.pubDate.replace(" ","T")+"Z").toISOString() : "" })))))
+    .then(rs => { const nuevos = rs.flatMap(r => r.status==="fulfilled" ? r.value : []); if(!nuevos.length) return;
+      merge(nuevos); upd = new Date().toISOString(); draw();
+      try{ localStorage.setItem("np-aldia", JSON.stringify({ t:Date.now(), items: items.slice(0,80) })); }catch(_){} });
+  draw();
+})();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="anim.js?v=1790787068"></script>
-<script src="menu.js?v=1790787068"></script>
+<script src="anim.js?v=1790787441"></script>
+<script src="menu.js?v=1790787441"></script>
 </body>
 </html>
