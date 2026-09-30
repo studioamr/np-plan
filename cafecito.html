@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cafecito · Entienda el dinero en 5 minutos · NORTHPOINT</title>
+<meta name="description" content="Cafecito de NORTHPOINT: lo que pasa en los mercados, la economía y el dinero, explicado en 5 minutos cada mañana. Gratis.">
+<meta property="og:title" content="Cafecito · NORTHPOINT">
+<meta property="og:description" content="Entienda el dinero en 5 minutos, cada mañana.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Public+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<!--
+  CAFECITO · 30-sep-2026 · el "Morning Brew" de NORTHPOINT (misma estructura, contenido propio y real):
+  portada = franja azul con suscripción + edición del día + "Lo último" + selección de la mesa + juega + mira.
+  #hoy = la edición del día en formato de correo: saludo, "en la edición de hoy", mercados, nota principal (memo de
+  la mesa), la vuelta al mundo, lo que apuesta el mercado, agenda, qué más se cocina, trivia y palabra del día.
+  Datos reales: data/noticias.json, memos.json, calendario.json, videos.json, polymarket.json (`python3 herramientas/noticias.py`),
+  más lectura en vivo (rss2json, northpointcapital.io/memos) y cotizaciones de TradingView. Sin imágenes hechas con IA.
+-->
+<style>
+:root{--blue:#2251FF;--blue2:#1B3FCC;--ink:#111;--mute:#6B6B6B;--line:#E6E6E6;--bg:#fff;--soft:#F5F7FB;--up:#12A150;--dn:#D92D20}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 "Public Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.serif{font-family:"Source Serif 4",Georgia,serif}
+.cat{font:700 11px "Public Sans",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+.mono{font:600 11px "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.04em;text-transform:uppercase;color:var(--mute)}
+
+/* nav */
+header.top{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:18px}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo svg{width:30px;height:30px}
+.logo b{font:800 20px "Public Sans",sans-serif;letter-spacing:.02em;color:var(--blue)}
+.logo small{font:600 10px "Public Sans";letter-spacing:.16em;color:var(--mute);margin-left:4px;text-transform:uppercase}
+.links{display:flex;gap:22px;align-items:center;font:600 14px "Public Sans"}
+.links a{text-decoration:none}
+.links a:hover{color:var(--blue)}
+.sub-btn{border:1.5px solid var(--blue);color:var(--blue)!important;padding:7px 14px;border-radius:6px}
+.sub-btn:hover{background:var(--blue);color:#fff!important}
+.burger{display:none;border:0;background:none;font-size:24px;cursor:pointer}
+
+/* franja azul */
+.hero{background:var(--blue);color:#fff;padding:54px 0}
+.hero .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
+.hero h1{font:600 clamp(30px,3.6vw,40px)/1.15 "Source Serif 4",serif;margin:0 0 12px}
+.hero p{margin:0;font-size:16px;opacity:.95;max-width:470px}
+.sform{display:grid;gap:10px}
+.sform input{height:48px;border:1px solid #fff;border-radius:6px;padding:0 14px;font:400 16px "Public Sans";color:var(--ink)}
+.sform button{height:48px;border:0;border-radius:6px;background:var(--ink);color:#fff;font:700 15px "Public Sans";cursor:pointer}
+.sform button:hover{background:#000}
+.sform small{font-size:12px;opacity:.85}
+.sform small a{color:#fff}
+.okm{display:none;font:600 14px "Public Sans";background:#fff;color:var(--blue);padding:10px 12px;border-radius:6px}
+
+/* portada */
+.home{padding:44px 0 10px}
+.row{display:grid;grid-template-columns:1.05fr 1fr;gap:40px}
+.issue-card{border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;box-shadow:0 1px 0 var(--line);transition:box-shadow .2s,transform .2s}
+.issue-card:hover{box-shadow:0 14px 30px -18px rgba(0,0,0,.35);transform:translateY(-2px)}
+.issue-card .cov{background:var(--blue);color:#fff;padding:34px 30px;min-height:250px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.issue-card .cov:after{content:"";position:absolute;right:-60px;bottom:-80px;width:260px;height:260px;border-radius:50%;border:40px solid rgba(255,255,255,.08)}
+.cov .dd{font:800 72px/1 "Public Sans";letter-spacing:-.03em}
+.cov .mm{font:700 13px "Public Sans";letter-spacing:.16em;text-transform:uppercase;opacity:.85}
+.cov .cup{position:absolute;right:28px;top:26px;width:54px;height:54px;opacity:.95}
+.issue-card .bd{padding:18px 22px 22px}
+.pill{display:inline-block;border:1px solid var(--blue);color:var(--blue);border-radius:999px;padding:3px 10px;font:700 10.5px "Public Sans";letter-spacing:.06em;text-transform:uppercase}
+.issue-card h2{font:700 30px/1.15 "Source Serif 4",serif;margin:12px 0 6px}
+.issue-card p{margin:0;color:#333}
+.latest h3,.sech h3{font:800 22px "Public Sans";margin:0}
+.sech{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--ink);padding-bottom:10px;margin-bottom:6px}
+.sech a{font:600 11px "IBM Plex Mono";letter-spacing:.06em;text-transform:uppercase;text-decoration:none}
+.sech a:hover{color:var(--blue)}
+.li{display:block;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.li h4{font:700 18px/1.3 "Public Sans";margin:5px 0 5px}
+.li:hover h4{color:var(--blue)}
+.sec{padding:44px 0 6px}
+.picks{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.pick{display:block;text-decoration:none;border-top:3px solid var(--blue);padding-top:14px}
+.pick h4{font:700 25px/1.2 "Source Serif 4",serif;margin:8px 0 8px}
+.pick:hover h4{color:var(--blue)}
+.pick p{margin:0;color:#333}
+.pick .mono{margin-top:10px;display:block}
+.play{display:grid;grid-template-columns:1.3fr 1fr;gap:28px}
+.card{border:1px solid var(--line);border-radius:10px;padding:22px}
+.card h5{font:800 13px "Public Sans";letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin:0 0 10px}
+.q{font:700 20px/1.3 "Source Serif 4",serif;margin:0 0 14px}
+.opts{display:grid;gap:8px}
+.opts button{text-align:left;border:1.5px solid var(--line);border-radius:8px;background:#fff;padding:11px 14px;font:600 15px "Public Sans";cursor:pointer}
+.opts button:hover{border-color:var(--blue)}
+.opts button.ok{border-color:var(--up);background:#E8F6EE}
+.opts button.no{border-color:var(--dn);background:#FDECEC}
+.why{display:none;margin-top:12px;font-size:14.5px;color:#333}
+.word b{font:700 30px "Source Serif 4",serif;display:block}
+.word i{color:var(--mute);font-size:14px}
+.word p{margin:10px 0 0}
+.vgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.vd{cursor:pointer}
+.vd .im{position:relative;aspect-ratio:16/9;background:#111;border-radius:8px;overflow:hidden}
+.vd .im img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.vd:hover .im img{transform:scale(1.04)}
+.vd .pl{position:absolute;left:10px;bottom:10px;background:#fff;color:var(--ink);font:700 11px "Public Sans";padding:4px 9px;border-radius:999px}
+.vd h5{font:700 15.5px/1.3 "Public Sans";margin:8px 0 0}
+.vd .mono{display:block;margin-top:4px}
+.pmrow{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pmc{border:1px solid var(--line);border-radius:10px;padding:18px;text-decoration:none;display:block;transition:border-color .2s}
+.pmc:hover{border-color:var(--blue)}
+.pmc h5{font:700 17px/1.3 "Public Sans";margin:6px 0 10px}
+.big{display:flex;align-items:baseline;gap:8px}
+.big b{font:800 34px/1 "Public Sans";color:var(--blue)}
+.big span{font:600 14px "Public Sans"}
+.stack{display:flex;height:8px;border-radius:99px;overflow:hidden;background:#EEF1F6;margin:10px 0 8px}
+.stack i{display:block;height:100%}
+.legend{display:flex;flex-wrap:wrap;gap:4px 12px;font:500 12.5px "Public Sans";color:#333}
+.legend em{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:5px}
+.bigcta{background:var(--soft);border-radius:12px;padding:34px;display:grid;grid-template-columns:1.2fr 1fr;gap:26px;align-items:center;margin:48px 0 20px}
+.bigcta h3{font:700 28px/1.2 "Source Serif 4",serif;margin:0 0 6px}
+.bigcta .sform input{border-color:var(--line)}
+footer{border-top:1px solid var(--line);margin-top:40px;padding:28px 0 44px;font-size:13px;color:var(--mute)}
+footer .wrap{display:grid;grid-template-columns:1fr auto;gap:20px}
+footer a{color:var(--ink)}
+
+/* la edición (formato de correo) */
+#hoy{background:var(--soft);padding:36px 0 50px;border-top:1px solid var(--line)}
+.mail{max-width:660px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.mail-top{display:flex;justify-content:space-between;padding:12px 22px;font:500 12px "Public Sans";color:var(--mute);border-bottom:1px solid var(--line)}
+.mast{margin:18px 22px 0;background:var(--blue);border-radius:8px;color:#fff;display:flex;align-items:center;justify-content:center;gap:12px;height:110px}
+.mast svg{width:44px;height:44px}
+.mast b{font:800 34px "Public Sans";letter-spacing:.02em}
+.mb{padding:22px 26px 10px;font:400 16.5px/1.62 "Source Serif 4",serif}
+.mb p{margin:0 0 14px}
+.mb h6{font:800 12px "Public Sans";letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin:30px 0 6px;padding-top:22px;border-top:1px solid var(--line)}
+.mb h2{font:700 26px/1.2 "Public Sans";margin:0 0 6px;letter-spacing:-.01em}
+.mb .by{font:500 12.5px "Public Sans";color:var(--mute);margin-bottom:12px}
+.mb ul{margin:0 0 14px;padding-left:20px}
+.mb li{margin-bottom:8px}
+.mb a{color:var(--blue)}
+.mb .cta{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;padding:10px 16px;border-radius:6px;font:700 14px "Public Sans"}
+.mkt{border:1px solid var(--line);border-radius:8px;overflow:hidden;min-height:60px}
+.src{font:500 11.5px "Public Sans";color:var(--mute);margin-top:6px}
+.ag{list-style:none;padding:0!important}
+.ag li{display:grid;grid-template-columns:54px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid var(--line);font:400 15px/1.4 "Public Sans";margin:0!important}
+.ag .h{font:600 13px "IBM Plex Mono";color:var(--mute)}
+.ag small{display:block;color:var(--mute);font-size:12px}
+.imp{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.imp.High{background:var(--dn)}.imp.Medium{background:#E0A100}
+.cc{display:inline-block;font:700 10px "Public Sans";border:1px solid #bbb;border-radius:3px;padding:0 4px;margin-right:6px;vertical-align:1px}
+.vmodal{position:fixed;inset:0;z-index:95;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;padding:20px}
+.vmodal.on{display:flex}
+.vmodal .fr{width:min(1100px,100%);aspect-ratio:16/9;background:#000}
+.vmodal iframe{width:100%;height:100%;border:0}
+.x{position:absolute;right:18px;top:14px;width:44px;height:44px;border-radius:50%;border:0;background:#fff;font:300 26px sans-serif;cursor:pointer}
+.empty{color:var(--mute);font-style:italic}
+
+@media(max-width:900px){.links a:not(.sub-btn){display:none}.hero .wrap,.row,.picks,.play,.bigcta{grid-template-columns:1fr}.vgrid{grid-template-columns:1fr 1fr}.pmrow{grid-template-columns:1fr}footer .wrap{grid-template-columns:1fr}}
+@media(max-width:560px){.wrap{padding:0 16px}.vgrid{grid-template-columns:1fr}.cov .dd{font-size:56px}.mb{padding:18px 18px 6px}.mast{margin:14px 14px 0;height:88px}.mast b{font-size:26px}.logo small{display:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><symbol id="cup" viewBox="0 0 48 48"><path d="M8 18h26v10a12 12 0 0 1-12 12h-2A12 12 0 0 1 8 28z" fill="currentColor"/><path d="M34 21h3a5 5 0 0 1 0 10h-3" fill="none" stroke="currentColor" stroke-width="3.2"/><path d="M15 6c-2 3 2 4 0 8M22 5c-2 3 2 4 0 8M29 6c-2 3 2 4 0 8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M13 30l5-4 4 3 7-7" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol></svg>
+
+<header class="top"><div class="wrap">
+  <a class="logo" href="cafecito.html"><svg style="color:var(--blue)"><use href="#cup"/></svg><b>CAFECITO</b><small>por NORTHPOINT</small></a>
+  <nav class="links"><a href="#hoy">La edición de hoy</a><a href="#lo-ultimo">Noticias</a><a href="#mesa">De la mesa</a><a href="#juega">Juega</a><a href="#mira">Videos</a><a href="index.html">NORTHPOINT</a><a class="sub-btn" href="#suscribete">Suscribirme</a></nav>
+</div></header>
+
+<section class="hero" id="suscribete"><div class="wrap">
+  <div><h1>Entienda el dinero en 5 minutos.</h1><p>Cafecito le cuenta cada mañana lo que pasa en los mercados, la economía de México y el mundo, y lo que eso significa para su bolsillo. Sin rodeos y gratis.</p></div>
+  <form class="sform" data-sub><input type="email" name="email" placeholder="Su correo" required aria-label="Correo"><button type="submit">Suscribirme gratis</button><small>Al suscribirse acepta nuestro <a href="privacidad.html">aviso de privacidad</a>.</small><div class="okm">Listo. Mañana le llega su primer Cafecito.</div></form>
+</div></section>
+
+<main class="wrap home">
+  <div class="row">
+    <a class="issue-card" href="#hoy">
+      <div class="cov"><svg class="cup" style="color:#fff"><use href="#cup"/></svg><div><div class="mm" id="cMes"></div><div class="dd" id="cDia"></div></div><div class="mm" id="cSem"></div></div>
+      <div class="bd"><span class="pill">Edición de hoy</span><h2 id="cTit">La edición de hoy</h2><p id="cRes">Lo que hay que saber antes de abrir.</p></div>
+    </a>
+    <div class="latest" id="lo-ultimo"><div class="sech"><h3>Lo último</h3><a href="#hoy">Leer la edición ›</a></div><div id="latest"><p class="empty">Cargando…</p></div></div>
+  </div>
+
+  <section class="sec" id="mesa"><div class="sech"><h3>De la mesa</h3><a href="memo.html">Memos de mercado ›</a></div><div class="picks" id="picks" style="margin-top:14px"><p class="empty">Cargando…</p></div></section>
+
+  <section class="sec" id="apuestas"><div class="sech"><h3>Lo que apuesta el mercado</h3><a href="https://polymarket.com" target="_blank" rel="noopener">Polymarket ›</a></div><div class="pmrow" id="pmrow" style="margin-top:14px"></div></section>
+
+  <section class="sec" id="juega"><div class="sech"><h3>Juega</h3><span class="mono">Una pregunta nueva cada día</span></div>
+    <div class="play" style="margin-top:14px">
+      <div class="card"><h5>Trivia del día</h5><p class="q" id="tq"></p><div class="opts" id="to"></div><p class="why" id="tw"></p></div>
+      <div class="card word"><h5>Palabra del día</h5><div id="wd"></div></div>
+    </div>
+  </section>
+
+  <section class="sec" id="mira"><div class="sech"><h3>Mira</h3><span class="mono">Bloomberg Línea · El Economista</span></div><div class="vgrid" id="vgrid" style="margin-top:14px"></div></section>
+
+  <div class="bigcta"><div><h3>Un cafecito al día, y entiende el dinero.</h3><p style="margin:0;color:#333">Cinco minutos cada mañana. Se da de baja cuando quiera.</p></div>
+    <form class="sform" data-sub><input type="email" name="email" placeholder="Su correo" required aria-label="Correo"><button type="submit">Suscribirme gratis</button><div class="okm">Listo. Mañana le llega su primer Cafecito.</div></form></div>
+</main>
+
+<section id="hoy"><div class="wrap">
+  <article class="mail">
+    <div class="mail-top"><span id="mFecha"></span><span>Para: lectores de Cafecito</span></div>
+    <div class="mast"><svg style="color:#fff"><use href="#cup"/></svg><b>CAFECITO</b></div>
+    <div class="mb">
+      <p><b id="mSal">Buenos días.</b> <span id="mIntro"></span></p>
+      <p><b>En la edición de hoy:</b></p>
+      <ul id="mHoy"><li class="empty">Cargando…</li></ul>
+
+      <h6>Mercados</h6>
+      <div class="mkt" id="mMkt"></div>
+      <div class="src">Cotizaciones de TradingView, en vivo.</div>
+
+      <div id="mLead"><h6>De la mesa</h6><p class="empty">Cargando el memo…</p></div>
+
+      <h6>La vuelta al mundo</h6>
+      <ul id="mVuelta"><li class="empty">Cargando…</li></ul>
+
+      <h6>Lo que apuesta el mercado</h6>
+      <div id="mPm"><p class="empty">Cargando…</p></div>
+
+      <h6>La agenda de hoy</h6>
+      <ul class="ag" id="mAg"><li class="empty">Cargando…</li></ul>
+
+      <h6>Qué más se cocina</h6>
+      <ul id="mMas"><li class="empty">Cargando…</li></ul>
+
+      <h6>Juega</h6>
+      <p><b id="mTq"></b></p><p><a href="#juega">Responda aquí ›</a></p>
+
+      <h6>Palabra del día</h6>
+      <div id="mWd"></div>
+
+      <p style="margin-top:28px;border-top:1px solid var(--line);padding-top:18px;font:400 13px/1.55 'Public Sans';color:var(--mute)">Cafecito es un resumen informativo de NORTHPOINT con notas de El Financiero, Bloomberg Línea y Expansión, datos de TradingView, ForexFactory y Polymarket, y los memos de la mesa. No es asesoría de inversión ni una recomendación personalizada.</p>
+    </div>
+  </article>
+</div></section>
+
+<footer><div class="wrap">
+  <div><b style="color:var(--ink)">Cafecito por NORTHPOINT.</b> Entienda el dinero en 5 minutos. Cada nota, video o dato pertenece a su fuente. No es asesoría de inversión.</div>
+  <div><a href="index.html">NORTHPOINT</a> · <a href="academia.html">Academia</a> · <a href="privacidad.html">Aviso de privacidad</a></div>
+</div></footer>
+
+<div class="vmodal" id="vmodal"><button type="button" class="x" id="vx" aria-label="Cerrar">×</button><div class="fr" id="vfr"></div></div>
+
+<script>
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+const TZ = "America/Mexico_City";
+const hace = iso => { const m = Math.round((Date.now() - new Date(iso)) / 6e4); if(!(m >= 0)) return ""; if(m < 60) return `hace ${Math.max(1,m)} min`; const h = Math.round(m/60); if(h < 24) return `hace ${h} h`; const d = Math.round(h/24); return `hace ${d} ${d===1?"día":"días"}`; };
+const rss = u => fetch("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(u)).then(r=>r.json());
+const pct = p => (p*100 >= 1 ? Math.round(p*100) : (p*100).toFixed(1)) + "%";
+const hoyMX = () => new Date().toLocaleDateString("en-CA", { timeZone:TZ });
+const diaMX = iso => new Date(iso).toLocaleDateString("en-CA", { timeZone:TZ });
+const horaMX = iso => new Date(iso).toLocaleTimeString("es-MX", { timeZone:TZ, hour:"2-digit", minute:"2-digit", hour12:false });
+const CATN = { mercados:"Mercados", economia:"Economía", ia:"Tecnología" };
+
+// ── fecha y saludo ──
+const now = new Date(), P = k => new Intl.DateTimeFormat("es-MX", { timeZone:TZ, [k]: k==="day"?"numeric":"long" }).format(now);
+const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+$("#cDia").textContent = P("day"); $("#cMes").textContent = P("month") + " " + now.toLocaleString("es-MX",{ timeZone:TZ, year:"numeric" }); $("#cSem").textContent = cap(P("weekday"));
+$("#mFecha").textContent = cap(now.toLocaleDateString("es-MX", { timeZone:TZ, weekday:"long", day:"numeric", month:"long", year:"numeric" }));
+(function(){ const h = +now.toLocaleString("en-US",{ timeZone:TZ, hour:"numeric", hour12:false }), d = +P("day"), [y,m] = hoyMX().split("-").map(Number), fin = new Date(y, m, 0).getDate();
+  $("#mSal").textContent = h < 12 ? "Buenos días." : h < 19 ? "Buenas tardes." : "Buenas noches.";
+  let x = `Hoy es ${P("weekday")} ${d} de ${P("month")}`; if(d === fin) x += [3,6,9,12].includes(m) ? ", último día del mes y cierre del trimestre" : ", último día del mes"; else if(d === 1) x += ", arranca el mes"; x += ". Sírvase su café: esto es lo que hay que saber.";
+  $("#mIntro").textContent = x; })();
+
+// ── noticias reales ──
+let NEWS = [];
+const FEEDS = [["mercados","El Financiero","https://www.elfinanciero.com.mx/arc/outboundfeeds/rss/category/mercados/?outputType=xml"],["mercados","Bloomberg Línea","https://www.bloomberglinea.com/arc/outboundfeeds/rss/category/mercados/?outputType=xml"],["mercados","Expansión","https://expansion.mx/rss/mercados"],["economia","Expansión","https://expansion.mx/rss/economia"],["ia","Bloomberg Línea","https://www.bloomberglinea.com/arc/outboundfeeds/rss/category/tecnologia/?outputType=xml"],["ia","Expansión","https://expansion.mx/rss/tecnologia"]];
+const merge = n => { const seen = new Set(NEWS.map(x=>x.l)); n.forEach(x => { if(x.l && !seen.has(x.l)){ seen.add(x.l); NEWS.push(x); } }); NEWS.sort((a,b)=>(b.f||"").localeCompare(a.f||"")); };
+function pintaNoticias(){
+  if(!NEWS.length) return;
+  $("#latest").innerHTML = NEWS.slice(0,6).map(x => `<a class="li" href="${esc(x.l)}" target="_blank" rel="noopener"><div class="cat">${CATN[x.cat]||"Noticias"}</div><h4>${esc(x.t)}</h4><div class="mono">${esc(x.fuente)} | ${hace(x.f)}</div></a>`).join("");
+  const top = NEWS.filter(x=>x.cat!=="ia");
+  $("#mHoy").innerHTML = top.slice(0,3).map(x => `<li>${esc(x.t)}</li>`).join("");
+  $("#mVuelta").innerHTML = top.slice(3,8).map(x => `<li><a href="${esc(x.l)}" target="_blank" rel="noopener">${esc(x.t)}</a> <span style="color:var(--mute);font:500 12px 'Public Sans'">· ${esc(x.fuente)}</span></li>`).join("");
+  $("#mMas").innerHTML = NEWS.filter(x=>x.cat==="ia").concat(top.slice(8)).slice(0,5).map(x => `<li><a href="${esc(x.l)}" target="_blank" rel="noopener">${esc(x.t)}</a> <span style="color:var(--mute);font:500 12px 'Public Sans'">· ${esc(x.fuente)}</span></li>`).join("");
+  if(!window.__leadSet){ $("#cTit").textContent = top[0] ? top[0].t : "La edición de hoy"; }
+}
+let cache = null; try{ cache = JSON.parse(localStorage.getItem("np-aldia")||"null"); }catch(_){}
+if(cache && Date.now() - cache.t < 20*6e4){ merge(cache.items); pintaNoticias(); }
+fetch("data/noticias.json", { cache:"no-cache" }).then(r=>r.json()).then(d => { merge(d.items||[]); pintaNoticias(); }).catch(()=>{});
+if(!(cache && Date.now() - cache.t < 20*6e4)){ const img = it => it.thumbnail || (it.enclosure && it.enclosure.link) || "";
+  Promise.allSettled(FEEDS.map(([c,f,u]) => rss(u).then(d => (d.items||[]).slice(0,12).map(it => ({ cat:c, fuente:f, t:it.title, l:it.link, img:img(it), f: it.pubDate ? new Date(it.pubDate.replace(" ","T")+"Z").toISOString() : "" })))))
+    .then(rs => { const n = rs.flatMap(r => r.status==="fulfilled" ? r.value : []); if(!n.length) return; merge(n); pintaNoticias(); try{ localStorage.setItem("np-aldia", JSON.stringify({ t:Date.now(), items: NEWS.slice(0,90) })); }catch(_){} }); }
+
+// ── mercados en la edición (TradingView) ──
+(function(){ const el = $("#mMkt"); el.innerHTML = `<div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div></div>`;
+  const s = document.createElement("script"); s.type = "text/javascript"; s.async = true; s.src = "https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js";
+  s.textContent = JSON.stringify({ width:"100%", height:420, symbolsGroups:[{ name:"Mercados", symbols:[{name:"FOREXCOM:NSXUSD",displayName:"Nasdaq 100"},{name:"FOREXCOM:SPXUSD",displayName:"S&P 500"},{name:"FOREXCOM:DJI",displayName:"Dow Jones"},{name:"FX_IDC:USDMXN",displayName:"Dólar / Peso"},{name:"CAPITALCOM:DXY",displayName:"Índice dólar"},{name:"OANDA:XAUUSD",displayName:"Oro"},{name:"TVC:USOIL",displayName:"Petróleo WTI"},{name:"BITSTAMP:BTCUSD",displayName:"Bitcoin"}] }], showSymbolLogo:false, isTransparent:true, colorTheme:"light", locale:"es" });
+  el.firstChild.appendChild(s); })();
+
+// ── memos de la mesa: nota principal de la edición + "De la mesa" ──
+(function(){
+  const URL0 = "https://northpointcapital.io/memos.html", BASE = "https://northpointcapital.io/memos/", slug = l => (l.match(/memos\/([^\/]+)\.html/)||[])[1] || "";
+  let ya = false;
+  const parrafos = html => { if(!html) return []; const d = new DOMParser().parseFromString(html, "text/html");
+    const secs = [...d.querySelectorAll("section.sec")].map(s => ({ t:((s.querySelector(".sec-t")||{}).textContent||"").trim(), p:[...s.querySelectorAll(".sec-b > p")].map(p=>p.textContent.trim().replace(/\s+/g," ")).filter(x=>x.length>60) })).filter(s=>s.p.length);
+    return secs.slice(0,2); };
+  const pinta = (ms, main) => { if(!ms || !ms.length) return; const c = ms[0], S = parrafos(main);
+    window.__leadSet = true; $("#cTit").textContent = c.t; $("#cRes").textContent = c.r;
+    $("#mLead").innerHTML = `<h6>De la mesa</h6><h2>${esc(c.t)}</h2><div class="by">${esc(c.f)} · Gregorio Sánchez Calderón, cofundador de NORTHPOINT</div><p>${esc(c.r)}</p>`
+      + S.map(s => `<p><b>${esc(s.t)}.</b> ${esc(s.p[0])}</p>`).join("") + `<p><a class="cta" href="memo.html?m=${slug(c.l)}">Leer el memo completo</a></p>`;
+    $("#picks").innerHTML = ms.slice(0,2).map(x => `<a class="pick" href="memo.html?m=${slug(x.l)}"><div class="cat">${esc(x.k||"Memo de mercado")}</div><h4>${esc(x.t)}</h4><p>${esc(x.r)}</p><span class="mono">Gregorio Sánchez Calderón | ${esc(x.f)}</span></a>`).join(""); };
+  fetch("data/memos.json", { cache:"no-cache" }).then(r=>r.json()).then(d => { if(!ya) pinta(d.items, d.items && d.items[0] && d.items[0].main); }).catch(()=>{});
+  fetch(URL0, { cache:"no-cache" }).then(r=>r.text()).then(async h => { const doc = new DOMParser().parseFromString(h, "text/html"), T = (el,s) => ((el.querySelector(s)||{}).textContent||"").trim().replace(/\s+/g," ");
+    const ms = [...doc.querySelectorAll("a.ix.memo")].map(a => ({ k:T(a,".memo-k"), t:T(a,".nm"), f:T(a,".fr"), r:T(a,".memo-s"), l:new URL(a.getAttribute("href"), URL0).href }));
+    if(!ms.length) return; let main = ""; try{ main = await fetch(BASE + slug(ms[0].l) + ".html").then(r=>r.text()); }catch(_){} ya = true; pinta(ms, main); }).catch(()=>{});
+})();
+
+// ── Polymarket, en español ──
+const COLS = ["#2251FF","#111","#9AA7C7","#E0A100"];
+const MES = { January:"enero", February:"febrero", March:"marzo", April:"abril", May:"mayo", June:"junio", July:"julio", August:"agosto", September:"septiembre", October:"octubre", November:"noviembre", December:"diciembre" };
+const mes = s => String(s).replace(/\b(January|February|March|April|May|June|July|August|September|October|November|December)\b/g, m => MES[m]);
+function trT(t){ const R = [[/^Fed Decision in (\w+)\?$/i,(_,m)=>`¿Qué hará la Fed en ${MES[m]||m}?`],[/^What price will Bitcoin hit in (\w+)\?$/i,(_,m)=>`¿A qué precio llegará Bitcoin en ${MES[m]||m}?`],[/^What price will Ethereum hit in (\w+)\?$/i,(_,m)=>`¿A qué precio llegará Ethereum en ${MES[m]||m}?`],[/^What price will Bitcoin hit (.+)\?$/i,(_,m)=>`¿A qué precio llegará Bitcoin (${mes(m)})?`],[/^Bitcoin above ___ on (.+)\?$/i,(_,m)=>`¿Bitcoin arriba de cuánto el ${mes(m)}?`],[/^Which company has (?:the )?best AI model end of (.+)\?$/i,(_,m)=>`¿Qué empresa tendrá el mejor modelo de IA a fin de ${mes(m)}?`],[/^(.+) ceasefire continues through\.\.\.\?$/i,(_,m)=>`¿Seguirá el alto al fuego ${m.replace(" x "," – ")}?`],[/^Prime Minister of Israel after the next election\?$/i,()=>"¿Quién será primer ministro de Israel?"],[/^What will WTI Crude Oil \(WTI\) hit in (.+)\?$/i,(_,m)=>`¿A qué precio llegará el petróleo en ${mes(m)}?`]];
+  for(const [re,f] of R){ if(re.test(t)) return t.replace(re, f); } return t; }
+const trO = o => mes(o).replace(/^No change$/i,"Sin cambio").replace(/^(\d+)\+? bps decrease$/i,(_,n)=>`Baja de ${n/100} pts`).replace(/^(\d+)\+? bps increase$/i,(_,n)=>`Alza de ${n/100} pts`).replace(/^↑\s?/,"Sube a ").replace(/^↓\s?/,"Baja a ");
+const pmBox = e => { const seg = e.m.slice(0,4); return `<h5>${esc(trT(e.t))}</h5><div class="big"><b>${pct(seg[0].p)}</b><span>${esc(trO(seg[0].n))}</span></div><div class="stack">${seg.map((m,i)=>`<i style="width:${Math.max(1,m.p*100)}%;background:${COLS[i]}"></i>`).join("")}</div><div class="legend">${seg.map((m,i)=>`<span><em style="background:${COLS[i]}"></em>${esc(trO(m.n))} ${pct(m.p)}</span>`).join("")}</div>`; };
+fetch("data/polymarket.json", { cache:"no-cache" }).then(r=>r.json()).then(d => {
+  const L = (d.items||[]).filter(e => /fed|bitcoin|ethereum|ai|oil|wti/i.test(e.t)).slice(0,3), all = L.length ? L : (d.items||[]).slice(0,3);
+  $("#pmrow").innerHTML = all.map(e => `<a class="pmc" href="https://polymarket.com/event/${esc(e.slug)}" target="_blank" rel="noopener"><div class="cat">Polymarket</div>${pmBox(e)}</a>`).join("");
+  const f = all[0]; if(f) $("#mPm").innerHTML = `<p><b>${esc(trT(f.t))}</b> Quienes apuestan con dinero real en Polymarket le dan <b>${pct(f.m[0].p)}</b> a “${esc(trO(f.m[0].n))}”${f.m[1]?` y ${pct(f.m[1].p)} a “${esc(trO(f.m[1].n))}”`:""}.</p><div class="src">Polymarket · ${hace(d.actualizado)}. Son apuestas, no pronósticos de NORTHPOINT.</div>`;
+}).catch(() => { $("#mPm").innerHTML = `<p class="empty">Sin datos por ahora.</p>`; });
+
+// ── agenda de hoy (ForexFactory) ──
+fetch("data/calendario.json", { cache:"no-cache" }).then(r=>r.json()).then(d => {
+  const L = (d.items||[]).filter(e => diaMX(e.date) === hoyMX() && (e.impact === "High" || e.impact === "Medium")).sort((a,b) => new Date(a.date) - new Date(b.date));
+  $("#mAg").innerHTML = L.length ? L.slice(0,8).map(e => `<li><span class="h">${horaMX(e.date)}</span><span><span class="imp ${e.impact}"></span><span class="cc">${esc(e.country)}</span>${esc(e.title)}${e.forecast||e.previous?`<small>Pronóstico ${esc(e.forecast||"—")} · Anterior ${esc(e.previous||"—")}</small>`:""}</span></li>`).join("")
+    : `<li class="empty">Hoy no hay datos económicos de alto impacto.</li>`;
+}).catch(() => { $("#mAg").innerHTML = `<li class="empty">Sin agenda por ahora.</li>`; });
+
+// ── juega: trivia y palabra del día (cambian cada día) ──
+const TRIVIA = [
+  ["¿Qué mide la inflación?", ["El aumento general de los precios","El valor del dólar","Las ganancias de las empresas"], 0, "La inflación mide cuánto suben, en promedio, los precios de lo que compramos. En México la calcula el INEGI."],
+  ["¿Quién fija la tasa de interés de referencia en México?", ["Hacienda","Banxico","La Bolsa Mexicana"], 1, "El Banco de México decide la tasa objetivo para mantener la inflación bajo control."],
+  ["Si una acción sube 50% y luego baja 50%, ¿cómo queda?", ["Igual que al inicio","25% abajo","50% arriba"], 1, "De 100 sube a 150 y baja a 75: queda 25% abajo. Las caídas pesan más que las subidas."],
+  ["¿Qué es un bono?", ["Un préstamo que usted le hace a un gobierno o empresa","Una parte de una empresa","Un premio en efectivo"], 0, "Con un bono usted presta dinero y le pagan intereses; con una acción usted se vuelve dueño de una parte."],
+  ["¿Qué significa diversificar?", ["Poner todo en lo que más sube","Repartir el dinero en varias inversiones","Cambiar de banco seguido"], 1, "Repartir reduce el golpe si una sola inversión sale mal."],
+  ["¿Qué índice agrupa a las 500 empresas más grandes de EE.UU.?", ["Dow Jones","Nasdaq","S&P 500"], 2, "El S&P 500 es la referencia más usada para medir la bolsa de Estados Unidos."],
+  ["¿Qué pasa normalmente con el precio de un bono cuando suben las tasas?", ["Sube","Baja","No cambia"], 1, "Los bonos viejos pagan menos que los nuevos, así que su precio baja."],
+  ["¿Qué es el interés compuesto?", ["Ganar intereses sobre los intereses","Pagar dos comisiones","Un tipo de préstamo"], 0, "Sus ganancias también generan ganancias; con el tiempo, la diferencia es enorme."],
+  ["¿Qué es un 'mercado bajista'?", ["Una caída de 20% o más desde el máximo","Un día con poco volumen","Un mercado de productos del campo"], 0, "Se le dice 'bear market' cuando un índice cae 20% o más desde su punto más alto."],
+  ["¿Qué hace la Reserva Federal?", ["Cobra impuestos en EE.UU.","Es el banco central de EE.UU.","Regula a Wall Street"], 1, "La Fed fija las tasas en Estados Unidos, y sus decisiones mueven a todo el mundo, incluido el peso."],
+  ["¿Qué es el apalancamiento?", ["Invertir con dinero prestado","Una comisión fija","Ahorrar en dólares"], 0, "Multiplica las ganancias y también las pérdidas. Por eso la mesa define el riesgo antes de cada operación."],
+  ["Si el tipo de cambio pasa de 18 a 19 pesos por dólar, el peso…", ["Se fortaleció","Se debilitó","Quedó igual"], 1, "Ahora se necesitan más pesos para comprar un dólar: el peso se debilitó."],
+  ["¿Qué es un ETF?", ["Un fondo que cotiza en bolsa","Un impuesto","Una criptomoneda"], 0, "Un ETF junta muchas inversiones en un solo instrumento que se compra como una acción."],
+  ["¿Qué mide el PIB?", ["El valor de todo lo que produce un país","La deuda del gobierno","El salario promedio"], 0, "El Producto Interno Bruto mide el tamaño de la economía; cuando crece, la economía se expande."]
+];
+const PALABRAS = [
+  ["Liquidez","li-qui-dez","Qué tan rápido puede convertir algo en efectivo sin perder valor. Su cuenta de ahorro es líquida; una casa, no tanto."],
+  ["Volatilidad","vo-la-ti-li-dad","Qué tanto sube y baja un precio. Más volatilidad significa más riesgo, en ambos sentidos."],
+  ["Dividendo","di-vi-den-do","La parte de las ganancias que una empresa reparte a sus accionistas."],
+  ["Drawdown","dráu-daun","La caída desde el punto más alto de una cuenta hasta su punto más bajo. Es la medida de cuánto se sufre en el camino."],
+  ["Spread","es-pred","La diferencia entre el precio al que se compra y al que se vende. Es un costo escondido de operar."],
+  ["Recesión","re-ce-sión","Cuando la economía se contrae de forma sostenida, normalmente dos trimestres seguidos."],
+  ["Rendimiento","ren-di-mien-to","Lo que gana (o pierde) una inversión, casi siempre expresado en porcentaje."],
+  ["Tasa de referencia","ta-sa","El interés que fija el banco central y que sirve de base para préstamos, ahorros y tarjetas."],
+  ["Stop loss","es-tóp los","Una orden que cierra una operación si el precio llega a cierto nivel, para limitar la pérdida."],
+  ["Cetes","ce-tes","Certificados de la Tesorería: le presta al gobierno de México por plazos cortos a cambio de un interés."],
+  ["Correlación","co-rre-la-ción","Qué tanto se mueven juntos dos activos. Si todo lo que tiene se mueve igual, no está diversificado."],
+  ["Margen","mar-gen","El dinero que se deja como garantía para abrir una posición apalancada."],
+  ["Bull market","bul már-ket","Un mercado al alza de forma sostenida; lo contrario de un mercado bajista."],
+  ["Custodia","cus-to-dia","Quién guarda su dinero. En NORTHPOINT su saldo está a su nombre en un intermediario regulado."]
+];
+(function(){ const n = Math.floor((new Date(hoyMX()+"T12:00:00") - new Date("2026-01-01T12:00:00")) / 864e5), [q, ops, ok, why] = TRIVIA[((n % TRIVIA.length) + TRIVIA.length) % TRIVIA.length], w = PALABRAS[((n % PALABRAS.length) + PALABRAS.length) % PALABRAS.length];
+  $("#tq").textContent = q; $("#mTq").textContent = q;
+  $("#to").innerHTML = ops.map((o,i)=>`<button type="button" data-i="${i}">${esc(o)}</button>`).join("");
+  $$("#to button").forEach(b => b.onclick = () => { $$("#to button").forEach(x => { x.disabled = true; if(+x.dataset.i === ok) x.classList.add("ok"); }); if(+b.dataset.i !== ok) b.classList.add("no");
+    $("#tw").textContent = (+b.dataset.i === ok ? "¡Correcto! " : "Casi. ") + why; $("#tw").style.display = "block"; });
+  const wh = `<b>${esc(w[0])}</b><i>${esc(w[1])}</i><p>${esc(w[2])}</p>`; $("#wd").innerHTML = wh; $("#mWd").innerHTML = `<p><b>${esc(w[0])}</b> (<i>${esc(w[1])}</i>): ${esc(w[2])}</p>`; })();
+
+// ── mira: videos reales ──
+(function(){ const CAN = [["Bloomberg Línea","UCt4iMhUHxnKfxJXIW36Y4Rw"],["El Economista","UCXmAOGwFYxIq5qrScJeeV4g"]]; let V = [];
+  const draw = () => { V.sort((a,b)=>(b.f||"").localeCompare(a.f||"")); const seen = new Set(), L = V.filter(v => v.id && !seen.has(v.id) && seen.add(v.id)).slice(0,4);
+    $("#vgrid").innerHTML = L.map(v => `<div class="vd" data-id="${esc(v.id)}"><div class="im"><img src="https://i.ytimg.com/vi/${esc(v.id)}/hqdefault.jpg" alt="" loading="lazy"><span class="pl">▶ Ver</span></div><h5>${esc(v.t)}</h5><span class="mono">${esc(v.canal)} | ${hace(v.f)}</span></div>`).join("") || `<p class="empty">Cargando videos…</p>`;
+    $$(".vd").forEach(el => el.onclick = () => { $("#vfr").innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${el.dataset.id}?autoplay=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`; $("#vmodal").classList.add("on"); }); };
+  fetch("data/videos.json", { cache:"no-cache" }).then(r=>r.json()).then(d => { V = V.concat(d.items||[]); draw(); }).catch(()=>{});
+  Promise.allSettled(CAN.map(([n,id]) => rss("https://www.youtube.com/feeds/videos.xml?channel_id=" + id).then(d => (d.items||[]).map(it => ({ canal:n, id:(it.link.match(/(?:v=|shorts\/)([\w-]{11})/)||[])[1], t:it.title, f: it.pubDate ? new Date(it.pubDate.replace(" ","T")+"Z").toISOString() : "" })))))
+    .then(rs => { const n = rs.flatMap(r => r.status==="fulfilled" ? r.value : []); if(n.length){ V = n.concat(V); draw(); } });
+  const close = () => { $("#vmodal").classList.remove("on"); $("#vfr").innerHTML = ""; };
+  $("#vx").onclick = close; $("#vmodal").onclick = e => { if(e.target.id==="vmodal") close(); }; addEventListener("keydown", e => { if(e.key==="Escape") close(); });
+})();
+
+// ── suscripción ──
+$$("[data-sub]").forEach(f => f.addEventListener("submit", e => { e.preventDefault(); const d = Object.fromEntries(new FormData(f));
+  try{ const l = JSON.parse(localStorage.getItem("np-cafecito")||"[]"); l.push({ ...d, fecha:new Date().toISOString() }); localStorage.setItem("np-cafecito", JSON.stringify(l)); }catch(_){}
+  f.querySelector(".okm").style.display = "block"; f.reset(); }));
+</script>
+</body>
+</html>
