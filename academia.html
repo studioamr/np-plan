@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Academia NORTHPOINT · Trading, IA y finanzas</title>
+<meta name="description" content="Academia NORTHPOINT: cursos y programas con certificado de trading, inteligencia artificial aplicada a mercados, finanzas y patrimonio. Aprenda a operar como nuestra mesa.">
+<meta property="og:title" content="Academia NORTHPOINT">
+<meta property="og:description" content="Aprenda a operar como nuestra mesa: trading, IA y finanzas, con certificado.">
+<meta property="og:image" content="img/academia.jpg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400&family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css?v=1790755645">
+<link rel="stylesheet" href="anim.css?v=1790755645">
+<script>document.documentElement.classList.add("js-anim");setTimeout(function(){document.documentElement.classList.add("anim-ready")},3500)</script>
+<!--
+  ACADEMIA · 30-sep-2026 · estructura de marketplace de cursos (tipo Udemy): buscador, categorías, pestañas por tema,
+  fichas de curso, programas con certificado, ficha de detalle con temario, instructores y "para empresas".
+  Sin calificaciones ni número de alumnos: la academia no ha abierto y no se inventan métricas.
+  Precios en USD, definidos por NORTHPOINT. El certificado es de finalización, no un título oficial.
+-->
+<style>
+.phero{position:relative;min-height:78vh;display:flex;align-items:flex-end;background:var(--navy);color:#fff;overflow:hidden}
+.phero-bg{position:absolute;inset:-2%;background:center/cover no-repeat url(img/academia.jpg);will-change:transform}
+.phero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,28,44,.95) 0%,rgba(5,28,44,.7) 50%,rgba(5,28,44,.2) 85%)}
+.phero .wrap{position:relative;z-index:2;width:100%;padding-bottom:80px}
+.phero .box{max-width:720px}
+.phero .kick{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font:500 13px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.82)}
+.phero .kick span+span{font-size:11px;letter-spacing:.08em;border:1px solid rgba(255,255,255,.55);padding:3px 9px}
+.phero h1{color:#fff;margin:16px 0 18px;font-size:clamp(38px,5vw,64px);line-height:1.06}
+.phero .lead{color:#fff;opacity:.88}
+.srch{display:flex;margin-top:30px;max-width:620px;background:#fff;box-shadow:0 20px 40px -20px rgba(0,0,0,.6)}
+.srch{align-items:stretch}
+.srch input{flex:1;min-width:0;border:0;height:60px;margin:0;box-sizing:border-box;padding:0 20px;font:400 16px var(--sans);color:var(--ink);outline:none}
+.srch button{border:0;height:60px;margin:0;background:var(--blue);color:#fff;padding:0 24px;font:500 15px var(--sans);cursor:pointer}
+.hero-facts{display:flex;gap:34px;flex-wrap:wrap;margin-top:26px;font-size:14px;color:rgba(255,255,255,.8)}
+.hero-facts b{display:block;font:300 28px var(--serif);color:#fff}
+
+.catbar{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:15}
+.catbar .wrap{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-top:14px;padding-bottom:14px}
+.catbar .wrap::-webkit-scrollbar{display:none}
+.catbar button{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 16px;font:400 14px var(--sans);cursor:pointer;color:var(--ink);transition:all .2s}
+.catbar button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.catbar button small{opacity:.55;margin-left:6px}
+
+.lista-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:26px}
+.lista-head h2{font-size:clamp(30px,3.4vw,44px)}
+.lista-head .count{color:var(--muted);font-size:14px;margin-top:6px}
+.sortsel{border:1px solid var(--line);padding:10px 12px;font:400 14px var(--sans);background:#fff}
+.crs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px 22px}
+.crs{cursor:pointer;display:flex;flex-direction:column;transition:translate .3s cubic-bezier(.2,.7,.2,1)}
+.crs:hover{translate:0 -4px}
+.crs:hover .th{box-shadow:0 20px 34px -20px rgba(5,28,44,.55)}
+.th{position:relative;aspect-ratio:16/9;overflow:hidden;transition:box-shadow .3s}
+.th svg{position:absolute;inset:0;width:100%;height:100%}
+.th .tag{position:absolute;left:12px;bottom:10px;font:600 10.5px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+.th .star{position:absolute;inset:auto;right:12px;top:12px;width:14px;height:14px;color:rgba(255,255,255,.8)}
+.crs h3{font:600 16px/1.3 var(--sans);color:var(--ink);margin:12px 0 5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.crs .by{font-size:13px;color:var(--muted)}
+.crs .meta{font-size:12.5px;color:var(--muted);margin-top:5px}
+.crs .pr{display:flex;align-items:baseline;gap:10px;margin-top:8px}
+.crs .pr b{font:700 18px var(--sans);color:var(--ink)}
+.crs .badges{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.bdg{font:600 11px var(--sans);padding:4px 8px;background:#E6F8FF;color:#0B4F7A}
+.bdg.enprog{background:#EEF2FF;color:var(--blue)}
+.bdg.new{background:#FFF3D6;color:#8A5A00}
+.empty{padding:40px;text-align:center;color:var(--muted);grid-column:1/-1}
+
+.progs{background:var(--navy);color:#fff}
+.progs .eyebrow,.progs h2{color:#fff}.progs .sec-head p{color:rgba(255,255,255,.75)}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.pg{background:#0A2A40;border:1px solid rgba(255,255,255,.1);padding:28px;display:flex;flex-direction:column;gap:14px;position:relative;transition:translate .35s cubic-bezier(.2,.7,.2,1),border-color .35s}
+.pg:hover{translate:0 -6px;border-color:rgba(255,255,255,.35)}
+.pg.elite{background:#fff;color:var(--ink);border-color:#fff}
+.pg .lvl{font:600 11px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#7C9BFF}
+.pg.elite .lvl{color:var(--blue)}
+.pg h3{font:400 26px/1.15 var(--serif);color:inherit}
+.pg .desc{font-size:14.5px;opacity:.8;line-height:1.55}
+.pg ul{list-style:none;display:grid;gap:8px;font-size:14px;margin-top:4px}
+.pg li{padding-left:22px;position:relative;opacity:.92}
+.pg li:before{content:"";position:absolute;left:0;top:7px;width:12px;height:7px;border-left:2px solid #7C9BFF;border-bottom:2px solid #7C9BFF;transform:rotate(-45deg)}
+.pg.elite li:before{border-color:var(--blue)}
+.pg .price{margin-top:auto;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}
+.pg.elite .price{border-color:var(--line)}
+.pg .price b{display:block;font:300 40px var(--serif)}
+.pg .price span{font-size:13px;opacity:.7}
+.pg .btn{text-align:center}
+.pg .ribbon{position:absolute;top:-1px;right:20px;background:var(--blue);color:#fff;font:600 11px var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:6px 10px}
+
+.certsec .grid2{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:center}
+.cert{position:relative;background:#fff;aspect-ratio:1.414/1;padding:6%;box-shadow:0 40px 80px -40px rgba(5,28,44,.5);border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.cert:before{content:"";position:absolute;inset:14px;border:1px solid #C9D3E6;pointer-events:none}
+.cert .wm{position:absolute;right:-60px;bottom:-60px;width:300px;height:300px;color:#F1F4FA}
+.cert .top{display:flex;justify-content:space-between;align-items:center;position:relative}
+.cert .mk{font:500 13px var(--sans);letter-spacing:.3em}
+.cert .id{font:500 10px ui-monospace,Menlo,monospace;color:var(--muted)}
+.cert .mid{position:relative}
+.cert .mid small{display:block;font:500 11px var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.cert .mid h4{font:300 clamp(24px,3vw,38px)/1.1 var(--serif);margin:10px 0 8px;color:var(--ink)}
+.cert .mid p{font-size:14px;color:var(--text)}
+.cert .mid p b{color:var(--ink);font-weight:600}
+.cert .bot{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;position:relative}
+.cert .sig{font:italic 300 22px var(--serif);border-bottom:1px solid var(--ink);padding:0 20px 4px 0;color:var(--ink)}
+.cert .sig+span{display:block;font-size:11px;color:var(--muted);margin-top:6px}
+.cert .qr{width:64px;height:64px}
+.certlist{list-style:none;display:grid;gap:18px;margin-top:26px}
+.certlist li{display:grid;grid-template-columns:40px 1fr;gap:16px}
+.certlist .n{font:300 26px var(--serif);color:var(--blue)}
+.certlist b{display:block;font:600 16px var(--sans);color:var(--ink);margin-bottom:3px}
+
+.inst{background:var(--gray)}
+.igrid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.ip{background:#fff}
+.ip .ph{aspect-ratio:1/1;background:var(--navy);overflow:hidden;position:relative}
+.ip img{width:100%;height:100%;object-fit:cover;object-position:center 22%;filter:grayscale(1);display:block;transition:transform .6s}
+.ip:hover img{transform:scale(1.04)}
+.ip .bd{padding:20px 20px 24px}
+.ip h4{font:400 21px var(--serif);color:var(--ink)}
+.ip .rl{font:600 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin:6px 0 10px}
+.ip p{font-size:14px}
+.ip .ct{margin-top:12px;font-size:13px;color:var(--muted)}
+
+.biz{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center}
+.biz ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.biz li{background:#fff;padding:24px}
+.biz li b{display:block;font:400 20px var(--serif);color:var(--ink);margin-bottom:6px}
+.biz li span{font-size:14px}
+
+/* ficha del curso (modal) */
+.modal{position:fixed;inset:0;z-index:90;background:rgba(5,28,44,.7);backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:center;padding:40px 20px;overflow:auto}
+.modal.on{display:flex}
+.mbox{background:#fff;width:100%;max-width:1080px;position:relative;animation:min .35s cubic-bezier(.2,.7,.2,1)}
+@keyframes min{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.mclose{position:absolute;right:14px;top:10px;z-index:3;border:0;background:rgba(255,255,255,.15);color:#fff;width:40px;height:40px;font:300 26px var(--sans);cursor:pointer}
+.mtop{background:var(--navy);color:#fff;padding:40px 44px 36px;display:grid;grid-template-columns:1fr 340px;gap:40px}
+.mtop .crumb{font-size:13px;color:#9FB7FF;margin-bottom:12px}
+.mtop h3{font:300 clamp(26px,3vw,38px)/1.12 var(--serif);color:#fff}
+.mtop .sub{font-size:17px;opacity:.85;margin:12px 0 16px}
+.mtop .ln{font-size:14px;opacity:.85;display:flex;gap:18px;flex-wrap:wrap}
+.mbuy{background:#fff;color:var(--ink);box-shadow:0 20px 40px -20px rgba(0,0,0,.5);align-self:start;margin-bottom:-330px;position:relative;z-index:2}
+.mbuy .th{aspect-ratio:16/9}
+.mbuy .in{padding:22px}
+.mbuy .p{font:700 32px var(--sans)}
+.mbuy .btn{display:block;text-align:center;margin-top:14px}
+.mbuy .btn.line{margin-top:10px}
+.mbuy h5{font:600 14px var(--sans);margin:18px 0 10px}
+.mbuy ul{list-style:none;display:grid;gap:8px;font-size:14px}
+.mbuy li{display:flex;gap:10px;align-items:center}
+.mbuy li svg{width:16px;height:16px;flex:0 0 16px;color:var(--muted)}
+.mbuy .fine{font-size:12px;color:var(--muted);margin-top:14px;line-height:1.5}
+.mbody{padding:36px 44px 48px;display:grid;grid-template-columns:1fr 340px;gap:40px}
+.learn{border:1px solid var(--line);padding:24px 26px}
+.learn h4,.mbody h4{font:600 20px var(--sans);color:var(--ink);margin-bottom:14px}
+.learn ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px 24px;font-size:14px}
+.learn li{padding-left:24px;position:relative}
+.learn li:before{content:"";position:absolute;left:2px;top:6px;width:11px;height:6px;border-left:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(-45deg)}
+.curr{margin-top:34px}
+.curr .sm{font-size:14px;color:var(--muted);margin-bottom:10px}
+.curr details{border:1px solid var(--line);border-top:0}
+.curr details:first-of-type{border-top:1px solid var(--line)}
+.curr summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;padding:16px 18px;background:#F7F9FA;font:600 15px var(--sans);color:var(--ink)}
+.curr summary::-webkit-details-marker{display:none}
+.curr summary span{font-weight:400;font-size:13px;color:var(--muted);white-space:nowrap}
+.curr summary:before{content:"›";display:inline-block;margin-right:10px;transition:transform .2s;color:var(--muted)}
+.curr details[open] summary:before{transform:rotate(90deg)}
+.curr ol{list-style:none;padding:8px 18px 14px}
+.curr ol li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;font-size:14px}
+.curr ol li span{color:var(--muted)}
+.req{margin-top:30px}
+.req ul{padding-left:18px;font-size:15px;display:grid;gap:6px}
+.minst{margin-top:30px;display:grid;grid-template-columns:96px 1fr;gap:18px;align-items:center}
+.minst img{width:96px;height:96px;border-radius:50%;object-fit:cover;object-position:center 22%;filter:grayscale(1)}
+.minst b{font:600 17px var(--sans);color:var(--blue)}
+.minst p{font-size:14px;margin-top:4px}
+
+.soon{background:var(--navy);color:#fff}
+.soon h2{color:#fff}
+form.acad{display:grid;grid-template-columns:1fr 1fr;gap:20px 28px;margin-top:32px}
+form.acad label{display:grid;gap:8px;font-size:13px;color:rgba(255,255,255,.7)}
+form.acad input,form.acad select{border:0;border-bottom:1px solid rgba(255,255,255,.5);background:transparent;padding:10px 0;font:300 17px var(--sans);color:#fff;border-radius:0}
+form.acad select option{color:var(--ink)}
+form.acad input:focus,form.acad select:focus{outline:none;border-bottom:2px solid #7C9BFF}
+form.acad .full{grid-column:1/-1}
+.okmsg{display:none;margin-top:18px;color:#9FE3BD}
+.consent{font-size:12.5px;opacity:.7}
+.consent a{color:#fff}
+
+@media(max-width:1100px){.crs-grid{grid-template-columns:repeat(3,1fr)}.pgrid{grid-template-columns:1fr 1fr}.igrid{grid-template-columns:1fr 1fr}}
+@media(max-width:900px){
+  .certsec .grid2,.biz{grid-template-columns:1fr;gap:36px}
+  .mtop,.mbody{grid-template-columns:1fr;padding:28px 20px}
+  .mbuy{margin-bottom:0}
+  .learn ul{grid-template-columns:1fr}
+  .modal{padding:0}
+  .mclose{background:rgba(5,28,44,.6)}
+}
+@media(max-width:700px){
+  .crs-grid{grid-template-columns:1fr 1fr;gap:22px 14px}
+  .crs h3{font-size:14.5px}
+  .pgrid,.igrid,.biz ul{grid-template-columns:1fr}
+  form.acad{grid-template-columns:1fr}
+  .phero{min-height:88svh}
+  .phero:after{background:linear-gradient(0deg,rgba(5,28,44,.97) 0%,rgba(5,28,44,.85) 50%,rgba(5,28,44,.35) 100%)}
+  .srch button{padding:0 16px}
+  .hero-facts{gap:20px}
+  .hero-facts b{font-size:22px}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><symbol id="star" viewBox="0 0 64 64"><path fill="currentColor" d="M32 1 37.2 26.8 63 32 37.2 37.2 32 63 26.8 37.2 1 32 26.8 26.8Z"/></symbol></svg>
+
+<nav><div class="wrap">
+  <a class="mark" href="index.html">NORTHPOINT<small>Academia</small></a>
+  <div class="links">
+    <a href="#cursos">Cursos</a><a href="#programas">Programas</a><a href="#certificado">Certificado</a><a href="#instructores">Instructores</a><a href="#empresas">Para empresas</a><a href="index.html">NORTHPOINT</a>
+    <a class="btn" href="#inscripcion">Apartar lugar</a>
+  </div>
+</div></nav>
+
+<header class="phero">
+  <div class="phero-bg"></div>
+  <div class="wrap"><div class="box">
+    <div class="kick"><span>Academia NORTHPOINT</span><span>Inscripciones abiertas</span></div>
+    <h1 class="serif">Aprenda a operar como nuestra mesa.</h1>
+    <p class="lead">Trading, inteligencia artificial aplicada a mercados y finanzas, enseñados por quienes operan todos los días. Cursos a su ritmo y programas completos con certificado.</p>
+    <form class="srch" id="srch" role="search"><input id="q" type="search" placeholder="¿Qué quiere aprender? Ej. futuros, Python, riesgo…" aria-label="Buscar cursos"><button type="submit">Buscar</button></form>
+    <div class="hero-facts" id="facts"></div>
+  </div></div>
+</header>
+
+<div class="catbar"><div class="wrap" id="cats"></div></div>
+
+<section id="cursos"><div class="wrap">
+  <div class="lista-head">
+    <div><h2 class="serif" id="listaT">Todos los cursos</h2><div class="count" id="count"></div></div>
+    <select class="sortsel" id="sort" aria-label="Ordenar"><option value="rel">Más relevantes</option><option value="asc">Precio: menor a mayor</option><option value="desc">Precio: mayor a menor</option><option value="horas">Más horas de contenido</option></select>
+  </div>
+  <div class="crs-grid" id="grid"></div>
+</div></section>
+
+<section class="progs" id="programas"><div class="wrap">
+  <div class="sec-head">
+    <div><div class="eyebrow">Programas con certificado</div><h2 class="serif" style="margin-top:12px">De cursos sueltos a una carrera.</h2></div>
+    <p>Cada programa reúne varios cursos en un orden pensado, suma sesiones en vivo con la mesa, un proyecto final revisado y un examen. Al aprobarlo recibe el certificado NORTHPOINT.</p>
+  </div>
+  <div class="pgrid" id="pgrid"></div>
+</div></section>
+
+<section class="certsec" id="certificado"><div class="wrap grid2">
+  <div class="cert" id="cert">
+    <svg class="wm"><use href="#star"/></svg>
+    <div class="top"><span class="mk">NORTHPOINT · ACADEMIA</span><span class="id">NP-ACD-2026-00417</span></div>
+    <div class="mid"><small>Certificado de finalización</small><h4>Trader Profesional de Futuros</h4><p>Se otorga a <b>Su nombre aquí</b> por completar 6 cursos, 12 semanas de sesiones en vivo, el proyecto final y el examen del programa.</p></div>
+    <div class="bot"><div><div class="sig">André Macouzet</div><span>Fundador de NORTHPOINT</span></div>
+      <svg class="qr" viewBox="0 0 21 21" shape-rendering="crispEdges" id="qr"></svg></div>
+  </div>
+  <div>
+    <div class="eyebrow">El certificado</div>
+    <h2 class="serif" style="margin-top:12px">Un certificado que se puede verificar.</h2>
+    <p style="font-size:18px;margin-top:16px">Cada certificado lleva un folio único y un código para que cualquier persona compruebe que es real.</p>
+    <ul class="certlist">
+      <li><span class="n">01</span><div><b>Proyecto final revisado</b>No basta con ver los videos: entrega un proyecto real y la mesa lo revisa.</div></li>
+      <li><span class="n">02</span><div><b>Examen del programa</b>Preguntas y casos prácticos con los criterios con los que opera la mesa.</div></li>
+      <li><span class="n">03</span><div><b>Folio verificable</b>Número único y código QR para compartirlo en LinkedIn o en su CV.</div></li>
+    </ul>
+    <p style="font-size:13px;color:var(--muted);margin-top:22px">Es un certificado de finalización emitido por NORTHPOINT. No es un título oficial ni una licencia para asesorar o administrar dinero de terceros.</p>
+  </div>
+</div></section>
+
+<section class="inst" id="instructores"><div class="wrap">
+  <div class="sec-head">
+    <div><div class="eyebrow">Instructores</div><h2 class="serif" style="margin-top:12px">Enseña la gente de la mesa.</h2></div>
+    <p>Cada curso lo da alguien que hace eso mismo en NORTHPOINT: operar, construir modelos, estructurar patrimonio o medir el riesgo.</p>
+  </div>
+  <div class="igrid" id="igrid"></div>
+</div></section>
+
+<section id="empresas"><div class="wrap biz">
+  <div>
+    <div class="eyebrow">Academia para empresas</div>
+    <h2 class="serif" style="margin-top:12px">Forme a su equipo de finanzas.</h2>
+    <p style="font-size:18px;margin-top:16px">Licencias para equipos, rutas a la medida y sesiones privadas con la mesa para tesorerías, family offices, despachos y áreas de finanzas.</p>
+    <a class="btn" href="#inscripcion" style="margin-top:26px" data-pre="Para mi empresa">Solicitar propuesta</a>
+  </div>
+  <ul>
+    <li><b>Licencias por equipo</b><span>Acceso a todo el catálogo para su gente.</span></li>
+    <li><b>Rutas a la medida</b><span>Armamos el temario según su área.</span></li>
+    <li><b>Sesiones privadas</b><span>Talleres en vivo con la mesa, en su oficina o en línea.</span></li>
+    <li><b>Reportes de avance</b><span>Quién avanzó, quién certificó y en qué.</span></li>
+  </ul>
+</div></section>
+
+<section class="soon" id="inscripcion"><div class="wrap">
+  <div class="sec-head" style="margin-bottom:0">
+    <div><div class="eyebrow" style="color:#fff">Inscripción</div><h2 class="serif" style="margin-top:12px">Aparte su lugar.</h2></div>
+    <p style="color:rgba(255,255,255,.8)">Díganos qué le interesa y le escribimos con fechas, forma de pago y el siguiente grupo.</p>
+  </div>
+  <form class="acad" id="acadForm">
+    <label>Nombre<input name="nombre" required autocomplete="name"></label>
+    <label>WhatsApp<input name="whatsapp" required inputmode="tel" autocomplete="tel"></label>
+    <label class="full">Me interesa<select name="interes" id="interes"></select></label>
+    <p class="consent full">Al enviar acepta nuestro <a href="privacidad.html">aviso de privacidad</a>. Usamos sus datos solo para contactarle sobre la Academia.</p>
+    <div class="full"><button class="btn" type="submit">Apartar mi lugar</button><div class="okmsg" id="okA">Listo. Le escribimos en cuanto abra el siguiente grupo.</div></div>
+  </form>
+</div></section>
+
+<footer><div class="wrap">
+  <span class="mark">NORTHPOINT<small>Academia</small></span>
+  <p><b>Contenido educativo.</b> Los cursos enseñan cómo opera y piensa una mesa de trading; no son asesoría de inversión ni recomendaciones personalizadas. Operar futuros y otros instrumentos apalancados implica riesgo de perder dinero. Los resultados del pasado no garantizan resultados futuros.</p>
+  <p><a href="index.html" style="color:#fff">← Volver a NORTHPOINT</a> · <a href="equipo.html" style="color:#fff">El equipo</a> · <a href="privacidad.html" style="color:#fff">Aviso de privacidad</a></p>
+</div></footer>
+
+<div class="modal" id="modal" aria-hidden="true"><div class="mbox" role="dialog" aria-modal="true" aria-labelledby="mT" id="mbox"></div></div>
+
+<script>
+const CONFIG = { whatsapp: "" };   // mismo número que en index.html
+
+const INSTR = {
+  andre:   { n:"André Macouzet Ruiz",       r:"Fundador · Datos, IA y futuros", foto:"img/andre.jpg",   p:"Opera futuros del Nasdaq y construyó el Terminal de NORTHPOINT. Enseña datos, IA y estructura de mercado." },
+  pablo:   { n:"Pablo Ochoa Macouzet",      r:"Cofundador · Estrategia y finanzas", foto:"img/pablo.jpg", p:"Ingeniero Industrial y de Sistemas, Master por EGADE. Enseña modelación financiera, riesgo y finanzas personales." },
+  goyo:    { n:"Gregorio Sánchez Calderón", r:"Cofundador · Inversiones y patrimonio", foto:"img/goyo.jpg", p:"Abogado en derecho fiduciario y patrimonial. Enseña carteras de largo plazo, fideicomisos y planeación sucesoria." },
+  gerardo: { n:"Gerardo Andaluz Contreras", r:"Cofundador · Trader de la mesa", foto:"img/gerardo.jpg", p:"Opera futuros de índices en la sesión de Nueva York. Enseña ejecución, plan de sesión y disciplina." }
+};
+const CATS = [ ["todos","Todos"], ["trading","Trading"], ["ia","Inteligencia artificial"], ["datos","Datos y Python"], ["finanzas","Finanzas"], ["patrimonio","Patrimonio"], ["mente","Mentalidad"] ];
+const PAL = { trading:["#051C2C","#0E3A5C","#2251FF"], ia:["#12082E","#3B1E8F","#8B6CFF"], datos:["#04201F","#0B4A48","#19C2B6"], finanzas:["#0B1B3F","#1A3A8F","#5B7CFF"], patrimonio:["#1B1408","#5A4418","#D4A94A"], mente:["#2A0B14","#6B1E33","#FF7A8A"] };
+const NIV = { 1:"Principiante", 2:"Intermedio", 3:"Avanzado", 0:"Todos los niveles" };
+
+// catálogo: [id, categoría, título, subtítulo, instructor, nivel, horas, lecciones, precio, lo que aprenderá (4), módulos (5)]
+const C = [
+ ["fut0","trading","Futuros del Nasdaq desde cero","Qué es un contrato, cómo se mueve y cómo se opera con riesgo definido.","gerardo",1,14,86,249,
+  ["Leer un contrato de futuros: tick, margen y horario","Montar la plataforma y el gráfico de trabajo","Definir entrada, stop y objetivo antes de operar","Llevar un registro de cada operación"],
+  ["El mercado de futuros","Contratos NQ y MNQ","La plataforma y el gráfico","Su primera operación con riesgo definido","Registro y revisión"]],
+ ["estr","trading","Estructura de mercado y liquidez","Tendencia, rangos y zonas donde el precio busca liquidez.","andre",2,18,104,349,
+  ["Identificar tendencia y cambios de estructura","Marcar liquidez del día anterior, Asia y Londres","Zonas de equilibrio y desequilibrio","Armar un mapa del día antes de abrir"],
+  ["Estructura: máximos y mínimos","Liquidez y dónde se acumula","Equilibrio, desequilibrio y FVG","Temporalidades: de 4 horas a 1 minuto","El mapa del día"]],
+ ["ny","trading","Sesión de Nueva York: plan, ejecución y registro","Cómo trabaja la mesa de 7:30 a 14:00, paso a paso.","gerardo",2,12,64,299,
+  ["Preparar el plan escrito antes de la apertura","Ejecutar solo lo que dice el plan","Gestionar la operación abierta sin improvisar","Cerrar el día con registro y revisión"],
+  ["La rutina de la mañana","Apertura y primeros 30 minutos","Ejecución y gestión","Cuándo no operar","Cierre y bitácora"]],
+ ["riesgo","trading","Gestión de riesgo profesional","Tamaño de posición, freno mensual y drawdown, como lo mide la mesa.","pablo",0,10,58,279,
+  ["Calcular el tamaño de cada posición","Poner límites diarios y mensuales","Entender el drawdown y cómo recuperarse","Medir resultados en R, no en dinero"],
+  ["Por qué se pierde una cuenta","Tamaño de posición","Límites diarios y mensuales","Drawdown y recuperación","Métricas: R, expectativa y factor de ganancia"]],
+ ["fondeo","trading","Cuentas de fondeo: del examen al retiro","Pasar la evaluación, cuidar el drawdown y cobrar.","andre",2,9,48,229,
+  ["Comparar reglas de las principales firmas","Planear la evaluación por fases","Cuidar el drawdown que se mueve con el saldo","Llegar al primer retiro con colchón"],
+  ["Cómo funcionan las firmas","Reglas que importan","El plan de la evaluación","Cuenta fondeada y colchón","Retiros"]],
+ ["iatr","ia","IA aplicada al trading: de datos a señales","Cómo usar modelos para filtrar, no para adivinar.","andre",3,22,118,499,
+  ["Preparar datos de mercado para un modelo","Crear variables útiles a partir del precio y el volumen","Entrenar y validar sin sobreajustar","Usar el modelo como filtro dentro de un plan"],
+  ["Qué puede y qué no puede hacer la IA","Datos de mercado limpios","Variables y etiquetas","Modelos y validación","Del modelo a la regla de operación"]],
+ ["ml","ia","Machine learning para series de tiempo","Modelos que respetan el orden del tiempo.","andre",3,24,126,549,
+  ["Validación cronológica y walk-forward","Modelos de árboles y redes para series","Detectar fuga de información","Medir un modelo con criterios de trading"],
+  ["Series de tiempo y sus trampas","Validación walk-forward","Árboles y gradient boosting","Redes para secuencias","Evaluación económica del modelo"]],
+ ["agentes","ia","Agentes de IA para investigación financiera","Asistentes con modelos de lenguaje que leen, resumen y ordenan información.","andre",2,12,62,399,
+  ["Diseñar instrucciones claras para modelos de lenguaje","Resumir reportes y noticias con fuentes","Construir un agente que arma el reporte del día","Revisar y limitar los errores de la IA"],
+  ["Modelos de lenguaje en finanzas","Instrucciones y contexto","Herramientas y búsqueda","Un agente para el reporte diario","Riesgos y verificación"]],
+ ["py","datos","Python para mercados financieros","De cero a descargar, limpiar y graficar datos de mercado.","andre",1,20,112,299,
+  ["Python desde cero con ejemplos de mercado","Pandas para precios y volumen","Gráficas profesionales","Automatizar un reporte diario"],
+  ["Python básico","Pandas y datos de mercado","Gráficas","Indicadores a mano","Su primer reporte automático"]],
+ ["bt","datos","Backtesting sin autoengaño","Probar una estrategia con datos, sin trampas.","andre",2,14,72,349,
+  ["Programar un backtest de principio a fin","Costos, deslizamiento y comisiones reales","Evitar sesgos de supervivencia y de mirar el futuro","Monte Carlo para ver el peor escenario"],
+  ["Qué es un backtest honesto","El motor de pruebas","Costos reales","Sesgos y cómo evitarlos","Monte Carlo y tamaño de posición"]],
+ ["excel","finanzas","Modelación financiera en Excel","Estados financieros, proyecciones y valuación.","pablo",2,16,90,329,
+  ["Armar estados financieros integrados","Proyectar ingresos y flujo de efectivo","Valuar con flujos descontados","Presentar escenarios a un comité"],
+  ["Estructura de un buen modelo","Estados financieros","Proyecciones","Valuación por flujos","Escenarios y sensibilidad"]],
+ ["pers","finanzas","Finanzas personales e interés compuesto","Presupuesto, ahorro y cómo hacer que el dinero trabaje.","pablo",1,8,44,149,
+  ["Armar un presupuesto que sí se cumple","Fondo de emergencia y deudas","Entender el interés compuesto con números","Elegir dónde poner su ahorro"],
+  ["Su punto de partida","Presupuesto","Deudas y fondo de emergencia","Interés compuesto","Plan de ahorro a 5 años"]],
+ ["port","finanzas","Análisis de inversiones y portafolios","Asignación de activos, riesgo y rebalanceo.","goyo",2,15,80,349,
+  ["Asignar entre acciones, bonos y otros activos","Medir riesgo y correlación","Rebalancear con reglas","Incluir activos digitales con límites"],
+  ["Clases de activos","Riesgo y rendimiento","Construcción de portafolio","Rebalanceo","Activos digitales"]],
+ ["fide","patrimonio","Fideicomisos y protección patrimonial","Cómo se estructura y se protege el patrimonio familiar.","goyo",0,10,52,399,
+  ["Qué es un fideicomiso y cuándo conviene","Separar patrimonio personal y de negocio","Vehículos de tenencia","Errores comunes que exponen los bienes"],
+  ["Patrimonio y riesgos","El fideicomiso","Vehículos de tenencia","Protección de bienes","Casos prácticos"]],
+ ["suc","patrimonio","Planeación sucesoria para familias","Que el patrimonio pase de una generación a otra sin pleitos.","goyo",0,8,40,349,
+  ["Testamento, fideicomiso y otras vías","Protocolo familiar","Impuestos en la transmisión","Preparar a la siguiente generación"],
+  ["Por qué se pierde un patrimonio","Vías de transmisión","Protocolo familiar","Impuestos","La siguiente generación"]],
+ ["mente","mente","Psicología del trader: disciplina y proceso","Operar el plan cuando el mercado presiona.","gerardo",0,7,36,199,
+  ["Reconocer las emociones que rompen el plan","Rutinas antes, durante y después de operar","Cómo manejar una racha perdedora","Medir su disciplina, no solo su resultado"],
+  ["El trader contra sí mismo","Rutinas","Rachas perdedoras","Revisión y diario","Proceso sobre resultado"]]
+].map(a => ({ id:a[0], cat:a[1], t:a[2], s:a[3], ins:a[4], niv:a[5], h:a[6], lec:a[7], p:a[8], learn:a[9], mods:a[10] }));
+
+const PROGS = [
+  { id:"trader", lvl:"Programa · 12 semanas", n:"Trader Profesional de Futuros", d:"De cero a operar con un plan escrito, riesgo definido y registro de cada operación.", cursos:["fut0","estr","ny","riesgo","fondeo","mente"], extra:["12 semanas de sesiones en vivo con la mesa","Revisión de sus operaciones","Examen y certificado"], p:2900 },
+  { id:"ia", lvl:"Programa · 16 semanas", n:"IA y Datos para Mercados", d:"Python, backtesting y modelos de machine learning aplicados a trading e investigación.", cursos:["py","bt","ml","iatr","agentes"], extra:["Proyecto final revisado por la mesa","Código y plantillas del curso","Examen y certificado"], p:3900, ribbon:"El más completo" },
+  { id:"fin", lvl:"Programa · 10 semanas", n:"Finanzas y Patrimonio Familiar", d:"Finanzas personales, portafolios, modelación y la estructura legal que protege lo construido.", cursos:["pers","excel","port","fide","suc"], extra:["Sesiones en vivo de casos reales","Plantillas de modelo y protocolo","Examen y certificado"], p:2400 },
+  { id:"elite", lvl:"Mentoría · 6 meses · cupo de 10", n:"Programa Élite Mesa NORTHPOINT", d:"Todo el catálogo más seis meses trabajando al lado de la mesa, con seguimiento uno a uno.", cursos:C.map(c=>c.id), extra:["Mentoría 1:1 cada semana","Sesiones en la oficina de la mesa","Los tres certificados"], p:9800, elite:true }
+];
+
+const KW = {"fut0": ["Futuros", "desde cero"], "estr": ["Estructura", "y liquidez"], "ny": ["Sesión de", "Nueva York"], "riesgo": ["Gestión", "de riesgo"], "fondeo": ["Cuentas", "de fondeo"], "iatr": ["IA para", "trading"], "ml": ["Machine", "learning"], "agentes": ["Agentes", "de IA"], "py": ["Python", "financiero"], "bt": ["Backtesting", "honesto"], "excel": ["Modelación", "financiera"], "pers": ["Finanzas", "personales"], "port": ["Portafolios", "de inversión"], "fide": ["Fideicomisos", "y patrimonio"], "suc": ["Planeación", "sucesoria"], "mente": ["Psicología", "del trader"]};
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const usd = n => "$" + n.toLocaleString("en-US") + " USD";
+const usd0 = n => "$" + n.toLocaleString("en-US");
+function rng(seed){ let t = seed>>>0; return () => { t += 0x6D2B79F5; let r = Math.imul(t ^ t>>>15, 1|t); r ^= r + Math.imul(r ^ r>>>7, 61|r); return ((r ^ r>>>14)>>>0)/4294967296; }; }
+const hash = s => [...s].reduce((a,c)=>Math.imul(a,31)+c.charCodeAt(0)|0, 7);
+
+// portada de cada curso dibujada en SVG, según su tema
+function thumb(c){
+  const [a,b,acc] = PAL[c.cat], r = rng(hash(c.id)), W = 320, H = 180, g = "g"+c.id;
+  let art = "";
+  if(c.cat==="trading"){ let y = 110; for(let i=0;i<18;i++){ const o = y, cl = o + (r()-.45)*26, hi = Math.min(o,cl)-4-r()*10, lo = Math.max(o,cl)+4+r()*10, x = 150+i*9; y = Math.max(40,Math.min(150,cl));
+      art += `<line x1="${x}" x2="${x}" y1="${hi}" y2="${lo}" stroke="${cl<o?acc:"rgba(255,255,255,.45)"}" stroke-width="1"/><rect x="${x-3}" y="${Math.min(o,cl)}" width="6" height="${Math.max(2,Math.abs(cl-o))}" fill="${cl<o?acc:"rgba(255,255,255,.45)"}"/>`; } }
+  else if(c.cat==="ia"){ const L = [3,5,5,2], nodes = []; L.forEach((n,li)=>{ for(let k=0;k<n;k++) nodes.push([170+li*42, 90+(k-(n-1)/2)*26, li]); });
+      nodes.forEach(p=>nodes.forEach(q=>{ if(q[2]===p[2]+1 && r()>.25) art += `<line x1="${p[0]}" y1="${p[1]}" x2="${q[0]}" y2="${q[1]}" stroke="${acc}" stroke-opacity="${.2+r()*.4}" stroke-width="1"/>`; }));
+      nodes.forEach(p=> art += `<circle cx="${p[0]}" cy="${p[1]}" r="${p[2]%3?4:5}" fill="${r()>.6?acc:"#fff"}" fill-opacity=".9"/>`); }
+  else if(c.cat==="datos"){ for(let k=0;k<3;k++){ let d = ""; for(let i=0;i<=30;i++){ const x = 150+i*5.5, y = 95+k*12+Math.sin(i/3+k+r()*2)*16+ (r()-.5)*8; d += (i?"L":"M")+x.toFixed(1)+","+y.toFixed(1); } art += `<path d="${d}" fill="none" stroke="${k?"rgba(255,255,255,.45)":acc}" stroke-width="${k?1:2}"/>`; }
+      for(let i=0;i<6;i++) art += `<text x="${150+i*28}" y="40" font-family="ui-monospace,Menlo,monospace" font-size="9" fill="rgba(255,255,255,.35)">${["df","np","pd","fit","ret","σ"][i]}</text>`; }
+  else if(c.cat==="finanzas"){ for(let i=0;i<9;i++){ const h = 20+i*9+r()*16; art += `<rect x="${160+i*16}" y="${150-h}" width="10" height="${h}" fill="${i===8?acc:"rgba(255,255,255,.35)"}"/>`; }
+      art += `<path d="M156 128 Q230 110 300 52" fill="none" stroke="${acc}" stroke-width="2" stroke-dasharray="4 4"/>`; }
+  else if(c.cat==="patrimonio"){ art += `<path d="M240 34 L290 52 V92 C290 124 268 146 240 154 C212 146 190 124 190 92 V52 Z" fill="none" stroke="${acc}" stroke-width="2"/><path d="M240 58 L270 70 V94 C270 114 257 128 240 134 C223 128 210 114 210 94 V70 Z" fill="${acc}" fill-opacity=".25"/>`;
+      for(let i=0;i<4;i++) art += `<rect x="${170+i*34}" y="162" width="26" height="4" fill="rgba(255,255,255,.3)"/>`; }
+  else { let d = ""; for(let i=0;i<=60;i++){ const x = 140+i*2.8, amp = 30*Math.exp(-Math.pow((i-30)/14,2)); d += (i?"L":"M")+x+","+(95+Math.sin(i*.9)*amp); } art += `<path d="${d}" fill="none" stroke="${acc}" stroke-width="2"/><circle cx="240" cy="95" r="52" fill="none" stroke="rgba(255,255,255,.18)"/>`; }
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="${g}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs>
+    <rect width="${W}" height="${H}" fill="url(#${g})"/>${[...Array(8)].map((_,i)=>`<line x1="${i*44}" y1="0" x2="${i*44}" y2="${H}" stroke="rgba(255,255,255,.05)"/>`).join("")}
+    ${art}<text x="18" y="50" font-family="Source Serif 4,Georgia,serif" font-size="28" font-weight="300" fill="#fff">${KW[c.id][0]}</text>
+    <text x="18" y="80" font-family="Source Serif 4,Georgia,serif" font-size="28" font-weight="300" fill="#fff" fill-opacity=".6">${KW[c.id][1]}</text></svg>
+    <svg class="star"><use href="#star"/></svg><span class="tag">${CATS.find(x=>x[0]===c.cat)[1]}</span>`;
+}
+
+// ── catálogo ──
+let filtro = "todos", Q = "", orden = "rel";
+const enProg = id => PROGS.filter(p=>!p.elite && p.cursos.includes(id)).map(p=>p.n);
+function card(c){
+  const pr = enProg(c.id);
+  return `<article class="crs" data-id="${c.id}" tabindex="0"><div class="th">${thumb(c)}</div>
+    <h3>${c.t}</h3><div class="by">${INSTR[c.ins].n}</div>
+    <div class="meta">${c.h} horas · ${c.lec} lecciones · ${NIV[c.niv]}</div>
+    <div class="pr"><b>${usd0(c.p)}</b><span style="font-size:12px;color:var(--muted)">USD</span></div>
+    <div class="badges">${c.niv===3?`<span class="bdg">Avanzado</span>`:""}${pr.length?`<span class="bdg enprog">Parte de un programa</span>`:""}${["agentes","iatr"].includes(c.id)?`<span class="bdg new">Nuevo</span>`:""}</div></article>`;
+}
+function render(){
+  const q = Q.trim().toLowerCase();
+  let L = C.filter(c => (filtro==="todos" || c.cat===filtro) && (!q || (c.t+" "+c.s+" "+INSTR[c.ins].n+" "+c.learn.join(" ")).toLowerCase().includes(q)));
+  if(orden==="asc") L.sort((a,b)=>a.p-b.p); if(orden==="desc") L.sort((a,b)=>b.p-a.p); if(orden==="horas") L.sort((a,b)=>b.h-a.h);
+  $("#grid").innerHTML = L.length ? L.map(card).join("") : `<div class="empty">No encontramos cursos para “${Q}”. <a href="#inscripcion" style="color:var(--blue)">Díganos qué quiere aprender</a>.</div>`;
+  $("#count").textContent = `${L.length} ${L.length===1?"curso":"cursos"}${q?` para “${Q}”`:""}`;
+  $("#listaT").textContent = filtro==="todos" ? (q ? "Resultados" : "Todos los cursos") : CATS.find(x=>x[0]===filtro)[1];
+  $("#cats").innerHTML = CATS.map(([k,t])=>`<button type="button" data-k="${k}" class="${k===filtro?"on":""}">${t}<small>${k==="todos"?C.length:C.filter(c=>c.cat===k).length}</small></button>`).join("");
+  $$("#cats button").forEach(b=>b.onclick=()=>{ filtro = b.dataset.k; render(); });
+  $$(".crs").forEach(el=>{ el.onclick = () => abrir(el.dataset.id); el.onkeydown = e => { if(e.key==="Enter") abrir(el.dataset.id); }; });
+  if(window.gsap && !matchMedia("(prefers-reduced-motion: reduce)").matches) gsap.from(".crs", { opacity:0, y:14, stagger:.03, duration:.45, ease:"power2.out" });
+}
+$("#sort").onchange = e => { orden = e.target.value; render(); };
+$("#srch").onsubmit = e => { e.preventDefault(); Q = $("#q").value; filtro = "todos"; render(); document.getElementById("cursos").scrollIntoView({ behavior:"smooth" }); };
+$("#q").oninput = e => { Q = e.target.value; render(); };
+
+const horasT = C.reduce((a,c)=>a+c.h,0);
+$("#facts").innerHTML = `<div><b>${C.length}</b>cursos</div><div><b>${horasT}</b>horas de contenido</div><div><b>${PROGS.length}</b>programas con certificado</div><div><b>${Object.keys(INSTR).length}</b>instructores de la mesa</div>`;
+
+// ── programas ──
+$("#pgrid").innerHTML = PROGS.map(p => { const suma = p.cursos.reduce((a,id)=>a+C.find(c=>c.id===id).p,0), hs = p.cursos.reduce((a,id)=>a+C.find(c=>c.id===id).h,0);
+  return `<div class="pg ${p.elite?"elite":""}">${p.ribbon?`<span class="ribbon">${p.ribbon}</span>`:""}<div class="lvl">${p.lvl}</div><h3>${p.n}</h3><p class="desc">${p.d}</p>
+  <ul><li>${p.elite?`Los ${C.length} cursos del catálogo`:`${p.cursos.length} cursos · ${hs} horas`}</li>${p.extra.map(x=>`<li>${x}</li>`).join("")}</ul>
+  <div class="price"><b>${usd0(p.p)}</b><span>USD · ${p.elite?"mentoría incluida":`los cursos sueltos suman ${usd0(suma)}; el programa agrega sesiones en vivo, proyecto y examen`}</span></div>
+  <a class="btn ${p.elite?"":"line inv"}" href="#inscripcion" data-pre="${p.n}">${p.elite?"Solicitar entrevista":"Apartar lugar"}</a></div>`; }).join("");
+
+// ── instructores ──
+$("#igrid").innerHTML = Object.entries(INSTR).map(([k,i]) => { const n = C.filter(c=>c.ins===k).length;
+  return `<div class="ip"><div class="ph"><img src="${i.foto}" alt="${i.n}" loading="lazy" onerror="this.remove()"></div><div class="bd"><h4>${i.n}</h4><div class="rl">${i.r}</div><p>${i.p}</p><div class="ct">${n} ${n===1?"curso":"cursos"} en la Academia</div></div></div>`; }).join("");
+
+// ── código del certificado (patrón fijo, decorativo) ──
+(function(){ const r = rng(417), N = 21; let s = "";
+  const fin = (x,y) => { s += `<rect x="${x}" y="${y}" width="7" height="7" fill="#051C2C"/><rect x="${x+1}" y="${y+1}" width="5" height="5" fill="#fff"/><rect x="${x+2}" y="${y+2}" width="3" height="3" fill="#051C2C"/>`; };
+  for(let y=0;y<N;y++) for(let x=0;x<N;x++){ const inF = (x<8&&y<8)||(x>12&&y<8)||(x<8&&y>12); if(!inF && r()>.52) s += `<rect x="${x}" y="${y}" width="1" height="1" fill="#051C2C"/>`; }
+  fin(0,0); fin(14,0); fin(0,14); $("#qr").innerHTML = s; })();
+
+// ── ficha del curso ──
+const ico = p => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+function abrir(id){
+  const c = C.find(x=>x.id===id), i = INSTR[c.ins], r = rng(hash(c.id)+3), pr = enProg(c.id);
+  let rest = c.lec; const mods = c.mods.map((m,k) => { const n = k===c.mods.length-1 ? rest : Math.max(4, Math.round(c.lec/c.mods.length + (r()-.5)*6)); rest -= n;
+    const min = Math.round(c.h*60/c.mods.length + (r()-.5)*30); return { m, n, min }; });
+  $("#mbox").innerHTML = `<button class="mclose" id="mclose" aria-label="Cerrar">×</button>
+  <div class="mtop"><div><div class="crumb">Academia › ${CATS.find(x=>x[0]===c.cat)[1]}</div><h3 id="mT">${c.t}</h3><p class="sub">${c.s}</p>
+    <div class="ln"><span>Imparte <b>${i.n}</b></span><span>${NIV[c.niv]}</span><span>Español</span></div>
+    ${pr.length?`<div class="ln" style="margin-top:10px"><span>Incluido en el programa <b>${pr.join(" y ")}</b></span></div>`:""}</div>
+    <aside class="mbuy"><div class="th">${thumb(c)}</div><div class="in"><div class="p">${usd0(c.p)} <span style="font:400 14px var(--sans);color:var(--muted)">USD</span></div>
+      <a class="btn" href="#inscripcion" data-pre="${c.t}" data-close>Inscribirme</a><a class="btn line" href="#programas" data-close>Ver programas con certificado</a>
+      <h5>Este curso incluye</h5><ul>
+        <li>${ico('<rect x="3" y="5" width="18" height="12" rx="2"/><path d="M10 9l5 2.5-5 2.5z"/>')}${c.h} horas de video a su ritmo</li>
+        <li>${ico('<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/>')}Plantillas y material descargable</li>
+        <li>${ico('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>')}Acceso por 12 meses</li>
+        <li>${ico('<path d="M4 5h16v11H9l-5 4z"/>')}Preguntas a la mesa dentro del curso</li>
+        <li>${ico('<circle cx="12" cy="9" r="5"/><path d="M9 13l-1 8 4-2 4 2-1-8"/>')}Certificado de finalización</li></ul>
+      <p class="fine">Contenido educativo, no asesoría de inversión.</p></div></aside></div>
+  <div class="mbody"><div>
+    <div class="learn"><h4>Lo que aprenderá</h4><ul>${c.learn.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+    <div class="curr"><h4>Contenido del curso</h4><div class="sm">${c.mods.length} módulos · ${c.lec} lecciones · ${c.h} horas en total</div>
+      ${mods.map((o,k)=>`<details ${k===0?"open":""}><summary>${o.m}<span>${o.n} lecciones · ${Math.floor(o.min/60)} h ${String(o.min%60).padStart(2,"0")} min</span></summary>
+        <ol>${[...Array(Math.min(o.n,4))].map((_,j)=>`<li>Lección ${j+1}${j===0?" · Introducción":j===Math.min(o.n,4)-1?" · Ejercicio práctico":""}<span>${8+Math.floor(r()*14)} min</span></li>`).join("")}${o.n>4?`<li style="color:var(--muted)">y ${o.n-4} lecciones más</li>`:""}</ol></details>`).join("")}</div>
+    <div class="req"><h4>Requisitos</h4><ul>${c.niv===1||c.niv===0?"<li>No necesita experiencia previa.</li><li>Una computadora con internet.</li>":c.niv===2?"<li>Conocer lo básico del tema o haber tomado el curso de nivel principiante.</li><li>Una computadora con internet.</li>":"<li>Python básico y nociones de estadística.</li><li>Haber tomado un curso intermedio de la Academia o experiencia equivalente.</li>"}</ul></div>
+    <div class="minst"><img src="${i.foto}" alt="${i.n}" onerror="this.remove()"><div><b>${i.n}</b><div style="font-size:13px;color:var(--muted)">${i.r}</div><p>${i.p}</p></div></div>
+  </div><div></div></div>`;
+  $("#modal").classList.add("on"); $("#modal").setAttribute("aria-hidden","false"); document.documentElement.style.overflow = "hidden";
+  if(window.__lenis) window.__lenis.stop();
+  $("#mclose").onclick = cerrar; $$("#mbox [data-close]").forEach(a => a.addEventListener("click", cerrar));
+  $$("#mbox [data-pre]").forEach(a => a.addEventListener("click", () => pre(a.dataset.pre)));
+}
+function cerrar(){ $("#modal").classList.remove("on"); $("#modal").setAttribute("aria-hidden","true"); document.documentElement.style.overflow = ""; if(window.__lenis) window.__lenis.start(); }
+$("#modal").addEventListener("click", e => { if(e.target.id==="modal") cerrar(); });
+addEventListener("keydown", e => { if(e.key==="Escape") cerrar(); });
+
+// ── inscripción ──
+$("#interes").innerHTML = [...PROGS.map(p=>`Programa · ${p.n}`), ...C.map(c=>`Curso · ${c.t}`), "Para mi empresa", "Todavía no sé, quiero orientación"].map(x=>`<option>${x}</option>`).join("");
+function pre(txt){ const s = $("#interes"); const o = [...s.options].find(o => o.text.endsWith(txt) || o.text===txt); if(o) s.value = o.text; }
+document.addEventListener("click", e => { const a = e.target.closest(".pg [data-pre], #empresas [data-pre]"); if(a) pre(a.dataset.pre); });
+$("#acadForm").addEventListener("submit", e => { e.preventDefault(); const d = Object.fromEntries(new FormData(e.target));
+  try{ const l = JSON.parse(localStorage.getItem("np-academia-interes")||"[]"); l.push({ ...d, fecha:new Date().toISOString() }); localStorage.setItem("np-academia-interes", JSON.stringify(l)); }catch(_){}
+  if(CONFIG.whatsapp) window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(`Hola, Academia NORTHPOINT.\nNombre: ${d.nombre}\nMe interesa: ${d.interes}`)}`, "_blank");
+  $("#okA").style.display = "block"; e.target.reset(); });
+
+render();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="anim.js?v=1790755645"></script>
+<script src="pagina.js?v=1790755645"></script>
+<script src="menu.js?v=1790755645"></script>
+</body>
+</html>

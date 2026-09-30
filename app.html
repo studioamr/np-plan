@@ -590,15 +590,17 @@ function vSesion(){
   </div>`;
 }
 function vProspectos(){
-  let esp = [], act = [];
+  let esp = [], act = [], aca = [];
   try{ esp = JSON.parse(localStorage.getItem("np-plan-espera")||"[]"); }catch(_){}
   try{ act = JSON.parse(localStorage.getItem("np-activos-interes")||"[]"); }catch(_){}
+  try{ aca = JSON.parse(localStorage.getItem("np-academia-interes")||"[]"); }catch(_){}
   const row = (x, tipo) => `<li><div class="kic ${tipo==="Ahorro"?"b":"v"}">${I(ICO.inbox)}</div><div><div class="t">${x.nombre||"Sin nombre"}</div><div class="d">${tipo} · ${x.whatsapp||""}${x.activo?" · "+x.activo:""}${x.tipo?" · "+x.tipo:""}</div></div><span class="m" style="font-size:12px">${x.fecha?fecha(new Date(x.fecha)):""}</span></li>`;
-  const all = [...esp.map(x=>row(x,"Ahorro")), ...act.map(x=>row(x,"Activos"))];
-  return `<div class="top"><div><h1>Prospectos</h1><p>Registros de la lista de espera y de NORTHPOINT Activos.</p></div></div>
+  const all = [...esp.map(x=>row(x,"Ahorro")), ...act.map(x=>row(x,"Activos")), ...aca.map(x=>row({ ...x, activo:x.interes },"Academia"))];
+  return `<div class="top"><div><h1>Prospectos</h1><p>Registros de la lista de espera, de NORTHPOINT Activos y de la Academia.</p></div></div>
   <div class="grid g12">
     <div class="card c6">${kpi("b",ICO.inbox,"Lista de espera",`${esp.length}`,"Desde la página principal")}</div>
-    <div class="card c6">${kpi("v",ICO.inbox,"Interesados en Activos",`${act.length}`,"Desde el catálogo")}</div>
+    <div class="card c3">${kpi("v",ICO.inbox,"Interesados en Activos",`${act.length}`,"Desde el catálogo")}</div>
+    <div class="card c3">${kpi("t",ICO.inbox,"Interesados en la Academia",`${aca.length}`,"Cursos y programas")}</div>
     <div class="card c12"><ul class="list">${all.length? all.join("") : `<div class="empty">Todavía no hay registros en este navegador. Cuando conecten el WhatsApp o una base de datos, aquí aparecerán todos.</div>`}</ul></div>
   </div>`;
 }
