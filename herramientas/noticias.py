@@ -50,3 +50,25 @@ if __name__ == "__main__":
     dest = pathlib.Path(__file__).resolve().parent.parent / "data" / "noticias.json"
     dest.write_text(json.dumps({"actualizado": datetime.datetime.now(datetime.timezone.utc).isoformat(), "items": todo}, ensure_ascii=False, indent=1))
     print(len(todo), "noticias →", dest)
+
+# ── memos reales de northpointcapital.io/memos.html → data/memos.json (la página también los lee en vivo) ──
+def memos():
+    base = "https://northpointcapital.io/"
+    get = lambda u: urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0"}), timeout=20).read().decode("utf-8", "ignore")
+    t = get(base + "memos.html"); out = []
+    for m in re.finditer(r'<a class="ix memo" href="([^"]+)">(.*?)</a>', t, re.S):
+        href, b = m.group(1), m.group(2)
+        g = lambda cls: html.unescape(re.sub(r"<[^>]+>", "", (re.search(r'class="%s"[^>]*>(.*?)</(?:span|p)>' % cls, b, re.S) or [None, ""])[1])).strip()
+        url = base + href; img = ""
+        try:
+            p = get(url); im = re.search(r'src="([^"]*assets/images/memos/[^"]+)"', p)
+            if im: img = urllib.parse.urljoin(url, im.group(1))
+        except Exception: pass
+        out.append({"k": g("memo-k"), "t": g("nm"), "f": g("fr"), "r": g("memo-s"), "a": g("memo-a"), "l": url, "img": img})
+    return out
+
+if __name__ == "__main__":
+    import urllib.parse
+    try:
+        ms = memos(); (pathlib.Path(__file__).resolve().parent.parent / "data" / "memos.json").write_text(json.dumps({"items": ms}, ensure_ascii=False, indent=1)); print(len(ms), "memos")
+    except Exception as e: print("memos sin respuesta:", e)

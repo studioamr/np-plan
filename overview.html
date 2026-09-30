@@ -12,8 +12,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="base.css?v=1790787636">
-<link rel="stylesheet" href="anim.css?v=1790787636">
+<link rel="stylesheet" href="base.css?v=1790788159">
+<link rel="stylesheet" href="anim.css?v=1790788159">
 <script>document.documentElement.classList.add("js-anim");setTimeout(function(){document.documentElement.classList.add("anim-ready")},3500)</script>
 <!--
   OVERVIEW v2 · 30-sep-2026 · "NORTHPOINT Ideas", formato revista (identidad propia, distinta a la landing):
@@ -104,7 +104,7 @@ nav{background:#0B0B0C!important}
 .memos .hrow h3{color:#fff}
 .memos .intro{font:300 20px/1.5 "Source Serif 4",serif;opacity:.8;max-width:640px;margin:-10px 0 34px}
 .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
-.memo{display:grid;grid-template-columns:44% 1fr;background:#161618;cursor:pointer;transition:background .3s}
+.memo{display:grid;grid-template-columns:44% 1fr;background:#161618;cursor:pointer;transition:background .3s;color:#fff}
 .memo:hover{background:#1E1E21}
 .memo .im{background:#222 center/cover no-repeat;min-height:320px}
 .memo .bd{padding:30px;display:flex;flex-direction:column}
@@ -187,7 +187,7 @@ nav{background:#0B0B0C!important}
     <div class="ed"><b>La revista de la mesa</b><span id="edicion"></span><br>Memos, blog y artículos del equipo</div>
   </div>
   <div class="secs" id="secs"></div>
-  <article class="cover" id="cover"></article>
+  <article class="cover" id="cover"><div class="in"><div class="kicker">Memo de mercado</div><h2>Cargando el memo más reciente…</h2></div></article>
 </div></header>
 
 <section class="aldia" id="aldia"><div class="wrap">
@@ -205,7 +205,7 @@ nav{background:#0B0B0C!important}
 
 <section class="memos" id="memos"><div class="wrap">
   <div class="hrow"><h3>Memos de la mesa</h3><span class="meta" style="color:#aaa">Cada mes</span></div>
-  <p class="intro">Lo que vimos, lo que hicimos y lo que no hicimos. Escrito por quienes operan, para quienes ahorran.</p>
+  <p class="intro">Lecturas del mercado firmadas por los socios, con la tesis, los niveles y las invalidaciones puestas sobre la mesa antes de operar. Se publican en el Terminal de NORTHPOINT y llegan aquí solos.</p>
   <div class="mgrid" id="mgrid"></div>
 </div></section>
 
@@ -249,10 +249,6 @@ const SEC = { mercados:"Mercados", ahorro:"Ahorro", ia:"IA y datos", patrimonio:
 const TIPO = { memo:"Memo", blog:"Blog", articulo:"Artículo" };
 // borradores escritos para el sitio (revisar con cada autor)
 const IDEAS = [
-  { tipo:"memo", sec:"mercados", au:"goyo", f:"29 de septiembre de 2026", img:"img/academia.jpg", cover:true,
-    t:"Septiembre: el mes en que menos operamos fue el mejor", r:"Lo que aprendimos de un mes en que la mejor decisión, varias veces, fue no entrar.",
-    q:"Una operación mala evitada vale lo mismo que una buena operación tomada.",
-    c:["Septiembre dejó una lección que repetimos cada vez que la olvidamos: la disciplina no se mide por cuántas operaciones se hacen, sino por cuántas se evitan. Hubo sesiones enteras en que el plan del día decía que no había condiciones, y la mesa no operó.","Para un ahorrador eso puede sonar raro. ¿No se supone que la mesa está para operar? La respuesta es que la mesa está para cuidar el riesgo primero y buscar el objetivo después.","Para octubre mantenemos el mismo marco: plan escrito antes de abrir, tamaño definido por el plan de cada cliente y el freno de protección activo. Si el mercado ofrece condiciones claras, se opera. Si no, se espera."] },
   { tipo:"blog", sec:"ia", au:"andre", f:"26 de septiembre de 2026", img:"img/mesa.jpg",
     t:"Cómo usamos la inteligencia artificial en la mesa (y cómo no)", r:"La IA no adivina el mercado. Nos ayuda a revisar, filtrar y decir que no más rápido.",
     q:"La IA filtra; la persona decide y responde por la decisión.",
@@ -265,10 +261,6 @@ const IDEAS = [
     t:"Tres planes, una misma disciplina", r:"Básico, Moderado y Agresivo no son tres mesas distintas: es la misma mesa buscando tres objetivos.",
     q:"Elegir plan es elegir un objetivo con su riesgo a la vista.",
     c:["Cada sesión empieza con un plan escrito. Lo que cambia entre planes no es la estrategia sino el tamaño y la frecuencia: el Básico solo entra en las operaciones más claras; el Agresivo participa en todas las sesiones con mayor exposición.","Cada plan arriesga lo mismo que busca ganar en el mes. Si el mes se complica y el saldo llega a ese riesgo, la mesa deja de operar esa cuenta hasta el mes siguiente."] },
-  { tipo:"memo", sec:"patrimonio", au:"goyo", f:"19 de septiembre de 2026", img:"img/arte.jpg",
-    t:"El orden correcto para proteger lo que construye", r:"Antes de pensar en rendimiento, conviene pensar en a nombre de quién está cada cosa.",
-    q:"Un buen rendimiento se puede perder en un pleito familiar o en un problema legal del negocio.",
-    c:["La mayoría de las familias piensa primero en cuánto rinde su dinero y al final en cómo protegerlo. El orden debería ser el inverso: primero la estructura, después el rendimiento.","Separar el patrimonio personal del de la empresa, tener claro quién hereda qué y revisar si un fideicomiso tiene sentido son decisiones que se toman una vez y protegen durante décadas.","Nuestra recomendación general es sencilla: ordene la titularidad de sus bienes, documente sus decisiones y revíselas cada año. Cada caso es distinto y requiere asesoría específica."] },
   { tipo:"articulo", sec:"ahorro", au:"mesa", f:"15 de septiembre de 2026", img:"img/privado.jpg",
     t:"Custodia separada: su dinero nunca debería pasar por quien lo opera", r:"La separación entre quien custodia y quien opera es la protección más simple para cualquier ahorrador.",
     q:"La custodia separada no es un detalle técnico: es la primera pregunta que debe hacer.",
@@ -293,25 +285,33 @@ const MS = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","s
 $("#edicion").textContent = `Edición de ${MS[hoy.getMonth()]} ${hoy.getFullYear()}`;
 let F = "todo";
 
-const cov = IDEAS.find(x=>x.cover);
-$("#cover").innerHTML = `<div class="bg" style="background-image:url(${cov.img})"></div><div class="in">${kick(cov)}<h2>${cov.t}</h2><p>${cov.r}</p>${by(cov.au)}<div class="meta" style="color:#bbb;margin-top:6px">${cov.f}</div></div>`;
-$("#cover").onclick = () => leer(IDEAS.indexOf(cov));
-
 function render(){
-  const L = IDEAS.filter(x => !x.cover && (F==="todo" || x.sec===F || x.tipo===F));
+  const L = IDEAS.filter(x => (F==="todo" || x.sec===F || x.tipo===F));
   const top = L.slice(0,5), rest = L.slice(5);
   $("#mag").innerHTML = top.map((x,i)=>`<article class="art ${i===0?"lead":""}" data-i="${IDEAS.indexOf(x)}"><div class="im" style="background-image:url(${x.img})"><i></i></div>${kick(x)}<h4>${x.t}</h4><p>${x.r}</p><div class="meta">${AUT[x.au][0]} · ${x.f}</div></article>`).join("") || `<p class="meta">No hay textos en esta sección todavía.</p>`;
   $("#list").innerHTML = rest.map(x=>`<article class="li" data-i="${IDEAS.indexOf(x)}"><div class="im" style="background-image:url(${x.img})"></div><div>${kick(x)}<h5>${x.t}</h5><div class="meta">${AUT[x.au][0]}</div></div></article>`).join("");
   $("#list").style.display = rest.length ? "" : "none";
   $("#latT").textContent = F==="todo" ? "Lo más reciente" : (SEC[F] || TIPO[F]);
   $("#latN").textContent = `${L.length} ${L.length===1?"texto":"textos"}`;
-  $("#secs").innerHTML = [["todo","Todo"],["memo","Memos"],["blog","Blog"],["articulo","Artículos"],...Object.entries(SEC)].map(([k,t])=>`<button type="button" data-k="${k}" class="${k===F?"on":""}">${t}</button>`).join("");
+  $("#secs").innerHTML = [["todo","Todo"],["blog","Blog"],["articulo","Artículos"],...Object.entries(SEC).filter(([k])=>IDEAS.some(x=>x.sec===k))].map(([k,t])=>`<button type="button" data-k="${k}" class="${k===F?"on":""}">${t}</button>`).join("");
   $$("#secs button").forEach(b => b.onclick = () => { F = b.dataset.k; render(); document.getElementById("reciente").scrollIntoView({ behavior:"smooth" }); });
   $$(".art,.li").forEach(el => el.onclick = () => leer(+el.dataset.i));
 }
-$("#mgrid").innerHTML = IDEAS.filter(x=>x.tipo==="memo").map(x=>`<article class="memo" data-i="${IDEAS.indexOf(x)}"><div class="im" style="background-image:url(${x.img})"></div><div class="bd">${kick(x)}<h4>${x.t}</h4><blockquote>${x.q}</blockquote>${by(x.au)}</div></article>`).join("");
-$$(".memo").forEach(el => el.onclick = () => leer(+el.dataset.i));
-
+// ── memos REALES: northpointcapital.io/memos.html (captura en data/memos.json + lectura en vivo) ──
+const MEMOS_URL = "https://northpointcapital.io/memos.html";
+function pintaMemos(ms){
+  if(!ms || !ms.length) return;
+  const c = ms[0], img = c.img || "img/academia.jpg";
+  $("#cover").innerHTML = `<a href="${c.l}" target="_blank" rel="noopener" style="position:absolute;inset:0;z-index:3" aria-label="Leer ${c.t}"></a><div class="bg" style="background-image:url(${img})"></div><div class="in"><div class="kicker">${c.k}</div><h2>${c.t}</h2><p>${c.r}</p>${by("goyo")}<div class="meta" style="color:#bbb;margin-top:6px">${c.f} · Leer el memo completo ›</div></div>`;
+  $("#mgrid").innerHTML = ms.map(x=>`<a class="memo" href="${x.l}" target="_blank" rel="noopener" style="text-decoration:none"><div class="im" style="background-image:url(${x.img || "img/academia.jpg"})"></div><div class="bd"><div class="kicker">${x.k}</div><h4>${x.t}</h4><blockquote>${x.r}</blockquote>${by("goyo")}<div class="meta" style="color:#aaa;margin-top:10px">${x.f} · Leer el memo ›</div></div></a>`).join("");
+}
+fetch("data/memos.json", { cache:"no-cache" }).then(r=>r.json()).then(d=>pintaMemos(d.items)).catch(()=>{});
+fetch(MEMOS_URL, { cache:"no-cache" }).then(r=>r.text()).then(async h => {
+  const doc = new DOMParser().parseFromString(h, "text/html"), T = (el,sel) => ((el.querySelector(sel)||{}).textContent||"").trim().replace(/\s+/g," ");
+  const ms = [...doc.querySelectorAll("a.ix.memo")].map(a => ({ k:T(a,".memo-k"), t:T(a,".nm"), f:T(a,".fr"), r:T(a,".memo-s"), l:new URL(a.getAttribute("href"), MEMOS_URL).href, img:"" }));
+  await Promise.all(ms.map(m => fetch(m.l).then(r=>r.text()).then(p => { const im = new DOMParser().parseFromString(p,"text/html").querySelector('img[src*="assets/images/memos/"]'); if(im) m.img = new URL(im.getAttribute("src"), m.l).href; }).catch(()=>{})));
+  if(ms.length) pintaMemos(ms);
+}).catch(()=>{});
 function leer(i){ const x = IDEAS[i];
   $("#rd").innerHTML = `<div class="rd-hero" style="background-image:url(${x.img})"></div><article class="rd-body">${kick(x)}<h2>${x.t}</h2><p class="dek">${x.r}</p>
     ${by(x.au)}<div class="meta" style="margin-bottom:30px">${x.f}</div>
@@ -367,7 +367,7 @@ render();
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="anim.js?v=1790787636"></script>
-<script src="menu.js?v=1790787636"></script>
+<script src="anim.js?v=1790788159"></script>
+<script src="menu.js?v=1790788159"></script>
 </body>
 </html>
