@@ -39,7 +39,12 @@ html,body{overflow-x:clip}
   .hs-arrows{display:none}
   .hs-index button{min-width:0;grid-template-columns:auto;font-size:0}
   .hs-index i{width:44px}
-  .hs .wrap{padding-bottom:84px}
+  .hs .wrap{padding-bottom:64px}
+  .hs:after{background:linear-gradient(0deg,rgba(5,28,44,.96) 0%,rgba(5,28,44,.82) 38%,rgba(5,28,44,.2) 68%,rgba(5,28,44,.35) 100%)}
+  .hs-bg{background-position:center 30%!important}
+  .hs[data-i="4"] .hs-bg{background-position:86% 70%!important}
+  .hs .lead{font-size:16px;margin-bottom:22px}
+  .hs h2.serif{font-size:32px}
   .hs-cue{display:none}
 }
 html.js-anim:not(.anim-ready) .hs[data-i="0"] .box{visibility:hidden}
