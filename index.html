@@ -7,7 +7,7 @@
 <meta name="description" content="Ahorre en la app de NORTHPOINT desde $100 USD. Su saldo trabaja con nuestra mesa de trading y cada mes usted ve el resultado, dentro del riesgo que decide asumir.">
 <meta property="og:title" content="NORTHPOINT · Su ahorro trabaja cada mes">
 <meta property="og:description" content="Ahorre desde $100 USD. Vea cada mes el resultado de su saldo. Retire cuando quiera.">
-<meta property="og:image" content="img/tiburon-hero.jpg">
+<meta property="og:image" content="img/hero.jpg">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,7 +57,7 @@ nav .links a:hover{opacity:1}
 @media(max-width:980px){nav .links a:not(.btn){display:none}}
 
 /* hero */
-.hero{position:relative;min-height:760px;background:var(--navy) url(img/tiburon-hero.jpg) center right/cover no-repeat;display:flex;align-items:flex-end;padding:0}
+.hero{position:relative;min-height:760px;background:var(--navy) url(img/hero.jpg) center right/cover no-repeat;display:flex;align-items:flex-end;padding:0}
 .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,28,44,.92) 0%,rgba(5,28,44,.55) 45%,rgba(5,28,44,0) 75%)}
 .hero .wrap{position:relative;width:100%;padding-bottom:96px}
 .hero .box{max-width:640px;color:#fff}
@@ -100,7 +100,7 @@ nav .links a:hover{opacity:1}
 @media(max-width:560px){.roles{grid-template-columns:1fr}}
 
 /* banda navy */
-.banda{position:relative;background:var(--navy) url(img/oceano.jpg) center/cover no-repeat;color:#fff;padding:140px 0}
+.banda{position:relative;background:var(--navy) url(img/estratos.jpg) center/cover no-repeat;color:#fff;padding:140px 0}
 .banda:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,28,44,.9),rgba(5,28,44,.35))}
 .banda .wrap{position:relative}
 .banda .eyebrow{color:#fff}
@@ -174,7 +174,7 @@ nav .links a:hover{opacity:1}
 .tc-barracuda .tc-lines{stroke:rgba(14,16,19,.10)}
 .tc-tiburon{background:linear-gradient(135deg,#6B737E,#3F454D);color:#F3F4F6}
 .tc-tiburon .tc-lines{stroke:rgba(255,255,255,.14)}
-.tc-orca{background:radial-gradient(ellipse 17% 11% at 80% 50%,#F1F2F4 97%,transparent 100%),linear-gradient(160deg,#1A1C20,#0E1013);color:#F3F4F6}
+.tc-orca{background:radial-gradient(ellipse 15% 10% at 82% 68%,#F1F2F4 97%,transparent 100%),linear-gradient(160deg,#1A1C20,#0E1013);color:#F3F4F6}
 .tc-orca .tc-lines{stroke:rgba(255,255,255,.10)}
 .tc-megalodon{background:radial-gradient(120% 90% at 85% 110%,#1B1812 0%,#07080A 55%);color:#E9E4D8}
 .tc-megalodon .tc-lines{stroke:rgba(201,178,128,.22)}
@@ -399,7 +399,7 @@ footer b{color:#fff;font-weight:500}
 </div></section>
 
 <section class="comp"><div class="wrap grid">
-  <img src="img/cardumen.jpg" alt="Cardumen de peces plateados en el océano" loading="lazy">
+  <img src="img/ciudad.jpg" alt="Ciudad de México al amanecer" loading="lazy">
   <div>
     <div class="eyebrow">Nuestro compromiso</div>
     <h2 class="serif">Llevar la gestión profesional a más hogares de México</h2>
@@ -519,7 +519,7 @@ function tarjetaHTML(t, nombre, desde, numero, bloqueada){
   </div>`;
 }
 
-const IMG = { barracuda:"img/barracuda.jpg", tiburon:"img/tiburon.jpg", orca:"img/orca.jpg", megalodon:"img/megalodon.jpg" };
+const IMG = { barracuda:"img/ciudad.jpg", tiburon:"img/mesa.jpg", orca:"img/estratos.jpg", megalodon:"img/hero.jpg" };
 CONFIG.niveles = TIERS.map((t,i)=>({ ...t, max: TIERS[i+1] ? TIERS[i+1].min-1 : null }));
 const rango = q => usd(q.min) + (q.max ? " – " + usd(q.max) : " o más");
 $("#nivelesGrid").innerHTML = CONFIG.niveles.map(q => `
