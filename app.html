@@ -295,13 +295,13 @@ const ICO = {
 
 // ═════════════ estado ═════════════
 const MUESTRA = new URLSearchParams(location.search).has("muestra");
-try{ if(window.top !== window.self) document.documentElement.classList.add("emb"); }catch(_){ document.documentElement.classList.add("emb"); }
+try{ if(window.top !== window.self || new URLSearchParams(location.search).has("emb")) document.documentElement.classList.add("emb"); }catch(_){ document.documentElement.classList.add("emb"); }
 if(MUESTRA) CONFIG.KEY = "np-app-v8-muestra";
 let S = null, MODE = "cliente", VIEW = "inicio";
 const load = () => { try{ S = JSON.parse(localStorage.getItem(CONFIG.KEY)); }catch(_){ S = null; } };
 // CÁMARA RÁPIDA (?timelapse=1, el iPhone de la landing): el reloj de la app se mueve 12 meses en 10 s y vuelve a empezar
 const TL = new URLSearchParams(location.search).has("timelapse");
-let NOWT = null, FAST = false;
+let NOWT = null, FAST = new URLSearchParams(location.search).has("shot");   // ?shot=1: sin animaciones, para capturas
 const nowD = () => NOWT ? new Date(NOWT) : new Date();
 const save = () => { if(TL) return; try{ localStorage.setItem(CONFIG.KEY, JSON.stringify(S)); }catch(_){} };
 

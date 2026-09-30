@@ -161,3 +161,27 @@ html.menu-on .menu-in a:nth-child(2){transition-delay:.04s}html.menu-on .menu-in
 /* portada: flechas debajo del índice de 8 divisiones */
 .hs-arrows{top:calc(50% + 220px)}
 @media(max-width:900px){.hs-arrows{top:auto}}
+
+/* portada · "Empiece con $100": la app real en una MacBook y un iPhone */
+.cien-bg{background:radial-gradient(60% 80% at 72% 45%,#17336F 0%,#0A1B3D 45%,#040E1F 100%)!important;inset:0!important}
+.cien-bg:after{content:"";position:absolute;inset:0;background:radial-gradient(40% 40% at 70% 60%,rgba(91,124,255,.35),transparent 70%)}
+.hs-cien:after{background:linear-gradient(90deg,rgba(4,14,31,.92) 0%,rgba(4,14,31,.55) 40%,rgba(4,14,31,0) 62%)}
+.devs{position:absolute;z-index:0;right:max(215px,calc((100vw - 1280px)/2 + 215px));top:50%;transform:translateY(-46%);width:min(36vw,600px);aspect-ratio:1.55/1;pointer-events:none}
+.mac{position:absolute;left:0;top:0;width:88%}
+.mac-scr{position:relative;background:#0B0D12;border-radius:14px 14px 4px 4px;padding:2.2% 2.2% 2.8%;box-shadow:0 0 0 1.5px #2A2D35,0 50px 90px -30px rgba(0,0,0,.8)}
+.mac-scr:before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:13%;height:3.2%;background:#0B0D12;border-radius:0 0 6px 6px;z-index:2}
+.mac-scr img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top left;border-radius:3px}
+.mac-base{position:relative;height:0;padding-top:3.4%;margin:0 -7%;background:linear-gradient(180deg,#C9CCD3 0%,#9EA2AB 55%,#6E727B 100%);border-radius:0 0 18px 18px/0 0 100% 100%}
+.mac-base:before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:16%;height:38%;background:#8A8E97;border-radius:0 0 8px 8px}
+.iph{position:absolute;right:0;bottom:-6%;width:25%;aspect-ratio:9/19.3;background:#1A1C21;border-radius:16% / 7.5%;padding:3%;box-shadow:0 0 0 1.5px #3A3C42,-24px 40px 70px -16px rgba(0,0,0,.9)}
+.iph-in{position:relative;width:100%;height:100%;border-radius:13% / 6.2%;overflow:hidden;background:#080E20}
+.iph-in img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.iph-isl{position:absolute;top:2.2%;left:50%;transform:translateX(-50%);width:32%;height:3.6%;background:#000;border-radius:20px}
+@media(max-width:900px){
+  .devs{right:50%;transform:translateX(50%);top:96px;width:min(84vw,400px)}
+  .hs-cien .hs-bg{background-position:center!important}
+  .hs-cien:after{background:linear-gradient(0deg,rgba(4,14,31,.97) 0%,rgba(4,14,31,.9) 42%,rgba(4,14,31,0) 62%)}
+}
+@media(max-width:900px) and (max-height:700px){.devs{width:min(70vw,320px)}}
+.hs-cien .box{max-width:560px}
+@media(max-width:900px){.hs-cien .box{max-width:none}}
