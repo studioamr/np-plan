@@ -4,337 +4,360 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>NORTHPOINT · App de ahorro</title>
-<meta name="description" content="Demo de la app de ahorro NORTHPOINT: su saldo, su resultado del mes y cada operación de la mesa.">
-<meta name="theme-color" content="#EFECE7">
+<meta name="description" content="Demo de la app de ahorro NORTHPOINT: su saldo, su objetivo del mes y cada operación de la mesa.">
+<meta name="theme-color" content="#05060A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <!--
-  APP NORTHPOINT · 29-sep-2026
-  Estilo de northpointcapital.io/family-office.html (crema + negro + menta + oro, Archivo / General Sans).
-  MODO DEMOSTRACIÓN: todo vive en el navegador (localStorage). No mueve dinero real, no se conecta a
-  ningún intermediario y los resultados son de ejemplo, generados al crear la cuenta demo.
+  APP NORTHPOINT v2 · 29-sep-2026 · piel dark glass (pedido de André).
+  En computadora se muestra dentro de un iPhone y se puede usar; en el teléfono ocupa la pantalla completa;
+  dentro de un iframe (la landing la embebe) ocupa el iframe, sin marco.
+  MODO DEMOSTRACIÓN: todo vive en localStorage, no mueve dinero real, los meses son de ejemplo.
 -->
-<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --black:#090A07; --ink2:#15170F; --cream:#EFECE7; --cream-lt:#F5F2ED; --mint:#A6EEDA; --mint-dk:#1F7A5C;
-  --gold:#C9A84C; --charcoal:#515650; --grey:#878D86; --red:#C2553F; --line:rgba(9,10,7,.10);
-  --fd:"Archivo",sans-serif; --fb:"General Sans",system-ui,sans-serif; --fm:ui-monospace,"SF Mono",Menlo,monospace;
-  --ease:cubic-bezier(.4,0,.2,1); --rb:6px; --rc:12px;
+  --bg:#05060A; --txt:#F4F6FB; --mut:#8A90A2; --dim:#5A6072;
+  --glass:rgba(255,255,255,.055); --glass2:rgba(255,255,255,.09); --stroke:rgba(255,255,255,.09);
+  --green:#34D399; --blue:#60A5FA; --blue2:#3B82F6; --violet:#A78BFA; --gold:#FBBF24; --red:#F87171;
+  --f:"Inter",system-ui,-apple-system,sans-serif; --r:22px; --ease:cubic-bezier(.3,.7,.2,1);
 }
 *,*:before,*:after{box-sizing:border-box;margin:0;padding:0}
-html,body{overflow-x:hidden}
-body{font-family:var(--fb);font-size:16px;line-height:1.5;color:var(--black);background:var(--cream);-webkit-font-smoothing:antialiased;padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+html,body{height:100%}
+body{font-family:var(--f);color:var(--txt);background:#000;-webkit-font-smoothing:antialiased;overflow:hidden}
+button{font-family:inherit;border:0;background:none;color:inherit;cursor:pointer}
 a{color:inherit;text-decoration:none}
-button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
-.eyebrow{font-weight:600;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--grey)}
-.mono{font-family:var(--fm);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--grey)}
-.h{font-family:var(--fd);font-weight:700;letter-spacing:-.025em;line-height:1.05}
-.h em{font-style:italic}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border-radius:var(--rb);font-weight:500;font-size:15px;transition:opacity .2s var(--ease),transform .2s var(--ease)}
-.btn:hover{opacity:.92;transform:translateY(-1px)}
-.btn-k{background:var(--black);color:var(--cream)}
-.btn-m{background:var(--mint);color:var(--black)}
-.btn-o{box-shadow:inset 0 0 0 1px rgba(239,236,231,.35);color:var(--cream)}
-.btn-ol{box-shadow:inset 0 0 0 1px var(--black)}
-.btn[disabled]{opacity:.35;pointer-events:none}
-.star{width:18px;height:18px}
-.pos{color:var(--mint-dk)} .neg{color:var(--red)}
+.num{font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.g{color:var(--green)} .b{color:var(--blue)} .v{color:var(--violet)} .o{color:var(--gold)} .r{color:var(--red)}
 
-/* barra demo + nav */
-.demo-bar{background:var(--black);color:var(--mint);text-align:center;font-family:var(--fm);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:8px 16px}
-.demo-bar a{color:var(--cream);opacity:.7;margin-left:10px;text-decoration:underline}
-.top{position:sticky;top:0;z-index:40;background:#efece7e0;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-.top-in{max-width:1120px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;gap:32px}
-.brand{display:flex;align-items:center;gap:8px;font-weight:700;font-size:15px;letter-spacing:-.01em}
-.tabs-d{display:flex;gap:28px;flex:1}
-.tabs-d button{font-size:14px;font-weight:500;color:var(--charcoal);padding:4px 0;position:relative}
-.tabs-d button.on{color:var(--black)}
-.tabs-d button.on:after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1.5px;background:var(--black)}
-.pill{font-family:var(--fm);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:6px 10px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);white-space:nowrap}
-.pill b{color:var(--gold);font-weight:500}
-.tabs-m{position:fixed;left:0;right:0;bottom:0;z-index:40;background:#efece7f0;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);display:none;grid-template-columns:repeat(4,1fr);padding:8px 8px calc(8px + env(safe-area-inset-bottom))}
-.tabs-m button{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;font-weight:500;color:var(--grey);padding:6px 0}
-.tabs-m button svg{width:22px;height:22px}
-.tabs-m button.on{color:var(--black)}
-@media(max-width:820px){.tabs-d{display:none}.tabs-m{display:grid}.top-in{justify-content:space-between}}
-@media(min-width:821px){body{padding-bottom:48px}}
+/* ── escenario: iPhone en computadora, pantalla completa en teléfono ── */
+.stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;gap:64px;background:
+  radial-gradient(900px 600px at 20% 20%,#16204a55,transparent 60%),radial-gradient(800px 600px at 85% 80%,#2a1a4a55,transparent 60%),#030306}
+.side{max-width:340px;color:var(--txt)}
+.side .k{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);display:flex;align-items:center;gap:8px}
+.side h1{font-size:40px;line-height:1.05;letter-spacing:-.035em;font-weight:700;margin:14px 0 14px}
+.side h1 span{background:linear-gradient(90deg,var(--blue),var(--green));-webkit-background-clip:text;background-clip:text;color:transparent}
+.side p{color:var(--mut);font-size:15px;line-height:1.6}
+.side .back{display:inline-flex;margin-top:22px;font-size:14px;color:var(--txt);padding:11px 16px;border-radius:12px;background:var(--glass);border:1px solid var(--stroke)}
+.device{position:relative;flex:0 0 auto;width:393px;height:min(852px,calc(100vh - 48px));border-radius:58px;padding:12px;background:linear-gradient(145deg,#2b2d33,#0d0e11 40%,#1d1f24);box-shadow:0 0 0 1.5px #3a3c42,0 40px 80px -20px #000,0 0 120px -30px #3b82f655}
+.device:before{content:"";position:absolute;left:-3px;top:170px;width:3px;height:64px;border-radius:2px;background:#2b2d33;box-shadow:0 84px 0 #2b2d33}
+.device:after{content:"";position:absolute;right:-3px;top:220px;width:3px;height:96px;border-radius:2px;background:#2b2d33}
+.screen{position:relative;width:100%;height:100%;border-radius:46px;overflow:hidden;background:var(--bg);isolation:isolate}
+.screen:before{content:"";position:absolute;left:0;right:0;top:0;height:58px;z-index:50;pointer-events:none;background:linear-gradient(#05060A 55%,rgba(5,6,10,0))}
+body.full .screen:before{height:env(safe-area-inset-top);background:#05060A}
+.island{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:120px;height:34px;border-radius:20px;background:#000;z-index:60}
+.sbar{position:absolute;top:0;left:0;right:0;height:52px;display:flex;justify-content:space-between;align-items:center;padding:4px 30px 0 34px;font-size:15px;font-weight:600;z-index:55;pointer-events:none}
+.sbar svg{height:12px}
+@media(max-width:820px){.side{display:none}}
+/* teléfono real o iframe: sin marco */
+body.full .stage{background:var(--bg)}
+body.full .device{width:100%;height:100%;border-radius:0;padding:0;background:none;box-shadow:none}
+body.full .device:before,body.full .device:after,body.full .island,body.full .sbar,body.full .side{display:none}
+body.full .screen{border-radius:0}
 
-main{max-width:1120px;margin:0 auto;padding:28px 24px}
-@media(max-width:600px){main{padding:20px 16px}.top-in{padding:0 16px}}
+/* fondo ambiental dentro de la pantalla */
+.amb{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.amb i{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55}
+.amb i:nth-child(1){width:320px;height:320px;left:-120px;top:-80px;background:#1d4ed8}
+.amb i:nth-child(2){width:260px;height:260px;right:-110px;top:180px;background:#6d28d9;opacity:.35}
+.amb i:nth-child(3){width:300px;height:300px;left:-60px;bottom:-140px;background:#047857;opacity:.3}
+
+/* ── contenido ── */
+.scroll{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:var(--top,58px) 18px 110px;scrollbar-width:none}
+.scroll::-webkit-scrollbar{display:none}
+body.full .scroll{--top:calc(env(safe-area-inset-top) + 12px)}
+.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.brand{display:flex;align-items:center;gap:8px;font-weight:700;font-size:15px;letter-spacing:.02em}
+.brand svg{width:18px;height:18px;color:var(--blue)}
+.demo{font-size:10px;font-weight:600;letter-spacing:.14em;color:var(--gold);padding:5px 9px;border-radius:999px;background:#fbbf2414;border:1px solid #fbbf2433}
+.avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;background:linear-gradient(135deg,var(--blue2),var(--violet))}
+.hello{font-size:14px;color:var(--mut);margin-bottom:10px}
 .view{display:none}
-.view.on{display:block;animation:fade .35s var(--ease)}
-@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.greet{margin-bottom:22px}
-.greet .h{font-size:clamp(28px,4vw,40px)}
-.greet p{color:var(--charcoal);margin-top:6px}
+.view.on{display:block;animation:in .4s var(--ease)}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.title{font-size:28px;font-weight:700;letter-spacing:-.03em;margin-bottom:4px}
+.lead{font-size:14px;color:var(--mut);margin-bottom:18px}
 
-/* inicio */
-.home{display:grid;grid-template-columns:1.35fr 1fr;gap:16px;align-items:start}
-@media(max-width:900px){.home{grid-template-columns:1fr}}
-.saldo{background:var(--black);color:var(--cream);border-radius:var(--rc);padding:28px 28px 24px;position:relative;overflow:hidden}
-.saldo .eyebrow{color:#a6eeda8c}
-.saldo .num{font-family:var(--fd);font-weight:700;font-size:clamp(44px,7vw,64px);letter-spacing:-.04em;line-height:1;margin:12px 0 14px;font-variant-numeric:tabular-nums}
-.saldo .num small{font-size:.45em;opacity:.55;letter-spacing:-.02em}
-.mes{display:inline-flex;align-items:center;gap:10px;font-size:14px;color:#efece7b3}
-.chip{font-family:var(--fm);font-size:12px;padding:5px 10px;border-radius:999px;background:#a6eeda1f;color:var(--mint)}
-.chip.neg{background:#c2553f26;color:#F0A493}
-.saldo svg{width:100%;height:150px;display:block;margin:22px 0 6px}
-.saldo .axis{display:flex;justify-content:space-between;font-family:var(--fm);font-size:10px;letter-spacing:.1em;color:#efece766;text-transform:uppercase}
-.saldo .acts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
-.saldo .glow{position:absolute;right:-60px;top:-60px;width:220px;height:220px;color:#a6eeda14;pointer-events:none}
-.col{display:grid;gap:16px}
-.card{background:var(--cream-lt);border:1px solid var(--line);border-radius:var(--rc);padding:22px}
-.card .big{font-family:var(--fd);font-weight:700;font-size:30px;letter-spacing:-.03em;line-height:1.1;margin-top:8px;font-variant-numeric:tabular-nums}
-.card .sub{font-size:14px;color:var(--charcoal);margin-top:6px}
-.duo{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.bar{height:6px;border-radius:6px;background:rgba(9,10,7,.08);margin:14px 0 8px;overflow:hidden}
-.bar i{display:block;height:100%;background:var(--gold);border-radius:6px}
-.status{display:flex;align-items:center;gap:10px;margin-top:10px;font-weight:500}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--mint-dk);box-shadow:0 0 0 4px #1f7a5c22}
-.dot.off{background:var(--grey);box-shadow:0 0 0 4px #878d8622}
+.glass{background:var(--glass);border:1px solid var(--stroke);border-radius:var(--r);backdrop-filter:blur(24px) saturate(150%);-webkit-backdrop-filter:blur(24px) saturate(150%)}
+.card{padding:18px;margin-bottom:12px}
+.lbl{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+
+/* saldo */
+.hero{padding:22px 20px 18px;position:relative;overflow:hidden;background:linear-gradient(160deg,rgba(59,130,246,.18),rgba(255,255,255,.04) 45%,rgba(52,211,153,.08))}
+.saldo{font-size:46px;font-weight:700;margin:8px 0 10px;line-height:1}
+.saldo small{font-size:22px;color:var(--mut);font-weight:600}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:6px 10px;border-radius:999px;background:#34d3991a;color:var(--green);border:1px solid #34d39933}
+.chip.neg{background:#f871711a;color:var(--red);border-color:#f8717133}
+.chip .m{color:var(--mut);font-weight:500}
+.spark{width:100%;height:92px;display:block;margin:16px 0 4px}
+.axis{display:flex;justify-content:space-between;font-size:10px;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;height:48px;border-radius:15px;font-weight:600;font-size:15px;transition:transform .15s var(--ease),opacity .2s}
+.btn:active{transform:scale(.97)}
+.btn-w{background:#fff;color:#05060A}
+.btn-gl{background:var(--glass2);border:1px solid var(--stroke)}
+.btn-bl{background:linear-gradient(135deg,var(--blue2),#6366F1);color:#fff;box-shadow:0 10px 30px -10px #3b82f6aa}
+.btn[disabled]{opacity:.35;pointer-events:none}
+
+/* objetivo (anillo) */
+.goal{display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:center}
+.ring{position:relative;width:96px;height:96px}
+.ring svg{width:96px;height:96px;transform:rotate(-90deg)}
+.ring .c{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.ring .c b{font-size:18px;font-weight:700;display:block}
+.ring .c span{font-size:10px;color:var(--mut)}
+.goal .big{font-size:26px;font-weight:700;margin:4px 0 2px}
+.goal p{font-size:13px;color:var(--mut);line-height:1.45}
+
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.duo .card{margin:0}
+.stat{font-size:22px;font-weight:700;margin-top:8px}
+.sub{font-size:12px;color:var(--mut);margin-top:3px}
+.bar{height:6px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden;margin:12px 0 8px}
+.bar i{display:block;height:100%;border-radius:6px}
+.lvl{font-size:22px;font-weight:700}
+
 .list{list-style:none}
-.list li{display:grid;grid-template-columns:36px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-top:1px solid var(--line)}
-.list li:first-child{border-top:0}
-.ico{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(9,10,7,.06);font-size:15px}
-.ico.m{background:#a6eeda66}
-.list .t{font-weight:500;font-size:15px}
-.list .d{font-size:13px;color:var(--grey)}
-.list .v{font-family:var(--fd);font-weight:600;font-size:16px;font-variant-numeric:tabular-nums;text-align:right}
-.more{display:inline-block;margin-top:12px;font-size:14px;font-weight:500;color:var(--charcoal)}
-.more:after{content:" →"}
-.sec-t{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.list li{display:grid;grid-template-columns:38px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-top:1px solid rgba(255,255,255,.06)}
+.list li:first-child{border-top:0;padding-top:4px}
+.ico{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-size:15px;background:rgba(255,255,255,.06)}
+.ico.g{background:#34d3991f} .ico.b{background:#60a5fa1f} .ico.v{background:#a78bfa1f} .ico.o{background:#fbbf241f} .ico.r{background:#f871711f}
+.list .t{font-size:14px;font-weight:600}
+.list .d{font-size:12px;color:var(--mut);margin-top:1px}
+.list .val{font-size:15px;font-weight:700;text-align:right}
+.more{display:block;width:100%;text-align:center;font-size:13px;font-weight:600;color:var(--blue);padding:12px 0 2px}
 
 /* movimientos */
-.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-.filters button{padding:8px 14px;border-radius:999px;font-size:13px;font-weight:500;box-shadow:inset 0 0 0 1px var(--line);color:var(--charcoal)}
-.filters button.on{background:var(--black);color:var(--cream);box-shadow:none}
-.months{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-bottom:16px}
-.mcard{background:var(--cream-lt);border:1px solid var(--line);border-radius:var(--rc);padding:16px}
-.mcard .v{font-family:var(--fd);font-weight:700;font-size:22px;letter-spacing:-.02em;margin-top:6px}
-.mcard .p{font-family:var(--fm);font-size:12px;margin-top:2px}
+.months{display:flex;gap:10px;overflow-x:auto;margin:0 -18px 12px;padding:0 18px 4px;scrollbar-width:none}
+.months::-webkit-scrollbar{display:none}
+.mc{flex:0 0 118px;padding:14px}
+.mc .n{font-size:11px;color:var(--mut);text-transform:capitalize}
+.mc .p{font-size:22px;font-weight:700;margin-top:6px}
+.mc .u{font-size:12px;margin-top:2px;color:var(--mut)}
+.filters{display:flex;gap:8px;overflow-x:auto;margin:0 -18px 12px;padding:0 18px;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.filters button{flex:0 0 auto;padding:8px 14px;border-radius:999px;font-size:13px;font-weight:600;background:var(--glass);border:1px solid var(--stroke);color:var(--mut)}
+.filters button.on{background:#fff;color:#05060A;border-color:#fff}
 
 /* mesa */
-.mesa-hero{background:var(--black);color:var(--cream);border-radius:var(--rc);padding:28px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
-.mesa-hero .eyebrow{color:#a6eeda8c}
-.mesa-hero .h{font-size:clamp(26px,3.4vw,36px);margin:10px 0 8px}
-.mesa-hero .h em{color:var(--mint)}
-.mesa-hero p{color:#efece7a6;font-size:15px;max-width:560px}
-.mesa-hero .status{color:var(--cream)}
-.mesa-g{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
-@media(max-width:900px){.mesa-g{grid-template-columns:1fr}.mesa-hero{grid-template-columns:1fr}}
-.plan li{padding:12px 0;border-top:1px solid var(--line);font-size:15px;display:flex;gap:12px}
+.live{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;padding:6px 11px;border-radius:999px;background:var(--glass2);border:1px solid var(--stroke)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);animation:pulse 1.8s infinite}
+.dot.off{background:var(--dim);box-shadow:none;animation:none}
+@keyframes pulse{50%{opacity:.4}}
+.mesa-h{font-size:24px;font-weight:700;letter-spacing:-.03em;margin:12px 0 6px}
+.plan li{display:flex;gap:12px;padding:10px 0;border-top:1px solid rgba(255,255,255,.06);font-size:14px;color:#cfd3de}
 .plan li:first-child{border-top:0}
-.plan b{font-family:var(--fm);font-size:11px;color:var(--gold);font-weight:500;padding-top:3px;min-width:22px}
+.plan b{color:var(--blue);font-size:12px;min-width:20px;padding-top:1px}
 
-/* perfiles (onboarding + cuenta) */
-.perfiles{display:grid;gap:12px}
-.perfil{text-align:left;background:var(--cream-lt);border:1px solid var(--line);border-radius:var(--rc);padding:20px;transition:border-color .2s,box-shadow .2s;width:100%}
-.perfil:hover{border-color:rgba(9,10,7,.3)}
-.perfil.on{border-color:var(--black);box-shadow:inset 0 0 0 1px var(--black)}
-.perfil .row{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.perfil .n{font-family:var(--fd);font-weight:700;font-size:20px;letter-spacing:-.02em}
-.perfil .l{font-size:14px;color:var(--charcoal);margin-top:2px}
-.perfil .ideal{font-size:14px;color:var(--charcoal);margin-top:12px}
-.perfil .meta{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--grey)}
-.targets{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
-.targets div{background:var(--cream);border-radius:var(--rb);padding:10px 12px}
-.targets span{display:block;font-family:var(--fm);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--grey)}
-.targets b{display:block;font-family:var(--fd);font-weight:700;font-size:20px;letter-spacing:-.02em;margin-top:2px}
-.risk{display:flex;gap:4px}
-.risk i{width:18px;height:6px;border-radius:3px;background:rgba(9,10,7,.1)}
-.risk i.on{background:var(--black)}
+/* planes */
+.planes{display:grid;gap:10px}
+.pl{display:block;text-align:left;width:100%;padding:16px;border-radius:20px;background:var(--glass);border:1px solid var(--stroke);transition:border-color .2s,background .2s}
+.pl.on{border-color:rgba(96,165,250,.7);background:linear-gradient(160deg,rgba(59,130,246,.16),rgba(255,255,255,.04))}
+.pl .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.pl .nm{font-size:17px;font-weight:700}
+.pl .lm{font-size:12px;color:var(--mut);margin-top:2px}
+.pl .obj{font-size:30px;font-weight:800;letter-spacing:-.04em;line-height:1}
+.pl .obj small{display:block;font-size:10px;font-weight:600;letter-spacing:.1em;color:var(--mut);text-align:right;margin-top:4px}
+.pl .tg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.pl .tg div{padding:9px 10px;border-radius:12px;background:rgba(255,255,255,.05)}
+.pl .tg span{display:block;font-size:9.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.pl .tg b{display:block;font-size:16px;font-weight:700;margin-top:3px}
+.risk{display:flex;gap:3px;margin-top:10px}
+.risk i{width:16px;height:4px;border-radius:2px;background:rgba(255,255,255,.1)}
+.risk i.on{background:linear-gradient(90deg,var(--blue),var(--violet))}
+.fine{font-size:11.5px;color:var(--dim);line-height:1.5;margin-top:10px}
 
 /* cuenta */
-.acct{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(max-width:900px){.acct{grid-template-columns:1fr}}
 .kv{list-style:none}
-.kv li{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-top:1px solid var(--line);font-size:15px}
-.kv li:first-child{border-top:0}
-.kv span{color:var(--charcoal)}
-.kv b{font-weight:500;text-align:right}
+.kv li{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid rgba(255,255,255,.06);font-size:14px}
+.kv li:first-child{border-top:0;padding-top:4px}
+.kv span{color:var(--mut)}
+.kv b{font-weight:600;text-align:right}
+
+/* tab bar */
+.tabs{position:absolute;left:12px;right:12px;bottom:12px;height:66px;border-radius:24px;display:grid;grid-template-columns:repeat(4,1fr);z-index:40;background:rgba(18,20,28,.6);border:1px solid var(--stroke);backdrop-filter:blur(30px) saturate(160%);-webkit-backdrop-filter:blur(30px) saturate(160%)}
+.tabs button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:10.5px;font-weight:600;color:var(--dim)}
+.tabs svg{width:22px;height:22px}
+.tabs button.on{color:#fff}
+.tabs button.on svg{color:var(--blue);filter:drop-shadow(0 0 8px #60a5fa88)}
+body.full .tabs{bottom:calc(env(safe-area-inset-bottom) + 10px)}
 
 /* sheet */
-.scrim{position:fixed;inset:0;background:#090a0766;z-index:80;display:none;align-items:flex-end;justify-content:center}
+.scrim{position:absolute;inset:0;z-index:70;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;align-items:flex-end}
 .scrim.on{display:flex;animation:fade .2s}
-.sheet{background:var(--cream);width:100%;max-width:520px;border-radius:18px 18px 0 0;padding:26px 24px calc(26px + env(safe-area-inset-bottom));max-height:92vh;overflow:auto}
-@media(min-width:821px){.scrim{align-items:center}.sheet{border-radius:18px}}
-.sheet .h{font-size:28px;margin:8px 0 6px}
-.sheet p{color:var(--charcoal);font-size:15px}
-.amount{display:flex;align-items:baseline;gap:6px;border-bottom:1.5px solid var(--black);margin:24px 0 10px;padding-bottom:6px}
-.amount span{font-family:var(--fd);font-weight:700;font-size:36px;color:var(--grey)}
-.amount input{flex:1;min-width:0;border:0;background:transparent;font-family:var(--fd);font-weight:700;font-size:44px;letter-spacing:-.03em;outline:none;color:var(--black)}
-.quick{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
-.quick button{padding:8px 14px;border-radius:999px;font-size:13px;font-weight:500;box-shadow:inset 0 0 0 1px var(--line)}
-.err{color:var(--red);font-size:14px;min-height:20px;margin-bottom:10px}
-.sheet .btns{display:grid;gap:10px;margin-top:8px}
-.fine{font-size:12px;color:var(--grey);margin-top:14px;line-height:1.55}
-.field{display:grid;gap:6px;margin-top:18px;font-size:13px;font-weight:600;letter-spacing:.04em}
-.field input{border:0;border-bottom:1.5px solid var(--black);background:transparent;padding:10px 0;font:500 18px var(--fb);outline:none}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.sheet{width:100%;max-height:92%;overflow-y:auto;padding:10px 20px calc(24px + env(safe-area-inset-bottom));border-radius:30px 30px 0 0;background:rgba(20,22,30,.92);border-top:1px solid var(--stroke);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);animation:up .35s var(--ease)}
+@keyframes up{from{transform:translateY(40%)}to{transform:none}}
+.grab{width:40px;height:5px;border-radius:3px;background:rgba(255,255,255,.2);margin:0 auto 16px}
+.sheet h2{font-size:24px;font-weight:700;letter-spacing:-.03em;margin:6px 0 6px}
+.sheet p{font-size:14px;color:var(--mut)}
+.amount{display:flex;align-items:baseline;justify-content:center;gap:4px;margin:26px 0 8px}
+.amount span{font-size:34px;font-weight:700;color:var(--dim)}
+.amount input{width:100%;max-width:240px;border:0;background:transparent;text-align:center;font:700 54px var(--f);letter-spacing:-.04em;color:#fff;outline:none;font-variant-numeric:tabular-nums}
+.amount input::placeholder{color:var(--dim)}
+.quick{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:12px}
+.quick button{padding:8px 14px;border-radius:999px;font-size:13px;font-weight:600;background:var(--glass2);border:1px solid var(--stroke)}
+.err{color:var(--red);font-size:13px;text-align:center;min-height:18px;margin-bottom:8px}
+.btns{display:grid;gap:10px}
+.field{display:grid;gap:8px;margin-top:18px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.field input{border:1px solid var(--stroke);background:var(--glass);border-radius:14px;padding:14px;font:500 16px var(--f);color:#fff;outline:none;text-transform:none;letter-spacing:0}
+.field input:focus{border-color:var(--blue)}
 
 /* onboarding */
-.onb{position:fixed;inset:0;z-index:90;background:var(--cream);overflow:auto;display:none}
+.onb{position:absolute;inset:0;z-index:80;background:var(--bg);display:none;overflow-y:auto;scrollbar-width:none}
+.onb::-webkit-scrollbar{display:none}
 .onb.on{display:block}
-.onb-in{max-width:560px;margin:0 auto;padding:40px 24px 60px;min-height:100%;display:flex;flex-direction:column}
-.steps{display:flex;gap:6px;margin:26px 0 34px}
-.steps i{flex:1;height:3px;border-radius:2px;background:rgba(9,10,7,.1)}
-.steps i.on{background:var(--black)}
-.onb .h{font-size:clamp(36px,8vw,56px);line-height:.98;margin-bottom:16px}
-.onb .lede{font-size:17px;color:var(--charcoal);margin-bottom:28px}
-.onb .foot{margin-top:auto;padding-top:28px;display:grid;gap:10px}
-.bigstar{width:120px;height:120px;color:var(--black);margin:10px 0 28px}
-.feat{list-style:none;margin-bottom:10px}
-.feat li{padding:14px 0;border-top:1px solid var(--line);display:flex;gap:14px;font-size:15px}
-.feat li b{font-family:var(--fm);font-size:11px;color:var(--gold);font-weight:500;padding-top:3px}
-.toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%) translateY(20px);background:var(--black);color:var(--cream);padding:12px 18px;border-radius:var(--rb);font-size:14px;opacity:0;transition:all .3s var(--ease);z-index:95;pointer-events:none;max-width:90vw;text-align:center}
-.toast.on{opacity:1;transform:translateX(-50%)}
+.onb .amb{z-index:0}
+.onb-in{position:relative;min-height:100%;display:flex;flex-direction:column;padding:var(--top,64px) 22px 28px}
+body.full .onb-in{--top:calc(env(safe-area-inset-top) + 18px)}
+.steps{display:flex;gap:6px;margin:18px 0 26px}
+.steps i{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.1)}
+.steps i.on{background:linear-gradient(90deg,var(--blue),var(--green))}
+.onb h1{font-size:38px;line-height:1.02;letter-spacing:-.04em;font-weight:800;margin-bottom:12px}
+.onb h1 span{background:linear-gradient(90deg,var(--blue),var(--green));-webkit-background-clip:text;background-clip:text;color:transparent}
+.onb .lede{font-size:15px;color:var(--mut);line-height:1.55;margin-bottom:22px}
+.orb{width:130px;height:130px;margin:14px auto 24px}
+.orb svg{width:100%;height:100%;color:#fff;filter:drop-shadow(0 0 30px #60a5fa)}
+.feat{list-style:none;display:grid;gap:10px}
+.feat li{display:flex;gap:12px;align-items:flex-start;padding:14px;font-size:14px;line-height:1.45}
+.feat li .ico{width:28px;height:28px;flex:0 0 28px;border-radius:9px;font-size:11px;font-weight:700}
+.onb .foot{margin-top:auto;padding-top:24px;display:grid;gap:10px}
+
+.toast{position:absolute;left:50%;top:64px;transform:translate(-50%,-20px);z-index:90;padding:11px 16px;border-radius:14px;font-size:13px;font-weight:600;background:rgba(20,22,30,.9);border:1px solid var(--stroke);backdrop-filter:blur(20px);opacity:0;transition:all .3s var(--ease);pointer-events:none;white-space:nowrap}
+.toast.on{opacity:1;transform:translate(-50%,0)}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute"><defs><linearGradient id="gBG" x1="0" x2="1"><stop offset="0" stop-color="#60A5FA"/><stop offset="1" stop-color="#34D399"/></linearGradient></defs>
+<symbol id="star" viewBox="0 0 64 64"><path fill="currentColor" d="M32 1 37.2 26.8 63 32 37.2 37.2 32 63 26.8 37.2 1 32 26.8 26.8Z"/></symbol></svg>
 
-<svg width="0" height="0" style="position:absolute"><symbol id="star" viewBox="0 0 64 64"><path fill="currentColor" d="M32 1 37.2 26.8 63 32 37.2 37.2 32 63 26.8 37.2 1 32 26.8 26.8Z"/></symbol></svg>
+<div class="stage">
+  <div class="side">
+    <div class="k"><svg width="14" height="14" style="color:var(--blue)"><use href="#star"/></svg>NORTHPOINT · Demo</div>
+    <h1>Su ahorro, <span>trabajando cada mes.</span></h1>
+    <p>Pruebe la app aquí mismo: abra una cuenta de ejemplo, elija su plan, deposite y vea su objetivo del mes. No se mueve dinero real.</p>
+    <a class="back" href="index.html">← Volver al sitio</a>
+  </div>
 
-<div class="demo-bar">Modo demostración · sin dinero real · resultados de ejemplo <a href="index.html">Volver al sitio</a></div>
+  <div class="device"><div class="screen" id="screen">
+    <div class="amb"><i></i><i></i><i></i></div>
+    <div class="island"></div>
+    <div class="sbar"><span id="clock">9:41</span><span style="display:flex;gap:6px;align-items:center">
+      <svg viewBox="0 0 18 12" width="18"><rect x="0" y="8" width="3" height="4" rx="1" fill="#fff"/><rect x="5" y="5.5" width="3" height="6.5" rx="1" fill="#fff"/><rect x="10" y="3" width="3" height="9" rx="1" fill="#fff"/><rect x="15" y="0" width="3" height="12" rx="1" fill="#fff"/></svg>
+      <svg viewBox="0 0 27 12" width="27"><rect x=".5" y=".5" width="22" height="11" rx="3.5" stroke="#fff" opacity=".4" fill="none"/><rect x="2" y="2" width="17" height="8" rx="2" fill="#fff"/><rect x="24" y="4" width="2" height="4" rx="1" fill="#fff" opacity=".4"/></svg></span></div>
 
-<header class="top"><div class="top-in">
-  <a class="brand" href="#" data-go="inicio"><svg class="star"><use href="#star"/></svg>NORTHPOINT</a>
-  <nav class="tabs-d" id="tabsD"></nav>
-  <span class="pill" id="pillNivel"></span>
-</div></header>
-
-<main>
-  <!-- INICIO -->
-  <section class="view" id="v-inicio">
-    <div class="greet"><h1 class="h" id="saludo"></h1><p id="saludoSub"></p></div>
-    <div class="home">
-      <div class="saldo">
-        <svg class="glow"><use href="#star"/></svg>
-        <div class="eyebrow" id="saldoLbl"></div>
-        <div class="num" id="saldoNum"></div>
-        <div class="mes"><span id="mesLbl"></span><span class="chip" id="mesChip"></span></div>
-        <svg id="chart" viewBox="0 0 600 150" preserveAspectRatio="none"></svg>
-        <div class="axis" id="axis"></div>
-        <div class="acts"><button class="btn btn-m" data-sheet="dep">Depositar</button><button class="btn btn-o" data-sheet="ret">Retirar</button></div>
+    <div class="scroll" id="scroll">
+      <div class="head">
+        <div class="brand"><svg><use href="#star"/></svg>NORTHPOINT</div>
+        <div style="display:flex;gap:8px;align-items:center"><span class="demo">DEMO</span><button class="avatar" id="avatar" data-go="cuenta" aria-label="Cuenta"></button></div>
       </div>
-      <div class="col">
-        <div class="duo">
-          <div class="card"><div class="eyebrow">Ganancia total</div><div class="big" id="ganTotal"></div><div class="sub" id="ganSub"></div></div>
-          <div class="card"><div class="eyebrow">Depositado</div><div class="big" id="depTotal"></div><div class="sub" id="depSub"></div></div>
+
+      <!-- INICIO -->
+      <section class="view" id="v-inicio">
+        <div class="hello" id="hello"></div>
+        <div class="glass hero card">
+          <div class="row"><span class="lbl" id="saldoLbl"></span><span class="lbl o" id="nivelTag"></span></div>
+          <div class="saldo num" id="saldoNum"></div>
+          <span class="chip" id="mesChip"></span>
+          <svg class="spark" id="spark" viewBox="0 0 320 92" preserveAspectRatio="none"></svg>
+          <div class="axis" id="axis"></div>
+          <div class="acts"><button class="btn btn-w" data-sheet="dep">＋ Depositar</button><button class="btn btn-gl" data-sheet="ret">↑ Retirar</button></div>
         </div>
-        <div class="card">
-          <div class="sec-t"><div class="eyebrow">Su nivel</div><span class="mono" id="nivelFee"></span></div>
-          <div class="big" id="nivelNom"></div>
-          <div class="bar"><i id="nivelBar"></i></div>
+
+        <div class="glass card goal">
+          <div class="ring"><svg viewBox="0 0 96 96"><circle cx="48" cy="48" r="40" stroke="rgba(255,255,255,.08)" stroke-width="9" fill="none"/><circle id="ringArc" cx="48" cy="48" r="40" stroke="url(#gBG)" stroke-width="9" fill="none" stroke-linecap="round" stroke-dasharray="251.3" stroke-dashoffset="251.3" style="transition:stroke-dashoffset 1s var(--ease)"/></svg>
+            <div class="c"><div><b id="ringPct"></b><span>del objetivo</span></div></div></div>
+          <div><div class="lbl">Objetivo del mes</div><div class="big num" id="goalNum"></div><p id="goalTxt"></p></div>
+        </div>
+
+        <div class="duo">
+          <div class="glass card"><div class="lbl">Ganancia total</div><div class="stat num" id="ganTotal"></div><div class="sub" id="ganSub"></div></div>
+          <div class="glass card"><div class="lbl">Depositado</div><div class="stat num" id="depTotal"></div><div class="sub" id="depSub"></div></div>
+        </div>
+
+        <div class="glass card">
+          <div class="row"><span class="lbl">Su nivel</span><span class="sub" id="nivelFee" style="margin:0"></span></div>
+          <div class="lvl o" id="nivelNom" style="margin-top:6px"></div>
+          <div class="bar"><i id="nivelBar" style="background:linear-gradient(90deg,#F59E0B,#FDE68A)"></i></div>
           <div class="sub" id="nivelSub"></div>
         </div>
-        <div class="card">
-          <div class="sec-t"><div class="eyebrow">Objetivo del mes</div><span class="mono" id="objLbl"></span></div>
-          <div class="big" id="objNum"></div>
-          <div class="bar"><i id="objBar" style="background:var(--mint-dk)"></i></div>
-          <div class="sub" id="objSub"></div>
+
+        <div class="glass card">
+          <div class="row" style="margin-bottom:6px"><span class="lbl">Últimos movimientos</span></div>
+          <ul class="list" id="ultimos"></ul>
+          <button class="more" data-go="movimientos">Ver todos</button>
         </div>
-      </div>
-    </div>
-    <div class="card" style="margin-top:16px">
-      <div class="sec-t"><div class="eyebrow">Últimos movimientos</div></div>
-      <ul class="list" id="ultimos"></ul>
-      <button class="more" data-go="movimientos">Ver todos</button>
-    </div>
-  </section>
+      </section>
 
-  <!-- MOVIMIENTOS -->
-  <section class="view" id="v-movimientos">
-    <div class="greet"><h1 class="h">Movimientos</h1><p>Resultados de cada mes, depósitos, retiros y comisiones.</p></div>
-    <div class="months" id="months"></div>
-    <div class="filters" id="filters"></div>
-    <div class="card"><ul class="list" id="movs"></ul></div>
-  </section>
+      <!-- MOVIMIENTOS -->
+      <section class="view" id="v-movimientos">
+        <div class="title">Movimientos</div>
+        <div class="lead">Resultado de cada mes, depósitos, retiros y comisiones.</div>
+        <div class="months" id="months"></div>
+        <div class="filters" id="filters"></div>
+        <div class="glass card"><ul class="list" id="movs"></ul></div>
+      </section>
 
-  <!-- MESA -->
-  <section class="view" id="v-mesa">
-    <div class="mesa-hero">
-      <div>
-        <div class="eyebrow">La mesa</div>
-        <h1 class="h" id="mesaH"></h1>
-        <p id="mesaP"></p>
-      </div>
-      <div class="status" id="mesaStatus"></div>
-    </div>
-    <div class="mesa-g">
-      <div class="card">
-        <div class="eyebrow">Plan de la sesión</div>
-        <ul class="list plan" id="plan" style="margin-top:6px"></ul>
-      </div>
-      <div class="card">
-        <div class="sec-t"><div class="eyebrow">Operaciones de este mes en su saldo</div></div>
-        <ul class="list" id="ops"></ul>
-        <p class="fine">Cada resultado es la parte que le corresponde a su saldo según su plan. Ejemplo generado para la demostración.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CUENTA -->
-  <section class="view" id="v-cuenta">
-    <div class="greet"><h1 class="h">Su cuenta</h1><p>Su plan, su nivel y dónde vive su dinero.</p></div>
-    <div class="acct">
-      <div class="col">
-        <div class="card">
-          <div class="sec-t"><div class="eyebrow">Plan</div><button class="more" data-sheet="perfil" style="margin:0">Cambiar</button></div>
-          <div id="perfilActual" style="margin-top:10px"></div>
+      <!-- MESA -->
+      <section class="view" id="v-mesa">
+        <div class="glass card hero">
+          <span class="live" id="liveTag"></span>
+          <div class="mesa-h" id="mesaH"></div>
+          <div class="sub" id="mesaP" style="font-size:13px;line-height:1.5"></div>
         </div>
-        <div class="card">
-          <div class="eyebrow">Titular</div>
-          <ul class="kv" style="margin-top:8px">
-            <li><span>Nombre</span><b id="kvNombre"></b></li>
+        <div class="glass card">
+          <div class="lbl" style="margin-bottom:6px">Plan de la sesión</div>
+          <ul class="list plan" id="plan"></ul>
+        </div>
+        <div class="glass card">
+          <div class="row" style="margin-bottom:6px"><span class="lbl">Operaciones del mes</span><span class="sub num" id="opsSum" style="margin:0;font-weight:700"></span></div>
+          <ul class="list" id="ops"></ul>
+          <p class="fine">La parte que le corresponde a su saldo según su plan. Ejemplo de la demostración.</p>
+        </div>
+      </section>
+
+      <!-- CUENTA -->
+      <section class="view" id="v-cuenta">
+        <div class="title">Su cuenta</div>
+        <div class="lead">Su plan, su nivel y dónde vive su dinero.</div>
+        <div class="row" style="margin-bottom:8px"><span class="lbl">Plan actual</span><button class="sub b" data-sheet="plan" style="margin:0;font-weight:600;font-size:13px">Cambiar</button></div>
+        <div id="planActual" style="margin-bottom:12px"></div>
+        <div class="glass card">
+          <ul class="kv">
+            <li><span>Titular</span><b id="kvNombre"></b></li>
             <li><span>Cuenta abierta</span><b id="kvAlta"></b></li>
-            <li><span>Nivel</span><b id="kvNivel"></b></li>
+            <li><span>Nivel</span><b class="o" id="kvNivel"></b></li>
             <li><span>Comisión</span><b id="kvFee"></b></li>
           </ul>
           <button class="more" data-sheet="nombre">Editar nombre</button>
         </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <div class="eyebrow">Dónde vive su dinero</div>
-          <ul class="kv" style="margin-top:8px">
+        <div class="glass card">
+          <div class="lbl" style="margin-bottom:6px">Dónde vive su dinero</div>
+          <ul class="kv">
             <li><span>Custodia</span><b>Cuenta a su nombre</b></li>
             <li><span>Intermediario</span><b>Regulado · por anunciar</b></li>
             <li><span>Mandato de la mesa</span><b>Operar, sin retirar</b></li>
-            <li><span>Retiros</span><b>Solo el titular</b></li>
+            <li><span>Retiros</span><b class="g">Solo usted</b></li>
           </ul>
         </div>
-        <div class="card">
-          <div class="eyebrow">Documentos</div>
-          <ul class="kv" style="margin-top:8px">
-            <li><span>Contrato de mandato</span><b style="color:var(--grey)">Próximamente</b></li>
-            <li><span>Estados de cuenta</span><b style="color:var(--grey)">Próximamente</b></li>
-          </ul>
+        <div class="glass card">
+          <div class="lbl">Demostración</div>
+          <p class="sub" style="font-size:13px;margin:6px 0 14px">Esta cuenta es de ejemplo y vive solo en este navegador.</p>
+          <div class="btns"><a class="btn btn-bl" href="index.html#registro" target="_top">Apartar mi lugar real</a><button class="btn btn-gl" id="reset">Empezar de nuevo</button></div>
         </div>
-        <div class="card">
-          <div class="eyebrow">Demostración</div>
-          <p class="sub">Esta cuenta es de ejemplo y vive solo en este navegador.</p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
-            <button class="btn btn-ol" id="reset">Empezar de nuevo</button>
-            <a class="btn btn-k" href="index.html#registro">Apartar mi lugar real</a>
-          </div>
-        </div>
-      </div>
+      </section>
     </div>
-  </section>
-</main>
 
-<nav class="tabs-m" id="tabsM"></nav>
-
-<!-- sheet -->
-<div class="scrim" id="scrim"><div class="sheet" id="sheet"></div></div>
-
-<!-- onboarding -->
-<div class="onb" id="onb"><div class="onb-in" id="onbIn"></div></div>
-
-<div class="toast" id="toast"></div>
+    <nav class="tabs" id="tabs"></nav>
+    <div class="scrim" id="scrim"><div class="sheet" id="sheet"></div></div>
+    <div class="onb" id="onb"><div class="amb"><i></i><i></i><i></i></div><div class="onb-in" id="onbIn"></div></div>
+    <div class="toast" id="toast"></div>
+  </div></div>
+</div>
 
 <script>
 const CONFIG = {
@@ -342,9 +365,9 @@ const CONFIG = {
   perfiles: [
     // objetivo = meta mensual (NO garantizada); riesgo = riesgo mensual del plan = freno de protección.
     // La demo genera meses de EJEMPLO alrededor del objetivo, algunos por debajo y algunos negativos.
-    { id:"bas", nombre:"Básico",   lema:"Estabilidad primero",     nivel:1, objetivo:1.5, riesgo:1.5, horizonte:"6+ meses",  ideal:"Para ver su saldo crecer con calma y moverse poco." },
-    { id:"mod", nombre:"Moderado", lema:"Crecimiento equilibrado", nivel:3, objetivo:3,   riesgo:3,   horizonte:"12+ meses", ideal:"Para que su ahorro crezca a buen ritmo sin sobresaltos grandes." },
-    { id:"agr", nombre:"Agresivo", lema:"Máximo potencial",        nivel:5, objetivo:6,   riesgo:6,   horizonte:"24+ meses", ideal:"Para pensar a largo plazo y buscar el mayor crecimiento." }
+    { id:"bas", nombre:"Básico",   lema:"Estabilidad primero",     nivel:1, objetivo:1.5, riesgo:1.5, horizonte:"6+ meses" },
+    { id:"mod", nombre:"Moderado", lema:"Crecimiento equilibrado", nivel:3, objetivo:3,   riesgo:3,   horizonte:"12+ meses" },
+    { id:"agr", nombre:"Agresivo", lema:"Máximo potencial",        nivel:5, objetivo:6,   riesgo:6,   horizonte:"24+ meses" }
   ],
   niveles: [
     { id:"inicial", nombre:"Inicial", min:100,   fee:30 },
@@ -355,235 +378,222 @@ const CONFIG = {
   KEY: "np-app-demo-v2"
 };
 
+function $(s){ return document.querySelector(s); }
+
+// ── escenario ──
+const embebida = window.self !== window.top;
+const telefono = matchMedia("(max-width:600px), (pointer:coarse) and (max-width:900px)").matches;
+if(embebida || telefono) document.body.classList.add("full");
+const tick = () => { const d = new Date(); $("#clock").textContent = d.getHours()+":"+String(d.getMinutes()).padStart(2,"0"); };
+
 const MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
-const $ = s => document.querySelector(s);
 const usd = (n, dec=2) => (n<0?"−":"") + "$" + Math.abs(n).toLocaleString("en-US",{minimumFractionDigits:dec,maximumFractionDigits:dec});
 const pct = n => (n>=0?"+":"−") + Math.abs(n).toFixed(1) + "%";
-const sgn = n => (n>=0?"+":"") ;
-const perfilDe = id => CONFIG.perfiles.find(p=>p.id===id);
+const sgn = n => n>=0 ? "+" : "";
+const perfilDe = id => CONFIG.perfiles.find(p=>p.id===id) || CONFIG.perfiles[1];
 const nivelDe = s => CONFIG.niveles.slice().reverse().find(q => s >= q.min) || CONFIG.niveles[0];
-const cap = s => s.charAt(0).toUpperCase()+s.slice(1);
-const fechaTxt = d => `${d.getDate()} ${MESES[d.getMonth()].slice(0,3)} ${d.getFullYear()}`;
+const fechaTxt = d => `${d.getDate()} ${MESES[d.getMonth()].slice(0,3)}`;
+const anual = p => (Math.pow(1+p.objetivo/100,12)*100-100).toFixed(0);
 
-// ---------- estado ----------
+// ── estado ──
 let S = null;
 const load = () => { try{ S = JSON.parse(localStorage.getItem(CONFIG.KEY)); }catch(_){ S = null; } };
 const save = () => { try{ localStorage.setItem(CONFIG.KEY, JSON.stringify(S)); }catch(_){} };
-
 function rng(seed){ let t = seed>>>0; return () => { t += 0x6D2B79F5; let r = Math.imul(t ^ t>>>15, 1|t); r ^= r + Math.imul(r ^ r>>>7, 61|r); return ((r ^ r>>>14)>>>0)/4294967296; }; }
 function normal(r){ let u=0,v=0; while(!u) u=r(); while(!v) v=r(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }
 
-// crea la cuenta demo: depósito inicial hace N meses, un resultado por mes cerrado, y el mes en curso parcial
+// cuenta demo: depósito inicial hace N meses, un resultado por mes cerrado y el mes en curso repartido en operaciones
 function crearCuenta(nombre, perfil, monto){
   const p = perfilDe(perfil), r = rng(Date.now() % 1e9), hoy = new Date();
   const movs = []; let bal = monto, hwm = monto;
   const alta = new Date(hoy.getFullYear(), hoy.getMonth() - CONFIG.mesesDemo, 3, 10, 0);
   movs.push({ tipo:"dep", fecha:alta.toISOString(), monto, nota:"Depósito inicial" });
   for(let k=CONFIG.mesesDemo; k>=1; k--){
-    const fin = new Date(hoy.getFullYear(), hoy.getMonth()-k+1, 0, 18, 0);  // último día del mes
+    const fin = new Date(hoy.getFullYear(), hoy.getMonth()-k+1, 0, 18, 0);
     const ret = Math.max(p.objetivo*0.7 + p.riesgo*0.8*normal(r), -p.riesgo);
     const antes = bal; bal *= 1 + ret/100;
     movs.push({ tipo:"res", fecha:fin.toISOString(), monto: bal-antes, pct: ret, mes: fin.getMonth(), anio: fin.getFullYear() });
-    if(bal > hwm){ const f = (bal-hwm)*nivelDe(antes).fee/100; bal -= f; hwm = bal; movs.push({ tipo:"fee", fecha:new Date(fin.getTime()+60000).toISOString(), monto:-f, nota:`Comisión ${nivelDe(antes).fee}% sobre ganancia de ${MESES[fin.getMonth()]}` }); }
+    if(bal > hwm){ const f = (bal-hwm)*nivelDe(antes).fee/100; bal -= f; hwm = bal; movs.push({ tipo:"fee", fecha:new Date(fin.getTime()+60000).toISOString(), monto:-f, nota:`${nivelDe(antes).fee}% de la ganancia de ${MESES[fin.getMonth()]}` }); }
   }
-  // mes en curso: resultado parcial, repartido en operaciones
   const frac = Math.min(1, hoy.getDate()/30);
   const retMes = Math.max(p.objetivo*0.7 + p.riesgo*0.6*normal(r), -p.riesgo) * frac;
   const ops = []; const n = 5 + Math.floor(r()*5); let rest = bal*retMes/100;
-  const inst = ["Futuro S&P 500","Futuro Nasdaq 100"];
+  const inst = ["S&P 500","Nasdaq 100"];
   for(let i=0;i<n;i++){
     const dia = Math.max(1, Math.round((i+1)/n*Math.max(1,hoy.getDate()-1)));
     const share = i===n-1 ? rest : (rest/(n-i)) + (r()-.5)*Math.abs(bal)*p.riesgo/100*0.5;
     rest -= share;
     ops.push({ fecha:new Date(hoy.getFullYear(), hoy.getMonth(), dia, 9+Math.floor(r()*4), Math.floor(r()*59)).toISOString(), inst: inst[Math.floor(r()*2)], dir: r()>.45?"Compra":"Venta", monto: share });
   }
-  S = { nombre, perfil, creado: alta.toISOString(), hwm, base: bal, movs, ops };
+  S = { nombre, perfil, creado: alta.toISOString(), movs, ops };
   save();
 }
-
 const opsMes = () => S.ops.reduce((a,o)=>a+o.monto,0);
 const saldo = () => S.movs.reduce((a,m)=>a+m.monto,0) + opsMes();
 const depositado = () => S.movs.filter(m=>m.tipo==="dep"||m.tipo==="ret").reduce((a,m)=>a+m.monto,0);
+const baseMes = () => saldo() - opsMes();   // saldo sin el resultado del mes en curso
 
-// ---------- navegación ----------
+// ── navegación ──
 const TABS = [
   { id:"inicio", t:"Inicio", i:'<path d="M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>' },
-  { id:"movimientos", t:"Movimientos", i:'<path d="M4 7h13l-3-3M20 17H7l3 3"/>' },
+  { id:"movimientos", t:"Movimientos", i:'<path d="M4 8h14l-3-3M20 16H6l3 3"/>' },
   { id:"mesa", t:"La mesa", i:'<path d="M3 20h18M5 16l4-5 4 3 6-8"/>' },
   { id:"cuenta", t:"Cuenta", i:'<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>' }
 ];
-$("#tabsD").innerHTML = TABS.map(t=>`<button data-go="${t.id}">${t.t}</button>`).join("");
-$("#tabsM").innerHTML = TABS.map(t=>`<button data-go="${t.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${t.i}</svg>${t.t}</button>`).join("");
+$("#tabs").innerHTML = TABS.map(t=>`<button data-go="${t.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${t.i}</svg>${t.t}</button>`).join("");
 function go(id){
   document.querySelectorAll(".view").forEach(v=>v.classList.toggle("on", v.id==="v-"+id));
-  document.querySelectorAll("[data-go]").forEach(b=>b.classList.toggle("on", b.dataset.go===id && b.closest("nav")));
+  document.querySelectorAll("#tabs [data-go]").forEach(b=>b.classList.toggle("on", b.dataset.go===id));
   try{ sessionStorage.setItem("np-tab", id); }catch(_){}
-  window.scrollTo(0,0);
+  $("#scroll").scrollTop = 0;
 }
 document.addEventListener("click", e => {
   const g = e.target.closest("[data-go]"); if(g){ e.preventDefault(); go(g.dataset.go); }
   const s = e.target.closest("[data-sheet]"); if(s){ openSheet(s.dataset.sheet); }
 });
 
-// ---------- render ----------
+// ── render ──
 function render(){
-  const bal = saldo(), dep = depositado(), gan = bal - dep, p = perfilDe(S.perfil), nv = nivelDe(bal), hoy = new Date();
-  const nombre1 = S.nombre.split(" ")[0];
-  const h = hoy.getHours();
-  $("#saludo").innerHTML = `${h<12?"Buenos días":h<19?"Buenas tardes":"Buenas noches"}, <em>${nombre1}.</em>`;
-  $("#saludoSub").textContent = `Su ahorro lleva ${mesesDesde()} trabajando con la mesa.`;
-  $("#pillNivel").innerHTML = `Nivel <b>${nv.nombre}</b>`;
-  $("#saldoLbl").textContent = `Saldo · plan ${p.nombre}`;
+  const bal = saldo(), dep = depositado(), gan = bal - dep, p = perfilDe(S.perfil), nv = nivelDe(bal), h = new Date().getHours();
+  $("#avatar").textContent = S.nombre.split(/\s+/).map(w=>w[0]).slice(0,2).join("").toUpperCase();
+  $("#hello").textContent = `${h<12?"Buenos días":h<19?"Buenas tardes":"Buenas noches"}, ${S.nombre.split(" ")[0]}`;
+  $("#saldoLbl").textContent = `Saldo · ${p.nombre}`;
+  $("#nivelTag").textContent = `★ ${nv.nombre}`;
   const [ent, dec] = usd(bal).split(".");
   $("#saldoNum").innerHTML = `${ent}<small>.${dec}</small>`;
-  const om = opsMes(), omp = om / (bal-om) * 100;
-  $("#mesLbl").textContent = `En ${MESES[hoy.getMonth()]}`;
-  $("#mesChip").textContent = `${sgn(om)}${usd(om)} · ${pct(omp)}`;
+  const om = opsMes(), omp = om / baseMes() * 100;
+  $("#mesChip").innerHTML = `${om>=0?"▲":"▼"} ${sgn(om)}${usd(om)} · ${pct(omp)} <span class="m">en ${MESES[new Date().getMonth()]}</span>`;
   $("#mesChip").className = "chip" + (om<0?" neg":"");
-  drawChart();
-  $("#ganTotal").textContent = sgn(gan)+usd(gan);
-  $("#ganTotal").className = "big " + (gan>=0?"pos":"neg");
-  $("#ganSub").textContent = `${pct(dep? gan/dep*100 : 0)} sobre lo depositado`;
+  spark();
+  const meta = baseMes()*p.objetivo/100, av = Math.max(0, om/meta);
+  $("#ringArc").style.strokeDashoffset = 251.3 * (1 - Math.min(1, av));
+  $("#ringPct").innerHTML = `<span class="${om>=0?"":"r"}">${om<0?"0":Math.round(av*100)}%</span>`;
+  $("#goalNum").innerHTML = `<span class="${om>=0?"g":"r"}">${pct(omp)}</span> <span style="color:var(--dim);font-size:.62em">/ <span class="b">+${p.objetivo}%</span></span>`;
+  $("#goalTxt").innerHTML = om >= meta ? `Objetivo cumplido: <b class="g">${sgn(om)}${usd(om)}</b> este mes.` : om >= 0 ? `Lleva <b class="g">${usd(om)}</b> de <b class="b">${usd(meta)}</b> que busca la mesa este mes.` : `Mes por debajo del objetivo. La mesa sigue operando dentro del riesgo del plan.`;
+  $("#ganTotal").innerHTML = `<span class="${gan>=0?"g":"r"}">${sgn(gan)}${usd(gan)}</span>`;
+  $("#ganSub").innerHTML = `<span class="${gan>=0?"g":"r"}">${pct(dep? gan/dep*100 : 0)}</span> sobre lo depositado`;
   $("#depTotal").textContent = usd(dep);
   $("#depSub").textContent = `${S.movs.filter(m=>m.tipo==="dep").length} depósito(s)`;
   const sig = CONFIG.niveles[CONFIG.niveles.indexOf(nv)+1];
   $("#nivelNom").textContent = nv.nombre;
-  $("#nivelFee").textContent = `${nv.fee}% de la ganancia`;
-  $("#nivelBar").style.width = sig ? Math.min(100, (bal-nv.min)/(sig.min-nv.min)*100)+"%" : "100%";
-  $("#nivelSub").textContent = sig ? `Le faltan ${usd(sig.min-bal,0)} para el nivel ${sig.nombre}, con ${sig.fee}% de comisión.` : "Está en el nivel más alto, con la comisión más baja.";
-  const meta = (bal-om)*p.objetivo/100, av = Math.max(0, Math.min(100, om/meta*100));
-  $("#objLbl").textContent = `Plan ${p.nombre} · +${p.objetivo}%`;
-  $("#objNum").innerHTML = `<span class="${om>=0?"pos":"neg"}">${pct(omp)}</span> <span style="color:var(--grey);font-size:.6em">de +${p.objetivo}%</span>`;
-  $("#objBar").style.width = av+"%";
-  $("#objSub").textContent = om >= meta ? `Objetivo del mes alcanzado: +${usd(om)}.` : om >= 0 ? `Lleva ${usd(om)} de ${usd(meta)} que busca la mesa este mes.` : `Mes por debajo del objetivo. La mesa sigue operando dentro del riesgo del plan.`;
+  $("#nivelFee").innerHTML = `Comisión <b class="o">${nv.fee}%</b>`;
+  $("#nivelBar").style.width = sig ? Math.max(3, Math.min(100, (bal-nv.min)/(sig.min-nv.min)*100))+"%" : "100%";
+  $("#nivelSub").innerHTML = sig ? `Faltan <b class="o">${usd(sig.min-bal,0)}</b> para ${sig.nombre}, con ${sig.fee}% de comisión.` : "Nivel más alto, comisión más baja.";
   $("#ultimos").innerHTML = movList().slice(0,4).map(movLi).join("");
   renderMovs(); renderMesa(); renderCuenta();
 }
-function mesesDesde(){
-  const a = new Date(S.creado), h = new Date(); const m = (h.getFullYear()-a.getFullYear())*12 + h.getMonth()-a.getMonth();
-  return m<=0 ? "unos días" : m===1 ? "1 mes" : `${m} meses`;
-}
-
-// serie de saldo al cierre de cada mes + hoy
 function serie(){
   const pts = []; let acc = 0;
-  const ms = [...S.movs].sort((a,b)=>a.fecha<b.fecha?-1:1);
-  ms.forEach(m => { acc += m.monto; if(m.tipo==="res"||m.tipo==="dep"&&pts.length===0) pts.push({ f:new Date(m.fecha), v:acc, lbl: m.tipo==="res"?MESES[m.mes].slice(0,3):"alta" }); else if(pts.length) pts[pts.length-1].v = acc; });
-  pts.push({ f:new Date(), v:saldo(), lbl:"hoy" });
+  [...S.movs].sort((a,b)=>a.fecha<b.fecha?-1:1).forEach(m => {
+    acc += m.monto;
+    if(m.tipo==="res" || (m.tipo==="dep" && !pts.length)) pts.push({ v:acc, lbl: m.tipo==="res" ? MESES[m.mes].slice(0,3) : "alta" });
+    else if(pts.length) pts[pts.length-1].v = acc;
+  });
+  pts.push({ v:saldo(), lbl:"hoy" });
   return pts;
 }
-function drawChart(){
-  const pts = serie(), W=600, H=150, pad=8;
+function spark(){
+  const pts = serie(), W=320, H=92, pd=6;
   const vs = pts.map(p=>p.v), lo = Math.min(...vs), hi = Math.max(...vs), rg = (hi-lo)||hi*.05||1;
-  const x = i => pad + i/(pts.length-1)*(W-2*pad), y = v => H-pad - (v-lo)/rg*(H-2*pad-10);
+  const x = i => pd + i/(pts.length-1)*(W-2*pd), y = v => H-pd - (v-lo)/rg*(H-2*pd-6);
   const d = pts.map((p,i)=>`${i?"L":"M"}${x(i).toFixed(1)},${y(p.v).toFixed(1)}`).join("");
-  $("#chart").innerHTML = `<defs><linearGradient id="g" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#A6EEDA" stop-opacity=".28"/><stop offset="1" stop-color="#A6EEDA" stop-opacity="0"/></linearGradient></defs>
-    <path d="${d}L${x(pts.length-1)},${H}L${x(0)},${H}Z" fill="url(#g)"/>
-    <path d="${d}" fill="none" stroke="#A6EEDA" stroke-width="2.2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>
-    <circle cx="${x(pts.length-1)}" cy="${y(pts[pts.length-1].v)}" r="4" fill="#A6EEDA"/>`;
+  $("#spark").innerHTML = `<defs><linearGradient id="sf" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#34D399" stop-opacity=".35"/><stop offset="1" stop-color="#34D399" stop-opacity="0"/></linearGradient>
+    <linearGradient id="sl" x1="0" x2="1"><stop offset="0" stop-color="#60A5FA"/><stop offset="1" stop-color="#34D399"/></linearGradient></defs>
+    <path d="${d}L${x(pts.length-1)},${H}L${x(0)},${H}Z" fill="url(#sf)"/>
+    <path d="${d}" fill="none" stroke="url(#sl)" stroke-width="2.4" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"/>`;
   $("#axis").innerHTML = pts.map(p=>`<span>${p.lbl}</span>`).join("");
 }
-
 function movList(){
-  const opsAgg = S.ops.length ? [{ tipo:"mes", fecha:new Date().toISOString(), monto:opsMes(), nota:`Resultado de ${MESES[new Date().getMonth()]} hasta hoy` }] : [];
-  return [...S.movs, ...opsAgg].sort((a,b)=>a.fecha<b.fecha?1:-1);
+  const cur = S.ops.length ? [{ tipo:"mes", fecha:new Date().toISOString(), monto:opsMes() }] : [];
+  return [...S.movs, ...cur].sort((a,b)=>a.fecha<b.fecha?1:-1);
 }
 function movLi(m){
-  const ic = { dep:["↓","m"], ret:["↑",""], res:["★","m"], fee:["%",""], mes:["◔","m"] }[m.tipo];
-  const t = m.tipo==="res" ? `Resultado de ${MESES[m.mes]}` : m.tipo==="dep" ? (m.nota||"Depósito") : m.tipo==="ret" ? "Retiro" : m.tipo==="fee" ? "Comisión de la mesa" : m.nota;
-  const d = m.tipo==="res" ? `${pct(m.pct)} · ${fechaTxt(new Date(m.fecha))}` : m.tipo==="fee" ? m.nota : m.tipo==="mes" ? "Mes en curso, en operación" : fechaTxt(new Date(m.fecha));
-  const cls = (m.tipo==="res"||m.tipo==="mes") ? (m.monto>=0?"pos":"neg") : "";
-  return `<li><span class="ico ${ic[1]}">${ic[0]}</span><div><div class="t">${t}</div><div class="d">${d}</div></div><div class="v ${cls}">${sgn(m.monto)}${usd(m.monto)}</div></li>`;
+  const I = { dep:["＋","b"], ret:["↑","v"], res:["★", m.monto>=0?"g":"r"], fee:["%","o"], mes:["◔", m.monto>=0?"g":"r"] }[m.tipo];
+  const mesAct = MESES[new Date().getMonth()];
+  const t = { dep: m.nota||"Depósito", ret:"Retiro", res:`Resultado de ${MESES[m.mes]}`, fee:"Comisión de la mesa", mes:`${mesAct.charAt(0).toUpperCase()+mesAct.slice(1)} hasta hoy` }[m.tipo];
+  const d = m.tipo==="res" ? `<span class="${m.pct>=0?"g":"r"}">${pct(m.pct)}</span> · ${fechaTxt(new Date(m.fecha))}` : m.tipo==="fee" ? m.nota : m.tipo==="mes" ? "En operación" : fechaTxt(new Date(m.fecha));
+  const c = (m.tipo==="res"||m.tipo==="mes") ? (m.monto>=0?"g":"r") : m.tipo==="dep" ? "b" : "";
+  return `<li><span class="ico ${I[1]}"><span class="${I[1]}">${I[0]}</span></span><div><div class="t">${t}</div><div class="d">${d}</div></div><div class="val num ${c}">${sgn(m.monto)}${usd(m.monto)}</div></li>`;
 }
 let filtro = "todos";
 function renderMovs(){
   const res = S.movs.filter(m=>m.tipo==="res").sort((a,b)=>a.fecha<b.fecha?1:-1);
-  $("#months").innerHTML = res.map(m=>`<div class="mcard"><div class="mono">${MESES[m.mes]} ${m.anio}</div><div class="v ${m.monto>=0?"pos":"neg"}">${sgn(m.monto)}${usd(m.monto)}</div><div class="p ${m.monto>=0?"pos":"neg"}">${pct(m.pct)}</div></div>`).join("");
+  $("#months").innerHTML = res.map(m=>`<div class="glass mc"><div class="n">${MESES[m.mes]}</div><div class="p num ${m.pct>=0?"g":"r"}">${pct(m.pct)}</div><div class="u num">${sgn(m.monto)}${usd(m.monto)}</div></div>`).join("");
   const F = [["todos","Todos"],["res","Resultados"],["dep","Depósitos"],["ret","Retiros"],["fee","Comisiones"]];
   $("#filters").innerHTML = F.map(([k,t])=>`<button data-f="${k}" class="${filtro===k?"on":""}">${t}</button>`).join("");
   document.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>{ filtro=b.dataset.f; renderMovs(); });
   const L = movList().filter(m => filtro==="todos" || m.tipo===filtro || (filtro==="res" && m.tipo==="mes"));
-  $("#movs").innerHTML = L.length ? L.map(movLi).join("") : `<li style="display:block;color:var(--grey)">Sin movimientos de este tipo.</li>`;
+  $("#movs").innerHTML = L.length ? L.map(movLi).join("") : `<li style="display:block;color:var(--mut);font-size:14px">Sin movimientos de este tipo.</li>`;
 }
-
 function estadoMesa(){
-  // hora del centro de México
   const now = new Date(new Date().toLocaleString("en-US",{timeZone:"America/Mexico_City"}));
   const d = now.getDay(), m = now.getHours()*60+now.getMinutes();
   const abierta = d>=1 && d<=5 && m>=450 && m<840;
   let prox = "";
-  if(!abierta){ const manana = (d>=1&&d<=4&&m>=840) || d===0; prox = (d===5&&m>=840)||d===6 ? "el lunes a las 7:30" : manana ? "mañana a las 7:30" : "hoy a las 7:30"; }
+  if(!abierta) prox = (d===5&&m>=840)||d===6 ? "el lunes a las 7:30" : (d===0 || m>=840) ? "mañana a las 7:30" : "hoy a las 7:30";
   return { abierta, prox };
 }
 function renderMesa(){
-  const e = estadoMesa(), p = perfilDe(S.perfil);
-  $("#mesaH").innerHTML = e.abierta ? `La mesa está <em>operando.</em>` : `La mesa está <em>en pausa.</em>`;
-  $("#mesaP").textContent = e.abierta
-    ? `Sesión de Nueva York en curso. La mesa busca el objetivo del plan ${p.nombre}: +${p.objetivo}% este mes.`
-    : `Fuera de sesión. La próxima sesión empieza ${e.prox} (hora del centro de México).`;
-  $("#mesaStatus").innerHTML = `<span class="dot ${e.abierta?"":"off"}"></span>${e.abierta?"En sesión":"Fuera de sesión"}`;
-  $("#plan").innerHTML = [
-    "Revisión de niveles del día anterior y de la sesión nocturna.",
-    "Se definen zonas de entrada y el riesgo por operación antes de abrir.",
-    "Operación solo dentro del plan; sin operaciones fuera de horario.",
-    "Cierre de posiciones antes del fin de sesión y registro de cada operación."
-  ].map((t,i)=>`<li><b>0${i+1}</b><span>${t}</span></li>`).join("");
-  $("#ops").innerHTML = [...S.ops].sort((a,b)=>a.fecha<b.fecha?1:-1).map(o=>`<li><span class="ico ${o.monto>=0?"m":""}">${o.dir==="Compra"?"↗":"↘"}</span><div><div class="t">${o.inst} · ${o.dir.toLowerCase()}</div><div class="d">${fechaTxt(new Date(o.fecha))}</div></div><div class="v ${o.monto>=0?"pos":"neg"}">${sgn(o.monto)}${usd(o.monto)}</div></li>`).join("");
+  const e = estadoMesa(), p = perfilDe(S.perfil), om = opsMes();
+  $("#liveTag").innerHTML = `<span class="dot ${e.abierta?"":"off"}"></span>${e.abierta?"En sesión":"Fuera de sesión"}`;
+  $("#mesaH").innerHTML = e.abierta ? `La mesa está <span class="g">operando</span>` : `La mesa está <span class="b">en pausa</span>`;
+  $("#mesaP").innerHTML = e.abierta
+    ? `Sesión de Nueva York en curso. Objetivo del plan ${p.nombre}: <b class="b">+${p.objetivo}%</b> este mes.`
+    : `Próxima sesión ${e.prox}, hora del centro de México. Objetivo del plan ${p.nombre}: <b class="b">+${p.objetivo}%</b> al mes.`;
+  $("#plan").innerHTML = ["Revisión de niveles del día anterior y de la sesión nocturna.","Zonas de entrada y riesgo por operación definidos antes de abrir.","Operación solo dentro del plan, sin operaciones fuera de horario.","Cierre antes del fin de sesión y registro de cada operación."].map((t,i)=>`<li><b>0${i+1}</b><span>${t}</span></li>`).join("");
+  $("#opsSum").innerHTML = `<span class="${om>=0?"g":"r"}">${sgn(om)}${usd(om)}</span>`;
+  $("#ops").innerHTML = [...S.ops].sort((a,b)=>a.fecha<b.fecha?1:-1).map(o=>`<li><span class="ico ${o.monto>=0?"g":"r"}"><span class="${o.monto>=0?"g":"r"}">${o.dir==="Compra"?"↗":"↘"}</span></span><div><div class="t">${o.inst} · ${o.dir.toLowerCase()}</div><div class="d">${fechaTxt(new Date(o.fecha))}</div></div><div class="val num ${o.monto>=0?"g":"r"}">${sgn(o.monto)}${usd(o.monto)}</div></li>`).join("");
 }
-
-const perfilCard = (p, on) => `<button class="perfil ${on?"on":""}" data-perfil="${p.id}">
-  <div class="row"><div><div class="n">${p.nombre}</div><div class="l">${p.lema}</div></div><div class="risk" aria-label="Riesgo ${p.nivel} de 5">${[1,2,3,4,5].map(i=>`<i class="${i<=p.nivel?"on":""}"></i>`).join("")}</div></div>
-  <div class="ideal">${p.ideal}</div>
-  <div class="targets"><div><span>Objetivo mensual</span><b class="pos">+${p.objetivo}%</b></div><div><span>Objetivo al año</span><b class="pos">+${(Math.pow(1+p.objetivo/100,12)*100-100).toFixed(0)}%</b></div><div><span>Riesgo mensual</span><b>${p.riesgo}%</b></div></div>
-  <div class="meta"><span>Horizonte: ${p.horizonte}</span><span>Objetivo, no garantía</span></div>
-</button>`;
+const planCard = (p, on, tag="button") => `<${tag} class="pl ${on?"on":""}" data-plan="${p.id}">
+  <div class="top"><div><div class="nm">${p.nombre}</div><div class="lm">${p.lema}</div><div class="risk">${[1,2,3,4,5].map(i=>`<i class="${i<=p.nivel?"on":""}"></i>`).join("")}</div></div>
+  <div class="obj g num">+${p.objetivo}%<small>AL MES</small></div></div>
+  <div class="tg"><div><span>Objetivo año</span><b class="g num">+${anual(p)}%</b></div><div><span>Riesgo mes</span><b class="num">${p.riesgo}%</b></div><div><span>Horizonte</span><b>${p.horizonte}</b></div></div>
+</${tag}>`;
 function renderCuenta(){
-  const bal = saldo(), nv = nivelDe(bal);
-  $("#perfilActual").innerHTML = perfilCard(perfilDe(S.perfil), true).replace("<button","<div").replace("</button>","</div>");
+  const nv = nivelDe(saldo());
+  $("#planActual").innerHTML = planCard(perfilDe(S.perfil), true, "div");
   $("#kvNombre").textContent = S.nombre;
-  $("#kvAlta").textContent = fechaTxt(new Date(S.creado));
+  $("#kvAlta").textContent = fechaTxt(new Date(S.creado)) + " " + new Date(S.creado).getFullYear();
   $("#kvNivel").textContent = nv.nombre;
-  $("#kvFee").textContent = `${nv.fee}% sobre ganancias nuevas`;
+  $("#kvFee").textContent = `${nv.fee}% de ganancias nuevas`;
 }
 
-// ---------- sheets ----------
+// ── sheets ──
 function openSheet(tipo){
   const sh = $("#sheet"), bal = saldo();
   if(tipo==="dep"||tipo==="ret"){
     const dep = tipo==="dep";
-    sh.innerHTML = `<div class="eyebrow">${dep?"Depositar":"Retirar"}</div>
-      <h2 class="h">${dep?"Agregue a su <em>ahorro.</em>":"Retire cuando <em>quiera.</em>"}</h2>
-      <p>${dep?"El depósito va directo a su cuenta en el intermediario y la mesa lo empieza a operar.":`Disponible: ${usd(bal)}. Sin penalizaciones ni plazos.`}</p>
+    sh.innerHTML = `<div class="grab"></div><div class="lbl ${dep?"b":"v"}">${dep?"Depositar":"Retirar"}</div>
+      <h2>${dep?"Agregue a su ahorro":"Retire cuando quiera"}</h2>
+      <p>${dep?"Va directo a su cuenta y la mesa lo empieza a operar.":`Disponible <b class="g">${usd(bal)}</b>. Sin plazos ni penalizaciones.`}</p>
       <label class="amount"><span>$</span><input id="amt" inputmode="decimal" placeholder="0" autocomplete="off"></label>
       <div class="quick">${(dep?[100,250,500,1000]:[100,500,"Todo"]).map(v=>`<button data-q="${v}">${v==="Todo"?"Todo":usd(v,0)}</button>`).join("")}</div>
       <div class="err" id="err"></div>
-      <div class="btns"><button class="btn btn-k" id="ok" disabled>${dep?"Depositar":"Retirar"}</button><button class="btn btn-ol" id="cancel">Cancelar</button></div>
-      <p class="fine">Demostración: no se mueve dinero real. En la app real, ${dep?"el depósito se hace desde su banco a su propia cuenta":"el retiro llega a su banco desde su propia cuenta"} y NORTHPOINT nunca lo recibe.</p>`;
+      <div class="btns"><button class="btn ${dep?"btn-w":"btn-bl"}" id="ok" disabled>${dep?"Depositar":"Retirar"}</button><button class="btn btn-gl" id="cancel">Cancelar</button></div>
+      <p class="fine">Demostración: no se mueve dinero real. En la app real, ${dep?"el depósito sale de su banco a su propia cuenta":"el retiro llega a su banco desde su propia cuenta"} y NORTHPOINT nunca lo recibe.</p>`;
     const amt = $("#amt"), ok = $("#ok"), err = $("#err");
     const val = () => parseFloat((amt.value||"").replace(/[^0-9.]/g,"")) || 0;
-    const check = () => { const v = val(); let m = "";
-      if(v<=0) m = ""; else if(dep && v<1) m = "Monto mínimo: $1.";
-      else if(!dep && v>bal+1e-9) m = `No puede retirar más de ${usd(bal)}.`;
-      err.textContent = m; ok.disabled = v<=0 || !!m; };
+    const check = () => { const v = val(); const m = v>0 && !dep && v>bal+1e-9 ? `No puede retirar más de ${usd(bal)}.` : ""; err.textContent = m; ok.disabled = v<=0 || !!m; };
     amt.oninput = check;
     sh.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{ amt.value = b.dataset.q==="Todo" ? bal.toFixed(2) : b.dataset.q; check(); });
-    ok.onclick = () => { const v = Math.min(val(), dep?Infinity:bal); S.movs.push({ tipo:dep?"dep":"ret", fecha:new Date().toISOString(), monto: dep? v : -v, nota: dep?"Depósito":"" }); save(); closeSheet(); render(); toast(`${dep?"Depósito":"Retiro"} de ${usd(v)} registrado (demo).`); };
+    ok.onclick = () => { const v = Math.min(val(), dep?Infinity:bal); S.movs.push({ tipo:dep?"dep":"ret", fecha:new Date().toISOString(), monto: dep? v : -v, nota: dep?"Depósito":"" }); save(); closeSheet(); render(); toast(`${dep?"Depósito":"Retiro"} de ${usd(v)} listo · demo`); };
     $("#cancel").onclick = closeSheet;
-    setTimeout(()=>amt.focus(), 50);
+    setTimeout(()=>amt.focus(), 80);
   }
-  if(tipo==="perfil"){
+  if(tipo==="plan"){
     let sel = S.perfil;
-    sh.innerHTML = `<div class="eyebrow">Plan</div><h2 class="h">Elija el <em>objetivo</em> de su ahorro.</h2><p>El cambio aplica desde la próxima sesión de la mesa.</p>
-      <div class="perfiles" style="margin:20px 0">${CONFIG.perfiles.map(p=>perfilCard(p, p.id===sel)).join("")}</div>
-      <div class="btns"><button class="btn btn-k" id="ok">Guardar plan</button><button class="btn btn-ol" id="cancel">Cancelar</button></div>`;
-    sh.querySelectorAll("[data-perfil]").forEach(b=>b.onclick=()=>{ sel=b.dataset.perfil; sh.querySelectorAll("[data-perfil]").forEach(x=>x.classList.toggle("on", x.dataset.perfil===sel)); });
-    $("#ok").onclick = () => { S.perfil = sel; save(); closeSheet(); render(); toast(`Plan cambiado a ${perfilDe(sel).nombre}.`); };
+    sh.innerHTML = `<div class="grab"></div><div class="lbl b">Plan</div><h2>Elija su objetivo</h2><p>Aplica desde la próxima sesión de la mesa. El objetivo es una meta, no una garantía.</p>
+      <div class="planes" style="margin:18px 0">${CONFIG.perfiles.map(p=>planCard(p, p.id===sel)).join("")}</div>
+      <div class="btns"><button class="btn btn-w" id="ok">Guardar plan</button><button class="btn btn-gl" id="cancel">Cancelar</button></div>`;
+    sh.querySelectorAll("[data-plan]").forEach(b=>b.onclick=()=>{ sel=b.dataset.plan; sh.querySelectorAll("[data-plan]").forEach(x=>x.classList.toggle("on", x.dataset.plan===sel)); });
+    $("#ok").onclick = () => { S.perfil = sel; save(); closeSheet(); render(); toast(`Plan ${perfilDe(sel).nombre} activo`); };
     $("#cancel").onclick = closeSheet;
   }
   if(tipo==="nombre"){
-    sh.innerHTML = `<div class="eyebrow">Titular</div><h2 class="h">Su nombre</h2>
-      <label class="field">Nombre completo<input id="nm" value="${S.nombre.replace(/"/g,"&quot;")}" autocomplete="name"></label>
-      <div class="btns" style="margin-top:22px"><button class="btn btn-k" id="ok">Guardar</button><button class="btn btn-ol" id="cancel">Cancelar</button></div>`;
+    sh.innerHTML = `<div class="grab"></div><div class="lbl">Titular</div><h2>Su nombre</h2>
+      <label class="field">Nombre completo<input id="nm" autocomplete="name"></label>
+      <div class="btns" style="margin-top:20px"><button class="btn btn-w" id="ok">Guardar</button><button class="btn btn-gl" id="cancel">Cancelar</button></div>`;
+    $("#nm").value = S.nombre;
     $("#ok").onclick = () => { const v = $("#nm").value.trim(); if(v){ S.nombre = v; save(); render(); } closeSheet(); };
     $("#cancel").onclick = closeSheet;
   }
@@ -592,70 +602,74 @@ function openSheet(tipo){
 function closeSheet(){ $("#scrim").classList.remove("on"); }
 $("#scrim").addEventListener("click", e => { if(e.target.id==="scrim") closeSheet(); });
 document.addEventListener("keydown", e => { if(e.key==="Escape") closeSheet(); });
-function toast(t){ const el=$("#toast"); el.textContent=t; el.classList.add("on"); clearTimeout(el._t); el._t=setTimeout(()=>el.classList.remove("on"), 2600); }
-
+function toast(t){ const el=$("#toast"); el.textContent=t; el.classList.add("on"); clearTimeout(el._t); el._t=setTimeout(()=>el.classList.remove("on"), 2400); }
 $("#reset").onclick = () => { try{ localStorage.removeItem(CONFIG.KEY); }catch(_){} S=null; onboarding(); };
 
-// ---------- onboarding ----------
+// ── onboarding ──
 function onboarding(){
   const O = { paso:0, nombre:"", perfil:"mod", monto:500 };
   const el = $("#onb"), In = $("#onbIn"); el.classList.add("on");
   const steps = () => `<div class="steps">${[0,1,2].map(i=>`<i class="${i<=O.paso?"on":""}"></i>`).join("")}</div>`;
-  const brand = `<div class="brand"><svg class="star"><use href="#star"/></svg>NORTHPOINT</div>`;
+  const brand = `<div class="head" style="margin:0"><div class="brand"><svg><use href="#star"/></svg>NORTHPOINT</div><span class="demo">DEMO</span></div>`;
   function paint(){
     if(O.paso===0){
       In.innerHTML = `${brand}${steps()}
-        <svg class="bigstar"><use href="#star"/></svg>
-        <h1 class="h">Su ahorro,<br><em>trabajando.</em></h1>
-        <p class="lede">Guarde su dinero, véalo en la app y reciba cada mes el resultado de la mesa. Desde $${CONFIG.minimo} dólares.</p>
+        <div class="orb"><svg><use href="#star"/></svg></div>
+        <h1>Su ahorro, <span>trabajando.</span></h1>
+        <p class="lede">Guarde su dinero, véalo crecer en la app y reciba cada mes el resultado de la mesa. Desde <b class="g">$${CONFIG.minimo}</b> dólares.</p>
         <ul class="feat">
-          <li><b>01</b><span>Su dinero vive en una cuenta a su nombre. Solo usted retira.</span></li>
-          <li><b>02</b><span>Resultado variable cada mes: a veces más, a veces menos. Nunca prometido.</span></li>
-          <li><b>03</b><span>Cada operación de la mesa, visible en la app.</span></li>
+          <li class="glass"><span class="ico b"><span class="b">01</span></span><span>Su dinero vive en una cuenta a su nombre. Solo usted retira.</span></li>
+          <li class="glass"><span class="ico g"><span class="g">02</span></span><span>Objetivos de <b class="g">+1.5%</b> a <b class="g">+6%</b> al mes según su plan. Resultado variable, nunca garantizado.</span></li>
+          <li class="glass"><span class="ico v"><span class="v">03</span></span><span>Cada operación de la mesa, visible en la app.</span></li>
         </ul>
-        <label class="field">¿Cómo se llama?<input id="oNom" placeholder="Nombre y apellido" autocomplete="name" value="${O.nombre}"></label>
-        <div class="foot"><button class="btn btn-k" id="next" ${O.nombre.trim()?"":"disabled"}>Continuar</button><p class="fine" style="text-align:center">Esta es una demostración. No se pide ni se mueve dinero real.</p></div>`;
-      const i = $("#oNom"); i.oninput = () => { O.nombre = i.value; $("#next").disabled = !i.value.trim(); };
+        <label class="field">¿Cómo se llama?<input id="oNom" placeholder="Nombre y apellido" autocomplete="name"></label>
+        <div class="foot"><button class="btn btn-bl" id="next" disabled>Continuar</button><p class="fine" style="text-align:center">Demostración: no se pide ni se mueve dinero real.</p></div>`;
+      const i = $("#oNom"); i.value = O.nombre; $("#next").disabled = !O.nombre.trim();
+      i.oninput = () => { O.nombre = i.value; $("#next").disabled = !i.value.trim(); };
       i.onkeydown = e => { if(e.key==="Enter" && i.value.trim()) $("#next").click(); };
     }
     if(O.paso===1){
       In.innerHTML = `${brand}${steps()}
-        <h1 class="h">Elija su <em>objetivo.</em></h1>
-        <p class="lede">Cada plan busca un rendimiento mensual y arriesga lo mismo que busca. Puede cambiarlo cuando quiera. El objetivo es una meta, no una garantía.</p>
-        <div class="perfiles">${CONFIG.perfiles.map(p=>perfilCard(p, p.id===O.perfil)).join("")}</div>
-        <div class="foot"><button class="btn btn-k" id="next">Continuar</button><button class="btn btn-ol" id="back">Atrás</button></div>`;
-      In.querySelectorAll("[data-perfil]").forEach(b=>b.onclick=()=>{ O.perfil=b.dataset.perfil; In.querySelectorAll("[data-perfil]").forEach(x=>x.classList.toggle("on", x.dataset.perfil===O.perfil)); });
+        <h1>Elija su <span>objetivo.</span></h1>
+        <p class="lede">Cada plan busca un rendimiento mensual y arriesga lo mismo que busca. Puede cambiarlo cuando quiera.</p>
+        <div class="planes">${CONFIG.perfiles.map(p=>planCard(p, p.id===O.perfil)).join("")}</div>
+        <p class="fine">Los objetivos son metas de la mesa, no rendimientos garantizados.</p>
+        <div class="foot"><button class="btn btn-bl" id="next">Continuar</button><button class="btn btn-gl" id="back">Atrás</button></div>`;
+      In.querySelectorAll("[data-plan]").forEach(b=>b.onclick=()=>{ O.perfil=b.dataset.plan; In.querySelectorAll("[data-plan]").forEach(x=>x.classList.toggle("on", x.dataset.plan===O.perfil)); });
     }
     if(O.paso===2){
       In.innerHTML = `${brand}${steps()}
-        <h1 class="h">¿Con cuánto <em>empieza?</em></h1>
-        <p class="lede">Desde $${CONFIG.minimo} dólares. Podrá depositar más o retirar cuando quiera.</p>
-        <label class="amount"><span>$</span><input id="oAmt" inputmode="decimal" value="${O.monto}"></label>
+        <h1>¿Con cuánto <span>empieza?</span></h1>
+        <p class="lede">Desde $${CONFIG.minimo} dólares. Deposite más o retire cuando quiera.</p>
+        <label class="amount"><span>$</span><input id="oAmt" inputmode="decimal"></label>
         <div class="quick">${[100,500,1000,5000,10000].map(v=>`<button data-q="${v}">${usd(v,0)}</button>`).join("")}</div>
         <div class="err" id="oErr"></div>
-        <div class="card" id="oNivel"></div>
-        <div class="foot"><button class="btn btn-k" id="next">Abrir mi cuenta demo</button><button class="btn btn-ol" id="back">Atrás</button>
-        <p class="fine" style="text-align:center">La demo simula ${CONFIG.mesesDemo} meses de resultados de ejemplo con el plan que eligió, algunos arriba y otros abajo del objetivo. No son resultados reales ni una promesa.</p></div>`;
-      const a = $("#oAmt");
-      const upd = () => { const v = parseFloat(a.value.replace(/[^0-9.]/g,""))||0; O.monto = v; const nv = nivelDe(v);
+        <div class="glass card" id="oProy"></div>
+        <div class="foot"><button class="btn btn-bl" id="next">Abrir mi cuenta demo</button><button class="btn btn-gl" id="back">Atrás</button>
+        <p class="fine" style="text-align:center">La demo simula ${CONFIG.mesesDemo} meses de ejemplo con su plan, algunos arriba y otros abajo del objetivo.</p></div>`;
+      const a = $("#oAmt"); a.value = O.monto;
+      const upd = () => { const v = parseFloat(a.value.replace(/[^0-9.]/g,""))||0; O.monto = v; const nv = nivelDe(v), p = perfilDe(O.perfil), neto = p.objetivo/100*(1-nv.fee/100);
         $("#oErr").textContent = v < CONFIG.minimo ? `El mínimo es $${CONFIG.minimo} dólares.` : "";
         $("#next").disabled = v < CONFIG.minimo;
-        $("#oNivel").innerHTML = `<div class="eyebrow">Su nivel al empezar</div><div class="big">${nv.nombre}</div><div class="sub">La mesa cobra ${nv.fee}% solo de la ganancia nueva. Sin cuota fija.</div>`; };
+        $("#oProy").innerHTML = `<div class="row"><span class="lbl">Plan ${p.nombre} · <span class="o">${nv.nombre}</span></span><span class="sub" style="margin:0">comisión <b class="o">${nv.fee}%</b></span></div>
+          <div class="row" style="margin-top:12px;align-items:flex-end"><div><div class="sub" style="margin:0">Si cumple el objetivo, al mes</div><div class="stat num g">+${usd(v*neto)}</div></div>
+          <div style="text-align:right"><div class="sub" style="margin:0">En un año</div><div class="stat num b">+${usd(v*(Math.pow(1+neto,12)-1),0)}</div></div></div>
+          <p class="fine">Ya descontada la comisión. Es una meta, no una garantía.</p>`; };
       a.oninput = upd; In.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{ a.value=b.dataset.q; upd(); }); upd();
     }
     const n = $("#next"), b = $("#back");
-    if(n) n.onclick = () => { if(O.paso<2){ O.paso++; paint(); window.scrollTo(0,0); } else { crearCuenta(O.nombre.trim(), O.perfil, O.monto); el.classList.remove("on"); render(); go("inicio"); toast("Cuenta demo abierta."); } };
+    if(n) n.onclick = () => { if(O.paso<2){ O.paso++; paint(); } else { crearCuenta(O.nombre.trim(), O.perfil, O.monto); el.classList.remove("on"); render(); go("inicio"); toast("Cuenta demo abierta"); } };
     if(b) b.onclick = () => { O.paso--; paint(); };
     el.scrollTop = 0;
   }
   paint();
 }
 
-// ---------- arranque ----------
+// ── arranque ──
+tick(); setInterval(tick, 20000);
 load();
 if(!S || !S.movs){ onboarding(); }
 else { render(); let t="inicio"; try{ t = sessionStorage.getItem("np-tab") || "inicio"; }catch(_){} go(TABS.some(x=>x.id===t)?t:"inicio"); }
-if(!S) go("inicio");
 </script>
 </body>
 </html>
