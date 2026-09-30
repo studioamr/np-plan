@@ -163,8 +163,8 @@ html.menu-on .menu-in a:nth-child(2){transition-delay:.04s}html.menu-on .menu-in
 @media(max-width:900px){.hs-arrows{top:auto}}
 
 /* portada · "Empiece con $100": la app real en una MacBook y un iPhone, como foto de producto */
-.cien-bg{background:radial-gradient(46% 58% at 68% 50%,#20242C 0%,#0C0E12 55%,#050607 100%)!important;inset:0!important}
-.hs-cien:after{background:linear-gradient(90deg,rgba(5,6,7,.9) 0%,rgba(5,6,7,.5) 36%,rgba(5,6,7,0) 58%)}
+.cien-bg{background:#051C2C url(img/ciudad.jpg) center/cover no-repeat!important}
+.hs-cien:after{background:linear-gradient(90deg,rgba(5,28,44,.94) 0%,rgba(5,28,44,.7) 42%,rgba(5,28,44,.35) 70%,rgba(5,28,44,.6) 100%)}
 .devs{position:absolute;z-index:0;right:max(215px,calc((100vw - 1280px)/2 + 215px));top:50%;transform:translateY(-44%);width:min(38vw,640px);aspect-ratio:1.5/1;pointer-events:none}
 .devs:after{content:"";position:absolute;left:4%;right:-6%;bottom:-11%;height:12%;background:radial-gradient(50% 50% at 50% 50%,rgba(0,0,0,.75),transparent 70%);filter:blur(6px);z-index:-1}
 .mac{position:absolute;left:0;top:0;width:86%}
@@ -184,7 +184,7 @@ html.menu-on .menu-in a:nth-child(2){transition-delay:.04s}html.menu-on .menu-in
 .ib1{left:-1.2%;top:17%;height:5%}.ib2{left:-1.2%;top:26%;height:9%}.ib3{left:-1.2%;top:37%;height:9%}.ib4{right:-1.2%;top:28%;height:14%}
 @media(max-width:900px){
   .devs{right:50%;transform:translateX(52%);top:100px;width:min(80vw,380px)}
-  .hs-cien:after{background:linear-gradient(0deg,rgba(5,6,7,.97) 0%,rgba(5,6,7,.9) 42%,rgba(5,6,7,0) 62%)}
+  .hs-cien:after{background:linear-gradient(0deg,rgba(5,28,44,.97) 0%,rgba(5,28,44,.85) 42%,rgba(5,28,44,.35) 70%,rgba(5,28,44,.5) 100%)}
 }
 @media(max-width:900px) and (max-height:700px){.devs{width:min(66vw,300px)}}
 .hs-cien .box{max-width:560px}
