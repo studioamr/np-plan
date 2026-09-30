@@ -1,6 +1,17 @@
 /* menú para celular y pantallas medianas: los enlaces del nav se esconden bajo 1240px, este botón los abre */
 (function(){
   const nav = document.querySelector("nav"), links = nav && nav.querySelector(".links");
+  if(!nav) return;
+  // barra sólida después de la portada y escondida al bajar; con scroll nativo, para que funcione aunque el
+  // teléfono tenga "reducir movimiento" o no cargue GSAP (antes vivía en anim.js y en esos casos no corría)
+  const hero = document.querySelector(".hero");
+  let last = scrollY;
+  const navUp = () => { const y = Math.max(0, scrollY);
+    const past = y > (hero ? hero.offsetHeight - 80 : 60);
+    nav.classList.toggle("solid", past);
+    if(!past || y < last - 2) nav.classList.remove("hide"); else if(y > last + 2) nav.classList.add("hide");
+    last = y; };
+  addEventListener("scroll", navUp, { passive:true }); addEventListener("load", navUp); addEventListener("resize", navUp); navUp();
   if(!links) return;
   const btn = document.createElement("button");
   btn.className = "menu-btn"; btn.type = "button"; btn.setAttribute("aria-label","Abrir menú"); btn.setAttribute("aria-expanded","false");

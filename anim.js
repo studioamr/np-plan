@@ -107,20 +107,7 @@
     }
   } else ready();
 
-  // ── 2. nav: sólida después del hero, se esconde al bajar ──
-  const nav = $("nav");
-  if(nav){
-    let last = 0;
-    const navUp = y => {
-      const past = y > (hero ? hero.offsetHeight - 80 : 60);
-      nav.classList.toggle("solid", past);
-      nav.classList.toggle("hide", past && y > last + 2);
-      if(y < last - 2 || !past) nav.classList.remove("hide");
-      last = y;
-    };
-    ScrollTrigger.create({ start: 0, end: "max", onUpdate: self => navUp(self.scroll()), onRefresh: self => navUp(self.scroll()) });
-    addEventListener("load", () => navUp(scrollY));
-  }
+  // ── 2. nav: vive en menu.js para que funcione también con "reducir movimiento" ──
 
   // ── 3. barra de progreso ──
   const bar = document.createElement("div"); bar.className = "progress"; document.body.appendChild(bar);
