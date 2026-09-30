@@ -229,43 +229,6 @@ body.full .onb-in{--top:calc(env(safe-area-inset-top) + 18px)}
 
 .toast{position:absolute;left:50%;top:64px;transform:translate(-50%,-20px);z-index:90;padding:10px 14px;border-radius:10px;font-size:13px;font-weight:500;background:#0E1013;color:#fff;border:1px solid #0E1013;opacity:0;transition:all .3s var(--ease);pointer-events:none;white-space:nowrap}
 .toast.on{opacity:1;transform:translate(-50%,0)}
-/* tarjeta digital de miembro · metal */
-.tc{position:relative;aspect-ratio:1.586;border-radius:14px;padding:7% 7.5%;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;font-family:"Inter",system-ui,sans-serif;isolation:isolate;container-type:inline-size;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(0,0,0,.25),0 1px 2px rgba(0,0,0,.2),0 18px 36px -18px rgba(0,0,0,.55)}
-.tc:before{content:"";position:absolute;inset:0;z-index:-1;background:var(--tex,none);opacity:var(--texo,1)}
-.tc-sheen{position:absolute;inset:-40% -60%;z-index:0;pointer-events:none;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,var(--sh,.22)) 50%,transparent 60%);transform:translateX(-18%);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
-.tc:hover .tc-sheen{transform:translateX(18%)}
-.tc-top,.tc-bot{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center}
-.tc-brand{display:flex;align-items:center;gap:1.8cqw;font-size:3.4cqw;font-weight:600;letter-spacing:.26em}
-.tc-brand svg{width:3.6cqw;height:3.6cqw}
-.tc-tier{font-size:2.9cqw;font-weight:500;letter-spacing:.3em;text-transform:uppercase;opacity:.75}
-.tc-chip{position:relative;z-index:1;display:flex;align-items:center;gap:3cqw}
-.tc-chip .chip{width:12.5cqw;height:9.4cqw}
-.tc-chip .nfc{width:5.2cqw;height:5.2cqw;opacity:.55}
-.tc-holder{font-size:3.7cqw;font-weight:500;letter-spacing:.14em;text-transform:uppercase;text-shadow:var(--emb)}
-.tc-num{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:3.4cqw;letter-spacing:.18em;opacity:.8;text-shadow:var(--emb)}
-.tc-mark{position:absolute;z-index:0;pointer-events:none}
-/* Barracuda · plata cepillada */
-.tc-barracuda{color:#2A2E34;background:linear-gradient(120deg,#F3F4F6 0%,#D4D8DE 38%,#EEF0F3 58%,#C3C8CF 100%);
-  --tex:repeating-linear-gradient(90deg,rgba(255,255,255,.18) 0 1px,rgba(0,0,0,.025) 1px 3px);--emb:0 1px 0 rgba(255,255,255,.8),0 -1px 0 rgba(0,0,0,.12);--sh:.55}
-/* Tiburón · titanio */
-.tc-tiburon{color:#E8EBEF;background:linear-gradient(120deg,#7A828C 0%,#4A5058 42%,#646B73 62%,#363B41 100%);
-  --tex:repeating-linear-gradient(90deg,rgba(255,255,255,.06) 0 1px,rgba(0,0,0,.05) 1px 3px);--emb:0 1px 0 rgba(0,0,0,.45),0 -1px 0 rgba(255,255,255,.12);--sh:.25}
-/* Orca · negro mate con silla blanca */
-.tc-orca{color:#EDEFF2;background:linear-gradient(135deg,#1A1C1F,#0B0C0E);--emb:0 1px 0 rgba(0,0,0,.6),0 -1px 0 rgba(255,255,255,.08);--sh:.12}
-.tc-orca .tc-mark{right:-6%;bottom:-18%;width:62%;height:70%}
-/* Megalodón · carbono y bronce */
-.tc-megalodon{color:#CDB88E;background:radial-gradient(130% 100% at 100% 100%,#221C12 0%,#0A0A0B 55%,#050506 100%);
-  --tex:repeating-linear-gradient(45deg,rgba(255,255,255,.025) 0 2px,transparent 2px 4px),repeating-linear-gradient(-45deg,rgba(0,0,0,.25) 0 2px,transparent 2px 4px);--emb:0 1px 0 rgba(0,0,0,.7),0 -1px 0 rgba(255,230,180,.08);--sh:.14}
-.tc-megalodon .tc-brand,.tc-megalodon .tc-num{color:#E6DCC6}
-.tc.lock{filter:grayscale(1) brightness(.95);opacity:.5}
-
-.tiers{display:grid;gap:10px}
-.tier-row{display:grid;grid-template-columns:92px 1fr;gap:14px;align-items:center}
-.tier-row .tc{border-radius:6px}
-.tier-row .tc-top,.tier-row .tc-bot,.tier-row .nfc{visibility:hidden}
-.tier-row b{font-size:14px;font-weight:600}
-.tier-row span{display:block;font-size:12px;color:var(--mut)}
 </style>
 </head>
 <body>
@@ -317,8 +280,8 @@ body.full .onb-in{--top:calc(env(safe-area-inset-top) + 18px)}
         </div>
 
         <div class="glass card">
-          <div class="row" style="margin-bottom:12px"><span class="lbl">Su tarjeta de miembro</span><button class="sub" data-go="cuenta" style="margin:0;font-weight:500">Ver niveles</button></div>
-          <div id="miTarjeta"></div>
+          <div class="row"><span class="lbl">Su nivel</span><span class="sub" id="nivelFee" style="margin:0"></span></div>
+          <div class="lvl o" id="nivelNom" style="margin-top:6px"></div>
           <div class="bar"><i id="nivelBar" style="background:var(--txt)"></i></div>
           <div class="sub" id="nivelSub"></div>
         </div>
@@ -367,15 +330,10 @@ body.full .onb-in{--top:calc(env(safe-area-inset-top) + 18px)}
           <ul class="kv">
             <li><span>Titular</span><b id="kvNombre"></b></li>
             <li><span>Cuenta abierta</span><b id="kvAlta"></b></li>
-            <li><span>Tarjeta</span><b id="kvNivel"></b></li>
+            <li><span>Nivel</span><b class="o" id="kvNivel"></b></li>
             <li><span>Comisión</span><b id="kvFee"></b></li>
           </ul>
           <button class="more" data-sheet="nombre">Editar nombre</button>
-        </div>
-        <div class="glass card">
-          <div class="lbl" style="margin-bottom:4px">Niveles de miembro</div>
-          <p class="sub" style="font-size:13px;margin:0 0 14px">Todos tienen la misma mesa, los mismos planes y la misma comisión. La tarjeta cambia con su saldo.</p>
-          <div class="tiers" id="tiers"></div>
         </div>
         <div class="glass card">
           <div class="lbl" style="margin-bottom:6px">Dónde vive su dinero</div>
@@ -411,17 +369,17 @@ const CONFIG = {
     { id:"mod", nombre:"Moderado", lema:"Crecimiento equilibrado", nivel:3, objetivo:3,   riesgo:3,   horizonte:"12+ meses" },
     { id:"agr", nombre:"Agresivo", lema:"Máximo potencial",        nivel:5, objetivo:6,   riesgo:6,   horizonte:"24+ meses" }
   ],
-  // la comisión es la MISMA para todos; los niveles (tarjetas) son solo estatus
-  fee: 25,
+  niveles: [
+    { id:"inicial", nombre:"Inicial", min:100,   fee:30 },
+    { id:"plus",    nombre:"Plus",    min:1000,  fee:25 },
+    { id:"privado", nombre:"Privado", min:10000, fee:20 }
+  ],
   mesesDemo: 6,
   KEY: "np-app-demo-v2"
 };
 
 function $(s){ return document.querySelector(s); }
 
-// ── modo muestra: ?muestra=1 abre directo un dashboard de ejemplo (lo usa la landing) ──
-const MUESTRA = new URLSearchParams(location.search).has("muestra");
-if(MUESTRA) CONFIG.KEY = "np-app-muestra-v1";
 // ── escenario ──
 const embebida = window.self !== window.top;
 const telefono = matchMedia("(max-width:600px), (pointer:coarse) and (max-width:900px)").matches;
@@ -433,31 +391,7 @@ const usd = (n, dec=2) => (n<0?"−":"") + "$" + Math.abs(n).toLocaleString("en-
 const pct = n => (n>=0?"+":"−") + Math.abs(n).toFixed(1) + "%";
 const sgn = n => n>=0 ? "+" : "";
 const perfilDe = id => CONFIG.perfiles.find(p=>p.id===id) || CONFIG.perfiles[1];
-// ── tarjeta digital de miembro (concepto: depredadores del océano; más saldo = más profundidad) ──
-const TIERS = [
-  { id:"barracuda", nombre:"Barracuda", min:100,   prof:"200 m",    lema:"El primer depredador" },
-  { id:"orca",      nombre:"Orca",      min:10000, prof:"3,000 m",  lema:"Estrategia de manada" },
-  { id:"megalodon", nombre:"Megalodón", min:50000, prof:"11,000 m", lema:"La leyenda del fondo" }
-];
-const CHIP = (oro) => `<svg class="chip" viewBox="0 0 40 30"><defs><linearGradient id="ch${oro?1:0}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${oro?"#E9D3A0":"#E4E6EA"}"/><stop offset=".5" stop-color="${oro?"#B8955A":"#A9AEB6"}"/><stop offset="1" stop-color="${oro?"#DCC089":"#D5D8DD"}"/></linearGradient></defs><rect x=".5" y=".5" width="39" height="29" rx="5" fill="url(#ch${oro?1:0})" stroke="rgba(0,0,0,.25)"/><path d="M0 10h12M0 20h12M28 10h12M28 20h12M12 0v30M28 0v30M12 15h16" stroke="rgba(0,0,0,.28)" stroke-width=".8" fill="none"/></svg>`;
-const NFC = `<svg class="nfc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M8 7c1.5 3 1.5 7 0 10M12 5c2.2 4.2 2.2 9.8 0 14M16 3c3 5.5 3 12.5 0 18"/></svg>`;
-const ORCA_MARK = `<svg class="tc-mark" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M8 100 C 20 55, 55 30, 100 22 L100 100 Z" fill="#F2F3F5" opacity=".94"/></svg>`;
-function tarjetaHTML(t, nombre, desde, numero, bloqueada){
-  const oro = t.id==="megalodon" || t.id==="orca";
-  const ult = (numero||"").replace(/\D/g,"").slice(-4) || "0000";
-  return `<div class="tc tc-${t.id} ${bloqueada?"lock":""}">
-    ${t.id==="orca" ? ORCA_MARK : ""}<div class="tc-sheen"></div>
-    <div class="tc-top"><span class="tc-brand"><svg><use href="#star"/></svg>NORTHPOINT</span><span class="tc-tier">${t.nombre}</span></div>
-    <div class="tc-chip">${CHIP(oro)}${NFC}</div>
-    <div class="tc-bot"><span class="tc-holder">${nombre || "Su nombre"}</span><span class="tc-num" ${t.id==="orca"?'style="color:#15171A;text-shadow:none"':""}>•••• ${ult}</span></div>
-  </div>`;
-}
-
-const nivelDe = s => TIERS.slice().reverse().find(q => s >= q.min) || TIERS[0];
-const neto = p => p.objetivo*(1-CONFIG.fee/100);
-const anualNeto = p => (Math.pow(1+neto(p)/100,12)*100-100).toFixed(0);
-const numMiembro = n => { let h=7; for(const c of n) h=(h*31+c.charCodeAt(0))%100000000; return "NP " + String(h).padStart(8,"0").replace(/(\d{4})(\d{4})/,"$1 $2"); };
-const desdeTxt = () => { const d=new Date(S.creado); return MESES[d.getMonth()].slice(0,3)+" "+d.getFullYear(); };
+const nivelDe = s => CONFIG.niveles.slice().reverse().find(q => s >= q.min) || CONFIG.niveles[0];
 const fechaTxt = d => `${d.getDate()} ${MESES[d.getMonth()].slice(0,3)}`;
 const anual = p => (Math.pow(1+p.objetivo/100,12)*100-100).toFixed(0);
 
@@ -469,8 +403,8 @@ function rng(seed){ let t = seed>>>0; return () => { t += 0x6D2B79F5; let r = Ma
 function normal(r){ let u=0,v=0; while(!u) u=r(); while(!v) v=r(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }
 
 // cuenta demo: depósito inicial hace N meses, un resultado por mes cerrado y el mes en curso repartido en operaciones
-function crearCuenta(nombre, perfil, monto, seed){
-  const p = perfilDe(perfil), r = rng(seed || (Date.now() % 1e9)), hoy = new Date();
+function crearCuenta(nombre, perfil, monto){
+  const p = perfilDe(perfil), r = rng(Date.now() % 1e9), hoy = new Date();
   const movs = []; let bal = monto, hwm = monto;
   const alta = new Date(hoy.getFullYear(), hoy.getMonth() - CONFIG.mesesDemo, 3, 10, 0);
   movs.push({ tipo:"dep", fecha:alta.toISOString(), monto, nota:"Depósito inicial" });
@@ -479,7 +413,7 @@ function crearCuenta(nombre, perfil, monto, seed){
     const ret = Math.max(p.objetivo*0.7 + p.riesgo*0.8*normal(r), -p.riesgo);
     const antes = bal; bal *= 1 + ret/100;
     movs.push({ tipo:"res", fecha:fin.toISOString(), monto: bal-antes, pct: ret, mes: fin.getMonth(), anio: fin.getFullYear() });
-    if(bal > hwm){ const f = (bal-hwm)*CONFIG.fee/100; bal -= f; hwm = bal; movs.push({ tipo:"fee", fecha:new Date(fin.getTime()+60000).toISOString(), monto:-f, nota:`${CONFIG.fee}% de la ganancia de ${MESES[fin.getMonth()]}` }); }
+    if(bal > hwm){ const f = (bal-hwm)*nivelDe(antes).fee/100; bal -= f; hwm = bal; movs.push({ tipo:"fee", fecha:new Date(fin.getTime()+60000).toISOString(), monto:-f, nota:`${nivelDe(antes).fee}% de la ganancia de ${MESES[fin.getMonth()]}` }); }
   }
   const frac = Math.min(1, hoy.getDate()/30);
   const retMes = Math.max(p.objetivo*0.7 + p.riesgo*0.6*normal(r), -p.riesgo) * frac;
@@ -524,7 +458,7 @@ function render(){
   $("#avatar").textContent = S.nombre.split(/\s+/).map(w=>w[0]).slice(0,2).join("").toUpperCase();
   $("#hello").textContent = `${h<12?"Buenos días":h<19?"Buenas tardes":"Buenas noches"}, ${S.nombre.split(" ")[0]}`;
   $("#saldoLbl").textContent = `Saldo · ${p.nombre}`;
-  $("#nivelTag").textContent = nv.nombre;
+  $("#nivelTag").textContent = `Nivel ${nv.nombre}`;
   const [ent, dec] = usd(bal).split(".");
   $("#saldoNum").innerHTML = `${ent}<small>.${dec}</small>`;
   const om = opsMes(), omp = om / baseMes() * 100;
@@ -540,10 +474,11 @@ function render(){
   $("#ganSub").innerHTML = `<span class="${gan>=0?"g":"r"}">${pct(dep? gan/dep*100 : 0)}</span> sobre lo depositado`;
   $("#depTotal").textContent = usd(dep);
   $("#depSub").textContent = `${S.movs.filter(m=>m.tipo==="dep").length} depósito(s)`;
-  const sig = TIERS[TIERS.indexOf(nv)+1];
-  $("#miTarjeta").innerHTML = tarjetaHTML(nv, S.nombre, desdeTxt(), numMiembro(S.nombre));
+  const sig = CONFIG.niveles[CONFIG.niveles.indexOf(nv)+1];
+  $("#nivelNom").textContent = nv.nombre;
+  $("#nivelFee").innerHTML = `Comisión <b class="o">${nv.fee}%</b>`;
   $("#nivelBar").style.width = sig ? Math.max(3, Math.min(100, (bal-nv.min)/(sig.min-nv.min)*100))+"%" : "100%";
-  $("#nivelSub").innerHTML = sig ? `Faltan <b>${usd(sig.min-bal,0)}</b> para la tarjeta ${sig.nombre}.` : "Tiene la tarjeta más alta de NORTHPOINT.";
+  $("#nivelSub").innerHTML = sig ? `Faltan <b class="o">${usd(sig.min-bal,0)}</b> para ${sig.nombre}, con ${sig.fee}% de comisión.` : "Nivel más alto, comisión más baja.";
   $("#ultimos").innerHTML = movList().slice(0,4).map(movLi).join("");
   renderMovs(); renderMesa(); renderCuenta();
 }
@@ -615,18 +550,15 @@ function renderMesa(){
 const planCard = (p, on, tag="button") => `<${tag} class="pl ${on?"on":""}" data-plan="${p.id}">
   <div class="top"><div><div class="nm">${p.nombre}</div><div class="lm">${p.lema}</div><div class="risk">${[1,2,3,4,5].map(i=>`<i class="${i<=p.nivel?"on":""}"></i>`).join("")}</div></div>
   <div class="obj g num">+${p.objetivo}%<small>AL MES</small></div></div>
-  <div class="tg"><div><span>Año bruto</span><b class="g num">+${anual(p)}%</b></div><div><span>Año neto</span><b class="g num">+${anualNeto(p)}%</b></div><div><span>Riesgo mes</span><b class="num">${p.riesgo}%</b></div></div>
+  <div class="tg"><div><span>Objetivo año</span><b class="g num">+${anual(p)}%</b></div><div><span>Riesgo mes</span><b class="num">${p.riesgo}%</b></div><div><span>Horizonte</span><b>${p.horizonte}</b></div></div>
 </${tag}>`;
 function renderCuenta(){
   const nv = nivelDe(saldo());
   $("#planActual").innerHTML = planCard(perfilDe(S.perfil), true, "div");
   $("#kvNombre").textContent = S.nombre;
   $("#kvAlta").textContent = fechaTxt(new Date(S.creado)) + " " + new Date(S.creado).getFullYear();
-  $("#kvNivel").textContent = `Tarjeta ${nv.nombre}`;
-  $("#kvFee").textContent = `${CONFIG.fee}% de ganancias nuevas`;
-  const bal = saldo();
-  $("#tiers").innerHTML = TIERS.map((t,i)=>{ const hasta = TIERS[i+1] ? usd(TIERS[i+1].min-1,0) : "o más"; const ok = bal >= t.min;
-    return `<div class="tier-row"><div>${tarjetaHTML(t, "", "", "", !ok)}</div><div><b>${t.nombre}${t===nv?' · <span style="display:inline;color:var(--green)">Su nivel</span>':''}</b><span>${usd(t.min,0)}${TIERS[i+1]?" – "+hasta:" o más"} · −${t.prof}</span></div></div>`; }).join("");
+  $("#kvNivel").textContent = nv.nombre;
+  $("#kvFee").textContent = `${nv.fee}% de ganancias nuevas`;
 }
 
 // ── sheets ──
@@ -674,8 +606,7 @@ function closeSheet(){ $("#scrim").classList.remove("on"); }
 $("#scrim").addEventListener("click", e => { if(e.target.id==="scrim") closeSheet(); });
 document.addEventListener("keydown", e => { if(e.key==="Escape") closeSheet(); });
 function toast(t){ const el=$("#toast"); el.textContent=t; el.classList.add("on"); clearTimeout(el._t); el._t=setTimeout(()=>el.classList.remove("on"), 2400); }
-const muestra = () => { crearCuenta("Mariana López", "mod", 12400, 20260929); render(); go("inicio"); };
-$("#reset").onclick = () => { try{ localStorage.removeItem(CONFIG.KEY); }catch(_){} S=null; MUESTRA ? muestra() : onboarding(); };
+$("#reset").onclick = () => { try{ localStorage.removeItem(CONFIG.KEY); }catch(_){} S=null; onboarding(); };
 
 // ── onboarding ──
 function onboarding(){
@@ -720,12 +651,12 @@ function onboarding(){
         <div class="foot"><button class="btn btn-bl" id="next">Abrir mi cuenta demo</button><button class="btn btn-gl" id="back">Atrás</button>
         <p class="fine" style="text-align:center">La demo simula ${CONFIG.mesesDemo} meses de ejemplo con su plan, algunos arriba y otros abajo del objetivo.</p></div>`;
       const a = $("#oAmt"); a.value = O.monto;
-      const upd = () => { const v = parseFloat(a.value.replace(/[^0-9.]/g,""))||0; O.monto = v; const nv = nivelDe(v), p = perfilDe(O.perfil), net = p.objetivo/100*(1-CONFIG.fee/100);
+      const upd = () => { const v = parseFloat(a.value.replace(/[^0-9.]/g,""))||0; O.monto = v; const nv = nivelDe(v), p = perfilDe(O.perfil), neto = p.objetivo/100*(1-nv.fee/100);
         $("#oErr").textContent = v < CONFIG.minimo ? `El mínimo es $${CONFIG.minimo} dólares.` : "";
         $("#next").disabled = v < CONFIG.minimo;
-        $("#oProy").innerHTML = `<div class="row"><span class="lbl">Plan ${p.nombre} · tarjeta ${nv.nombre}</span><span class="sub" style="margin:0">comisión ${CONFIG.fee}%</span></div>
-          <div class="row" style="margin-top:12px;align-items:flex-end"><div><div class="sub" style="margin:0">Si cumple el objetivo, al mes</div><div class="stat num g">+${usd(v*net)}</div></div>
-          <div style="text-align:right"><div class="sub" style="margin:0">En un año</div><div class="stat num b">+${usd(v*(Math.pow(1+net,12)-1),0)}</div></div></div>
+        $("#oProy").innerHTML = `<div class="row"><span class="lbl">Plan ${p.nombre} · <span class="o">${nv.nombre}</span></span><span class="sub" style="margin:0">comisión <b class="o">${nv.fee}%</b></span></div>
+          <div class="row" style="margin-top:12px;align-items:flex-end"><div><div class="sub" style="margin:0">Si cumple el objetivo, al mes</div><div class="stat num g">+${usd(v*neto)}</div></div>
+          <div style="text-align:right"><div class="sub" style="margin:0">En un año</div><div class="stat num b">+${usd(v*(Math.pow(1+neto,12)-1),0)}</div></div></div>
           <p class="fine">Ya descontada la comisión. Es una meta, no una garantía.</p>`; };
       a.oninput = upd; In.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{ a.value=b.dataset.q; upd(); }); upd();
     }
@@ -740,7 +671,7 @@ function onboarding(){
 // ── arranque ──
 tick(); setInterval(tick, 20000);
 load();
-if(!S || !S.movs){ MUESTRA ? muestra() : onboarding(); }
+if(!S || !S.movs){ onboarding(); }
 else { render(); let t="inicio"; try{ t = sessionStorage.getItem("np-tab") || "inicio"; }catch(_){} go(TABS.some(x=>x.id===t)?t:"inicio"); }
 </script>
 </body>

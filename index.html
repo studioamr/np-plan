@@ -7,11 +7,11 @@
 <meta name="description" content="Ahorre en la app de NORTHPOINT desde $100 USD. Su saldo trabaja con nuestra mesa de trading y cada mes usted ve el resultado, dentro del riesgo que decide asumir.">
 <meta property="og:title" content="NORTHPOINT · Su ahorro trabaja cada mes">
 <meta property="og:description" content="Ahorre desde $100 USD. Vea cada mes el resultado de su saldo. Retire cuando quiera.">
-<meta property="og:image" content="img/mar-estrella.jpg">
+<meta property="og:image" content="img/hero.jpg">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400&family=Public+Sans:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --navy:#051C2C; --navy2:#0B2A40; --blue:#2251FF; --blue-dk:#1F40E6; --cyan:#CCF2FF; --cyan-lt:#E6F8FF;
@@ -57,7 +57,7 @@ nav .links a:hover{opacity:1}
 @media(max-width:980px){nav .links a:not(.btn){display:none}}
 
 /* hero */
-.hero{position:relative;min-height:760px;background:var(--navy) url(img/mar-estrella.jpg) center/cover no-repeat;display:flex;align-items:flex-end;padding:0}
+.hero{position:relative;min-height:760px;background:var(--navy) url(img/hero.jpg) center right/cover no-repeat;display:flex;align-items:flex-end;padding:0}
 .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,28,44,.92) 0%,rgba(5,28,44,.55) 45%,rgba(5,28,44,0) 75%)}
 .hero .wrap{position:relative;width:100%;padding-bottom:96px}
 .hero .box{max-width:640px;color:#fff}
@@ -142,53 +142,6 @@ nav .links a:hover{opacity:1}
 .pq .fee+p{font-size:14px;opacity:.75;margin:4px 0 28px}
 @media(max-width:900px){.paquetes{grid-template-columns:1fr}}
 
-/* niveles: tarjetas de miembro */
-.tiers-l{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.tier-l{background:#fff;display:flex;flex-direction:column}
-.tier-l .pic{aspect-ratio:4/3;background:var(--navy) 72% center/cover no-repeat}
-.tier-l .body{padding:22px 22px 26px;display:flex;flex-direction:column;gap:14px;flex:1}
-.tier-l .body .tc{margin-top:-64px;box-shadow:0 14px 30px -14px rgba(5,28,44,.55)}
-.tier-l h3{font:400 26px/1.2 var(--serif);color:var(--ink)}
-.tier-l .rng{font-size:15px;color:var(--ink);font-weight:500}
-.tier-l .prof{font-size:14px;color:var(--muted)}
-.incluye{margin-top:40px;background:#fff;padding:28px 32px}
-.incluye ul{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:12px 32px;margin-top:16px}
-.incluye li{font-size:15px;padding-left:18px;position:relative}
-.incluye li:before{content:"";position:absolute;left:0;top:10px;width:8px;height:1px;background:var(--blue)}
-@media(max-width:900px){.tiers-l{grid-template-columns:1fr}}
-@media(max-width:600px){.tiers-l{grid-template-columns:1fr}.incluye ul{grid-template-columns:1fr}}
-/* tarjeta digital de miembro · metal */
-.tc{position:relative;aspect-ratio:1.586;border-radius:14px;padding:7% 7.5%;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;font-family:"Inter",system-ui,sans-serif;isolation:isolate;container-type:inline-size;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(0,0,0,.25),0 1px 2px rgba(0,0,0,.2),0 18px 36px -18px rgba(0,0,0,.55)}
-.tc:before{content:"";position:absolute;inset:0;z-index:-1;background:var(--tex,none);opacity:var(--texo,1)}
-.tc-sheen{position:absolute;inset:-40% -60%;z-index:0;pointer-events:none;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,var(--sh,.22)) 50%,transparent 60%);transform:translateX(-18%);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
-.tc:hover .tc-sheen{transform:translateX(18%)}
-.tc-top,.tc-bot{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center}
-.tc-brand{display:flex;align-items:center;gap:1.8cqw;font-size:3.4cqw;font-weight:600;letter-spacing:.26em}
-.tc-brand svg{width:3.6cqw;height:3.6cqw}
-.tc-tier{font-size:2.9cqw;font-weight:500;letter-spacing:.3em;text-transform:uppercase;opacity:.75}
-.tc-chip{position:relative;z-index:1;display:flex;align-items:center;gap:3cqw}
-.tc-chip .chip{width:12.5cqw;height:9.4cqw}
-.tc-chip .nfc{width:5.2cqw;height:5.2cqw;opacity:.55}
-.tc-holder{font-size:3.7cqw;font-weight:500;letter-spacing:.14em;text-transform:uppercase;text-shadow:var(--emb)}
-.tc-num{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:3.4cqw;letter-spacing:.18em;opacity:.8;text-shadow:var(--emb)}
-.tc-mark{position:absolute;z-index:0;pointer-events:none}
-/* Barracuda · plata cepillada */
-.tc-barracuda{color:#2A2E34;background:linear-gradient(120deg,#F3F4F6 0%,#D4D8DE 38%,#EEF0F3 58%,#C3C8CF 100%);
-  --tex:repeating-linear-gradient(90deg,rgba(255,255,255,.18) 0 1px,rgba(0,0,0,.025) 1px 3px);--emb:0 1px 0 rgba(255,255,255,.8),0 -1px 0 rgba(0,0,0,.12);--sh:.55}
-/* Tiburón · titanio */
-.tc-tiburon{color:#E8EBEF;background:linear-gradient(120deg,#7A828C 0%,#4A5058 42%,#646B73 62%,#363B41 100%);
-  --tex:repeating-linear-gradient(90deg,rgba(255,255,255,.06) 0 1px,rgba(0,0,0,.05) 1px 3px);--emb:0 1px 0 rgba(0,0,0,.45),0 -1px 0 rgba(255,255,255,.12);--sh:.25}
-/* Orca · negro mate con silla blanca */
-.tc-orca{color:#EDEFF2;background:linear-gradient(135deg,#1A1C1F,#0B0C0E);--emb:0 1px 0 rgba(0,0,0,.6),0 -1px 0 rgba(255,255,255,.08);--sh:.12}
-.tc-orca .tc-mark{right:-6%;bottom:-18%;width:62%;height:70%}
-/* Megalodón · carbono y bronce */
-.tc-megalodon{color:#CDB88E;background:radial-gradient(130% 100% at 100% 100%,#221C12 0%,#0A0A0B 55%,#050506 100%);
-  --tex:repeating-linear-gradient(45deg,rgba(255,255,255,.025) 0 2px,transparent 2px 4px),repeating-linear-gradient(-45deg,rgba(0,0,0,.25) 0 2px,transparent 2px 4px);--emb:0 1px 0 rgba(0,0,0,.7),0 -1px 0 rgba(255,230,180,.08);--sh:.14}
-.tc-megalodon .tc-brand,.tc-megalodon .tc-num{color:#E6DCC6}
-.tc.lock{filter:grayscale(1) brightness(.95);opacity:.5}
-
-
 /* simulador */
 .sim{display:grid;grid-template-columns:380px 1fr;gap:0;border:1px solid var(--line)}
 .ctrl{padding:36px;border-right:1px solid var(--line);display:grid;gap:32px;align-content:start;background:var(--cyan-lt)}
@@ -272,7 +225,6 @@ footer b{color:#fff;font-weight:500}
 </style>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute"><symbol id="star" viewBox="0 0 64 64"><path fill="currentColor" d="M32 1 37.2 26.8 63 32 37.2 37.2 32 63 26.8 37.2 1 32 26.8 26.8Z"/></symbol></svg>
 
 <nav><div class="wrap">
   <a class="mark" href="#">NORTHPOINT</a>
@@ -286,17 +238,17 @@ footer b{color:#fff;font-weight:500}
 <header class="hero"><div class="wrap"><div class="box">
   <div class="eyebrow">Bienvenido a</div>
   <h1 class="serif">NORTHPOINT</h1>
-  <p class="lead">Los mercados son un océano. Somos una mesa de trading profesional que se mueve en ellos con la disciplina de un depredador, para que <a class="ul" href="#como">el ahorro de personas de todo México trabaje</a> cada mes, dentro del riesgo que cada una decide asumir.</p>
+  <p class="lead">Somos una mesa de trading profesional que ayuda a personas de todo México a <a class="ul" href="#como">hacer que su ahorro trabaje</a>. Usted guarda su dinero, lo ve en la app y cada mes recibe el resultado de nuestra operación, dentro del riesgo que decide asumir.</p>
 </div></div></header>
 
 <section class="intro"><div class="wrap">
-  <p class="lead serif" style="font-weight:300">En el océano, lo que no se mueve se hunde. Creemos que un ahorro tampoco debería quedarse quieto. Por eso ponemos la disciplina de una mesa institucional al servicio de cualquier saldo, desde cien dólares, con un freno de protección en cada plan y transparencia total sobre cada operación.</p>
+  <p class="lead serif" style="font-weight:300">Creemos que un ahorro no debería quedarse quieto. Por eso ponemos la disciplina de una mesa institucional al servicio de cualquier saldo, desde cien dólares, con un freno de protección en cada plan y transparencia total sobre cada operación.</p>
   <p class="lead">Durante años, la gestión profesional estuvo reservada para grandes patrimonios. Nuestro compromiso es abrirla a quien quiera empezar, sin montos mínimos inalcanzables, sin plazos forzosos y sin letras pequeñas.</p>
 </div></section>
 
 <div class="anuncio"><div class="wrap">
-  <h3 class="serif">De Barracuda a Megalodón, desde $100 USD</h3>
-  <p>Abra su cuenta con cien dólares y reciba su tarjeta digital de miembro. Entre más profundo llegue su ahorro, más grande el depredador.</p>
+  <h3 class="serif">Presentamos la app de ahorro NORTHPOINT, desde $100 USD</h3>
+  <p>Abra su cuenta con cien dólares, siga su saldo en la app y vea cada mes lo que generó. Deposite más o retire cuando quiera.</p>
   <a class="btn line" href="app.html">Pruebe la app</a>
 </div></div>
 
@@ -326,14 +278,14 @@ footer b{color:#fff;font-weight:500}
     </ul>
   </div>
   <div>
-    <div class="iphone"><div class="iph-screen"><iframe src="app.html?muestra=1" title="Demo de la app NORTHPOINT" loading="lazy"></iframe><div class="iph-island"></div></div></div>
+    <div class="iphone"><div class="iph-screen"><iframe src="app.html" title="Demo de la app NORTHPOINT" loading="lazy"></iframe><div class="iph-island"></div></div></div>
     <span class="demo">Pruébela aquí: es la app real en modo demostración, sin dinero real. <a class="link" href="app.html" style="font-size:13px">Abrir en pantalla completa</a></span>
   </div>
 </div></section>
 
 <section class="mesa" id="mesa"><div class="wrap">
   <div class="feature">
-    <img src="img/mesa.jpg" alt="Oficinas de la mesa de trading NORTHPOINT" loading="lazy">
+    <img src="img/mesa.jpg" alt="Oficina de la mesa de trading al anochecer" loading="lazy">
     <div>
       <div class="eyebrow">La mesa</div>
       <h2 class="serif">Disciplina con propósito</h2>
@@ -350,8 +302,8 @@ footer b{color:#fff;font-weight:500}
 </div></section>
 
 <section class="banda"><div class="wrap">
-  <div class="eyebrow">Profundidad</div>
-  <h2 class="serif">La superficie es para quien espera. El patrimonio se construye en lo profundo, un mes a la vez.</h2>
+  <div class="eyebrow">Un ahorro que trabaja</div>
+  <h2 class="serif">Hacemos que el ahorro rinda, para que las personas progresen, los hogares prosperen y el patrimonio avance.</h2>
   <a class="btn line inv" href="#simulador">Vea cómo funcionaría</a>
 </div></section>
 
@@ -365,11 +317,10 @@ footer b{color:#fff;font-weight:500}
 
 <section class="paquetes-sec" id="niveles"><div class="wrap">
   <div class="sec-head">
-    <div><div class="eyebrow">Niveles de miembro</div><h2 class="serif" style="margin-top:12px">Entre más profundo, más grande el depredador.</h2></div>
-    <p>Todos los miembros tienen la misma mesa, los mismos planes y la misma comisión. Lo único que cambia con su saldo es su nivel y su tarjeta digital de miembro.</p>
+    <div><div class="eyebrow">Niveles</div><h2 class="serif" style="margin-top:12px">Empiece con cien dólares. Crezca a su ritmo.</h2></div>
+    <p>Su nivel depende de su saldo, en dólares estadounidenses, y cambia solo conforme su ahorro crece. Sin cuota fija: la mesa solo cobra una parte de la ganancia, y la parte es menor mientras mayor es el saldo.</p>
   </div>
-  <div class="tiers-l" id="nivelesGrid"></div>
-  <div class="incluye"><div class="eyebrow">Incluido en todos los niveles</div><ul id="incluye"></ul></div>
+  <div class="paquetes" id="nivelesGrid"></div>
 </div></section>
 
 <section id="simulador"><div class="wrap">
@@ -460,9 +411,12 @@ const CONFIG = {
     { id:"mod", nombre:"Moderado", lema:"Crecimiento equilibrado", nivel:3, objetivo:3,   riesgo:3,   horizonte:"12 meses o más", freq:"3 a 4 sesiones por semana", ideal:"Para que su ahorro crezca a buen ritmo sin sobresaltos grandes." },
     { id:"agr", nombre:"Agresivo", lema:"Máximo potencial",        nivel:5, objetivo:6,   riesgo:6,   horizonte:"24 meses o más", freq:"Todas las sesiones",        ideal:"Para pensar a largo plazo y buscar el mayor crecimiento." }
   ],
-  // la comisión es la MISMA para todos; los niveles (tarjetas) son solo estatus
-  fee: 25,
-  incluye: ["La misma mesa de traders","Los tres planes: Básico, Moderado y Agresivo","25% de la ganancia nueva, sin cuota fija","App con saldo y cada operación","Depósitos y retiros cuando quiera","Atención por WhatsApp"],
+  // nivel por SALDO (no por aportación): cambia solo cuando el saldo cruza el mínimo
+  niveles: [
+    { id:"inicial", nombre:"Inicial", min:100,   max:999,  fee:30, items:["App con saldo y cada operación","Resultado mensual","Depósitos y retiros cuando quiera","Atención por WhatsApp"] },
+    { id:"plus",    nombre:"Plus",    min:1000,  max:9999, fee:25, dest:true, items:["Todo lo del nivel Inicial","Revisión trimestral con su trader","Cambio de plan cada mes"] },
+    { id:"privado", nombre:"Privado", min:10000, max:null, fee:20, items:["Todo lo del nivel Plus","Trader asignado","Visita a la oficina de la mesa"] }
+  ],
   saldos: [100,200,300,500,750,1000,1500,2000,3000,5000,7500,10000,15000,20000,30000,50000,75000,100000],
   perspectivas: [
     { tipo:"Nota de la mesa", titulo:"Por qué no prometemos un rendimiento fijo", fecha:"29 de septiembre de 2026",
@@ -488,8 +442,7 @@ $("#perfilesGrid").innerHTML = CONFIG.perfiles.map(p => `
     <div class="riesgo" aria-label="Nivel de riesgo ${p.nivel} de 5">${[1,2,3,4,5].map(i=>`<i class="${i<=p.nivel?"on":""}"></i>`).join("")}<span>Riesgo ${p.nivel} de 5</span></div>
     <p class="ideal">${p.ideal}</p>
     <dl>
-      <div><dt>Objetivo al año</dt><dd>+${(Math.pow(1+p.objetivo/100,12)*100-100).toFixed(0)}% bruto</dd></div>
-      <div><dt>Neto de comisión</dt><dd>+${(Math.pow(1+p.objetivo/100*(1-CONFIG.fee/100),12)*100-100).toFixed(0)}% al año</dd></div>
+      <div><dt>Objetivo al año</dt><dd>+${(Math.pow(1+p.objetivo/100,12)*100-100).toFixed(0)}% compuesto</dd></div>
       <div><dt>Riesgo mensual</dt><dd>${p.riesgo}%</dd></div>
       <div><dt>Horizonte sugerido</dt><dd>${p.horizonte}</dd></div>
       <div><dt>Actividad de la mesa</dt><dd>${p.freq}</dd></div>
@@ -498,39 +451,17 @@ $("#perfilesGrid").innerHTML = CONFIG.perfiles.map(p => `
   </div>`).join("");
 $("#seg").innerHTML = CONFIG.perfiles.map(p => `<button type="button" data-id="${p.id}">${p.nombre}</button>`).join("");
 
-// ── tarjeta digital de miembro (concepto: depredadores del océano; más saldo = más profundidad) ──
-const TIERS = [
-  { id:"barracuda", nombre:"Barracuda", min:100,   prof:"200 m",    lema:"El primer depredador" },
-  { id:"orca",      nombre:"Orca",      min:10000, prof:"3,000 m",  lema:"Estrategia de manada" },
-  { id:"megalodon", nombre:"Megalodón", min:50000, prof:"11,000 m", lema:"La leyenda del fondo" }
-];
-const CHIP = (oro) => `<svg class="chip" viewBox="0 0 40 30"><defs><linearGradient id="ch${oro?1:0}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${oro?"#E9D3A0":"#E4E6EA"}"/><stop offset=".5" stop-color="${oro?"#B8955A":"#A9AEB6"}"/><stop offset="1" stop-color="${oro?"#DCC089":"#D5D8DD"}"/></linearGradient></defs><rect x=".5" y=".5" width="39" height="29" rx="5" fill="url(#ch${oro?1:0})" stroke="rgba(0,0,0,.25)"/><path d="M0 10h12M0 20h12M28 10h12M28 20h12M12 0v30M28 0v30M12 15h16" stroke="rgba(0,0,0,.28)" stroke-width=".8" fill="none"/></svg>`;
-const NFC = `<svg class="nfc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M8 7c1.5 3 1.5 7 0 10M12 5c2.2 4.2 2.2 9.8 0 14M16 3c3 5.5 3 12.5 0 18"/></svg>`;
-const ORCA_MARK = `<svg class="tc-mark" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M8 100 C 20 55, 55 30, 100 22 L100 100 Z" fill="#F2F3F5" opacity=".94"/></svg>`;
-function tarjetaHTML(t, nombre, desde, numero, bloqueada){
-  const oro = t.id==="megalodon" || t.id==="orca";
-  const ult = (numero||"").replace(/\D/g,"").slice(-4) || "0000";
-  return `<div class="tc tc-${t.id} ${bloqueada?"lock":""}">
-    ${t.id==="orca" ? ORCA_MARK : ""}<div class="tc-sheen"></div>
-    <div class="tc-top"><span class="tc-brand"><svg><use href="#star"/></svg>NORTHPOINT</span><span class="tc-tier">${t.nombre}</span></div>
-    <div class="tc-chip">${CHIP(oro)}${NFC}</div>
-    <div class="tc-bot"><span class="tc-holder">${nombre || "Su nombre"}</span><span class="tc-num" ${t.id==="orca"?'style="color:#15171A;text-shadow:none"':""}>•••• ${ult}</span></div>
-  </div>`;
-}
-
-const IMG = { barracuda:"img/barracuda.jpg", orca:"img/orca.jpg", megalodon:"img/tiburon-hero.jpg" };
-CONFIG.niveles = TIERS.map((t,i)=>({ ...t, max: TIERS[i+1] ? TIERS[i+1].min-1 : null }));
 const rango = q => usd(q.min) + (q.max ? " – " + usd(q.max) : " o más");
 $("#nivelesGrid").innerHTML = CONFIG.niveles.map(q => `
-  <div class="tier-l">
-    <div class="pic" style="background-image:url(${IMG[q.id]})"></div>
-    <div class="body">
-      ${tarjetaHTML(q, "Su nombre", "", "4821", false)}
-      <h3>${q.nombre}</h3>
-      <div class="rng">${rango(q)} de saldo</div>
-    </div>
+  <div class="pq ${q.dest?"dest":""}">
+    <div class="eyebrow">${q.dest?"El nivel más elegido":"Nivel"}</div>
+    <h3 class="serif" style="margin-top:8px">${q.nombre}</h3>
+    <div class="rng">${rango(q)}</div><div class="cap">de saldo</div>
+    <ul>${q.items.map(i=>`<li>${i}</li>`).join("")}</ul>
+    <div class="fee">${q.fee}% de la ganancia</div>
+    <p>Sin cuota fija. Solo sobre nuevos máximos de su saldo.</p>
+    <a class="btn ${q.dest?"":"line"}" href="#registro" data-nv="${q.id}" style="align-self:flex-start">Empezar en ${q.nombre}</a>
   </div>`).join("");
-$("#incluye").innerHTML = CONFIG.incluye.map(i=>`<li>${i}</li>`).join("");
 
 $("#cards").innerHTML = CONFIG.perspectivas.map(c => `
   <article class="card">
@@ -548,7 +479,7 @@ document.querySelectorAll(".card").forEach(c => c.addEventListener("click", () =
 $("#oficina").innerHTML = CONFIG.oficina || "Dirección por anunciar";
 $("#contactoTxt").innerHTML = [CONFIG.whatsapp && `WhatsApp: +${CONFIG.whatsapp}`, CONFIG.email].filter(Boolean).join("<br>") || "Por medio del registro de esta página";
 
-$("#fNivel").innerHTML = CONFIG.niveles.map(q=>`<option value="${q.id}">${rango(q)} · ${q.nombre}</option>`).join("");
+$("#fNivel").innerHTML = CONFIG.niveles.map(q=>`<option value="${q.id}">${rango(q)} · nivel ${q.nombre}</option>`).join("");
 $("#fPerfil").innerHTML = CONFIG.perfiles.map(p=>`<option value="${p.id}">${p.nombre} · objetivo +${p.objetivo}% al mes</option>`).join("");
 document.querySelectorAll("[data-nv]").forEach(a => a.addEventListener("click", () => $("#fNivel").value = a.dataset.nv));
 
@@ -574,7 +505,7 @@ function sim(){
   for(let m=1; m<=meses; m++){
     const antes = bal;
     bal *= 1 + rEf/100;
-    if(bal > hwm){ const f = (bal-hwm)*CONFIG.fee/100; fees += f; bal -= f; hwm = bal; }
+    if(bal > hwm){ const f = (bal-hwm)*nivelDe(antes).fee/100; fees += f; bal -= f; hwm = bal; }
     serie.push([bal-antes, bal]);
   }
   const gan = bal - dep, nv = nivelDe(dep);
@@ -592,7 +523,7 @@ function sim(){
     : r === p.objetivo
     ? `Si la mesa cumple el objetivo del plan ${p.nombre} (+${p.objetivo}% al mes), el primer mes su saldo crecería ${usd(mes1)} ya descontada la comisión. `
     : `Con este supuesto, el primer mes su saldo cambiaría ${mes1>=0?"+":""}${usd(mes1)} ya descontada la comisión. `)
-    + `Tarjeta al empezar: <b>${nv.nombre}</b>. Comisión de ${CONFIG.fee}% de la ganancia, igual para todos. El objetivo es una meta, no un rendimiento garantizado.`;
+    + `Nivel al empezar: <b>${nv.nombre}</b>, ${nv.fee}% de la ganancia. El objetivo es una meta, no un rendimiento garantizado.`;
   draw(serie, dep);
 }
 
@@ -633,7 +564,6 @@ $("#form").addEventListener("submit", e => {
   }
   $("#ok").style.display = "block"; e.target.reset(); setPerfil(state.perfil);
 });
-
 </script>
 </body>
 </html>
