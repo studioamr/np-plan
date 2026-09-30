@@ -70,13 +70,15 @@
   const nav = $("nav");
   if(nav){
     let last = 0;
-    ScrollTrigger.create({ start: 0, end: "max", onUpdate: self => {
-      const y = self.scroll(), past = y > (hero ? hero.offsetHeight - 80 : 60);
+    const navUp = y => {
+      const past = y > (hero ? hero.offsetHeight - 80 : 60);
       nav.classList.toggle("solid", past);
       nav.classList.toggle("hide", past && y > last + 2);
       if(y < last - 2 || !past) nav.classList.remove("hide");
       last = y;
-    }});
+    };
+    ScrollTrigger.create({ start: 0, end: "max", onUpdate: self => navUp(self.scroll()), onRefresh: self => navUp(self.scroll()) });
+    addEventListener("load", () => navUp(scrollY));
   }
 
   // ── 3. barra de progreso ──
