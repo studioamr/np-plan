@@ -9,10 +9,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="base.css?v=1790811370">
-<link rel="stylesheet" href="anim.css?v=1790811370">
+<link rel="stylesheet" href="base.css?v=1790812126">
+<link rel="stylesheet" href="anim.css?v=1790812126">
 <!--
-  MEMO · 30-sep-2026 · lector propio de los memos de mercado con el diseño del Coffee Morning.
+  MEMO · 30-sep-2026 · lector propio de los memos de mercado con el diseño del Mirador.
   memo.html?m=<archivo sin .html>. Toma el contenido del memo publicado en northpointcapital.io/memos/ (en vivo)
   o de la copia guardada en data/memos.json, y lo muestra aquí; no manda al sitio anterior.
 -->
@@ -112,9 +112,9 @@ nav{background:#0B0B0C!important}
 </head>
 <body>
 <nav><div class="wrap">
-  <a class="mark" href="index.html">NORTHPOINT<small>Coffee Morning</small></a>
+  <a class="mark" href="index.html">NORTHPOINT<small>Mirador</small></a>
   <div class="links">
-    <a href="cafecito.html">Cafecito</a><a href="overview.html">Coffee Morning</a><a href="overview.html#memos">Memos</a><a href="equipo.html">Equipo</a><a href="index.html">NORTHPOINT</a>
+    <a href="overview.html">Mirador</a><a href="overview.html#memos">Memos</a><a href="equipo.html">Equipo</a><a href="index.html">NORTHPOINT</a>
     <a class="btn" href="overview.html#boletin">Suscribirme</a>
   </div>
 </div></nav>
@@ -124,9 +124,9 @@ nav{background:#0B0B0C!important}
 <section class="mas"><div class="wrap"><h3>Más memos</h3><div class="mas-g" id="mas"></div></div></section>
 
 <footer><div class="wrap">
-  <span class="mark">NORTHPOINT<small>Coffee Morning</small></span>
+  <span class="mark">NORTHPOINT<small>Mirador</small></span>
   <p>Los memos <b>no son asesoría financiera</b>. Son un marco de análisis técnico para la toma de decisiones propias. Operar futuros implica apalancamiento y puede perder todo su capital.</p>
-  <p><a href="overview.html" style="color:#fff">← Volver al Coffee Morning</a> · <a href="index.html" style="color:#fff">NORTHPOINT</a> · <a href="privacidad.html" style="color:#fff">Aviso de privacidad</a></p>
+  <p><a href="overview.html" style="color:#fff">← Volver al Mirador</a> · <a href="index.html" style="color:#fff">NORTHPOINT</a> · <a href="privacidad.html" style="color:#fff">Aviso de privacidad</a></p>
 </div></footer>
 <div class="lb" id="lb"><img alt=""></div>
 
@@ -176,6 +176,6 @@ function mas(){ const o = LISTA.filter(x => x.slug !== slug);
   catch(_){ const s = LISTA.find(x => x.slug === slug); if(s && s.main) pinta(s.main, url); else $("#art").innerHTML = `<div class="estado">No pudimos cargar el memo en este momento. Intente de nuevo en unos minutos.</div>`; }
 })();
 </script>
-<script src="menu.js?v=1790811370"></script>
+<script src="menu.js?v=1790812126"></script>
 </body>
 </html>
