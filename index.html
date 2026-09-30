@@ -190,8 +190,8 @@ canvas{width:100%;height:300px;display:block}
 
 /* play del simulador */
 .sim-play{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:18px}
-.sim-play .btn{display:inline-flex;align-items:center;gap:10px}
-.sim-play .pi{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.2);font-size:10px}
+#simPlay{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%}
+#simPlay .pi{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.2);font-size:10px}
 #simMes{font:500 14px ui-monospace,"SF Mono",Menlo,monospace;color:var(--muted);font-variant-numeric:tabular-nums}
 #simMes b{color:var(--blue);font-weight:500}
 @keyframes playpulse{0%{box-shadow:0 0 0 0 rgba(34,81,255,.45)}70%{box-shadow:0 0 0 14px rgba(34,81,255,0)}100%{box-shadow:0 0 0 0 rgba(34,81,255,0)}}
@@ -301,11 +301,12 @@ footer b{color:#fff;font-weight:500}
       <div class="team-cards">
         <figure><img src="img/andre.jpg" alt="André Macouzet Ruiz"><figcaption><b>André Macouzet Ruiz</b><span>Cofundador · Mercados, datos y tecnología</span></figcaption></figure>
         <figure><img src="img/goyo.jpg" alt="Gregorio Sánchez Calderón"><figcaption><b>Gregorio Sánchez Calderón</b><span>Cofundador · Inversiones y protección patrimonial</span></figcaption></figure>
+        <figure><img src="img/pablo.jpg" alt="Pablo Ochoa"><figcaption><b>Pablo Ochoa</b><span>Socio fundador · Trader de Micro Nasdaq</span></figcaption></figure>
       </div>
       <div class="wrap"><div class="box">
       <div class="hs-k"><span>El equipo</span></div>
       <h2 class="serif">Las personas detrás de la mesa.</h2>
-      <p class="lead">André opera futuros del Nasdaq con un proceso sistemático y construyó el Terminal donde se registra cada operación y se mide el riesgo en tiempo real. Gregorio, abogado patrimonial, diseña las carteras de largo plazo y la protección del patrimonio.</p>
+      <p class="lead">André opera futuros del Nasdaq con un proceso sistemático y construyó el Terminal donde se registra cada operación y se mide el riesgo en tiempo real. Gregorio, abogado patrimonial, diseña las carteras de largo plazo. Pablo opera Micro Nasdaq en la sesión de Nueva York con las mismas reglas de la mesa.</p>
       <a class="btn line inv" href="https://northpointcapital.io/socios.html" target="_blank" rel="noopener">Conocer al equipo</a>
     </div></div></div>
     <div class="hs" data-i="2"><div class="hs-bg" style="background-image:url(img/privado.jpg);background-position:center"></div><div class="wrap"><div class="box">
@@ -444,6 +445,7 @@ footer b{color:#fff;font-weight:500}
       <label><div class="row"><span>Tiempo</span><b id="vMeses"></b></div><input id="meses" type="range" min="6" max="60" step="6" value="24"></label>
       <label><div class="row"><span>Rendimiento mensual supuesto</span><b id="vRend"></b></div><input id="rend" type="range" min="-3" max="4" step="0.25" value="1"></label>
       <div><div class="row"><span>Plan</span></div><div class="seg" id="seg"></div></div>
+      <button type="button" class="btn" id="simPlay"><span class="pi">▶</span> Reproducir</button>
     </div>
     <div class="out">
       <div class="kpis">
@@ -452,7 +454,7 @@ footer b{color:#fff;font-weight:500}
         <div><span>Ganancia neta</span><b id="kGan"></b></div>
         <div><span>Comisión de la mesa</span><b id="kFee"></b></div>
       </div>
-      <div class="sim-play"><button type="button" class="btn" id="simPlay"><span class="pi">▶</span> Ver cómo crece mes a mes</button><span id="simMes"></span></div>
+      <div class="sim-play"><span id="simMes"></span></div>
       <canvas id="chart"></canvas>
       <div class="legend"><span><i style="background:#D0D0D0"></i>Resultado neto de cada mes</span><span><i style="background:var(--blue)"></i>Saldo estimado</span></div>
       <p class="nota" id="nota"></p>
@@ -641,7 +643,7 @@ function sim(){
 }
 
 // ▶ reproduce el crecimiento mes a mes
-function setPlayBtn(on){ const b = $("#simPlay"); b.classList.toggle("playing", on); b.innerHTML = on ? '<span class="pi">❚❚</span> Pausar' : '<span class="pi">▶</span> Ver cómo crece mes a mes'; }
+function setPlayBtn(on){ const b = $("#simPlay"); b.classList.toggle("playing", on); b.innerHTML = on ? '<span class="pi">❚❚</span> Pausar' : '<span class="pi">▶</span> Reproducir'; }
 function playSim(){
   if(window.__simAnim){ cancelAnimationFrame(window.__simAnim); window.__simAnim = null; setPlayBtn(false); return; }
   const { serie, feeCum, dep } = sim.last, N = serie.length, dur = Math.min(6500, Math.max(2800, N * 110));
