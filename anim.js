@@ -53,7 +53,7 @@
   let heroEnd = 0;
   if(hero && $(".hs", hero)){
     const slides = $$(".hs", hero), idx = $$(".hs-index button", hero), first = slides[0];
-    const chars = split($("h1", first), "ch"), lw = split($(".lead", first));
+    const h1 = $("h1", first), chars = h1 ? split(h1, "ch") : [$("h2", first)], lw = split($(".lead", first));   // si la primera diapositiva no es la de NORTHPOINT, su título entra completo
     ready();
     gsap.timeline({ defaults:{ ease: EASE } })
       .from($(".hs-bg", first), { scale: 1.18, duration: 2.4, ease: "power2.out" }, 0)
