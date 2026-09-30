@@ -3,278 +3,289 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Overview · NORTHPOINT</title>
-<meta name="description" content="NORTHPOINT: quiénes somos, nuestro equipo y nuestras ideas. Memos de la mesa, blog y artículos sobre ahorro, riesgo, mercados e inteligencia artificial.">
-<meta property="og:title" content="NORTHPOINT · Overview">
-<meta property="og:description" content="Memos, blog y artículos de la mesa. Conozca al equipo detrás de NORTHPOINT.">
-<meta property="og:image" content="img/ciudad.jpg">
+<title>NORTHPOINT Ideas · Memos, blog y artículos</title>
+<meta name="description" content="NORTHPOINT Ideas: la revista de la mesa. Memos, blog y artículos sobre mercados, ahorro, patrimonio e inteligencia artificial, y el equipo que los escribe.">
+<meta property="og:title" content="NORTHPOINT Ideas">
+<meta property="og:description" content="La revista de la mesa: memos, blog y artículos del equipo de NORTHPOINT.">
+<meta property="og:image" content="img/academia.jpg">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="base.css?v=1790786574">
-<link rel="stylesheet" href="anim.css?v=1790786574">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css?v=1790786907">
+<link rel="stylesheet" href="anim.css?v=1790786907">
 <script>document.documentElement.classList.add("js-anim");setTimeout(function(){document.documentElement.classList.add("anim-ready")},3500)</script>
 <!--
-  OVERVIEW · 30-sep-2026 · misma estructura que mckinsey.com/mx/overview:
-  bienvenida · boletín · a la vanguardia · nuestro equipo · banda · carreras · ideas destacadas · impacto en la sociedad · oficinas.
-  Los textos de memos, blog y artículos son borradores escritos para el sitio: revisarlos con cada autor antes de difundir.
+  OVERVIEW v2 · 30-sep-2026 · "NORTHPOINT Ideas", formato revista (identidad propia, distinta a la landing):
+  cabecera editorial · nota de portada a página completa · lo más reciente en retícula asimétrica · memos · IA y datos ·
+  equipo en retratos grandes · boletín · lector de artículo con portada.
+  Los textos son BORRADORES escritos para el sitio y atribuidos por especialidad: revisarlos con cada autor.
 -->
 <style>
-.ov-hero{position:relative;min-height:92vh;display:grid;grid-template-columns:1.05fr 1fr;background:linear-gradient(180deg,#EAF4FF 0%,#D6EAFF 100%);overflow:hidden}
-.ov-hero .ph{position:relative;background:#0B2A40 center/cover no-repeat url(img/ciudad.jpg);clip-path:polygon(0 0,100% 0,78% 100%,0 100%)}
-.ov-hero .tx{display:flex;flex-direction:column;justify-content:flex-end;padding:140px max(40px,calc((100vw - 1280px)/2 + 40px)) 90px 40px}
-.ov-hero small{font:400 16px var(--sans);color:var(--ink)}
-.ov-hero h1{font:300 clamp(48px,6.4vw,92px)/1 var(--serif);color:var(--ink);margin:10px 0 26px;letter-spacing:-.02em}
-.ov-hero p{font-size:19px;max-width:560px}
-.ov-hero p a{color:var(--blue)}
-nav{background:rgba(5,28,44,.96)!important}
-.news{background:var(--navy);color:#fff;padding:56px 0}
-.news .wrap{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
-.news h3{font:300 30px/1.2 var(--serif);color:#fff}
-.news p{opacity:.8;margin-top:8px}
-.news form{display:flex;gap:0;min-width:min(440px,100%)}
-.news input{flex:1;min-width:0;border:1px solid rgba(255,255,255,.4);border-right:0;background:transparent;color:#fff;padding:0 16px;height:52px;font:300 16px var(--sans)}
-.news input::placeholder{color:rgba(255,255,255,.6)}
-.news button{height:52px;border:0;background:var(--blue);color:#fff;padding:0 22px;font:400 15px var(--sans);cursor:pointer}
-.news .ok{display:none;color:#9FE3BD;font-size:14px;margin-top:10px}
+:root{--paper:#F5F2EC;--ink2:#111;--rule:#1112;--acc:#2251FF}
+body{background:var(--paper)}
+nav{background:#0B0B0C!important}
+.kicker{font:600 11.5px var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--acc)}
+.meta{font:400 13px var(--sans);color:#666}
 
-.vang{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center}
-.vang .img{aspect-ratio:16/11;background:var(--navy) center/cover no-repeat url(img/mesa.jpg)}
-.vang .lbl{font:500 13px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
-.vang h2{margin:14px 0 18px}
-.vang ul{list-style:none;margin-top:22px;border-top:1px solid var(--line)}
-.vang li{padding:14px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:160px 1fr;gap:16px;font-size:15px}
-.vang li b{color:var(--ink);font-weight:500}
+.mast{padding:118px 0 0;background:var(--paper)}
+.mast-top{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid var(--ink2);padding-bottom:14px;gap:20px;flex-wrap:wrap}
+.mast h1{font:500 clamp(54px,9vw,132px)/.9 "Playfair Display",serif;letter-spacing:-.03em;color:var(--ink2)}
+.mast h1 i{font-style:italic;font-weight:400;color:var(--acc)}
+.mast .ed{text-align:right;font:400 13px var(--sans);color:#555;line-height:1.6}
+.mast .ed b{display:block;font:600 11px var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--ink2)}
+.secs{display:flex;gap:28px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--rule);padding:14px 0}
+.secs::-webkit-scrollbar{display:none}
+.secs button{flex:0 0 auto;border:0;background:none;font:500 13px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:#555;cursor:pointer;padding:4px 0;border-bottom:2px solid transparent}
+.secs button.on,.secs button:hover{color:var(--ink2);border-bottom-color:var(--acc)}
 
-.people{background:var(--gray)}
-.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.pc{background:#fff;text-decoration:none;color:inherit;display:block;transition:translate .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
-.pc:hover{translate:0 -6px;box-shadow:0 26px 40px -26px rgba(5,28,44,.4)}
-.pc .ph{aspect-ratio:1/1;background:var(--navy);overflow:hidden}
-.pc img{width:100%;height:100%;object-fit:cover;object-position:center 22%;filter:grayscale(1);display:block}
-.pc .bd{padding:20px 20px 24px}
-.pc h4{font:400 22px var(--serif);color:var(--blue)}
-.pc .rl{font:500 14px var(--sans);color:var(--ink);margin:6px 0 10px}
-.pc p{font-size:14px}
-.more{display:inline-block;margin-top:34px;color:var(--blue);text-decoration:none;font-size:16px}
-.more:after{content:" ›"}
+.cover{position:relative;margin-top:34px;min-height:78vh;display:flex;align-items:flex-end;color:#fff;cursor:pointer;overflow:hidden;background:#111}
+.cover .bg{position:absolute;inset:0;background:center/cover no-repeat;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.cover:hover .bg{transform:scale(1.03)}
+.cover:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.88) 0%,rgba(0,0,0,.45) 45%,rgba(0,0,0,.05) 80%)}
+.cover .in{position:relative;z-index:2;padding:0 44px 64px;max-width:960px}
+.cover .kicker{color:#9FB7FF}
+.cover h2{font:400 clamp(36px,5.2vw,76px)/1.02 "Playfair Display",serif;color:#fff;margin:14px 0 18px;letter-spacing:-.02em}
+.cover p{font:300 20px/1.5 "Source Serif 4",serif;opacity:.9;max-width:680px}
+.byline{display:flex;align-items:center;gap:12px;margin-top:22px;font:400 14px var(--sans)}
+.byline img{width:42px;height:42px;border-radius:50%;object-fit:cover;object-position:center 20%;filter:grayscale(1);border:2px solid rgba(255,255,255,.8);background:#fff}
 
-.band{position:relative;background:var(--navy) center/cover no-repeat url(img/estratos.jpg);color:#fff;padding:140px 0}
-.band:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,28,44,.92),rgba(5,28,44,.5))}
-.band .wrap{position:relative}
-.band h2{color:#fff;max-width:720px}
-.band p{max-width:560px;margin:16px 0 26px;opacity:.9;font-size:18px}
+.latest{padding:70px 0 40px}
+.hrow{display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid var(--ink2);padding-top:14px;margin-bottom:30px;gap:16px}
+.hrow h3{font:500 30px "Playfair Display",serif;color:var(--ink2)}
+.mag{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px 30px}
+.art{cursor:pointer;display:flex;flex-direction:column}
+.art .im{aspect-ratio:4/3;background:#222 center/cover no-repeat;overflow:hidden}
+.art .im i{display:block;width:100%;height:100%;background:inherit;background-size:cover;background-position:center;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.art:hover .im i{transform:scale(1.05)}
+.art .kicker{margin-top:16px}
+.art h4{font:400 24px/1.18 "Playfair Display",serif;color:var(--ink2);margin:8px 0 8px;transition:color .2s}
+.art:hover h4{color:var(--acc)}
+.art p{font:300 16px/1.55 "Source Serif 4",serif;color:#333}
+.art .meta{margin-top:10px}
+.art.lead{grid-row:span 2}
+.art.lead .im{aspect-ratio:4/5}
+.art.lead h4{font-size:36px}
+.list{display:grid;grid-template-columns:repeat(3,1fr);gap:0 30px;margin-top:40px;border-top:1px solid var(--rule)}
+.li{display:grid;grid-template-columns:96px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid var(--rule);cursor:pointer}
+.li .im{aspect-ratio:1/1;background:#222 center/cover no-repeat}
+.li h5{font:400 18px/1.25 "Playfair Display",serif;color:var(--ink2);margin:6px 0 4px}
+.li:hover h5{color:var(--acc)}
 
-.car{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.car .img{aspect-ratio:4/3;background:var(--navy) center/cover no-repeat url(img/academia.jpg)}
+.memos{background:#0B0B0C;color:#fff;padding:90px 0}
+.memos .hrow{border-color:#fff}
+.memos .hrow h3{color:#fff}
+.memos .intro{font:300 20px/1.5 "Source Serif 4",serif;opacity:.8;max-width:640px;margin:-10px 0 34px}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.memo{display:grid;grid-template-columns:44% 1fr;background:#161618;cursor:pointer;transition:background .3s}
+.memo:hover{background:#1E1E21}
+.memo .im{background:#222 center/cover no-repeat;min-height:320px}
+.memo .bd{padding:30px;display:flex;flex-direction:column}
+.memo .kicker{color:#9FB7FF}
+.memo h4{font:400 26px/1.15 "Playfair Display",serif;color:#fff;margin:12px 0 14px}
+.memo blockquote{font:italic 300 18px/1.5 "Source Serif 4",serif;opacity:.85;border-left:2px solid var(--acc);padding-left:14px}
+.memo .byline{margin-top:auto;padding-top:20px}
 
-.ins{background:#fff}
-.ins-top{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:30px}
-.tabs{display:flex;gap:0;border-bottom:1px solid var(--line)}
-.tabs button{border:0;background:none;padding:12px 18px;font:400 15px var(--sans);color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
-.tabs button.on{color:var(--ink);border-bottom-color:var(--blue)}
-.igrid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
-.it{cursor:pointer;display:flex;flex-direction:column;border-top:1px solid var(--ink);padding-top:18px}
-.it .ty{font:500 12px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.it .ty b{color:var(--blue);font-weight:500}
-.it h3{font:400 23px/1.25 var(--serif);color:var(--ink);margin:12px 0 12px;transition:color .2s}
-.it:hover h3{color:var(--blue)}
-.it p{font-size:14.5px}
-.it .dt{font-size:13px;color:var(--muted);margin-top:auto;padding-top:14px}
-.it.big{grid-column:span 2}
-.it.big .th{aspect-ratio:16/8;background:var(--navy) center/cover no-repeat;margin-bottom:18px}
-.it.big h3{font-size:30px}
+.feat{display:grid;grid-template-columns:1fr 1fr;min-height:80vh}
+.feat .im{background:#111 center/cover no-repeat url(img/mesa.jpg)}
+.feat .tx{background:#fff;padding:80px max(40px,calc((100vw - 1280px)/2 + 40px)) 80px 60px;display:flex;flex-direction:column;justify-content:center}
+.feat h3{font:400 clamp(34px,4vw,56px)/1.05 "Playfair Display",serif;color:var(--ink2);margin:14px 0 20px}
+.feat p{font:300 19px/1.6 "Source Serif 4",serif;color:#333}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:30px}
+.nums div{background:#fff;padding:18px}
+.nums b{display:block;font:400 34px "Playfair Display",serif;color:var(--ink2)}
+.nums span{font:400 13px var(--sans);color:#555}
+.feat a{color:var(--acc);margin-top:24px;font:500 15px var(--sans);text-decoration:none}
 
-.imp{background:var(--gray)}
-.imp .grid2{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
-.imp .img{aspect-ratio:4/3;background:var(--navy) center/cover no-repeat url(img/fundacion-abierta.jpg);background-position:right 80%}
-.imp p{margin-top:16px}
+.team{padding:90px 0}
+.tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.tp{position:relative;aspect-ratio:3/4.2;overflow:hidden;background:#222;text-decoration:none;color:#fff;display:block}
+.tp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 18%;filter:grayscale(1) contrast(1.05);transition:transform .9s cubic-bezier(.2,.7,.2,1),filter .6s}
+.tp:hover img{transform:scale(1.05);filter:grayscale(.2)}
+.tp:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,0) 55%)}
+.tp .bd{position:absolute;left:20px;right:20px;bottom:20px;z-index:2}
+.tp h4{font:400 24px/1.15 "Playfair Display",serif;color:#fff}
+.tp span{display:block;font:500 11px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#9FB7FF;margin-top:8px}
+.tp em{display:block;font:300 14px/1.45 "Source Serif 4",serif;font-style:italic;opacity:0;max-height:0;transition:opacity .4s,max-height .4s}
+.tp:hover em{opacity:.9;max-height:120px;margin-top:10px}
 
-.locs{display:grid;grid-template-columns:1fr 2fr;gap:60px}
-.loc-tabs button{display:block;border:0;background:none;padding:10px 0;font:300 26px var(--serif);color:var(--muted);cursor:pointer;text-align:left}
-.loc-tabs button.on{color:var(--ink)}
-.loc-card{border-top:1px solid var(--ink);padding-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:30px;font-size:16px}
-.loc-card b{display:block;font-weight:500;color:var(--ink);margin-bottom:6px}
-.loc-card a{color:var(--blue)}
+.subs{border-top:2px solid var(--ink2);border-bottom:2px solid var(--ink2);padding:50px 0;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;margin-bottom:90px}
+.subs h3{font:400 clamp(30px,3.4vw,46px)/1.1 "Playfair Display",serif;color:var(--ink2)}
+.subs h3 i{color:var(--acc)}
+.subs form{display:flex}
+.subs input{flex:1;min-width:0;height:56px;border:1px solid var(--ink2);border-right:0;background:transparent;padding:0 16px;font:400 16px var(--sans)}
+.subs button{height:56px;border:0;background:var(--ink2);color:#fff;padding:0 26px;font:500 15px var(--sans);cursor:pointer}
+.subs .ok{display:none;color:#12A150;margin-top:10px;font-size:14px}
 
-.reader{position:fixed;inset:0;z-index:90;background:rgba(5,28,44,.7);backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:center;padding:40px 20px;overflow:auto}
-.reader.on{display:flex}
-.rbox{background:#fff;width:100%;max-width:760px;padding:56px 60px 60px;position:relative;animation:rin .35s cubic-bezier(.2,.7,.2,1)}
-@keyframes rin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-.rbox .x{position:absolute;right:16px;top:12px;border:0;background:none;font:300 32px var(--sans);cursor:pointer;color:var(--ink)}
-.rbox .ty{font:500 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
-.rbox h2{font:300 clamp(30px,3.6vw,44px)/1.12 var(--serif);color:var(--ink);margin:14px 0 14px}
-.rbox .by{font-size:14px;color:var(--muted);padding-bottom:22px;border-bottom:1px solid var(--line);margin-bottom:26px}
-.rbox p{font:300 19px/1.7 var(--serif);color:#222;margin-bottom:18px}
-.rbox .note{font:400 13px var(--sans);color:var(--muted);margin-top:28px;padding-top:16px;border-top:1px solid var(--line)}
+.reader{position:fixed;inset:0;z-index:90;background:var(--paper);display:none;overflow:auto}
+.reader.on{display:block}
+.rd-hero{position:relative;height:62vh;min-height:380px;background:#111 center/cover no-repeat}
+.rd-hero:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.6),rgba(0,0,0,.1))}
+.rd-x{position:fixed;right:22px;top:18px;z-index:5;width:46px;height:46px;border-radius:50%;border:0;background:#fff;color:#111;font:300 26px var(--sans);cursor:pointer;box-shadow:0 10px 30px -10px rgba(0,0,0,.5)}
+.rd-body{max-width:720px;margin:-120px auto 0;position:relative;z-index:2;background:var(--paper);padding:50px 50px 80px}
+.rd-body h2{font:400 clamp(34px,4.4vw,56px)/1.05 "Playfair Display",serif;color:var(--ink2);margin:14px 0 18px}
+.rd-body .dek{font:300 22px/1.5 "Source Serif 4",serif;color:#333}
+.rd-body .byline{color:#111;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:14px 0;margin:26px 0 12px}
+.rd-body .byline img{border-color:#ddd}
+.rd-body p.t{font:300 20px/1.75 "Source Serif 4",serif;color:#1a1a1a;margin-bottom:22px}
+.rd-body p.t.first:first-letter{float:left;font:500 72px/.85 "Playfair Display",serif;margin:8px 10px 0 0;color:var(--acc)}
+.rd-body .pq{font:italic 400 30px/1.3 "Playfair Display",serif;color:var(--ink2);border-top:2px solid var(--ink2);border-bottom:1px solid var(--rule);padding:22px 0;margin:30px 0}
+.rd-body .note{font:400 13px var(--sans);color:#777;margin-top:34px}
 
-@media(max-width:1000px){.pgrid,.igrid{grid-template-columns:1fr 1fr}.it.big{grid-column:span 2}}
-@media(max-width:900px){
-  .ov-hero{grid-template-columns:1fr;min-height:0}
-  .ov-hero .ph{height:46svh;clip-path:polygon(0 0,100% 0,100% 82%,0 100%)}
-  .ov-hero .tx{padding:34px 20px 56px}
-  .news .wrap,.vang,.car,.imp .grid2,.locs{grid-template-columns:1fr;gap:30px}
-  .vang li{grid-template-columns:1fr;gap:4px}
-  .loc-card{grid-template-columns:1fr}
-  .rbox{padding:48px 22px 36px}.reader{padding:0}
+@media(max-width:1000px){.mag{grid-template-columns:1fr 1fr}.art.lead{grid-column:span 2;grid-row:auto}.art.lead .im{aspect-ratio:16/10}.list{grid-template-columns:1fr 1fr}.mgrid{grid-template-columns:1fr}.tgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:800px){.feat{grid-template-columns:1fr}.feat .im{min-height:46vh}.feat .tx{padding:44px 20px}.subs{grid-template-columns:1fr}}
+@media(max-width:640px){
+  .mast{padding-top:96px}.mast .ed{text-align:left}
+  .mag,.list{grid-template-columns:1fr}.art.lead{grid-column:auto}.art.lead h4{font-size:28px}
+  .memo{grid-template-columns:1fr}.memo .im{min-height:220px}
+  .cover{min-height:70svh}.cover .in{padding:0 20px 40px}.cover p{font-size:17px}
+  .tgrid{gap:10px}.tp .bd{left:12px;right:12px;bottom:12px}.tp h4{font-size:17px}.tp span{font-size:9.5px}.tp em{display:none}
+  .subs form{flex-direction:column;gap:10px}.subs input{border-right:1px solid var(--ink2)}
+  .rd-body{padding:34px 20px 60px;margin-top:-60px}.rd-body p.t{font-size:18px}.rd-body .pq{font-size:24px}
 }
-@media(max-width:640px){.pgrid,.igrid{grid-template-columns:1fr}.it.big{grid-column:auto}.it.big h3{font-size:25px}.news form{flex-direction:column;gap:10px}.news input{border-right:1px solid rgba(255,255,255,.4)}}
 </style>
 </head>
 <body>
 <nav><div class="wrap">
-  <a class="mark" href="index.html">NORTHPOINT<small>Overview</small></a>
+  <a class="mark" href="index.html">NORTHPOINT<small>Ideas</small></a>
   <div class="links">
-    <a href="#equipo">Nuestro equipo</a><a href="#ideas">Nuestras ideas</a><a href="#carreras">Carreras</a><a href="#oficinas">Contacto</a><a href="index.html">NORTHPOINT</a>
-    <a class="btn" href="index.html#registro">Apartar lugar</a>
+    <a href="#reciente">Lo más reciente</a><a href="#memos">Memos</a><a href="#ia">IA y datos</a><a href="#equipo">Equipo</a><a href="index.html">NORTHPOINT</a>
+    <a class="btn" href="#boletin">Suscribirme</a>
   </div>
 </div></nav>
 
-<header class="ov-hero">
-  <div class="ph" role="img" aria-label="Ciudad de México al amanecer"></div>
+<header class="mast"><div class="wrap">
+  <div class="mast-top">
+    <h1>NORTHPOINT <i>Ideas</i></h1>
+    <div class="ed"><b>La revista de la mesa</b><span id="edicion"></span><br>Memos, blog y artículos del equipo</div>
+  </div>
+  <div class="secs" id="secs"></div>
+  <article class="cover" id="cover"></article>
+</div></header>
+
+<section class="latest" id="reciente"><div class="wrap">
+  <div class="hrow"><h3 id="latT">Lo más reciente</h3><span class="meta" id="latN"></span></div>
+  <div class="mag" id="mag"></div>
+  <div class="list" id="list"></div>
+</div></section>
+
+<section class="memos" id="memos"><div class="wrap">
+  <div class="hrow"><h3>Memos de la mesa</h3><span class="meta" style="color:#aaa">Cada mes</span></div>
+  <p class="intro">Lo que vimos, lo que hicimos y lo que no hicimos. Escrito por quienes operan, para quienes ahorran.</p>
+  <div class="mgrid" id="mgrid"></div>
+</div></section>
+
+<section class="feat" id="ia" style="padding:0">
+  <div class="im" role="img" aria-label="La mesa de NORTHPOINT"></div>
   <div class="tx">
-    <small>Bienvenido a</small>
-    <h1>NORTHPOINT</h1>
-    <p>Somos una mesa de trading profesional mexicana que pone la disciplina institucional al servicio del ahorro de cualquier persona, desde cien dólares, con <a href="index.html#como">el riesgo a la vista y el dinero siempre a su nombre</a>.</p>
-    <p style="margin-top:16px">Operamos, investigamos y enseñamos. Construimos nuestra propia tecnología y compartimos lo que aprendemos en memos, artículos y en nuestra Academia.</p>
+    <div class="kicker">A la vanguardia · IA y datos</div>
+    <h3>Una mesa que se mide con datos.</h3>
+    <p>Cada operación queda registrada en el Terminal de NORTHPOINT, nuestro sistema propio. Usamos estadística e inteligencia artificial para revisar lo que hacemos, filtrar señales y saber cuándo no operar. La decisión final siempre es de una persona.</p>
+    <div class="nums"><div><b>Todas</b><span>las operaciones, registradas</span></div><div><b>1</b><span>plan escrito antes de cada sesión</span></div><div><b>0</b><span>decisiones que tome un modelo solo</span></div></div>
+    <a href="academia.html">Aprenda cómo lo hacemos en la Academia ›</a>
   </div>
-</header>
+</section>
 
-<section class="news"><div class="wrap">
-  <div><h3>Presentamos <b style="font-weight:400">Memos de la mesa</b>, nuestro boletín mensual.</h3><p>Lo más importante del mes en mercados, ahorro y tecnología, escrito por el equipo. En español.</p></div>
+<section class="team" id="equipo"><div class="wrap">
+  <div class="hrow"><h3>Quién escribe</h3><a class="meta" href="equipo.html" style="color:var(--acc);text-decoration:none">Conozca al equipo ›</a></div>
+  <div class="tgrid">
+    <a class="tp" href="equipo.html#goyo"><img src="img/goyo.jpg" alt="Gregorio Sánchez Calderón" loading="lazy"><div class="bd"><h4>Gregorio Sánchez Calderón</h4><span>Inversiones y patrimonio</span><em>Autor de los memos de mercado. Carteras de largo plazo, fideicomisos y planeación sucesoria.</em></div></a>
+    <a class="tp" href="equipo.html#pablo"><img src="img/pablo.jpg" alt="Pablo Ochoa Macouzet" loading="lazy"><div class="bd"><h4>Pablo Ochoa Macouzet</h4><span>Estrategia y operaciones</span><em>Estrategia de la firma, modelación financiera y gestión de riesgo con datos.</em></div></a>
+    <a class="tp" href="equipo.html#andre"><img src="img/andre.jpg" alt="André Macouzet Ruiz" loading="lazy"><div class="bd"><h4>André Macouzet Ruiz</h4><span>Fundador · Datos y tecnología</span><em>Operación en futuros, el Terminal de NORTHPOINT, ciencia de datos y machine learning.</em></div></a>
+    <a class="tp" href="equipo.html#gerardo"><img src="img/gerardo.jpg" alt="Gerardo Andaluz Contreras" loading="lazy"><div class="bd"><h4>Gerardo Andaluz Contreras</h4><span>Análisis y ejecución</span><em>«La clave de la longevidad en los mercados es la precisión en el análisis y el respeto absoluto al plan.»</em></div></a>
+  </div>
+</div></section>
+
+<div class="wrap"><div class="subs" id="boletin">
+  <h3>Reciba los <i>Memos de la mesa</i> cada mes en su correo.</h3>
   <div><form id="newsForm"><input type="email" name="email" placeholder="Su correo" required aria-label="Correo"><button type="submit">Suscribirme</button></form><div class="ok" id="newsOk">Listo. Le llegará el próximo memo.</div></div>
-</div></section>
-
-<section><div class="wrap vang">
-  <div class="img" role="img" aria-label="La mesa de NORTHPOINT"></div>
-  <div>
-    <div class="lbl">A la vanguardia</div>
-    <h2 class="serif">Una mesa que se mide con datos.</h2>
-    <p style="font-size:18px">Cada operación queda registrada en el Terminal de NORTHPOINT, nuestro sistema propio. Usamos estadística e inteligencia artificial para revisar lo que hacemos, no para adivinar el mercado.</p>
-    <ul>
-      <li><b>Terminal propio</b><span>Registro de cada operación, riesgo por cuenta en tiempo real y desempeño de cada trader.</span></li>
-      <li><b>IA aplicada</b><span>Modelos que filtran señales, revisan el plan del día y detectan cuándo no operar.</span></li>
-      <li><b>Riesgo primero</b><span>El freno de cada plan es automático: no depende de una decisión en caliente.</span></li>
-      <li><b>Academia</b><span>Enseñamos cómo trabajamos. <a href="academia.html" style="color:var(--blue)">Ver la academia</a></span></li>
-    </ul>
-  </div>
-</div></section>
-
-<section class="people" id="equipo"><div class="wrap">
-  <div class="eyebrow">Nuestro equipo</div>
-  <h2 class="serif" style="margin:12px 0 40px">Las personas detrás de la mesa.</h2>
-  <div class="pgrid">
-    <a class="pc" href="equipo.html#goyo"><div class="ph"><img src="img/goyo.jpg" alt="Gregorio Sánchez Calderón" loading="lazy"></div><div class="bd"><h4>Gregorio Sánchez Calderón</h4><div class="rl">Cofundador · Inversiones y patrimonio</div><p>Encabeza la estrategia de inversión y la estructura patrimonial. Autor de los memos de mercado de NORTHPOINT.</p></div></a>
-    <a class="pc" href="equipo.html#pablo"><div class="ph"><img src="img/pablo.jpg" alt="Pablo Ochoa Macouzet" loading="lazy"></div><div class="bd"><h4>Pablo Ochoa Macouzet</h4><div class="rl">Cofundador · Estrategia y operaciones</div><p>Estrategia de la firma, estructura operativa y gestión de riesgo, con decisiones basadas en datos.</p></div></a>
-    <a class="pc" href="equipo.html#andre"><div class="ph"><img src="img/andre.jpg" alt="André Macouzet Ruiz" loading="lazy"></div><div class="bd"><h4>André Macouzet Ruiz</h4><div class="rl">Fundador · Mercados, datos y tecnología</div><p>Dirige la operación en futuros y construyó el Terminal de NORTHPOINT. Ciencia de datos y machine learning.</p></div></a>
-    <a class="pc" href="equipo.html#gerardo"><div class="ph"><img src="img/gerardo.jpg" alt="Gerardo Andaluz Contreras" loading="lazy"></div><div class="bd"><h4>Gerardo Andaluz Contreras</h4><div class="rl">Cofundador · Análisis y ejecución</div><p>Análisis técnico y ejecución en futuros de índices estadounidenses, sin subjetividad al operar.</p></div></a>
-  </div>
-  <a class="more" href="equipo.html">Conozca al equipo</a>
-</div></section>
-
-<section class="band"><div class="wrap">
-  <h2 class="serif">Hacer que el ahorro de México trabaje.</h2>
-  <p>Preferimos crecer con miles de personas que empiezan con cien dólares que depender de unos cuantos grandes capitales.</p>
-  <a class="btn" href="index.html#como">Vea cómo funciona</a>
-</div></section>
-
-<section id="carreras"><div class="wrap car">
-  <div>
-    <div class="eyebrow">Carreras</div>
-    <h2 class="serif" style="margin:12px 0 18px">Trabaje en NORTHPOINT.</h2>
-    <p style="font-size:18px">Buscamos traders disciplinados, gente de datos y personas que quieran construir una firma seria desde México. Aquí se aprende rápido porque todo se mide.</p>
-    <a class="more" href="mailto:hola@northpointcapital.io?subject=Quiero%20trabajar%20en%20NORTHPOINT">Escríbanos</a>
-  </div>
-  <div class="img" role="img" aria-label="Oficina de la mesa"></div>
-</div></section>
-
-<section class="ins" id="ideas"><div class="wrap">
-  <div class="ins-top">
-    <div><div class="eyebrow">Ideas destacadas</div><h2 class="serif" style="margin-top:12px">Memos, blog y artículos.</h2></div>
-    <div class="tabs" id="tabs"></div>
-  </div>
-  <div class="igrid" id="igrid"></div>
-</div></section>
-
-<section class="imp"><div class="wrap grid2">
-  <div>
-    <div class="eyebrow">Impacto en la sociedad</div>
-    <h2 class="serif" style="margin-top:12px">Crecer con un propósito.</h2>
-    <p style="font-size:18px">Queremos contribuir de forma real al país y a la comunidad. Por eso nace la Fundación NORTHPOINT, que acompañará a familias de niños con leucemia para que ningún tratamiento se interrumpa por falta de recursos.</p>
-    <p>Una parte de lo que genera la mesa se destinará a la fundación, con cuentas claras y publicadas. La fundación está en proceso de constitución.</p>
-    <a class="more" href="fundacion.html">Conocer la fundación</a>
-  </div>
-  <div class="img" role="img" aria-label="Fundación NORTHPOINT"></div>
-</div></section>
-
-<section id="oficinas"><div class="wrap locs">
-  <div><div class="eyebrow">Nuestras oficinas</div><div class="loc-tabs" style="margin-top:18px"><button class="on" type="button">Morelia</button></div></div>
-  <div class="loc-card">
-    <div><b>Oficina de la mesa</b>Morelia, Michoacán<br>México</div>
-    <div><b>Contacto</b><a href="mailto:hola@northpointcapital.io">hola@northpointcapital.io</a><br><br><b>Horario de la mesa</b>Lunes a viernes, 7:30 a 14:00<br>(hora del centro de México)</div>
-  </div>
-</div></section>
+</div></div>
 
 <footer><div class="wrap">
-  <span class="mark">NORTHPOINT<small>Overview</small></span>
-  <p>Las ideas publicadas son contenido educativo del equipo de NORTHPOINT y no constituyen asesoría de inversión ni una recomendación personalizada. Operar en mercados implica riesgo de pérdida.</p>
+  <span class="mark">NORTHPOINT<small>Ideas</small></span>
+  <p>Contenido educativo del equipo de NORTHPOINT. No constituye asesoría de inversión ni una recomendación personalizada. Operar en mercados implica riesgo de pérdida.</p>
   <p><a href="index.html" style="color:#fff">← Volver a NORTHPOINT</a> · <a href="equipo.html" style="color:#fff">El equipo</a> · <a href="academia.html" style="color:#fff">Academia</a> · <a href="privacidad.html" style="color:#fff">Aviso de privacidad</a></p>
 </div></footer>
 
-<div class="reader" id="reader" aria-hidden="true"><article class="rbox" role="dialog" aria-modal="true" id="rbox"></article></div>
+<div class="reader" id="reader" aria-hidden="true"><button class="rd-x" id="rdx" aria-label="Cerrar">×</button><div id="rd"></div></div>
 
 <script>
-// memos, blog y artículos · borradores escritos para el sitio (revisar con cada autor)
+const AUT = { goyo:["Gregorio Sánchez Calderón","img/goyo.jpg"], pablo:["Pablo Ochoa Macouzet","img/pablo.jpg"], andre:["André Macouzet Ruiz","img/andre.jpg"], gerardo:["Gerardo Andaluz Contreras","img/gerardo.jpg"], mesa:["Mesa NORTHPOINT","favicon.svg"] };
+const SEC = { mercados:"Mercados", ahorro:"Ahorro", ia:"IA y datos", patrimonio:"Patrimonio", disciplina:"Disciplina" };
+const TIPO = { memo:"Memo", blog:"Blog", articulo:"Artículo" };
+// borradores escritos para el sitio (revisar con cada autor)
 const IDEAS = [
-  { tipo:"memo", t:"Memo de la mesa · Septiembre: el mes en que menos operamos fue el mejor", a:"Gregorio Sánchez Calderón", f:"29 de septiembre de 2026", img:"img/mesa.jpg", big:true,
-    r:"Lo que aprendimos de un mes en que la mejor decisión, varias veces, fue no entrar.",
-    c:["Septiembre dejó una lección que repetimos cada vez que la olvidamos: la disciplina no se mide por cuántas operaciones se hacen, sino por cuántas se evitan. Hubo sesiones enteras en que el plan del día decía que no había condiciones, y la mesa no operó.","Para un ahorrador eso puede sonar raro. ¿No se supone que la mesa está para operar? La respuesta es que la mesa está para cuidar el riesgo primero y buscar el objetivo después. Una operación mala evitada vale lo mismo que una buena operación tomada.","Para octubre mantenemos el mismo marco: plan escrito antes de abrir, tamaño definido por el plan de cada cliente y el freno de protección activo. Si el mercado ofrece condiciones claras, se opera. Si no, se espera."] },
-  { tipo:"articulo", t:"Por qué no prometemos un rendimiento fijo", a:"Mesa NORTHPOINT", f:"29 de septiembre de 2026",
-    r:"Un rendimiento fijo sobre un ahorro que se opera en el mercado es una promesa que nadie puede cumplir.",
-    c:["Los mercados no pagan lo mismo cada mes. Cualquiera que le prometa un porcentaje fijo sobre un dinero que se opera, o tiene una licencia bancaria y respalda ese pago con su propio capital, o está pagando rendimientos con el dinero de otros clientes.","En NORTHPOINT el resultado de cada mes es el que salió: a veces positivo, a veces negativo. Lo que sí comprometemos es el freno de protección de su plan y que usted vea cada operación en la app."] },
-  { tipo:"blog", t:"Cómo usamos la inteligencia artificial en la mesa (y cómo no)", a:"André Macouzet Ruiz", f:"26 de septiembre de 2026",
-    r:"La IA no adivina el mercado. Nos ayuda a revisar, filtrar y decir que no más rápido.",
-    c:["Hay una idea muy extendida de que la inteligencia artificial puede predecir hacia dónde va el precio. En la mesa la usamos para algo mucho más modesto y mucho más útil: revisar lo que hacemos.","Nuestros modelos leen el registro de cada operación en el Terminal y nos señalan patrones: a qué hora nos equivocamos más, qué condiciones repetimos antes de una buena operación y en qué días conviene no operar. Es un segundo par de ojos que no se cansa.","Lo que no hacemos es darle a un modelo la decisión final. La entrada, el tamaño y el riesgo los define el plan escrito de la sesión. La IA filtra; la persona decide y responde por la decisión."] },
-  { tipo:"articulo", t:"Custodia separada: por qué su dinero nunca debería pasar por quien lo opera", a:"Mesa NORTHPOINT", f:"15 de septiembre de 2026",
-    r:"La separación entre quien custodia y quien opera es la protección más simple para cualquier ahorrador.",
-    c:["En NORTHPOINT usted abre su cuenta a su nombre en un intermediario regulado. La mesa recibe un mandato para operar, pero no para retirar ni transferir.","Si alguien le pide depositar en una cuenta a nombre de la persona o empresa que va a operar por usted, desconfíe. La custodia separada no es un detalle técnico: es la primera pregunta que debe hacer."] },
-  { tipo:"memo", t:"Memo de patrimonio: el orden correcto para proteger lo que construye", a:"Gregorio Sánchez Calderón", f:"19 de septiembre de 2026",
-    r:"Antes de pensar en rendimiento, conviene pensar en a nombre de quién está cada cosa.",
-    c:["La mayoría de las familias piensa primero en cuánto rinde su dinero y al final en cómo protegerlo. El orden debería ser el inverso: primero la estructura, después el rendimiento.","Separar el patrimonio personal del de la empresa, tener claro quién hereda qué y revisar si un fideicomiso tiene sentido son decisiones que se toman una vez y protegen durante décadas. Un buen rendimiento se puede perder en un pleito familiar o en un problema legal del negocio.","Nuestra recomendación general es sencilla: ordene la titularidad de sus bienes, documente sus decisiones y revíselas cada año. Cada caso es distinto y requiere asesoría específica."] },
-  { tipo:"blog", t:"Tres planes, una misma disciplina", a:"Pablo Ochoa Macouzet", f:"22 de septiembre de 2026",
-    r:"Básico, Moderado y Agresivo no son tres mesas distintas: es la misma mesa buscando tres objetivos.",
-    c:["Cada sesión empieza con un plan escrito. Lo que cambia entre planes no es la estrategia sino el tamaño y la frecuencia: el Básico solo entra en las operaciones más claras; el Agresivo participa en todas las sesiones con mayor exposición.","Cada plan arriesga lo mismo que busca ganar en el mes. Si el mes se complica y el saldo llega a ese riesgo, la mesa deja de operar esa cuenta hasta el mes siguiente. Elegir plan es elegir un objetivo con su riesgo a la vista."] },
-  { tipo:"articulo", t:"El plan escrito: la herramienta más subestimada del trading", a:"Gerardo Andaluz Contreras", f:"12 de septiembre de 2026",
-    r:"Si no está escrito antes de abrir, no es un plan: es una reacción.",
-    c:["Antes de cada sesión escribimos el mapa del día: niveles importantes, condiciones que buscamos y, sobre todo, qué tendría que pasar para no operar. Parece burocracia; es lo que separa una decisión de un impulso.","Durante la sesión el trabajo es simple: comparar lo que pasa con lo que está escrito. Si coincide, se ejecuta con el riesgo definido. Si no coincide, se espera. La subjetividad entra por las grietas del plan; por eso lo escribimos completo."] },
-  { tipo:"blog", t:"Cien dólares: por qué empezar chico es la mejor forma de empezar", a:"Pablo Ochoa Macouzet", f:"8 de septiembre de 2026",
-    r:"El mejor momento para aprender cómo se comporta su ahorro es cuando todavía es pequeño.",
-    c:["Mucha gente espera a tener una cantidad grande para empezar a invertir. El problema es que llega a ese momento sin saber cómo se siente un mes negativo, cómo funciona un freno de riesgo o cómo leer su propio estado de cuenta.","Empezar con cien dólares le permite aprender todo eso con poco en juego. Después, cada depósito se hace con conocimiento y no con fe. El tiempo y la constancia hacen más que el monto inicial."] },
-  { tipo:"articulo", t:"Qué es el freno de protección y por qué existe", a:"Mesa NORTHPOINT", f:"1 de septiembre de 2026",
-    r:"Cada plan tiene un límite de pérdida mensual. Al llegar, la mesa deja de operar esa cuenta.",
-    c:["El freno de protección es la regla que dice cuánto puede perder una cuenta en un mes. En el plan Moderado, por ejemplo, el riesgo mensual es del 3%: si el saldo cae ese porcentaje, la mesa deja de operarlo hasta el mes siguiente.","El freno se aplica al cierre de cada operación y está en el contrato. Ante movimientos muy bruscos del mercado puede rebasarse ligeramente; por eso lo explicamos siempre. Su función es que un mal mes no se convierta en un mal año."] }
+  { tipo:"memo", sec:"mercados", au:"goyo", f:"29 de septiembre de 2026", img:"img/academia.jpg", cover:true,
+    t:"Septiembre: el mes en que menos operamos fue el mejor", r:"Lo que aprendimos de un mes en que la mejor decisión, varias veces, fue no entrar.",
+    q:"Una operación mala evitada vale lo mismo que una buena operación tomada.",
+    c:["Septiembre dejó una lección que repetimos cada vez que la olvidamos: la disciplina no se mide por cuántas operaciones se hacen, sino por cuántas se evitan. Hubo sesiones enteras en que el plan del día decía que no había condiciones, y la mesa no operó.","Para un ahorrador eso puede sonar raro. ¿No se supone que la mesa está para operar? La respuesta es que la mesa está para cuidar el riesgo primero y buscar el objetivo después.","Para octubre mantenemos el mismo marco: plan escrito antes de abrir, tamaño definido por el plan de cada cliente y el freno de protección activo. Si el mercado ofrece condiciones claras, se opera. Si no, se espera."] },
+  { tipo:"blog", sec:"ia", au:"andre", f:"26 de septiembre de 2026", img:"img/mesa.jpg",
+    t:"Cómo usamos la inteligencia artificial en la mesa (y cómo no)", r:"La IA no adivina el mercado. Nos ayuda a revisar, filtrar y decir que no más rápido.",
+    q:"La IA filtra; la persona decide y responde por la decisión.",
+    c:["Hay una idea muy extendida de que la inteligencia artificial puede predecir hacia dónde va el precio. En la mesa la usamos para algo mucho más modesto y mucho más útil: revisar lo que hacemos.","Nuestros modelos leen el registro de cada operación en el Terminal y nos señalan patrones: a qué hora nos equivocamos más, qué condiciones repetimos antes de una buena operación y en qué días conviene no operar.","Lo que no hacemos es darle a un modelo la decisión final. La entrada, el tamaño y el riesgo los define el plan escrito de la sesión."] },
+  { tipo:"articulo", sec:"ahorro", au:"mesa", f:"24 de septiembre de 2026", img:"img/estratos.jpg",
+    t:"Por qué no prometemos un rendimiento fijo", r:"Un rendimiento fijo sobre un ahorro que se opera en el mercado es una promesa que nadie puede cumplir.",
+    q:"El resultado de cada mes es el que salió: a veces positivo, a veces negativo.",
+    c:["Los mercados no pagan lo mismo cada mes. Cualquiera que le prometa un porcentaje fijo sobre un dinero que se opera, o tiene una licencia bancaria y respalda ese pago con su propio capital, o está pagando rendimientos con el dinero de otros clientes.","En NORTHPOINT el resultado de cada mes es el que salió. Lo que sí comprometemos es el freno de protección de su plan y que usted vea cada operación en la app."] },
+  { tipo:"blog", sec:"ahorro", au:"pablo", f:"22 de septiembre de 2026", img:"img/hero.jpg",
+    t:"Tres planes, una misma disciplina", r:"Básico, Moderado y Agresivo no son tres mesas distintas: es la misma mesa buscando tres objetivos.",
+    q:"Elegir plan es elegir un objetivo con su riesgo a la vista.",
+    c:["Cada sesión empieza con un plan escrito. Lo que cambia entre planes no es la estrategia sino el tamaño y la frecuencia: el Básico solo entra en las operaciones más claras; el Agresivo participa en todas las sesiones con mayor exposición.","Cada plan arriesga lo mismo que busca ganar en el mes. Si el mes se complica y el saldo llega a ese riesgo, la mesa deja de operar esa cuenta hasta el mes siguiente."] },
+  { tipo:"memo", sec:"patrimonio", au:"goyo", f:"19 de septiembre de 2026", img:"img/arte.jpg",
+    t:"El orden correcto para proteger lo que construye", r:"Antes de pensar en rendimiento, conviene pensar en a nombre de quién está cada cosa.",
+    q:"Un buen rendimiento se puede perder en un pleito familiar o en un problema legal del negocio.",
+    c:["La mayoría de las familias piensa primero en cuánto rinde su dinero y al final en cómo protegerlo. El orden debería ser el inverso: primero la estructura, después el rendimiento.","Separar el patrimonio personal del de la empresa, tener claro quién hereda qué y revisar si un fideicomiso tiene sentido son decisiones que se toman una vez y protegen durante décadas.","Nuestra recomendación general es sencilla: ordene la titularidad de sus bienes, documente sus decisiones y revíselas cada año. Cada caso es distinto y requiere asesoría específica."] },
+  { tipo:"articulo", sec:"ahorro", au:"mesa", f:"15 de septiembre de 2026", img:"img/privado.jpg",
+    t:"Custodia separada: su dinero nunca debería pasar por quien lo opera", r:"La separación entre quien custodia y quien opera es la protección más simple para cualquier ahorrador.",
+    q:"La custodia separada no es un detalle técnico: es la primera pregunta que debe hacer.",
+    c:["En NORTHPOINT usted abre su cuenta a su nombre en un intermediario regulado. La mesa recibe un mandato para operar, pero no para retirar ni transferir.","Si alguien le pide depositar en una cuenta a nombre de la persona o empresa que va a operar por usted, desconfíe."] },
+  { tipo:"articulo", sec:"disciplina", au:"gerardo", f:"12 de septiembre de 2026", img:"img/reloj.jpg",
+    t:"El plan escrito: la herramienta más subestimada del trading", r:"Si no está escrito antes de abrir, no es un plan: es una reacción.",
+    q:"La subjetividad entra por las grietas del plan; por eso lo escribimos completo.",
+    c:["Antes de cada sesión escribimos el mapa del día: niveles importantes, condiciones que buscamos y, sobre todo, qué tendría que pasar para no operar. Parece burocracia; es lo que separa una decisión de un impulso.","Durante la sesión el trabajo es simple: comparar lo que pasa con lo que está escrito. Si coincide, se ejecuta con el riesgo definido. Si no coincide, se espera."] },
+  { tipo:"blog", sec:"ahorro", au:"pablo", f:"8 de septiembre de 2026", img:"img/cien.jpg",
+    t:"Cien dólares: por qué empezar chico es la mejor forma de empezar", r:"El mejor momento para aprender cómo se comporta su ahorro es cuando todavía es pequeño.",
+    q:"El tiempo y la constancia hacen más que el monto inicial.",
+    c:["Mucha gente espera a tener una cantidad grande para empezar a invertir. El problema es que llega a ese momento sin saber cómo se siente un mes negativo, cómo funciona un freno de riesgo o cómo leer su propio estado de cuenta.","Empezar con cien dólares le permite aprender todo eso con poco en juego. Después, cada depósito se hace con conocimiento y no con fe."] },
+  { tipo:"articulo", sec:"disciplina", au:"mesa", f:"1 de septiembre de 2026", img:"img/ciudad.jpg",
+    t:"Qué es el freno de protección y por qué existe", r:"Cada plan tiene un límite de pérdida mensual. Al llegar, la mesa deja de operar esa cuenta.",
+    q:"Su función es que un mal mes no se convierta en un mal año.",
+    c:["El freno de protección es la regla que dice cuánto puede perder una cuenta en un mes. En el plan Moderado, por ejemplo, el riesgo mensual es del 3%: si el saldo cae ese porcentaje, la mesa deja de operarlo hasta el mes siguiente.","El freno se aplica al cierre de cada operación y está en el contrato. Ante movimientos muy bruscos del mercado puede rebasarse ligeramente; por eso lo explicamos siempre."] }
 ];
-const TIPOS = { memo:"Memo de la mesa", blog:"Blog", articulo:"Artículo" };
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const by = k => `<div class="byline"><img src="${AUT[k][1]}" alt="" onerror="this.style.display='none'"><b style="font-weight:500">${AUT[k][0]}</b></div>`;
+const kick = x => `<div class="kicker">${TIPO[x.tipo]} · ${SEC[x.sec]}</div>`;
+const MS = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"], hoy = new Date();
+$("#edicion").textContent = `Edición de ${MS[hoy.getMonth()]} ${hoy.getFullYear()}`;
 let F = "todo";
+
+const cov = IDEAS.find(x=>x.cover);
+$("#cover").innerHTML = `<div class="bg" style="background-image:url(${cov.img})"></div><div class="in">${kick(cov)}<h2>${cov.t}</h2><p>${cov.r}</p>${by(cov.au)}<div class="meta" style="color:#bbb;margin-top:6px">${cov.f}</div></div>`;
+$("#cover").onclick = () => leer(IDEAS.indexOf(cov));
+
 function render(){
-  const L = IDEAS.filter(x => F==="todo" || x.tipo===F);
-  $("#igrid").innerHTML = L.map((x,i) => { const big = F==="todo" && x.big;
-    return `<article class="it ${big?"big":""}" data-i="${IDEAS.indexOf(x)}" tabindex="0">${big?`<div class="th" style="background-image:url(${x.img})"></div>`:""}
-      <div class="ty"><b>${TIPOS[x.tipo]}</b> · ${x.a}</div><h3>${x.t}</h3><p>${x.r}</p><div class="dt">${x.f}</div></article>`; }).join("");
-  $("#tabs").innerHTML = [["todo","Todo"],["memo","Memos"],["blog","Blog"],["articulo","Artículos"]].map(([k,t])=>`<button type="button" data-k="${k}" class="${k===F?"on":""}">${t}</button>`).join("");
-  $$("#tabs button").forEach(b => b.onclick = () => { F = b.dataset.k; render(); });
-  $$(".it").forEach(el => { el.onclick = () => leer(+el.dataset.i); el.onkeydown = e => { if(e.key==="Enter") leer(+el.dataset.i); }; });
+  const L = IDEAS.filter(x => !x.cover && (F==="todo" || x.sec===F || x.tipo===F));
+  const top = L.slice(0,5), rest = L.slice(5);
+  $("#mag").innerHTML = top.map((x,i)=>`<article class="art ${i===0?"lead":""}" data-i="${IDEAS.indexOf(x)}"><div class="im" style="background-image:url(${x.img})"><i></i></div>${kick(x)}<h4>${x.t}</h4><p>${x.r}</p><div class="meta">${AUT[x.au][0]} · ${x.f}</div></article>`).join("") || `<p class="meta">No hay textos en esta sección todavía.</p>`;
+  $("#list").innerHTML = rest.map(x=>`<article class="li" data-i="${IDEAS.indexOf(x)}"><div class="im" style="background-image:url(${x.img})"></div><div>${kick(x)}<h5>${x.t}</h5><div class="meta">${AUT[x.au][0]}</div></div></article>`).join("");
+  $("#list").style.display = rest.length ? "" : "none";
+  $("#latT").textContent = F==="todo" ? "Lo más reciente" : (SEC[F] || TIPO[F]);
+  $("#latN").textContent = `${L.length} ${L.length===1?"texto":"textos"}`;
+  $("#secs").innerHTML = [["todo","Todo"],["memo","Memos"],["blog","Blog"],["articulo","Artículos"],...Object.entries(SEC)].map(([k,t])=>`<button type="button" data-k="${k}" class="${k===F?"on":""}">${t}</button>`).join("");
+  $$("#secs button").forEach(b => b.onclick = () => { F = b.dataset.k; render(); document.getElementById("reciente").scrollIntoView({ behavior:"smooth" }); });
+  $$(".art,.li").forEach(el => el.onclick = () => leer(+el.dataset.i));
 }
+$("#mgrid").innerHTML = IDEAS.filter(x=>x.tipo==="memo").map(x=>`<article class="memo" data-i="${IDEAS.indexOf(x)}"><div class="im" style="background-image:url(${x.img})"></div><div class="bd">${kick(x)}<h4>${x.t}</h4><blockquote>${x.q}</blockquote>${by(x.au)}</div></article>`).join("");
+$$(".memo").forEach(el => el.onclick = () => leer(+el.dataset.i));
+
 function leer(i){ const x = IDEAS[i];
-  $("#rbox").innerHTML = `<button class="x" id="rx" aria-label="Cerrar">×</button><div class="ty">${TIPOS[x.tipo]}</div><h2>${x.t}</h2><div class="by">${x.a} · ${x.f}</div>${x.c.map(p=>`<p>${p}</p>`).join("")}
-    <div class="note">Contenido educativo; no es asesoría de inversión ni una recomendación personalizada.</div>`;
-  $("#reader").classList.add("on"); document.documentElement.style.overflow = "hidden"; if(window.__lenis) window.__lenis.stop();
-  $("#rx").onclick = cerrar; }
+  $("#rd").innerHTML = `<div class="rd-hero" style="background-image:url(${x.img})"></div><article class="rd-body">${kick(x)}<h2>${x.t}</h2><p class="dek">${x.r}</p>
+    ${by(x.au)}<div class="meta" style="margin-bottom:30px">${x.f}</div>
+    ${x.c.map((p,k)=> (k===1 ? `<div class="pq">${x.q}</div>` : "") + `<p class="t ${k===0?"first":""}">${p}</p>`).join("")}
+    <div class="note">Contenido educativo; no es asesoría de inversión ni una recomendación personalizada.</div></article>`;
+  $("#reader").classList.add("on"); $("#reader").scrollTop = 0; document.documentElement.style.overflow = "hidden"; if(window.__lenis) window.__lenis.stop(); }
 function cerrar(){ $("#reader").classList.remove("on"); document.documentElement.style.overflow = ""; if(window.__lenis) window.__lenis.start(); }
-$("#reader").addEventListener("click", e => { if(e.target.id==="reader") cerrar(); });
-addEventListener("keydown", e => { if(e.key==="Escape") cerrar(); });
+$("#rdx").onclick = cerrar; addEventListener("keydown", e => { if(e.key==="Escape") cerrar(); });
 $("#newsForm").addEventListener("submit", e => { e.preventDefault(); const d = Object.fromEntries(new FormData(e.target));
   try{ const l = JSON.parse(localStorage.getItem("np-boletin")||"[]"); l.push({ ...d, fecha:new Date().toISOString() }); localStorage.setItem("np-boletin", JSON.stringify(l)); }catch(_){}
   $("#newsOk").style.display = "block"; e.target.reset(); });
@@ -283,7 +294,7 @@ render();
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="anim.js?v=1790786574"></script>
-<script src="menu.js?v=1790786574"></script>
+<script src="anim.js?v=1790786907"></script>
+<script src="menu.js?v=1790786907"></script>
 </body>
 </html>
