@@ -73,3 +73,46 @@ if __name__ == "__main__":
     try:
         ms = memos(); (pathlib.Path(__file__).resolve().parent.parent / "data" / "memos.json").write_text(json.dumps({"items": ms}, ensure_ascii=False, indent=1)); print(len(ms), "memos")
     except Exception as e: print("memos sin respuesta:", e)
+
+# ── calendario económico de la semana (ForexFactory) → data/calendario.json ──
+# ── últimos videos de canales financieros (YouTube) → data/videos.json ──
+CANALES = [("Bloomberg Línea", "UCt4iMhUHxnKfxJXIW36Y4Rw"), ("El Economista", "UCXmAOGwFYxIq5qrScJeeV4g")]
+if __name__ == "__main__":
+    base = pathlib.Path(__file__).resolve().parent.parent / "data"
+    try:
+        cal = json.loads(urllib.request.urlopen(urllib.request.Request("https://nfs.faireconomy.media/ff_calendar_thisweek.json", headers={"User-Agent": "Mozilla/5.0"}), timeout=20).read())
+        (base / "calendario.json").write_text(json.dumps({"actualizado": datetime.datetime.now(datetime.timezone.utc).isoformat(), "items": cal}, ensure_ascii=False)); print(len(cal), "eventos")
+    except Exception as e: print("calendario sin respuesta:", e)
+    vids = []
+    for nombre, cid in CANALES:
+        try:
+            t = urllib.request.urlopen(urllib.request.Request("https://www.youtube.com/feeds/videos.xml?channel_id=" + cid, headers={"User-Agent": "Mozilla/5.0"}), timeout=20).read().decode("utf-8", "ignore")
+            for e in re.findall(r"<entry>(.*?)</entry>", t, re.S)[:8]:
+                vid = re.search(r"<yt:videoId>(.*?)</yt:videoId>", e).group(1)
+                vids.append({"canal": nombre, "id": vid, "t": html.unescape(re.search(r"<title>(.*?)</title>", e).group(1)), "f": re.search(r"<published>(.*?)</published>", e).group(1)})
+        except Exception as ex: print("videos sin respuesta:", nombre, ex)
+    vids.sort(key=lambda v: v["f"], reverse=True)
+    (base / "videos.json").write_text(json.dumps({"items": vids}, ensure_ascii=False, indent=1)); print(len(vids), "videos")
+
+# ── Polymarket: mercados de predicción de economía, Fed, cripto, petróleo e IA → data/polymarket.json ──
+TEMAS = {"Economy", "Fed", "fomc", "Finance", "Crypto", "Bitcoin", "Ethereum", "AI", "Oil", "Geopolitics", "Inflation", "Recession"}
+if __name__ == "__main__":
+    try:
+        evs = json.loads(urllib.request.urlopen(urllib.request.Request("https://gamma-api.polymarket.com/events?active=true&closed=false&limit=150&order=volume24hr&ascending=false", headers={"User-Agent": "Mozilla/5.0"}), timeout=25).read())
+        out = []
+        for e in evs:
+            tags = {t.get("label") for t in e.get("tags", [])}
+            if not (tags & TEMAS) or "Sports" in tags: continue
+            ms = []
+            for m in e.get("markets", []):
+                if m.get("closed") or not m.get("active") or not m.get("outcomePrices"): continue
+                try: p = float(json.loads(m["outcomePrices"])[0])
+                except Exception: continue
+                ms.append({"n": m.get("groupItemTitle") or m.get("question"), "p": p, "s": m.get("slug")})
+            if not ms: continue
+            ms.sort(key=lambda x: x["p"], reverse=True)
+            out.append({"slug": e["slug"], "t": e["title"], "vol": round(e.get("volume24hr") or 0), "tags": sorted(tags)[:4], "m": ms[:5]})
+            if len(out) >= 9: break
+        (pathlib.Path(__file__).resolve().parent.parent / "data" / "polymarket.json").write_text(json.dumps({"actualizado": datetime.datetime.now(datetime.timezone.utc).isoformat(), "items": out}, ensure_ascii=False, indent=1))
+        print(len(out), "mercados Polymarket:", [x["t"][:40] for x in out])
+    except Exception as ex: print("polymarket sin respuesta:", ex)

@@ -1,0 +1,337 @@
+{
+ "actualizado": "2026-09-30T23:06:01.069201+00:00",
+ "items": [
+  {
+   "slug": "fed-decision-in-october-20260617190323537",
+   "t": "Fed Decision in October?",
+   "vol": 2218740,
+   "tags": [
+    "Economic Policy",
+    "Economy",
+    "Fed",
+    "Fed Rates"
+   ],
+   "m": [
+    {
+     "n": "No change",
+     "p": 0.655,
+     "s": "will-there-be-no-change-in-fed-interest-rates-after-the-october-2026-meeting-20260617190324031"
+    },
+    {
+     "n": "25 bps increase",
+     "p": 0.335,
+     "s": "will-the-fed-increase-interest-rates-by-25-bps-after-the-october-2026-meeting-20260617190324032"
+    },
+    {
+     "n": "50+ bps increase",
+     "p": 0.0055,
+     "s": "will-the-fed-increase-interest-rates-by-50-bps-after-the-october-2026-meeting-20260617190324033"
+    },
+    {
+     "n": "25 bps decrease",
+     "p": 0.0045,
+     "s": "will-the-fed-decrease-interest-rates-by-25-bps-after-the-october-2026-meeting-20260617190324030"
+    },
+    {
+     "n": "50+ bps decrease",
+     "p": 0.0025,
+     "s": "will-the-fed-decrease-interest-rates-by-50-bps-after-the-october-2026-meeting-20260617190324029"
+    }
+   ]
+  },
+  {
+   "slug": "what-price-will-bitcoin-hit-in-september-2026",
+   "t": "What price will Bitcoin hit in September?",
+   "vol": 1378778,
+   "tags": [
+    "Bitcoin",
+    "Crypto",
+    "Crypto Prices",
+    "Hit Price"
+   ],
+   "m": [
+    {
+     "n": "↑ 85,000",
+     "p": 0.105,
+     "s": "will-bitcoin-reach-85k-in-september-2026-from-september-30"
+    },
+    {
+     "n": "↓ 82,500",
+     "p": 0.042,
+     "s": "will-bitcoin-dip-to-82pt5k-in-september-2026"
+    },
+    {
+     "n": "↓ 80,000",
+     "p": 0.004,
+     "s": "will-bitcoin-dip-to-80k-in-september-2026-from-september-18"
+    },
+    {
+     "n": "↑ 87,500",
+     "p": 0.0035,
+     "s": "will-bitcoin-reach-87pt5k-in-september-2026"
+    },
+    {
+     "n": "↑ 90,000",
+     "p": 0.003,
+     "s": "will-bitcoin-reach-90k-in-september-2026"
+    }
+   ]
+  },
+  {
+   "slug": "what-price-will-ethereum-hit-in-september-2026",
+   "t": "What price will Ethereum hit in September?",
+   "vol": 982960,
+   "tags": [
+    "Crypto",
+    "Crypto Prices",
+    "Ethereum",
+    "Hit Price"
+   ],
+   "m": [
+    {
+     "n": "↑ 2,700",
+     "p": 0.35,
+     "s": "will-ethereum-reach-2700-in-september-2026-from-september-30"
+    },
+    {
+     "n": "↓ 2,600",
+     "p": 0.0125,
+     "s": "will-ethereum-dip-to-2600-in-september-2026-from-september-20"
+    },
+    {
+     "n": "↑ 2,800",
+     "p": 0.008,
+     "s": "will-ethereum-reach-2800-in-september-2026-from-september-22"
+    },
+    {
+     "n": "↑ 2,900",
+     "p": 0.0035,
+     "s": "will-ethereum-reach-2900-in-september-2026"
+    },
+    {
+     "n": "↑ 3,100",
+     "p": 0.0015,
+     "s": "will-ethereum-reach-3100-in-september-2026"
+    }
+   ]
+  },
+  {
+   "slug": "who-will-be-the-next-prime-minister-of-israel-after-the-next-election",
+   "t": "Prime Minister of Israel after the next election?",
+   "vol": 637983,
+   "tags": [
+    "Elections",
+    "Geopolitics",
+    "Global Elections",
+    "Israel"
+   ],
+   "m": [
+    {
+     "n": "Gadi Eizenkot",
+     "p": 0.472,
+     "s": "will-gadi-eizenkot-be-the-next-prime-minister-of-israel"
+    },
+    {
+     "n": "Benjamin Netanyahu",
+     "p": 0.335,
+     "s": "will-benjamin-netanyahu-be-the-next-prime-minister-of-israel"
+    },
+    {
+     "n": "Naftali Bennett",
+     "p": 0.145,
+     "s": "will-naftali-bennett-be-the-next-prime-minister-of-israel"
+    },
+    {
+     "n": "Avigdor Lieberman",
+     "p": 0.0345,
+     "s": "will-avigdor-lieberman-be-the-next-prime-minister-of-israel"
+    },
+    {
+     "n": "Ofer Winter",
+     "p": 0.0055,
+     "s": "will-ofer-winter-be-the-next-prime-minister-of-israel"
+    }
+   ]
+  },
+  {
+   "slug": "israel-x-iran-ceasefire-continues-throughptptpt-20260716224448963",
+   "t": "Israel x Iran ceasefire continues through...?",
+   "vol": 435614,
+   "tags": [
+    "Geopolitics",
+    "Iran",
+    "Israel",
+    "Israel Election"
+   ],
+   "m": [
+    {
+     "n": "October 31",
+     "p": 0.795,
+     "s": "israel-x-iran-ceasefire-continues-through-october-31"
+    },
+    {
+     "n": "November 30",
+     "p": 0.705,
+     "s": "israel-x-iran-ceasefire-continues-through-november-30"
+    },
+    {
+     "n": "December 31",
+     "p": 0.625,
+     "s": "israel-x-iran-ceasefire-continues-through-december-31-415"
+    }
+   ]
+  },
+  {
+   "slug": "which-company-has-the-best-ai-model-end-of-october",
+   "t": "Which company has the best AI model end of October?",
+   "vol": 429766,
+   "tags": [
+    "AI",
+    "AI Rankings",
+    "Claude Opus",
+    "GPT Releases"
+   ],
+   "m": [
+    {
+     "n": "Google",
+     "p": 0.7265,
+     "s": "will-google-have-the-best-ai-model-at-the-end-of-october-2026-20260811194841120"
+    },
+    {
+     "n": "Anthropic",
+     "p": 0.27,
+     "s": "will-anthropic-have-the-best-ai-model-at-the-end-of-october-2026-20260811194841118"
+    },
+    {
+     "n": "Meta",
+     "p": 0.004,
+     "s": "will-meta-have-the-best-ai-model-at-the-end-of-october-2026-20260811194841119"
+    },
+    {
+     "n": "OpenAI",
+     "p": 0.0035,
+     "s": "will-openai-have-the-best-ai-model-at-the-end-of-october-2026-20260811194841123"
+    },
+    {
+     "n": "Alibaba",
+     "p": 0.0005,
+     "s": "will-alibaba-have-the-best-ai-model-at-the-end-of-october-2026-20260811194841121"
+    }
+   ]
+  },
+  {
+   "slug": "bitcoin-above-on-october-1-2026",
+   "t": "Bitcoin above ___ on October 1?",
+   "vol": 422066,
+   "tags": [
+    "Bitcoin",
+    "Crypto",
+    "Crypto Prices",
+    "Hide From New"
+   ],
+   "m": [
+    {
+     "n": "74,000",
+     "p": 0.9995,
+     "s": "bitcoin-above-74k-on-october-1-2026"
+    },
+    {
+     "n": "76,000",
+     "p": 0.999,
+     "s": "bitcoin-above-76k-on-october-1-2026"
+    },
+    {
+     "n": "78,000",
+     "p": 0.9985,
+     "s": "bitcoin-above-78k-on-october-1-2026"
+    },
+    {
+     "n": "80,000",
+     "p": 0.9925,
+     "s": "bitcoin-above-80k-on-october-1-2026"
+    },
+    {
+     "n": "82,000",
+     "p": 0.9315,
+     "s": "bitcoin-above-82k-on-october-1-2026"
+    }
+   ]
+  },
+  {
+   "slug": "us-iran-ceasefire-continues-throughptptpt",
+   "t": "US-Iran ceasefire continues through...?",
+   "vol": 390243,
+   "tags": [
+    "Geopolitics",
+    "Iran",
+    "Israel",
+    "Israel x Iran"
+   ],
+   "m": [
+    {
+     "n": "October 7",
+     "p": 0.89,
+     "s": "us-x-iran-ceasefire-continues-through-october-7"
+    },
+    {
+     "n": "October 15",
+     "p": 0.73,
+     "s": "us-x-iran-ceasefire-continues-through-october-15"
+    },
+    {
+     "n": "October 31",
+     "p": 0.555,
+     "s": "us-x-iran-ceasefire-continues-through-october-31-20260917"
+    },
+    {
+     "n": "November 30",
+     "p": 0.395,
+     "s": "us-x-iran-ceasefire-continues-through-november-30-20260918"
+    },
+    {
+     "n": "December 31",
+     "p": 0.345,
+     "s": "us-x-iran-ceasefire-continues-through-december-31-20260918"
+    }
+   ]
+  },
+  {
+   "slug": "what-price-will-bitcoin-hit-september-28-october-4-2026",
+   "t": "What price will Bitcoin hit September 28-October 4?",
+   "vol": 295042,
+   "tags": [
+    "Bitcoin",
+    "Crypto",
+    "Crypto Prices",
+    "Hide From New"
+   ],
+   "m": [
+    {
+     "n": "↓ 82,000",
+     "p": 0.495,
+     "s": "will-bitcoin-dip-to-82k-september-28-october-4-2026"
+    },
+    {
+     "n": "↑ 86,000",
+     "p": 0.365,
+     "s": "will-bitcoin-reach-86k-september-28-october-4-2026"
+    },
+    {
+     "n": "↓ 80,000",
+     "p": 0.165,
+     "s": "will-bitcoin-dip-to-80k-september-28-october-4-2026"
+    },
+    {
+     "n": "↑ 88,000",
+     "p": 0.115,
+     "s": "will-bitcoin-reach-88k-september-28-october-4-2026"
+    },
+    {
+     "n": "↓ 78,000",
+     "p": 0.075,
+     "s": "will-bitcoin-dip-to-78k-september-28-october-4-2026"
+    }
+   ]
+  }
+ ]
+}

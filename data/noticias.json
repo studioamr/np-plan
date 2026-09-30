@@ -1,13 +1,85 @@
 {
- "actualizado": "2026-09-30T17:12:25.421199+00:00",
+ "actualizado": "2026-09-30T23:05:57.595460+00:00",
  "items": [
+  {
+   "cat": "economia",
+   "fuente": "Expansión",
+   "t": "México tiene DiMo y CoDi; Perú apuesta por Bim y un modelo que podría cambiar los pagos digitales",
+   "l": "https://expansion.mx/economia/2026/09/30/mexico-tiene-codi-peru-compartamos-banco-apuesta-bim",
+   "img": "https://cdn-3.expansion.mx/dims4/default/1b7ff98/2147483647/resize/1280x/quality/90/?url=https%3A%2F%2Fcdn-3.expansion.mx%2F6a%2F51%2F2455104d41918a1d1d2633c3d78d%2Fimage-20260930-165229-solo-cambia-su-expresin-a-algo-menos-feliz-un-poco-sin-las-banderas-de-per.jpg",
+   "f": "2026-09-30T22:12:07+00:00"
+  },
+  {
+   "cat": "ia",
+   "fuente": "Expansión",
+   "t": "DeepSeek y Huawei unen fuerzas para reducir la dependencia de Nvidia en chips de IA",
+   "l": "https://expansion.mx/tecnologia/2026/09/30/deepseek-huawei-unen-fuerzas-reducir-dependencia-nvidia",
+   "img": "https://cdn-3.expansion.mx/dims4/default/83a0b81/2147483647/resize/1280x/quality/90/?url=https%3A%2F%2Fcdn-3.expansion.mx%2F07%2F8b%2F6ade715346528d2f0848b6ce801d%2Fhuawei-vs-nvidia.jpg",
+   "f": "2026-09-30T21:37:14+00:00"
+  },
+  {
+   "cat": "mercados",
+   "fuente": "Bloomberg Línea",
+   "t": "Nu Holdings negó estar en busca de una alianza con Monzo, el principal competidor de Revolut",
+   "l": "https://www.bloomberglinea.com/latinoamerica/colombia/nu-holdings-nego-estar-en-busca-de-una-alianza-con-monzo-el-principal-competidor-de-revolut/",
+   "img": "https://www.bloomberglinea.com/resizer/v2/C33P7TMZ5FDURMFTOYLIPLOTME.jpg?auth=8761dba8eaf947da4cc50dab039699c955134437f76854f0e22cb5c5368f8bf1&smart=true&width=1200&height=675",
+   "f": "2026-09-30T21:16:38+00:00"
+  },
+  {
+   "cat": "mercados",
+   "fuente": "El Financiero",
+   "t": "‘Todo se derrumbó’ para el peso en septiembre: Tiene su peor caída mensual desde agosto de 2024",
+   "l": "https://www.elfinanciero.com.mx/mercados/2026/09/30/peso-dolar-precio-hoy-30-de-septiembre-de-2026/",
+   "img": "https://elfinanciero-elfinanciero-prod.cdn.arcpublishing.com/resizer/rjbTrv2THuxLX7QoY7WGrmDqeYc=/cloudfront-us-east-1.images.arcpublishing.com/elfinanciero/PMUCD2CERJFP7EECEH2CSXHG34.png",
+   "f": "2026-09-30T21:04:36+00:00"
+  },
+  {
+   "cat": "economia",
+   "fuente": "Expansión",
+   "t": "La inflación superaría 4% sin apoyos fiscales a gasolinas y diésel, asegura el secretario de Hacienda",
+   "l": "https://expansion.mx/economia/2026/09/30/comparecencia-shcp-edgar-amador-zamora",
+   "img": "https://cdn-3.expansion.mx/dims4/default/1867295/2147483647/resize/1280x/quality/90/?url=https%3A%2F%2Fcdn-3.expansion.mx%2Fdb%2F9f%2Fb478c43b4cd2a884be036c132a2c%2F1-edgar-amador-1101297-comparecencia-edgar-amador-diputados-impreso.jpeg",
+   "f": "2026-09-30T19:35:04+00:00"
+  },
+  {
+   "cat": "economia",
+   "fuente": "Expansión",
+   "t": "México vive un boom exportador, pero no todos los estados son ganadores",
+   "l": "https://expansion.mx/economia/2026/09/30/boom-exportador-mexico-estados-exportaciones-2026",
+   "img": "https://cdn-3.expansion.mx/dims4/default/27d45fa/2147483647/resize/1280x/quality/90/?url=https%3A%2F%2Fcdn-3.expansion.mx%2F7f%2F03%2Fc0ec96d043c1bd3d599d21e9b533%2Fboom-exportador-mexico-estados-electronica-2026.jpg",
+   "f": "2026-09-30T19:14:41+00:00"
+  },
+  {
+   "cat": "ia",
+   "fuente": "Expansión",
+   "t": "Tu iPhone se puede convertir en cazador de ofertas automático, así activas la configuración de Apple",
+   "l": "https://expansion.mx/tecnologia/2026/09/30/iphone-cazador-de-ofertas-automatico",
+   "img": "https://cdn-3.expansion.mx/dims4/default/0224d8f/2147483647/resize/1280x/quality/90/?url=https%3A%2F%2Fcdn-3.expansion.mx%2F28%2Fcb%2Fadb9b5b14c0bbe856dbca1da6742%2Fiphone-oferta-en-pantalla.png",
+   "f": "2026-09-30T18:42:41+00:00"
+  },
+  {
+   "cat": "mercados",
+   "fuente": "Bloomberg Línea",
+   "t": "“Resiliencia no es inmunidad”: BID pide no descuidar desafíos fiscales en América Latina",
+   "l": "https://www.bloomberglinea.com/mercados/resiliencia-no-es-inmunidad-bid-pide-no-descuidar-desafios-fiscales-en-america-latina/",
+   "img": "https://www.bloomberglinea.com/resizer/v2/OI7HPTGSAGR4DHXOTO4H52TS2U.jpg?auth=876a4814fe74e64f97374796fe94a4636a9e314b54c4111a341f9fd5919b307d&smart=true&width=1200&height=675",
+   "f": "2026-09-30T18:28:07+00:00"
+  },
+  {
+   "cat": "mercados",
+   "fuente": "El Financiero",
+   "t": "Dólar ‘arrastra por el suelo’ al peso en septiembre: Es la moneda más depreciada del mundo",
+   "l": "https://www.elfinanciero.com.mx/mercados/2026/09/30/peso-es-la-moneda-mas-depreciada-del-mundo-que-provoco-su-caida/",
+   "img": "https://elfinanciero-elfinanciero-prod.cdn.arcpublishing.com/resizer/_4UwOzvy3a8dFT_dBT3X1ur3xUk=/cloudfront-us-east-1.images.arcpublishing.com/elfinanciero/SKNCDNYBM5CE7EU5HD4PRKDVG4.png",
+   "f": "2026-09-30T18:04:51+00:00"
+  },
   {
    "cat": "mercados",
    "fuente": "El Financiero",
    "t": "Wall Street abre positivo mientras se asimilan cifras económicas: ¿Cómo opera HOY?",
    "l": "https://www.elfinanciero.com.mx/mercados/2026/09/30/wall-street-bmv-acciones-hoy-30-de-septiembre-de-2026/",
    "img": "https://elfinanciero-elfinanciero-prod.cdn.arcpublishing.com/resizer/nYooBKSylhTPH2POu8IHEIAxILg=/cloudfront-us-east-1.images.arcpublishing.com/elfinanciero/2IQYWO6PHRDVPHXEZGMVOXYQLI.png",
-   "f": "2026-09-30T16:55:14+00:00"
+   "f": "2026-09-30T17:13:06+00:00"
   },
   {
    "cat": "ia",
@@ -16,14 +88,6 @@
    "l": "https://expansion.mx/tecnologia/2026/09/30/john-ternus-prepara-una-revolucion-en-apple",
    "img": "https://cdn-3.expansion.mx/dims4/default/a55db35/2147483647/resize/1280x/quality/90/?url=https%3A%2F%2Fcdn-3.expansion.mx%2Fdc%2F0e%2Fe7aac1cc4c21ba801f616a8a0007%2Fjohn-ternus-cambios-apple.jpeg",
    "f": "2026-09-30T16:30:39+00:00"
-  },
-  {
-   "cat": "mercados",
-   "fuente": "El Financiero",
-   "t": "Peso, a cerrar su peor mes del último año: ¿En cuánto está el tipo de cambio este 30 de septiembre?",
-   "l": "https://www.elfinanciero.com.mx/mercados/2026/09/30/peso-dolar-precio-hoy-30-de-septiembre-de-2026/",
-   "img": "https://elfinanciero-elfinanciero-prod.cdn.arcpublishing.com/resizer/rjbTrv2THuxLX7QoY7WGrmDqeYc=/cloudfront-us-east-1.images.arcpublishing.com/elfinanciero/PMUCD2CERJFP7EECEH2CSXHG34.png",
-   "f": "2026-09-30T16:25:41+00:00"
   },
   {
    "cat": "ia",
@@ -274,14 +338,6 @@
    "f": "2026-09-28T20:54:27+00:00"
   },
   {
-   "cat": "mercados",
-   "fuente": "El Financiero",
-   "t": "Peso ‘ya casi saca su INE’: Depreciación pone a la moneda mexicana a nada de las 18 unidades",
-   "l": "https://www.elfinanciero.com.mx/mercados/2026/09/28/peso-dolar-precio-hoy-28-de-septiembre-de-2026/",
-   "img": "https://elfinanciero-elfinanciero-prod.cdn.arcpublishing.com/resizer/ykmRHP1a-a54_S2en0P5p0W1f_U=/cloudfront-us-east-1.images.arcpublishing.com/elfinanciero/43P7VYXL3JDVPOQIK5FUBBNZ5E.png",
-   "f": "2026-09-28T20:50:30+00:00"
-  },
-  {
    "cat": "ia",
    "fuente": "Expansión",
    "t": "Tu iPhone puede tenderle una trampa al ladrón y conseguir la fotografía que podría delatarlo",
@@ -322,14 +378,6 @@
    "f": "2026-09-28T15:50:48+00:00"
   },
   {
-   "cat": "economia",
-   "fuente": "Expansión",
-   "t": "México eleva 40.4% sus exportaciones en agosto; registra superávit comercial de 605 mdd",
-   "l": "https://expansion.mx/economia/2026/09/28/exportaciones-mexico-agosto-2026-superavit-comercial",
-   "img": "https://cdn-3.expansion.mx/dims4/default/b4fb3c3/2147483647/resize/1280x/quality/90/?url=https%3A%2F%2Fcdn-3.expansion.mx%2Fa5%2F77%2F17fea76d4c01aa70eb7eefb3aa88%2Fmexico-es-lider-en-en-exportaciones-a-estados-unidos-a-pesar-de-la-incertidumbre-por-el-t-mec-con-242-903-mdd.jpeg",
-   "f": "2026-09-28T14:02:28+00:00"
-  },
-  {
    "cat": "mercados",
    "fuente": "Expansión",
    "t": "El peso queda atrapado entre la Fed y la deuda récord de Estados Unidos",
@@ -354,14 +402,6 @@
    "f": "2026-09-27T14:00:00+00:00"
   },
   {
-   "cat": "economia",
-   "fuente": "Expansión",
-   "t": "México envejeció en cinco años y la presión por pagar pensiones apenas comienza",
-   "l": "https://expansion.mx/economia/2026/09/26/mexico-envejecimiento-pensiones-gasto-publico",
-   "img": "https://cdn-3.expansion.mx/dims4/default/8a9bc1d/2147483647/resize/1280x/quality/90/?url=https%3A%2F%2Fcdn-3.expansion.mx%2F80%2F2f%2Fbabe9d0845bc9d7c1a6e6c99922a%2Fmexico-envejecimiento-pensiones-adultos-mayores-2027.png",
-   "f": "2026-09-26T18:01:38+00:00"
-  },
-  {
    "cat": "ia",
    "fuente": "Bloomberg Línea",
    "t": "El dilema regulatorio de la IA en Argentina y las “tres trampas” que enfrentan empresas a la hora de invertir",
@@ -376,46 +416,6 @@
    "l": "https://www.bloomberglinea.com/mercados/que-dijeron-en-wall-street-sobre-next-el-plan-que-presento-mcdonalds-ante-inversores/",
    "img": "https://www.bloomberglinea.com/resizer/v2/IZWXIOGCDBDNZBMWGCCOXG3CPE.jpg?auth=011e7991befbc3d273a5dab5c7d75b94e62f808f068d480eed6d8fdf418eaca7&smart=true&width=1200&height=675",
    "f": "2026-09-26T10:00:00+00:00"
-  },
-  {
-   "cat": "economia",
-   "fuente": "Expansión",
-   "t": "Se debe romper el mito de que bancarizar es fiscalizar, dice la CNBV; defiende Ley de Economía Digital",
-   "l": "https://expansion.mx/economia/2026/09/25/cnbv-ley-economia-digital-bancarizar-no-es-fiscalizar",
-   "img": "https://cdn-3.expansion.mx/dims4/default/8f815f4/2147483647/resize/1280x/quality/90/?url=https%3A%2F%2Fcdn-3.expansion.mx%2Fe2%2F47%2F97eb3a08448e9f30e33b3ed61a9d%2F83711.jpeg",
-   "f": "2026-09-25T23:56:59+00:00"
-  },
-  {
-   "cat": "mercados",
-   "fuente": "Bloomberg Línea",
-   "t": "Peso mexicano se debilita esta semana hasta su peor nivel en cinco meses tras decisión de Banxico",
-   "l": "https://www.bloomberglinea.com/latinoamerica/mexico/peso-mexicano-se-debilita-esta-semana-hasta-su-peor-nivel-en-cinco-meses-tras-decision-de-banxico/",
-   "img": "https://www.bloomberglinea.com/resizer/v2/ASPEMWP2VBCF5A574ZKULXSHRM.jpg?auth=4a20b1fcc63a855c352d94619753188090bce4a33fc400c27729b670f2bc46a9&smart=true&width=1200&height=675",
-   "f": "2026-09-25T23:19:12+00:00"
-  },
-  {
-   "cat": "ia",
-   "fuente": "Expansión",
-   "t": "La escalofriante advertencia de Bill Gates sobre la IA revela hasta dónde podría llegar su poder destructivo",
-   "l": "https://expansion.mx/tecnologia/2026/09/25/advertencia-bill-gates-ia",
-   "img": "https://cdn-3.expansion.mx/dims4/default/daa63d9/2147483647/resize/1280x/quality/90/?url=https%3A%2F%2Fcdn-3.expansion.mx%2F6b%2F19%2Fc7eec9db4e088d1448e537f2f04d%2Fbill-gates.png",
-   "f": "2026-09-25T22:15:03+00:00"
-  },
-  {
-   "cat": "mercados",
-   "fuente": "Bloomberg Línea",
-   "t": "Los bonos de EE.UU. ya pagan 5%: qué está pasando y qué significa para los inversionistas",
-   "l": "https://www.bloomberglinea.com/mercados/los-bonos-de-eeuu-ya-pagan-5-que-esta-pasando-y-que-significa-para-los-inversionistas/",
-   "img": "https://www.bloomberglinea.com/resizer/v2/RPQ6CKAL7FFIBJWBGM4M5AIGFU.jpg?auth=37343adfb00613a598fad59ff730254dd49064890dd0fc9ae80c35c9b890a43b&smart=true&width=1200&height=675",
-   "f": "2026-09-25T15:33:11+00:00"
-  },
-  {
-   "cat": "ia",
-   "fuente": "Expansión",
-   "t": "Tu vida digital cabe en WhatsApp: pasas hasta 20 horas al mes en la app y también expones tus datos",
-   "l": "https://expansion.mx/tecnologia/2026/09/25/whatsapp-20-horas-al-mes-riesgos-datos-ciberseguridad",
-   "img": "https://cdn-3.expansion.mx/dims4/default/3431bd0/2147483647/resize/1280x/quality/90/?url=https%3A%2F%2Fcdn-3.expansion.mx%2F1b%2Fbe%2F89be8f8d4278ab30b65c5a067044%2Fwhatsapp-riesgos-ciberseguridad-datos-mexico.jpeg",
-   "f": "2026-09-25T11:55:50+00:00"
   },
   {
    "cat": "ia",

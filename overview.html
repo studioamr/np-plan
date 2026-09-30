@@ -3,373 +3,398 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NORTHPOINT Ideas · Memos, blog y artículos</title>
-<meta name="description" content="NORTHPOINT Ideas: la revista de la mesa. Memos, blog y artículos sobre mercados, ahorro, patrimonio e inteligencia artificial, y el equipo que los escribe.">
-<meta property="og:title" content="NORTHPOINT Ideas">
-<meta property="og:description" content="La revista de la mesa: memos, blog y artículos del equipo de NORTHPOINT.">
-<meta property="og:image" content="img/np-memo-1.jpg">
+<title>Coffee Morning · NORTHPOINT</title>
+<meta name="description" content="Coffee Morning de NORTHPOINT: el resumen financiero de cada mañana. Mercados en vivo, calendario económico de la semana, noticias, videos, tweets, Polymarket y los memos de la mesa.">
+<meta property="og:title" content="Coffee Morning · NORTHPOINT">
+<meta property="og:description" content="El resumen financiero de cada mañana: mercados, calendario, noticias, videos y Polymarket.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="base.css?v=1790808755">
-<link rel="stylesheet" href="anim.css?v=1790808755">
+<link rel="stylesheet" href="base.css?v=1790809912">
+<link rel="stylesheet" href="anim.css?v=1790809912">
 <script>document.documentElement.classList.add("js-anim");setTimeout(function(){document.documentElement.classList.add("anim-ready")},3500)</script>
 <!--
-  OVERVIEW v2 · 30-sep-2026 · "NORTHPOINT Ideas", formato revista (identidad propia, distinta a la landing):
-  cabecera editorial · nota de portada a página completa · lo más reciente en retícula asimétrica · memos · IA y datos ·
-  equipo en retratos grandes · boletín · lector de artículo con portada.
-  Los textos son BORRADORES escritos para el sitio y atribuidos por especialidad: revisarlos con cada autor.
+  COFFEE MORNING · 30-sep-2026 · solo contenido real que se actualiza solo (sin imágenes hechas con IA):
+  · Mercados, calendario en vivo y heatmap: widgets oficiales de TradingView.
+  · Agenda de la semana: ForexFactory (data/calendario.json, `python3 herramientas/noticias.py`).
+  · Noticias: RSS de El Financiero, Bloomberg Línea y Expansión (captura + en vivo vía rss2json).
+  · Videos: YouTube de Bloomberg Línea y El Economista (captura + en vivo vía rss2json).
+  · Polymarket: data/polymarket.json + embed oficial en vivo.  · Tweets: timelines oficiales de X.
+  · Memos: northpointcapital.io/memos.html → memo.html.
 -->
 <style>
-:root{--paper:#F5F2EC;--ink2:#111;--rule:#1112;--acc:#2251FF}
+:root{--paper:#F5F2EC;--ink2:#111;--rule:#1112;--acc:#2251FF;--up:#12A150;--dn:#E5484D}
 body{background:var(--paper)}
 nav{background:#0B0B0C!important}
+.tape{position:relative;z-index:5;margin-top:80px;background:#0B0B0C;border-bottom:1px solid #222;min-height:46px}
 .kicker{font:600 11.5px var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--acc)}
 .meta{font:400 13px var(--sans);color:#666}
-
-.mast{padding:118px 0 0;background:var(--paper)}
+.mast{padding:34px 0 0}
 .mast-top{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid var(--ink2);padding-bottom:14px;gap:20px;flex-wrap:wrap}
-.mast h1{font:500 clamp(54px,9vw,132px)/.9 "Playfair Display",serif;letter-spacing:-.03em;color:var(--ink2)}
+.mast h1{font:500 clamp(54px,9vw,128px)/.9 "Playfair Display",serif;letter-spacing:-.03em;color:var(--ink2)}
 .mast h1 i{font-style:italic;font-weight:400;color:var(--acc)}
 .mast .ed{text-align:right;font:400 13px var(--sans);color:#555;line-height:1.6}
 .mast .ed b{display:block;font:600 11px var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--ink2)}
-.secs{display:flex;gap:28px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--rule);padding:14px 0}
+.secs{display:flex;gap:26px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--rule);padding:14px 0}
 .secs::-webkit-scrollbar{display:none}
-.secs button{flex:0 0 auto;border:0;background:none;font:500 13px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:#555;cursor:pointer;padding:4px 0;border-bottom:2px solid transparent}
-.secs button.on,.secs button:hover{color:var(--ink2);border-bottom-color:var(--acc)}
+.secs a{flex:0 0 auto;font:500 13px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:#555;text-decoration:none;padding:4px 0;border-bottom:2px solid transparent}
+.secs a:hover{color:var(--ink2);border-bottom-color:var(--acc)}
+.sec{padding:60px 0}
+.hrow{display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid var(--ink2);padding-top:14px;margin-bottom:26px;gap:16px;flex-wrap:wrap}
+.hrow h3{font:500 30px "Playfair Display",serif;color:var(--ink2)}
+.live{display:inline-flex;align-items:center;gap:8px;font:500 12px var(--sans);color:#444}
+.live i{width:8px;height:8px;border-radius:50%;background:var(--dn);animation:lp 1.6s infinite}
+@keyframes lp{0%{box-shadow:0 0 0 0 rgba(229,72,77,.5)}70%{box-shadow:0 0 0 8px rgba(229,72,77,0)}100%{box-shadow:0 0 0 0 rgba(229,72,77,0)}}
 
-.cover{position:relative;margin-top:34px;min-height:78vh;display:flex;align-items:flex-end;color:#fff;cursor:pointer;overflow:hidden;background:#111}
-.cover .bg{position:absolute;inset:0;background:center/cover no-repeat;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
-.cover:hover .bg{transform:scale(1.03)}
-.cover:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.88) 0%,rgba(0,0,0,.45) 45%,rgba(0,0,0,.05) 80%)}
-.cover .in{position:relative;z-index:2;padding:0 44px 64px;max-width:960px}
-.cover .kicker{color:#9FB7FF}
-.cover h2{font:400 clamp(36px,5.2vw,76px)/1.02 "Playfair Display",serif;color:#fff;margin:14px 0 18px;letter-spacing:-.02em}
-.cover p{font:300 20px/1.5 "Source Serif 4",serif;opacity:.9;max-width:680px}
-.byline{display:flex;align-items:center;gap:12px;margin-top:22px;font:400 14px var(--sans)}
-.byline img{width:42px;height:42px;border-radius:50%;object-fit:cover;object-position:center 20%;filter:grayscale(1);border:2px solid rgba(255,255,255,.8);background:#fff}
+.coffee{background:#0B0B0C;color:#fff;padding:56px 0 64px}
+.coffee .hi{font:400 clamp(36px,5vw,64px)/1.05 "Playfair Display",serif;margin:10px 0 8px}
+.coffee .sub{font:300 19px "Source Serif 4",serif;opacity:.75;margin-bottom:34px}
+.cgrid{display:grid;grid-template-columns:1.1fr 1.2fr 1fr;gap:1px;background:#262626;border:1px solid #262626}
+.cgrid>div{background:#111;padding:24px}
+.cgrid h4{font:600 11px var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#9FB7FF;margin-bottom:16px}
+.ag li,.hd li{list-style:none;display:grid;gap:4px 12px;padding:11px 0;border-top:1px solid #222}
+.ag li:first-child,.hd li:first-child{border-top:0;padding-top:0}
+.ag li{grid-template-columns:52px 1fr}
+.ag li.empty,.hd li.empty{display:block}
+.ag .h{font:500 14px ui-monospace,Menlo,monospace;color:#bbb}
+.ag .e{font:400 15px/1.35 var(--sans)}
+.ag .e small{display:block;color:#888;font-size:12px;margin-top:3px}
+.imp{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.imp.High{background:var(--dn)}.imp.Medium{background:#F5A524}.imp.Low{background:#888}.imp.Holiday{background:#9FB7FF}
+.cc{display:inline-block;font:600 10.5px var(--sans);letter-spacing:.06em;padding:2px 6px;background:#222;color:#ddd;margin-right:6px}
+.hd a{color:#fff;text-decoration:none;font:400 16px/1.35 "Source Serif 4",serif}
+.hd a:hover{color:#9FB7FF}
+.hd small{display:block;color:#888;font:400 12px var(--sans);margin-top:4px}
+.pmx .q{font:400 16px/1.35 "Source Serif 4",serif;margin-bottom:12px}
+.pmx .o,.pm .o{display:grid;grid-template-columns:1fr auto;gap:6px 10px;align-items:center;font:400 13.5px var(--sans);margin-bottom:9px}
+.pmx .o b,.pm .o b{font-variant-numeric:tabular-nums}
+.bar{height:6px;background:#222;overflow:hidden;grid-column:1/-1}
+.bar i{display:block;height:100%;background:var(--acc)}
+.memo-t{display:block;color:#fff;text-decoration:none;font:400 22px/1.2 "Playfair Display",serif;margin:0 0 6px}
+.memo-t:hover{color:#9FB7FF}
+.empty{color:#888;font-size:14px}
 
-/* al día: noticias reales, se actualizan solas */
-.aldia{padding:70px 0 10px}
-.ad-top{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;border-top:2px solid var(--ink2);padding-top:14px;margin-bottom:26px}
-.ad-top h3{font:500 30px "Playfair Display",serif;color:var(--ink2)}
-.ad-live{display:inline-flex;align-items:center;gap:8px;font:500 12px var(--sans);letter-spacing:.06em;color:#444;margin-top:6px}
-.ad-live i{width:8px;height:8px;border-radius:50%;background:#E5484D;animation:adp 1.6s infinite}
-@keyframes adp{0%{box-shadow:0 0 0 0 rgba(229,72,77,.5)}70%{box-shadow:0 0 0 8px rgba(229,72,77,0)}100%{box-shadow:0 0 0 0 rgba(229,72,77,0)}}
+.dtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.dtabs button{border:1px solid var(--rule);background:#fff;padding:9px 14px;font:500 13px var(--sans);cursor:pointer;color:#333;text-transform:capitalize}
+.dtabs button.on{background:var(--ink2);color:#fff;border-color:var(--ink2)}
+.dtabs button small{opacity:.6;margin-left:6px;text-transform:none}
+.flt{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font:400 13px var(--sans);color:#555;margin-bottom:12px}
+.flt label{display:inline-flex;gap:6px;align-items:center;cursor:pointer}
+table.cal{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--rule);font:400 14px var(--sans)}
+.cal th{text-align:left;font:600 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#666;padding:10px 12px;border-bottom:2px solid var(--ink2)}
+.cal td{padding:11px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+.cal td.h{font-family:ui-monospace,Menlo,monospace;color:#444;white-space:nowrap}
+.cal tr.past td{color:#9a9a9a}
+.cal tr.next td{background:#EEF2FF}
+.cal .cc{background:#EEE;color:#333}
+.calw{overflow-x:auto}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.tvbox{background:#fff;border:1px solid var(--rule);min-height:520px;overflow:hidden}
+
 .ad-tabs{display:flex;gap:6px;flex-wrap:wrap}
 .ad-tabs button{border:1px solid var(--rule);background:transparent;border-radius:999px;padding:8px 14px;font:500 12.5px var(--sans);color:#333;cursor:pointer}
 .ad-tabs button.on{background:var(--ink2);color:#fff;border-color:var(--ink2)}
 .ad-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px 24px}
 .nw{display:flex;flex-direction:column;text-decoration:none;color:inherit}
-.nw .im{aspect-ratio:16/10;background:#ddd center/cover no-repeat;overflow:hidden}
+.nw .im{aspect-ratio:16/10;background:#ddd;overflow:hidden}
 .nw .im img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
 .nw:hover .im img{transform:scale(1.05)}
 .nw .src{display:flex;justify-content:space-between;gap:8px;margin-top:12px;font:600 11px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--acc)}
 .nw .src span{color:#777;font-weight:400;letter-spacing:.02em;text-transform:none}
 .nw h5{font:400 18px/1.3 "Playfair Display",serif;color:var(--ink2);margin-top:6px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .nw:hover h5{color:var(--acc)}
-.nw.big{grid-column:span 2;grid-row:span 2}
-.nw.big .im{aspect-ratio:16/11}
-.nw.big h5{font-size:30px;-webkit-line-clamp:4}
-.ad-more{display:block;margin:30px auto 0;border:1px solid var(--ink2);background:transparent;padding:12px 22px;font:500 14px var(--sans);cursor:pointer}
-.ad-note{font:400 12px var(--sans);color:#888;margin-top:16px}
-@media(max-width:1000px){.ad-grid{grid-template-columns:1fr 1fr}.nw.big{grid-column:span 2;grid-row:auto}}
-@media(max-width:640px){.ad-grid{grid-template-columns:1fr}.nw.big{grid-column:auto}.nw.big h5{font-size:24px}}
+.nw.big{grid-column:span 2;grid-row:span 2}.nw.big .im{aspect-ratio:16/11}.nw.big h5{font-size:30px;-webkit-line-clamp:4}
+.more{display:block;margin:30px auto 0;border:1px solid var(--ink2);background:transparent;padding:12px 22px;font:500 14px var(--sans);cursor:pointer}
 
-.latest{padding:70px 0 40px}
-.hrow{display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid var(--ink2);padding-top:14px;margin-bottom:30px;gap:16px}
-.hrow h3{font:500 30px "Playfair Display",serif;color:var(--ink2)}
-.mag{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px 30px}
-.art{cursor:pointer;display:flex;flex-direction:column}
-.art .im{aspect-ratio:4/3;background:#222 center/cover no-repeat;overflow:hidden}
-.art .im i{display:block;width:100%;height:100%;background:inherit;background-size:cover;background-position:center;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
-.art:hover .im i{transform:scale(1.05)}
-.art .kicker{margin-top:16px}
-.art h4{font:400 24px/1.18 "Playfair Display",serif;color:var(--ink2);margin:8px 0 8px;transition:color .2s}
-.art:hover h4{color:var(--acc)}
-.art p{font:300 16px/1.55 "Source Serif 4",serif;color:#333}
-.art .meta{margin-top:10px}
-.art.lead{grid-row:span 2}
-.art.lead .im{aspect-ratio:4/5}
-.art.lead h4{font-size:36px}
-.list{display:grid;grid-template-columns:repeat(3,1fr);gap:0 30px;margin-top:40px;border-top:1px solid var(--rule)}
-.li{display:grid;grid-template-columns:96px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid var(--rule);cursor:pointer}
-.li .im{aspect-ratio:1/1;background:#222 center/cover no-repeat}
-.li h5{font:400 18px/1.25 "Playfair Display",serif;color:var(--ink2);margin:6px 0 4px}
-.li:hover h5{color:var(--acc)}
+.vgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.vd{cursor:pointer;display:flex;flex-direction:column}
+.vd .im{position:relative;aspect-ratio:16/9;background:#111;overflow:hidden}
+.vd .im img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s}
+.vd:hover .im img{transform:scale(1.05)}
+.vd .pl{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:50%;background:rgba(0,0,0,.65);display:grid;place-items:center;color:#fff;font-size:18px;transition:background .2s}
+.vd:hover .pl{background:var(--acc)}
+.vd .src{margin-top:10px;font:600 11px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--acc)}
+.vd h5{font:400 17px/1.3 "Playfair Display",serif;color:var(--ink2);margin-top:5px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.vmodal{position:fixed;inset:0;z-index:95;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;padding:20px}
+.vmodal.on{display:flex}
+.vmodal .fr{width:min(1100px,100%);aspect-ratio:16/9;background:#000}
+.vmodal iframe{width:100%;height:100%;border:0}
+.vmodal button{position:absolute;right:18px;top:14px;width:46px;height:46px;border-radius:50%;border:0;background:#fff;font:300 26px var(--sans);cursor:pointer}
 
-.memos{background:#0B0B0C;color:#fff;padding:90px 0}
-.memos .hrow{border-color:#fff}
-.memos .hrow h3{color:#fff}
-.memos .intro{font:300 20px/1.5 "Source Serif 4",serif;opacity:.8;max-width:640px;margin:-10px 0 34px}
-.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
-.memo{display:grid;grid-template-columns:44% 1fr;background:#161618;cursor:pointer;transition:background .3s;color:#fff}
-.memo:hover{background:#1E1E21}
-.memo .im{background:#222 center/cover no-repeat;min-height:320px}
-.memo .bd{padding:30px;display:flex;flex-direction:column}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pm{background:#fff;border:1px solid var(--rule);padding:20px;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:border-color .2s,translate .3s}
+.pm:hover{border-color:var(--ink2);translate:0 -3px}
+.pm .tg{font:600 10.5px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#777}
+.pm h5{font:500 19px/1.25 "Playfair Display",serif;color:var(--ink2);margin:8px 0 14px}
+.pm .bar{background:#EEF1F6}
+.pm .ft{margin-top:auto;padding-top:12px;font:400 12px var(--sans);color:#777;display:flex;justify-content:space-between}
+.pmlive{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.pmlive iframe{width:100%;height:180px;border:1px solid var(--rule);background:#fff}
+
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tw{background:#fff;border:1px solid var(--rule);height:620px;overflow:auto}
+.tw .cap{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid var(--rule);font:600 13px var(--sans);position:sticky;top:0;background:#fff;z-index:1}
+.tw .cap a{color:var(--acc);text-decoration:none;font-weight:500}
+.tw .fb{padding:18px;font:400 14px var(--sans);color:#666}
+.tw.off{height:auto}
+.twoff{padding:34px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px}
+.twoff .ini{width:64px;height:64px;border-radius:50%;background:#0B0B0C;color:#fff;display:grid;place-items:center;font:500 20px "Playfair Display",serif;margin-bottom:8px}
+.twoff b{font:500 20px "Playfair Display",serif;color:var(--ink2)}
+.twoff span{font:400 13px var(--sans);color:#666}
+.twoff p{font:400 13px/1.5 var(--sans);color:#777;margin:10px 0 14px;max-width:260px}
+.tw .cap span{color:#777;font-weight:400}
+
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.memo{background:#0B0B0C;color:#fff;padding:28px;text-decoration:none;display:flex;flex-direction:column;gap:10px;transition:background .3s}
+.memo:hover{background:#1A1A1D}
 .memo .kicker{color:#9FB7FF}
-.memo h4{font:400 26px/1.15 "Playfair Display",serif;color:#fff;margin:12px 0 14px}
-.memo blockquote{font:italic 300 18px/1.5 "Source Serif 4",serif;opacity:.85;border-left:2px solid var(--acc);padding-left:14px}
-.memo .byline{margin-top:auto;padding-top:20px}
+.memo h4{font:400 28px/1.15 "Playfair Display",serif}
+.memo p{font:300 17px/1.55 "Source Serif 4",serif;opacity:.82}
+.memo .meta{color:#999}
 
-.feat{display:grid;grid-template-columns:1fr 1fr;min-height:80vh}
-.feat .im{background:#111 center/cover no-repeat url(img/np-ideas-mesa.jpg)}
-.feat .tx{background:#fff;padding:80px max(40px,calc((100vw - 1280px)/2 + 40px)) 80px 60px;display:flex;flex-direction:column;justify-content:center}
-.feat h3{font:400 clamp(34px,4vw,56px)/1.05 "Playfair Display",serif;color:var(--ink2);margin:14px 0 20px}
-.feat p{font:300 19px/1.6 "Source Serif 4",serif;color:#333}
-.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:30px}
-.nums div{background:#fff;padding:18px}
-.nums b{display:block;font:400 34px "Playfair Display",serif;color:var(--ink2)}
-.nums span{font:400 13px var(--sans);color:#555}
-.feat a{color:var(--acc);margin-top:24px;font:500 15px var(--sans);text-decoration:none}
-
-.team{padding:90px 0}
-.tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px 30px}
-.tp{text-decoration:none;color:inherit;display:flex;flex-direction:column;align-items:center;text-align:center}
-.tp .av{position:relative;width:min(100%,220px);aspect-ratio:1/1;border-radius:50%;overflow:hidden;background:#222;box-shadow:0 0 0 1px var(--rule),0 24px 40px -24px rgba(0,0,0,.5);transition:box-shadow .4s}
-.tp .av:after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 0 0 var(--acc);transition:box-shadow .4s}
-.tp:hover .av:after{box-shadow:inset 0 0 0 4px var(--acc)}
-.tp img{width:100%;height:100%;object-fit:cover;object-position:center 18%;filter:grayscale(1) contrast(1.05);transition:transform .9s cubic-bezier(.2,.7,.2,1),filter .6s;display:block}
-.tp:hover img{transform:scale(1.06);filter:grayscale(.15)}
-.tp h4{font:400 23px/1.15 "Playfair Display",serif;color:var(--ink2);margin-top:22px}
-.tp span{display:block;font:600 11px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-top:8px}
-.tp em{display:block;font:italic 300 15px/1.5 "Source Serif 4",serif;color:#444;margin-top:12px;max-width:260px}
-
-.subs{border-top:2px solid var(--ink2);border-bottom:2px solid var(--ink2);padding:50px 0;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;margin-bottom:90px}
-.subs h3{font:400 clamp(30px,3.4vw,46px)/1.1 "Playfair Display",serif;color:var(--ink2)}
+.subs{border-top:2px solid var(--ink2);border-bottom:2px solid var(--ink2);padding:46px 0;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;margin:30px 0 90px}
+.subs h3{font:400 clamp(28px,3.2vw,42px)/1.1 "Playfair Display",serif;color:var(--ink2)}
 .subs h3 i{color:var(--acc)}
 .subs form{display:flex}
-.subs input{flex:1;min-width:0;height:56px;border:1px solid var(--ink2);border-right:0;background:transparent;padding:0 16px;font:400 16px var(--sans)}
-.subs button{height:56px;border:0;background:var(--ink2);color:#fff;padding:0 26px;font:500 15px var(--sans);cursor:pointer}
-.subs .ok{display:none;color:#12A150;margin-top:10px;font-size:14px}
+.subs input{flex:1;min-width:0;height:54px;border:1px solid var(--ink2);border-right:0;background:transparent;padding:0 16px;font:400 16px var(--sans)}
+.subs button{height:54px;border:0;background:var(--ink2);color:#fff;padding:0 24px;font:500 15px var(--sans);cursor:pointer}
+.subs .ok{display:none;color:var(--up);margin-top:10px;font-size:14px}
 
-.reader{position:fixed;inset:0;z-index:90;background:var(--paper);display:none;overflow:auto}
-.reader.on{display:block}
-.rd-hero{position:relative;height:62vh;min-height:380px;background:#111 center/cover no-repeat}
-.rd-hero:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.6),rgba(0,0,0,.1))}
-.rd-x{position:fixed;right:22px;top:18px;z-index:5;width:46px;height:46px;border-radius:50%;border:0;background:#fff;color:#111;font:300 26px var(--sans);cursor:pointer;box-shadow:0 10px 30px -10px rgba(0,0,0,.5)}
-.rd-body{max-width:720px;margin:-120px auto 0;position:relative;z-index:2;background:var(--paper);padding:50px 50px 80px}
-.rd-body h2{font:400 clamp(34px,4.4vw,56px)/1.05 "Playfair Display",serif;color:var(--ink2);margin:14px 0 18px}
-.rd-body .dek{font:300 22px/1.5 "Source Serif 4",serif;color:#333}
-.rd-body .byline{color:#111;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:14px 0;margin:26px 0 12px}
-.rd-body .byline img{border-color:#ddd}
-.rd-body p.t{font:300 20px/1.75 "Source Serif 4",serif;color:#1a1a1a;margin-bottom:22px}
-.rd-body p.t.first:first-letter{float:left;font:500 72px/.85 "Playfair Display",serif;margin:8px 10px 0 0;color:var(--acc)}
-.rd-body .pq{font:italic 400 30px/1.3 "Playfair Display",serif;color:var(--ink2);border-top:2px solid var(--ink2);border-bottom:1px solid var(--rule);padding:22px 0;margin:30px 0}
-.rd-body .note{font:400 13px var(--sans);color:#777;margin-top:34px}
-
-@media(max-width:1000px){.mag{grid-template-columns:1fr 1fr}.art.lead{grid-column:span 2;grid-row:auto}.art.lead .im{aspect-ratio:16/10}.list{grid-template-columns:1fr 1fr}.mgrid{grid-template-columns:1fr}.tgrid{grid-template-columns:1fr 1fr}.tgrid{grid-template-columns:1fr 1fr}}
-@media(max-width:800px){.feat{grid-template-columns:1fr}.feat .im{min-height:46vh}.feat .tx{padding:44px 20px}.subs{grid-template-columns:1fr}}
-@media(max-width:640px){
-  .mast{padding-top:96px}.mast .ed{text-align:left}
-  .mag,.list{grid-template-columns:1fr}.art.lead{grid-column:auto}.art.lead h4{font-size:28px}
-  .memo{grid-template-columns:1fr}.memo .im{min-height:220px}
-  .cover{min-height:70svh}.cover .in{padding:0 20px 40px}.cover p{font-size:17px}
-  .tgrid{gap:34px 16px}.tp .av{width:min(100%,150px)}.tp h4{font-size:18px}.tp span{font-size:9.5px}.tp em{font-size:13.5px}
-  .subs form{flex-direction:column;gap:10px}.subs input{border-right:1px solid var(--ink2)}
-  .rd-body{padding:34px 20px 60px;margin-top:-60px}.rd-body p.t{font-size:18px}.rd-body .pq{font-size:24px}
-}
+@media(max-width:1100px){.ad-grid,.vgrid{grid-template-columns:1fr 1fr}.nw.big{grid-column:span 2;grid-row:auto}.pgrid,.tgrid{grid-template-columns:1fr 1fr}.cgrid{grid-template-columns:1fr 1fr}.cgrid>div:last-child{grid-column:1/-1}}
+@media(max-width:800px){.two,.pmlive,.mgrid,.subs{grid-template-columns:1fr}}
+@media(max-width:640px){.mast .ed{text-align:left}.ad-grid,.vgrid,.pgrid,.tgrid,.cgrid{grid-template-columns:1fr}.nw.big{grid-column:auto}.nw.big h5{font-size:24px}.cgrid>div:last-child{grid-column:auto}.subs form{flex-direction:column;gap:10px}.subs input{border-right:1px solid var(--ink2)}.cal{font-size:13px}.cal td,.cal th{padding:9px 8px}.tw{height:520px}}
 </style>
 </head>
 <body>
 <nav><div class="wrap">
-  <a class="mark" href="index.html">NORTHPOINT<small>Ideas</small></a>
+  <a class="mark" href="index.html">NORTHPOINT<small>Coffee Morning</small></a>
   <div class="links">
-    <a href="#aldia">Al día</a><a href="#reciente">Lo más reciente</a><a href="#memos">Memos</a><a href="#ia">IA y datos</a><a href="#equipo">Equipo</a><a href="index.html">NORTHPOINT</a>
+    <a href="#hoy">Hoy</a><a href="#mercados">Mercados</a><a href="#calendario">Calendario</a><a href="#aldia">Noticias</a><a href="#videos">Videos</a><a href="#polymarket">Polymarket</a><a href="#tweets">Tweets</a><a href="#memos">Memos</a>
     <a class="btn" href="#boletin">Suscribirme</a>
   </div>
 </div></nav>
 
+<div class="tape"><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div>
+<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+{"symbols":[{"proName":"FOREXCOM:SPXUSD","title":"S&P 500"},{"proName":"FOREXCOM:NSXUSD","title":"Nasdaq 100"},{"proName":"FOREXCOM:DJI","title":"Dow Jones"},{"proName":"FX_IDC:USDMXN","title":"Dólar / Peso"},{"proName":"FX:EURUSD","title":"Euro / Dólar"},{"proName":"TVC:DXY","title":"Índice dólar"},{"proName":"OANDA:XAUUSD","title":"Oro"},{"proName":"TVC:USOIL","title":"Petróleo WTI"},{"proName":"BITSTAMP:BTCUSD","title":"Bitcoin"},{"proName":"TVC:US10Y","title":"Bono 10 años EE.UU."}],"showSymbolLogo":true,"isTransparent":true,"displayMode":"adaptive","colorTheme":"dark","locale":"es"}
+</script></div></div>
+
 <header class="mast"><div class="wrap">
   <div class="mast-top">
-    <h1>NORTHPOINT <i>Ideas</i></h1>
-    <div class="ed"><b>La revista de la mesa</b><span id="edicion"></span><br>Memos, blog y artículos del equipo</div>
+    <h1>Coffee <i>Morning</i></h1>
+    <div class="ed"><b>El resumen financiero de cada mañana</b><span id="edicion"></span><br>Mercados, agenda, noticias y lo que dice la mesa</div>
   </div>
-  <div class="secs" id="secs"></div>
-  <article class="cover" id="cover"><div class="in"><div class="kicker">Memo de mercado</div><h2>Cargando el memo más reciente…</h2></div></article>
+  <div class="secs"><a href="#hoy">Hoy</a><a href="#mercados">Mercados</a><a href="#calendario">Calendario de la semana</a><a href="#aldia">Noticias</a><a href="#videos">Videos</a><a href="#polymarket">Polymarket</a><a href="#tweets">Tweets</a><a href="#memos">Memos de la mesa</a></div>
 </div></header>
 
-<section class="aldia" id="aldia"><div class="wrap">
-  <div class="ad-top"><div><h3>Al día</h3><div class="ad-live"><i></i><span id="adUpd">Noticias de mercados, economía e IA</span></div></div><div class="ad-tabs" id="adTabs"></div></div>
+<section class="coffee" id="hoy" style="margin-top:34px"><div class="wrap">
+  <div class="kicker" style="color:#9FB7FF">Coffee Morning</div>
+  <div class="hi" id="saludo">Buenos días.</div>
+  <div class="sub" id="subh">Esto es lo que hay que saber hoy antes de abrir.</div>
+  <div class="cgrid">
+    <div><h4>La agenda de hoy</h4><ul class="ag" id="agenda"><li class="empty">Cargando la agenda…</li></ul></div>
+    <div><h4>Lo que hay que leer</h4><ul class="hd" id="heads"><li class="empty">Cargando noticias…</li></ul></div>
+    <div><h4>Lo que apuesta el mercado</h4><div class="pmx" id="pmx"><p class="empty">Cargando…</p></div><h4 style="margin-top:26px">El memo más reciente</h4><div id="memo1"><p class="empty">Cargando…</p></div></div>
+  </div>
+</div></section>
+
+<section class="sec" id="mercados"><div class="wrap">
+  <div class="hrow"><h3>Mercados en vivo</h3><span class="live"><i></i>TradingView</span></div>
+  <div class="two">
+    <div class="tvbox"><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div>
+<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+{"colorTheme":"light","dateRange":"1D","showChart":true,"locale":"es","width":"100%","height":"520","isTransparent":true,"showSymbolLogo":true,"showFloatingTooltip":true,"tabs":[{"title":"Índices","symbols":[{"s":"FOREXCOM:SPXUSD","d":"S&P 500"},{"s":"FOREXCOM:NSXUSD","d":"Nasdaq 100"},{"s":"FOREXCOM:DJI","d":"Dow Jones"},{"s":"INDEX:NKY","d":"Nikkei 225"},{"s":"INDEX:DEU40","d":"DAX"}]},{"title":"Forex","symbols":[{"s":"FX_IDC:USDMXN","d":"USD/MXN"},{"s":"FX:EURUSD","d":"EUR/USD"},{"s":"FX:GBPUSD","d":"GBP/USD"},{"s":"FX:USDJPY","d":"USD/JPY"},{"s":"TVC:DXY","d":"Índice dólar"}]},{"title":"Materias primas","symbols":[{"s":"OANDA:XAUUSD","d":"Oro"},{"s":"OANDA:XAGUSD","d":"Plata"},{"s":"TVC:USOIL","d":"Petróleo WTI"},{"s":"TVC:UKOIL","d":"Brent"}]},{"title":"Cripto","symbols":[{"s":"BITSTAMP:BTCUSD","d":"Bitcoin"},{"s":"BITSTAMP:ETHUSD","d":"Ethereum"},{"s":"COINBASE:SOLUSD","d":"Solana"}]},{"title":"Bonos","symbols":[{"s":"TVC:US02Y","d":"EE.UU. 2 años"},{"s":"TVC:US10Y","d":"EE.UU. 10 años"},{"s":"TVC:US30Y","d":"EE.UU. 30 años"}]}]}
+</script></div></div>
+    <div class="tvbox"><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div>
+<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
+{"exchanges":[],"dataSource":"SPX500","grouping":"sector","blockSize":"market_cap_basic","blockColor":"change","locale":"es","symbolUrl":"","colorTheme":"light","hasTopBar":false,"isDataSetEnabled":false,"isZoomEnabled":true,"hasSymbolTooltip":true,"isMonoSize":false,"width":"100%","height":"520"}
+</script></div></div>
+  </div>
+</div></section>
+
+<section class="sec" id="calendario" style="padding-top:0"><div class="wrap">
+  <div class="hrow"><h3>Calendario económico de la semana</h3><span class="meta" id="calUpd">Hora del centro de México</span></div>
+  <div class="dtabs" id="dtabs"></div>
+  <div class="flt"><span>Impacto:</span><label><input type="checkbox" data-i="High" checked> <span class="imp High"></span>Alto</label><label><input type="checkbox" data-i="Medium" checked> <span class="imp Medium"></span>Medio</label><label><input type="checkbox" data-i="Low"> <span class="imp Low"></span>Bajo</label><label><input type="checkbox" data-i="Holiday"> <span class="imp Holiday"></span>Feriado</label></div>
+  <div class="calw"><table class="cal"><thead><tr><th>Hora</th><th>País</th><th>Evento</th><th>Pronóstico</th><th>Anterior</th></tr></thead><tbody id="calB"><tr><td colspan="5" class="meta">Cargando…</td></tr></tbody></table></div>
+  <h4 style="font:500 22px 'Playfair Display',serif;margin:40px 0 14px">En vivo, con resultados</h4>
+  <div class="tvbox" style="min-height:560px"><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div>
+<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
+{"colorTheme":"light","isTransparent":true,"width":"100%","height":"560","locale":"es","importanceFilter":"0,1","countryFilter":"us,mx,eu,gb,jp,cn,ca,de"}
+</script></div></div>
+</div></section>
+
+<section class="sec" id="aldia" style="padding-top:0"><div class="wrap">
+  <div class="hrow"><div><h3>Noticias</h3><span class="live" style="margin-top:6px"><i></i><span id="adUpd">El Financiero, Bloomberg Línea y Expansión</span></span></div><div class="ad-tabs" id="adTabs"></div></div>
   <div class="ad-grid" id="adGrid"></div>
-  <button class="ad-more" id="adMore" type="button">Ver más noticias</button>
-  <p class="ad-note">Titulares de El Financiero, Bloomberg Línea y Expansión; cada nota abre en su sitio original. Se actualizan solos.</p>
+  <button class="more" id="adMore" type="button">Ver más noticias</button>
 </div></section>
 
-<section class="latest" id="reciente"><div class="wrap">
-  <div class="hrow"><h3 id="latT">Lo más reciente</h3><span class="meta" id="latN"></span></div>
-  <div class="mag" id="mag"></div>
-  <div class="list" id="list"></div>
+<section class="sec" id="videos" style="padding-top:0"><div class="wrap">
+  <div class="hrow"><h3>Videos</h3><span class="meta">Bloomberg Línea y El Economista en YouTube</span></div>
+  <div class="vgrid" id="vgrid"></div>
 </div></section>
 
-<section class="memos" id="memos"><div class="wrap">
-  <div class="hrow"><h3>Memos de la mesa</h3><span class="meta" style="color:#aaa">Cada mes</span></div>
-  <p class="intro">Lecturas del mercado firmadas por los socios, con la tesis, los niveles y las invalidaciones puestas sobre la mesa antes de operar. Se publican en el Terminal de NORTHPOINT y llegan aquí solos.</p>
-  <div class="mgrid" id="mgrid"></div>
+<section class="sec" id="polymarket" style="padding-top:0"><div class="wrap">
+  <div class="hrow"><h3>Polymarket</h3><span class="meta">Lo que la gente apuesta con dinero real sobre economía, Fed, cripto e IA</span></div>
+  <div class="pgrid" id="pgrid"></div>
+  <div class="pmlive" id="pmlive"></div>
+  <p class="meta" style="margin-top:12px">Probabilidades implícitas de Polymarket. Son apuestas, no pronósticos de NORTHPOINT.</p>
 </div></section>
 
-<section class="feat" id="ia" style="padding:0">
-  <div class="im" role="img" aria-label="La mesa de NORTHPOINT"></div>
-  <div class="tx">
-    <div class="kicker">A la vanguardia · IA y datos</div>
-    <h3>Una mesa que se mide con datos.</h3>
-    <p>Cada operación queda registrada en el Terminal de NORTHPOINT, nuestro sistema propio. Usamos estadística e inteligencia artificial para revisar lo que hacemos, filtrar señales y saber cuándo no operar. La decisión final siempre es de una persona.</p>
-    <div class="nums"><div><b>Todas</b><span>las operaciones, registradas</span></div><div><b>1</b><span>plan escrito antes de cada sesión</span></div><div><b>0</b><span>decisiones que tome un modelo solo</span></div></div>
-    <a href="academia.html">Aprenda cómo lo hacemos en la Academia ›</a>
-  </div>
-</section>
+<section class="sec" id="tweets" style="padding-top:0"><div class="wrap">
+  <div class="hrow"><h3>Tweets</h3><span class="meta">Cuentas oficiales y de mercado en X</span></div>
+  <div class="tgrid" id="tgrid"></div>
+</div></section>
 
-<section class="team" id="equipo"><div class="wrap">
-  <div class="hrow"><h3>Quién escribe</h3><a class="meta" href="equipo.html" style="color:var(--acc);text-decoration:none">Conozca al equipo ›</a></div>
-  <div class="tgrid">
-    <a class="tp" href="equipo.html#goyo"><div class="av"><img src="img/goyo.jpg" alt="Gregorio Sánchez Calderón" loading="lazy"></div><h4>Gregorio Sánchez Calderón</h4><span>Inversiones y patrimonio</span><em>Autor de los memos de mercado. Carteras de largo plazo, fideicomisos y planeación sucesoria.</em></a>
-    <a class="tp" href="equipo.html#pablo"><div class="av"><img src="img/pablo.jpg" alt="Pablo Ochoa Macouzet" loading="lazy"></div><h4>Pablo Ochoa Macouzet</h4><span>Estrategia y operaciones</span><em>Estrategia de la firma, modelación financiera y gestión de riesgo con datos.</em></a>
-    <a class="tp" href="equipo.html#andre"><div class="av"><img src="img/andre.jpg" alt="André Macouzet Ruiz" loading="lazy"></div><h4>André Macouzet Ruiz</h4><span>Fundador · Datos y tecnología</span><em>Operación en futuros, el Terminal de NORTHPOINT, ciencia de datos y machine learning.</em></a>
-    <a class="tp" href="equipo.html#gerardo"><div class="av"><img src="img/gerardo.jpg" alt="Gerardo Andaluz Contreras" loading="lazy"></div><h4>Gerardo Andaluz Contreras</h4><span>Análisis y ejecución</span><em>«La clave de la longevidad en los mercados es la precisión en el análisis y el respeto absoluto al plan.»</em></a>
-  </div>
+<section class="sec" id="memos" style="padding-top:0"><div class="wrap">
+  <div class="hrow"><h3>Memos de la mesa</h3><span class="meta">Firmados por los socios</span></div>
+  <div class="mgrid" id="mgrid"><p class="meta">Cargando…</p></div>
 </div></section>
 
 <div class="wrap"><div class="subs" id="boletin">
-  <h3>Reciba los <i>Memos de la mesa</i> cada mes en su correo.</h3>
-  <div><form id="newsForm"><input type="email" name="email" placeholder="Su correo" required aria-label="Correo"><button type="submit">Suscribirme</button></form><div class="ok" id="newsOk">Listo. Le llegará el próximo memo.</div></div>
+  <h3>Reciba el <i>Coffee Morning</i> cada mañana en su correo.</h3>
+  <div><form id="newsForm"><input type="email" name="email" placeholder="Su correo" required aria-label="Correo"><button type="submit">Suscribirme</button></form><div class="ok" id="newsOk">Listo. Le llegará el próximo Coffee Morning.</div></div>
 </div></div>
 
 <footer><div class="wrap">
-  <span class="mark">NORTHPOINT<small>Ideas</small></span>
-  <p>Contenido educativo del equipo de NORTHPOINT. No constituye asesoría de inversión ni una recomendación personalizada. Operar en mercados implica riesgo de pérdida.</p>
+  <span class="mark">NORTHPOINT<small>Coffee Morning</small></span>
+  <p>Datos e información de terceros: TradingView, ForexFactory, El Financiero, Bloomberg Línea, Expansión, El Economista, YouTube, X y Polymarket. Cada nota, video o mercado pertenece a su fuente. Nada de esto es asesoría de inversión ni una recomendación personalizada.</p>
   <p><a href="index.html" style="color:#fff">← Volver a NORTHPOINT</a> · <a href="equipo.html" style="color:#fff">El equipo</a> · <a href="academia.html" style="color:#fff">Academia</a> · <a href="privacidad.html" style="color:#fff">Aviso de privacidad</a></p>
 </div></footer>
 
-<div class="reader" id="reader" aria-hidden="true"><button class="rd-x" id="rdx" aria-label="Cerrar">×</button><div id="rd"></div></div>
+<div class="vmodal" id="vmodal"><button type="button" id="vx" aria-label="Cerrar">×</button><div class="fr" id="vfr"></div></div>
 
 <script>
-const AUT = { goyo:["Gregorio Sánchez Calderón","img/goyo.jpg"], pablo:["Pablo Ochoa Macouzet","img/pablo.jpg"], andre:["André Macouzet Ruiz","img/andre.jpg"], gerardo:["Gerardo Andaluz Contreras","img/gerardo.jpg"], mesa:["Mesa NORTHPOINT","favicon.svg"] };
-const SEC = { mercados:"Mercados", ahorro:"Ahorro", ia:"IA y datos", patrimonio:"Patrimonio", disciplina:"Disciplina" };
-const TIPO = { memo:"Memo", blog:"Blog", articulo:"Artículo" };
-// borradores escritos para el sitio (revisar con cada autor)
-const IDEAS = [
-  { tipo:"blog", sec:"ia", au:"andre", f:"26 de septiembre de 2026", img:"img/np-ideas-ia.jpg",
-    t:"Cómo usamos la inteligencia artificial en la mesa (y cómo no)", r:"La IA no adivina el mercado. Nos ayuda a revisar, filtrar y decir que no más rápido.",
-    q:"La IA filtra; la persona decide y responde por la decisión.",
-    c:["Hay una idea muy extendida de que la inteligencia artificial puede predecir hacia dónde va el precio. En la mesa la usamos para algo mucho más modesto y mucho más útil: revisar lo que hacemos.","Nuestros modelos leen el registro de cada operación en el Terminal y nos señalan patrones: a qué hora nos equivocamos más, qué condiciones repetimos antes de una buena operación y en qué días conviene no operar.","Lo que no hacemos es darle a un modelo la decisión final. La entrada, el tamaño y el riesgo los define el plan escrito de la sesión."] },
-  { tipo:"articulo", sec:"ahorro", au:"mesa", f:"24 de septiembre de 2026", img:"img/np-ideas-fijo.jpg",
-    t:"Por qué no prometemos un rendimiento fijo", r:"Un rendimiento fijo sobre un ahorro que se opera en el mercado es una promesa que nadie puede cumplir.",
-    q:"El resultado de cada mes es el que salió: a veces positivo, a veces negativo.",
-    c:["Los mercados no pagan lo mismo cada mes. Cualquiera que le prometa un porcentaje fijo sobre un dinero que se opera, o tiene una licencia bancaria y respalda ese pago con su propio capital, o está pagando rendimientos con el dinero de otros clientes.","En NORTHPOINT el resultado de cada mes es el que salió. Lo que sí comprometemos es el freno de protección de su plan y que usted vea cada operación en la app."] },
-  { tipo:"blog", sec:"ahorro", au:"pablo", f:"22 de septiembre de 2026", img:"img/np-ideas-planes.jpg",
-    t:"Tres planes, una misma disciplina", r:"Básico, Moderado y Agresivo no son tres mesas distintas: es la misma mesa buscando tres objetivos.",
-    q:"Elegir plan es elegir un objetivo con su riesgo a la vista.",
-    c:["Cada sesión empieza con un plan escrito. Lo que cambia entre planes no es la estrategia sino el tamaño y la frecuencia: el Básico solo entra en las operaciones más claras; el Agresivo participa en todas las sesiones con mayor exposición.","Cada plan arriesga lo mismo que busca ganar en el mes. Si el mes se complica y el saldo llega a ese riesgo, la mesa deja de operar esa cuenta hasta el mes siguiente."] },
-  { tipo:"articulo", sec:"ahorro", au:"mesa", f:"15 de septiembre de 2026", img:"img/np-ideas-custodia.jpg",
-    t:"Custodia separada: su dinero nunca debería pasar por quien lo opera", r:"La separación entre quien custodia y quien opera es la protección más simple para cualquier ahorrador.",
-    q:"La custodia separada no es un detalle técnico: es la primera pregunta que debe hacer.",
-    c:["En NORTHPOINT usted abre su cuenta a su nombre en un intermediario regulado. La mesa recibe un mandato para operar, pero no para retirar ni transferir.","Si alguien le pide depositar en una cuenta a nombre de la persona o empresa que va a operar por usted, desconfíe."] },
-  { tipo:"articulo", sec:"disciplina", au:"gerardo", f:"12 de septiembre de 2026", img:"img/np-ideas-plan.jpg",
-    t:"El plan escrito: la herramienta más subestimada del trading", r:"Si no está escrito antes de abrir, no es un plan: es una reacción.",
-    q:"La subjetividad entra por las grietas del plan; por eso lo escribimos completo.",
-    c:["Antes de cada sesión escribimos el mapa del día: niveles importantes, condiciones que buscamos y, sobre todo, qué tendría que pasar para no operar. Parece burocracia; es lo que separa una decisión de un impulso.","Durante la sesión el trabajo es simple: comparar lo que pasa con lo que está escrito. Si coincide, se ejecuta con el riesgo definido. Si no coincide, se espera."] },
-  { tipo:"blog", sec:"ahorro", au:"pablo", f:"8 de septiembre de 2026", img:"img/np-ideas-cien.jpg",
-    t:"Cien dólares: por qué empezar chico es la mejor forma de empezar", r:"El mejor momento para aprender cómo se comporta su ahorro es cuando todavía es pequeño.",
-    q:"El tiempo y la constancia hacen más que el monto inicial.",
-    c:["Mucha gente espera a tener una cantidad grande para empezar a invertir. El problema es que llega a ese momento sin saber cómo se siente un mes negativo, cómo funciona un freno de riesgo o cómo leer su propio estado de cuenta.","Empezar con cien dólares le permite aprender todo eso con poco en juego. Después, cada depósito se hace con conocimiento y no con fe."] },
-  { tipo:"articulo", sec:"disciplina", au:"mesa", f:"1 de septiembre de 2026", img:"img/np-ideas-freno.jpg",
-    t:"Qué es el freno de protección y por qué existe", r:"Cada plan tiene un límite de pérdida mensual. Al llegar, la mesa deja de operar esa cuenta.",
-    q:"Su función es que un mal mes no se convierta en un mal año.",
-    c:["El freno de protección es la regla que dice cuánto puede perder una cuenta en un mes. En el plan Moderado, por ejemplo, el riesgo mensual es del 3%: si el saldo cae ese porcentaje, la mesa deja de operarlo hasta el mes siguiente.","El freno se aplica al cierre de cada operación y está en el contrato. Ante movimientos muy bruscos del mercado puede rebasarse ligeramente; por eso lo explicamos siempre."] }
-];
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
-const by = k => `<div class="byline"><img src="${AUT[k][1]}" alt="" onerror="this.style.display='none'"><b style="font-weight:500">${AUT[k][0]}</b></div>`;
-const kick = x => `<div class="kicker">${TIPO[x.tipo]} · ${SEC[x.sec]}</div>`;
-const MS = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"], hoy = new Date();
-$("#edicion").textContent = `Edición de ${MS[hoy.getMonth()]} ${hoy.getFullYear()}`;
-let F = "todo";
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+const TZ = "America/Mexico_City";
+const hace = iso => { const m = Math.round((Date.now() - new Date(iso)) / 6e4); if(!(m >= 0)) return ""; if(m < 60) return `hace ${Math.max(1,m)} min`; const h = Math.round(m/60); if(h < 24) return `hace ${h} h`; const d = Math.round(h/24); return `hace ${d} ${d===1?"día":"días"}`; };
+const hoyMX = () => new Date().toLocaleDateString("en-CA", { timeZone:TZ });
+const diaMX = iso => new Date(iso).toLocaleDateString("en-CA", { timeZone:TZ });
+const horaMX = iso => new Date(iso).toLocaleTimeString("es-MX", { timeZone:TZ, hour:"2-digit", minute:"2-digit", hour12:false });
+const rss = u => fetch("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(u)).then(r=>r.json());
+const pct = p => (p*100 >= 1 ? Math.round(p*100) : (p*100).toFixed(1)) + "%";
 
-function render(){
-  const L = IDEAS.filter(x => (F==="todo" || x.sec===F || x.tipo===F));
-  const top = L.slice(0,5), rest = L.slice(5);
-  $("#mag").innerHTML = top.map((x,i)=>`<article class="art ${i===0?"lead":""}" data-i="${IDEAS.indexOf(x)}"><div class="im" style="background-image:url(${x.img})"><i></i></div>${kick(x)}<h4>${x.t}</h4><p>${x.r}</p><div class="meta">${AUT[x.au][0]} · ${x.f}</div></article>`).join("") || `<p class="meta">No hay textos en esta sección todavía.</p>`;
-  $("#list").innerHTML = rest.map(x=>`<article class="li" data-i="${IDEAS.indexOf(x)}"><div class="im" style="background-image:url(${x.img})"></div><div>${kick(x)}<h5>${x.t}</h5><div class="meta">${AUT[x.au][0]}</div></div></article>`).join("");
-  $("#list").style.display = rest.length ? "" : "none";
-  $("#latT").textContent = F==="todo" ? "Lo más reciente" : (SEC[F] || TIPO[F]);
-  $("#latN").textContent = `${L.length} ${L.length===1?"texto":"textos"}`;
-  $("#secs").innerHTML = [["todo","Todo"],["blog","Blog"],["articulo","Artículos"],...Object.entries(SEC).filter(([k])=>IDEAS.some(x=>x.sec===k))].map(([k,t])=>`<button type="button" data-k="${k}" class="${k===F?"on":""}">${t}</button>`).join("");
-  $$("#secs button").forEach(b => b.onclick = () => { F = b.dataset.k; render(); document.getElementById("reciente").scrollIntoView({ behavior:"smooth" }); });
-  $$(".art,.li").forEach(el => el.onclick = () => leer(+el.dataset.i));
-}
-// ── memos REALES: northpointcapital.io/memos.html (captura en data/memos.json + lectura en vivo) ──
-const MEMOS_URL = "https://northpointcapital.io/memos.html";
-const FOTOS = ["img/np-memo-1.jpg","img/np-memo-2.jpg","img/np-ideas-mesa.jpg","img/np-ideas-plan.jpg","img/np-ideas-fijo.jpg","img/np-ideas-ia.jpg"];   // portadas propias (mismas que memo.html)
-const slugDe = l => (l.match(/memos\/([^\/]+)\.html/)||[])[1] || "";
-function pintaMemos(ms){
-  if(!ms || !ms.length) return;
-  const foto = i => FOTOS[i % FOTOS.length];   // el más reciente lleva la foto de portada de siempre
-  const c = ms[0];
-  $("#cover").innerHTML = `<a href="memo.html?m=${slugDe(c.l)}" style="position:absolute;inset:0;z-index:3" aria-label="Leer ${c.t}"></a><div class="bg" style="background-image:url(${foto(0)})"></div><div class="in"><div class="kicker">${c.k}</div><h2>${c.t}</h2><p>${c.r}</p>${by("goyo")}<div class="meta" style="color:#bbb;margin-top:6px">${c.f} · Leer el memo ›</div></div>`;
-  $("#mgrid").innerHTML = ms.map((x,i)=>`<a class="memo" href="memo.html?m=${slugDe(x.l)}" style="text-decoration:none"><div class="im" style="background-image:url(${foto(i)})"></div><div class="bd"><div class="kicker">${x.k}</div><h4>${x.t}</h4><blockquote>${x.r}</blockquote>${by("goyo")}<div class="meta" style="color:#aaa;margin-top:10px">${x.f} · Leer el memo ›</div></div></a>`).join("");
-}
-fetch("data/memos.json", { cache:"no-cache" }).then(r=>r.json()).then(d=>pintaMemos(d.items)).catch(()=>{});
-fetch(MEMOS_URL, { cache:"no-cache" }).then(r=>r.text()).then(async h => {
-  const doc = new DOMParser().parseFromString(h, "text/html"), T = (el,sel) => ((el.querySelector(sel)||{}).textContent||"").trim().replace(/\s+/g," ");
-  const ms = [...doc.querySelectorAll("a.ix.memo")].map(a => ({ k:T(a,".memo-k"), t:T(a,".nm"), f:T(a,".fr"), r:T(a,".memo-s"), l:new URL(a.getAttribute("href"), MEMOS_URL).href, img:"" }));
-  if(ms.length) pintaMemos(ms);
-}).catch(()=>{});
-function leer(i){ const x = IDEAS[i];
-  $("#rd").innerHTML = `<div class="rd-hero" style="background-image:url(${x.img})"></div><article class="rd-body">${kick(x)}<h2>${x.t}</h2><p class="dek">${x.r}</p>
-    ${by(x.au)}<div class="meta" style="margin-bottom:30px">${x.f}</div>
-    ${x.c.map((p,k)=> (k===1 ? `<div class="pq">${x.q}</div>` : "") + `<p class="t ${k===0?"first":""}">${p}</p>`).join("")}
-    <div class="note">Contenido educativo; no es asesoría de inversión ni una recomendación personalizada.</div></article>`;
-  $("#reader").classList.add("on"); $("#reader").scrollTop = 0; document.documentElement.style.overflow = "hidden"; if(window.__lenis) window.__lenis.stop(); }
-function cerrar(){ $("#reader").classList.remove("on"); document.documentElement.style.overflow = ""; if(window.__lenis) window.__lenis.start(); }
-$("#rdx").onclick = cerrar; addEventListener("keydown", e => { if(e.key==="Escape") cerrar(); });
-$("#newsForm").addEventListener("submit", e => { e.preventDefault(); const d = Object.fromEntries(new FormData(e.target));
-  try{ const l = JSON.parse(localStorage.getItem("np-boletin")||"[]"); l.push({ ...d, fecha:new Date().toISOString() }); localStorage.setItem("np-boletin", JSON.stringify(l)); }catch(_){}
-  $("#newsOk").style.display = "block"; e.target.reset(); });
-render();
+// saludo y fecha
+(function(){ const now = new Date(), h = +now.toLocaleString("en-US",{ timeZone:TZ, hour:"numeric", hour12:false });
+  let f = now.toLocaleDateString("es-MX", { timeZone:TZ, weekday:"long", day:"numeric", month:"long", year:"numeric" }); f = f.charAt(0).toUpperCase() + f.slice(1);
+  $("#edicion").textContent = f;
+  $("#saludo").textContent = h < 12 ? "Buenos días." : h < 19 ? "Buenas tardes." : "Buenas noches.";
+  $("#subh").textContent = (h < 12 ? "Esto es lo que hay que saber hoy antes de abrir. " : "Así va el día en los mercados. ") + f + ".";
+})();
 
-// ── Al día: noticias reales. Carga la captura data/noticias.json y luego pide las fuentes en vivo ──
+// ── calendario de la semana (ForexFactory, captura) ──
+const IMPES = { High:"Alto", Medium:"Medio", Low:"Bajo", Holiday:"Feriado" };
+let CAL = [], dSel = null;
+function pintaAgenda(){
+  const hoy = hoyMX(), L = CAL.filter(e => diaMX(e.date) === hoy && (e.impact === "High" || e.impact === "Medium"));
+  $("#agenda").innerHTML = L.length ? L.slice(0,7).map(e => `<li><span class="h">${horaMX(e.date)}</span><span class="e"><span class="imp ${e.impact}"></span><span class="cc">${esc(e.country)}</span>${esc(e.title)}${e.forecast||e.previous?`<small>Pronóstico ${esc(e.forecast||"—")} · Anterior ${esc(e.previous||"—")}</small>`:""}</span></li>`).join("")
+    : `<li class="empty">Hoy no hay datos de alto impacto. Revise la semana completa abajo.</li>`;
+}
+function pintaCal(){
+  const on = new Set($$(".flt input:checked").map(i => i.dataset.i));
+  const dias = [...new Set(CAL.map(e => diaMX(e.date)))].sort();
+  if(!dias.length){ $("#calB").innerHTML = `<tr><td colspan="5" class="meta">Sin eventos guardados; use el calendario en vivo de abajo.</td></tr>`; return; }
+  if(!dSel || !dias.includes(dSel)) dSel = dias.includes(hoyMX()) ? hoyMX() : dias.find(d => d > hoyMX()) || dias[dias.length-1];
+  $("#dtabs").innerHTML = dias.map(d => { const dt = new Date(d + "T12:00:00"), n = CAL.filter(e => diaMX(e.date) === d && e.impact === "High").length;
+    return `<button type="button" data-d="${d}" class="${d===dSel?"on":""}">${dt.toLocaleDateString("es-MX",{ weekday:"long", day:"numeric" })}${d===hoyMX()?" · hoy":""}<small>${n} de alto impacto</small></button>`; }).join("");
+  $$("#dtabs button").forEach(b => b.onclick = () => { dSel = b.dataset.d; pintaCal(); });
+  const now = Date.now(), L = CAL.filter(e => diaMX(e.date) === dSel && on.has(e.impact)).sort((a,b) => new Date(a.date) - new Date(b.date));
+  const nx = L.find(e => new Date(e.date) > now);
+  $("#calB").innerHTML = L.length ? L.map(e => `<tr class="${new Date(e.date) < now ? "past" : e===nx ? "next" : ""}"><td class="h">${horaMX(e.date)}</td><td><span class="cc">${esc(e.country)}</span></td><td><span class="imp ${e.impact}" title="Impacto ${IMPES[e.impact]||""}"></span>${esc(e.title)}</td><td>${esc(e.forecast||"—")}</td><td>${esc(e.previous||"—")}</td></tr>`).join("")
+    : `<tr><td colspan="5" class="meta">Sin eventos con ese filtro este día.</td></tr>`;
+}
+$$(".flt input").forEach(i => i.onchange = pintaCal);
+fetch("data/calendario.json", { cache:"no-cache" }).then(r=>r.json()).then(d => { CAL = d.items || []; $("#calUpd").textContent = `Hora del centro de México · ForexFactory, actualizado ${hace(d.actualizado)}`; pintaAgenda(); pintaCal(); })
+  .catch(() => { $("#calB").innerHTML = `<tr><td colspan="5" class="meta">No se pudo cargar; use el calendario en vivo de abajo.</td></tr>`; $("#agenda").innerHTML = `<li class="empty">Vea el calendario en vivo más abajo.</li>`; });
+
+// ── noticias (captura + en vivo) ──
 (function(){
-  const FEEDS = [
-    ["mercados","El Financiero","https://www.elfinanciero.com.mx/arc/outboundfeeds/rss/category/mercados/?outputType=xml"],
-    ["mercados","Bloomberg Línea","https://www.bloomberglinea.com/arc/outboundfeeds/rss/category/mercados/?outputType=xml"],
-    ["mercados","Expansión","https://expansion.mx/rss/mercados"],
-    ["economia","Expansión","https://expansion.mx/rss/economia"],
-    ["ia","Bloomberg Línea","https://www.bloomberglinea.com/arc/outboundfeeds/rss/category/tecnologia/?outputType=xml"],
-    ["ia","Expansión","https://expansion.mx/rss/tecnologia"]
-  ];
+  const FEEDS = [["mercados","El Financiero","https://www.elfinanciero.com.mx/arc/outboundfeeds/rss/category/mercados/?outputType=xml"],["mercados","Bloomberg Línea","https://www.bloomberglinea.com/arc/outboundfeeds/rss/category/mercados/?outputType=xml"],["mercados","Expansión","https://expansion.mx/rss/mercados"],["economia","Expansión","https://expansion.mx/rss/economia"],["ia","Bloomberg Línea","https://www.bloomberglinea.com/arc/outboundfeeds/rss/category/tecnologia/?outputType=xml"],["ia","Expansión","https://expansion.mx/rss/tecnologia"]];
   const CAT = { todo:"Todo", mercados:"Mercados", economia:"Economía", ia:"IA y tecnología" };
   let items = [], cat = "todo", shown = 9, upd = null;
-  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
-  const hace = iso => { const m = Math.round((Date.now() - new Date(iso)) / 6e4); if(!(m >= 0)) return ""; if(m < 60) return `hace ${Math.max(1,m)} min`; const h = Math.round(m/60); if(h < 24) return `hace ${h} h`; const d = Math.round(h/24); return `hace ${d} ${d===1?"día":"días"}`; };
-  function merge(nuevos){ const seen = new Set(items.map(x=>x.l)); nuevos.forEach(x => { if(x.l && x.img && !seen.has(x.l)){ seen.add(x.l); items.push(x); } }); items.sort((a,b)=> (b.f||"").localeCompare(a.f||"")); }
+  const merge = n => { const seen = new Set(items.map(x=>x.l)); n.forEach(x => { if(x.l && x.img && !seen.has(x.l)){ seen.add(x.l); items.push(x); } }); items.sort((a,b)=>(b.f||"").localeCompare(a.f||"")); };
   function draw(){
     const L = items.filter(x => cat==="todo" || x.cat===cat), V = L.slice(0, shown);
     $("#adGrid").innerHTML = V.map((x,i)=>`<a class="nw ${i===0?"big":""}" href="${esc(x.l)}" target="_blank" rel="noopener"><div class="im"><img src="${esc(x.img)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.nw').remove()"></div><div class="src">${esc(x.fuente)} · ${CAT[x.cat]}<span>${hace(x.f)}</span></div><h5>${esc(x.t)}</h5></a>`).join("") || `<p class="meta">Cargando noticias…</p>`;
     $("#adMore").style.display = L.length > shown ? "" : "none";
     $("#adTabs").innerHTML = Object.entries(CAT).map(([k,t])=>`<button type="button" data-k="${k}" class="${k===cat?"on":""}">${t}</button>`).join("");
     $$("#adTabs button").forEach(b => b.onclick = () => { cat = b.dataset.k; shown = 9; draw(); });
-    if(upd) $("#adUpd").textContent = `Actualizado ${hace(upd)} · mercados, economía e IA`;
+    if(upd) $("#adUpd").textContent = `Actualizado ${hace(upd)} · El Financiero, Bloomberg Línea y Expansión`;
+    const H = items.filter(x=>x.cat!=="ia").slice(0,5);
+    if(H.length) $("#heads").innerHTML = H.map(x => `<li><a href="${esc(x.l)}" target="_blank" rel="noopener">${esc(x.t)}</a><small>${esc(x.fuente)} · ${hace(x.f)}</small></li>`).join("");
   }
   $("#adMore").onclick = () => { shown += 8; draw(); };
-  // 1) captura guardada o cache local reciente
   let cache = null; try{ cache = JSON.parse(localStorage.getItem("np-aldia")||"null"); }catch(_){}
-  if(cache && Date.now() - cache.t < 20*6e4){ merge(cache.items); upd = new Date(cache.t).toISOString(); draw(); }
+  const fresh = cache && Date.now() - cache.t < 20*6e4;
+  if(fresh){ merge(cache.items); upd = new Date(cache.t).toISOString(); draw(); }
   fetch("data/noticias.json", { cache:"no-cache" }).then(r=>r.json()).then(d => { merge(d.items||[]); upd = upd || d.actualizado; draw(); }).catch(()=>{});
-  // 2) en vivo, directo de las fuentes
-  if(cache && Date.now() - cache.t < 20*6e4) return;
-  const img = it => it.thumbnail || (it.enclosure && it.enclosure.link) || ((it.description||"").match(/<img[^>]+src="([^"]+)"/)||[])[1] || "";
-  Promise.allSettled(FEEDS.map(([c,f,u]) => fetch("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(u)).then(r=>r.json())
-      .then(d => (d.items||[]).slice(0,12).map(it => ({ cat:c, fuente:f, t:it.title, l:it.link, img:img(it), f: it.pubDate ? new Date(it.pubDate.replace(" ","T")+"Z").toISOString() : "" })))))
-    .then(rs => { const nuevos = rs.flatMap(r => r.status==="fulfilled" ? r.value : []); if(!nuevos.length) return;
-      merge(nuevos); upd = new Date().toISOString(); draw();
-      try{ localStorage.setItem("np-aldia", JSON.stringify({ t:Date.now(), items: items.slice(0,80) })); }catch(_){} });
+  if(!fresh){
+    const img = it => it.thumbnail || (it.enclosure && it.enclosure.link) || ((it.description||"").match(/<img[^>]+src="([^"]+)"/)||[])[1] || "";
+    Promise.allSettled(FEEDS.map(([c,f,u]) => rss(u).then(d => (d.items||[]).slice(0,12).map(it => ({ cat:c, fuente:f, t:it.title, l:it.link, img:img(it), f: it.pubDate ? new Date(it.pubDate.replace(" ","T")+"Z").toISOString() : "" })))))
+      .then(rs => { const n = rs.flatMap(r => r.status==="fulfilled" ? r.value : []); if(!n.length) return; merge(n); upd = new Date().toISOString(); draw();
+        try{ localStorage.setItem("np-aldia", JSON.stringify({ t:Date.now(), items: items.slice(0,80) })); }catch(_){} });
+  }
   draw();
 })();
+
+// ── videos (captura + en vivo) ──
+(function(){
+  const CAN = [["Bloomberg Línea","UCt4iMhUHxnKfxJXIW36Y4Rw"],["El Economista","UCXmAOGwFYxIq5qrScJeeV4g"]];
+  let V = [];
+  const draw = () => { V.sort((a,b)=>(b.f||"").localeCompare(a.f||""));
+    const seen = new Set(), L = V.filter(v => v.id && !seen.has(v.id) && seen.add(v.id)).slice(0,8);
+    $("#vgrid").innerHTML = L.map(v => `<div class="vd" data-id="${esc(v.id)}"><div class="im"><img src="https://i.ytimg.com/vi/${esc(v.id)}/hqdefault.jpg" alt="" loading="lazy"><span class="pl">▶</span></div><div class="src">${esc(v.canal)} · ${hace(v.f)}</div><h5>${esc(v.t)}</h5></div>`).join("") || `<p class="meta">Cargando videos…</p>`;
+    $$(".vd").forEach(el => el.onclick = () => { $("#vfr").innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${el.dataset.id}?autoplay=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`; $("#vmodal").classList.add("on"); }); };
+  fetch("data/videos.json", { cache:"no-cache" }).then(r=>r.json()).then(d => { V = V.concat(d.items||[]); draw(); }).catch(()=>{});
+  Promise.allSettled(CAN.map(([n,id]) => rss("https://www.youtube.com/feeds/videos.xml?channel_id=" + id).then(d => (d.items||[]).map(it => ({ canal:n, id:(it.link.match(/(?:v=|shorts\/)([\w-]{11})/)||[])[1], t:it.title, f: it.pubDate ? new Date(it.pubDate.replace(" ","T")+"Z").toISOString() : "" })))))
+    .then(rs => { const n = rs.flatMap(r => r.status==="fulfilled" ? r.value : []); if(n.length){ V = n.concat(V); draw(); } });
+  const close = () => { $("#vmodal").classList.remove("on"); $("#vfr").innerHTML = ""; };
+  $("#vx").onclick = close; $("#vmodal").onclick = e => { if(e.target.id==="vmodal") close(); }; addEventListener("keydown", e => { if(e.key==="Escape") close(); });
+})();
+
+// ── Polymarket (captura) + embed oficial en vivo ──
+fetch("data/polymarket.json", { cache:"no-cache" }).then(r=>r.json()).then(d => {
+  const L = d.items || [];
+  $("#pgrid").innerHTML = L.map(e => `<a class="pm" href="https://polymarket.com/event/${esc(e.slug)}" target="_blank" rel="noopener"><div class="tg">${esc((e.tags||[]).slice(0,2).join(" · "))}</div><h5>${esc(e.t)}</h5>
+    ${e.m.slice(0,4).map(m => `<div class="o"><span>${esc(m.n)}</span><b>${pct(m.p)}</b><div class="bar"><i style="width:${Math.max(1,m.p*100)}%"></i></div></div>`).join("")}
+    <div class="ft"><span>Volumen 24 h: $${(e.vol||0).toLocaleString("en-US")}</span><span>Ver ›</span></div></a>`).join("");
+  const fed = L.find(e => /fed/i.test(e.t)) || L[0];
+  if(fed) $("#pmx").innerHTML = `<div class="q">${esc(fed.t)}</div>${fed.m.slice(0,3).map(m => `<div class="o"><span>${esc(m.n)}</span><b>${pct(m.p)}</b><div class="bar"><i style="width:${Math.max(1,m.p*100)}%"></i></div></div>`).join("")}<p class="empty" style="margin-top:8px">Polymarket · actualizado ${hace(d.actualizado)}</p>`;
+  $("#pmlive").innerHTML = L.slice(0,2).map(e => e.m[0] && e.m[0].s ? `<iframe title="Polymarket en vivo" src="https://embed.polymarket.com/market.html?market=${encodeURIComponent(e.m[0].s)}&features=volume&theme=light" loading="lazy"></iframe>` : "").join("");
+}).catch(() => { $("#pmx").innerHTML = `<p class="empty">Sin datos por ahora.</p>`; });
+
+// ── tweets: timelines oficiales de X ──
+(function(){
+  const CUENTAS = [["federalreserve","Reserva Federal"],["Banxico","Banxico"],["elfinanciero_mx","El Financiero"]];
+  $("#tgrid").innerHTML = CUENTAS.map(([u,n]) => `<div class="tw"><div class="cap">${n}<a href="https://x.com/${u}" target="_blank" rel="noopener">@${u} ›</a></div><a class="twitter-timeline" data-chrome="noheader nofooter noborders transparent" data-lang="es" data-dnt="true" data-height="560" href="https://twitter.com/${u}"><div class="fb">Cargando los tweets de @${u}… Si no aparecen, ábralos en X.</div></a></div>`).join("");
+  const s = document.createElement("script"); s.async = true; s.src = "https://platform.twitter.com/widgets.js"; document.body.appendChild(s);
+  // X solo muestra timelines a quien tiene sesión iniciada: si no carga, tarjeta con acceso directo a la cuenta
+  setTimeout(() => $$(".tw").forEach((t,i) => { const f = t.querySelector("iframe"); if(f && f.offsetHeight > 80) return; const [u,n] = CUENTAS[i];
+    t.classList.add("off"); t.innerHTML = `<div class="cap">${n}<span>@${u}</span></div><div class="twoff"><div class="ini">${n.split(" ").map(w=>w[0]).join("").slice(0,2)}</div><b>${n}</b><span>@${u} en X</span><p>X solo muestra estos tweets si tiene sesión iniciada en X en este navegador.</p><a class="btn" href="https://x.com/${u}" target="_blank" rel="noopener">Ver tweets en X</a></div>`; }), 9000);
+})();
+
+// ── memos reales de la mesa (texto, sin imágenes) ──
+(function(){
+  const URL0 = "https://northpointcapital.io/memos.html", slug = l => (l.match(/memos\/([^\/]+)\.html/)||[])[1] || "";
+  const pinta = ms => { if(!ms || !ms.length) return;
+    $("#mgrid").innerHTML = ms.map(x => `<a class="memo" href="memo.html?m=${slug(x.l)}"><div class="kicker">${esc(x.k)}</div><h4>${esc(x.t)}</h4><p>${esc(x.r)}</p><div class="meta">Gregorio Sánchez Calderón · ${esc(x.f)} · Leer el memo ›</div></a>`).join("");
+    const c = ms[0]; $("#memo1").innerHTML = `<a class="memo-t" href="memo.html?m=${slug(c.l)}">${esc(c.t)}</a><p class="empty">${esc(c.f)} · Gregorio Sánchez Calderón</p>`; };
+  fetch("data/memos.json", { cache:"no-cache" }).then(r=>r.json()).then(d=>pinta(d.items)).catch(()=>{});
+  fetch(URL0, { cache:"no-cache" }).then(r=>r.text()).then(h => { const doc = new DOMParser().parseFromString(h, "text/html"), T = (el,s) => ((el.querySelector(s)||{}).textContent||"").trim().replace(/\s+/g," ");
+    const ms = [...doc.querySelectorAll("a.ix.memo")].map(a => ({ k:T(a,".memo-k"), t:T(a,".nm"), f:T(a,".fr"), r:T(a,".memo-s"), l:new URL(a.getAttribute("href"), URL0).href })); if(ms.length) pinta(ms); }).catch(()=>{});
+})();
+
+$("#newsForm").addEventListener("submit", e => { e.preventDefault(); const d = Object.fromEntries(new FormData(e.target));
+  try{ const l = JSON.parse(localStorage.getItem("np-boletin")||"[]"); l.push({ ...d, fecha:new Date().toISOString() }); localStorage.setItem("np-boletin", JSON.stringify(l)); }catch(_){}
+  $("#newsOk").style.display = "block"; e.target.reset(); });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="anim.js?v=1790808755"></script>
-<script src="menu.js?v=1790808755"></script>
+<script src="anim.js?v=1790809912"></script>
+<script src="menu.js?v=1790809912"></script>
 </body>
 </html>

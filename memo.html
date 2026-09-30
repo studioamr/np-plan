@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Memo de mercado · NORTHPOINT Ideas</title>
+<title>Memo de mercado · NORTHPOINT</title>
 <meta name="description" content="Memo de mercado de NORTHPOINT: tesis, niveles, escenarios e invalidaciones, firmado por los socios.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="base.css?v=1790808755">
-<link rel="stylesheet" href="anim.css?v=1790808755">
+<link rel="stylesheet" href="base.css?v=1790809912">
+<link rel="stylesheet" href="anim.css?v=1790809912">
 <!--
-  MEMO · 30-sep-2026 · lector propio de los memos de mercado con el diseño de NORTHPOINT Ideas.
+  MEMO · 30-sep-2026 · lector propio de los memos de mercado con el diseño del Coffee Morning.
   memo.html?m=<archivo sin .html>. Toma el contenido del memo publicado en northpointcapital.io/memos/ (en vivo)
   o de la copia guardada en data/memos.json, y lo muestra aquí; no manda al sitio anterior.
 -->
@@ -20,8 +20,8 @@
 :root{--paper:#F5F2EC;--ink2:#111;--rule:#1112;--acc:#2251FF;--txt:#111;--accent-deep:#2251FF;--faint:#B9BDC6}
 body{background:var(--paper)}
 nav{background:#0B0B0C!important}
-.mhero{position:relative;height:72vh;min-height:460px;background:#111 center/cover no-repeat;display:flex;align-items:flex-end;color:#fff}
-.mhero:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.88) 0%,rgba(0,0,0,.4) 50%,rgba(0,0,0,.1) 100%)}
+.mhero{position:relative;min-height:62vh;background:#0B0B0C;display:flex;align-items:flex-end;color:#fff;padding-top:120px}
+
 .mhero .wrap{position:relative;z-index:2;width:100%;padding-bottom:60px}
 .kick{font:600 11.5px var(--sans);letter-spacing:.18em;text-transform:uppercase;color:#9FB7FF}
 .mhero h1{font:400 clamp(40px,6vw,84px)/1.02 "Playfair Display",serif;color:#fff;margin:14px 0 18px;letter-spacing:-.02em;max-width:1000px}
@@ -103,7 +103,7 @@ nav{background:#0B0B0C!important}
 .mas{padding:60px 0 90px}
 .mas h3{font:500 28px "Playfair Display",serif;border-top:2px solid var(--ink2);padding-top:14px;margin-bottom:24px}
 .mas-g{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.mas a{display:grid;grid-template-columns:140px 1fr;gap:18px;text-decoration:none;color:inherit}
+.mas a{display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid var(--rule);padding:22px}
 .mas a .im{aspect-ratio:1/1;background:#222 center/cover no-repeat}
 .mas a h4{font:400 22px/1.2 "Playfair Display",serif;color:var(--ink2);margin:6px 0}
 .mas a:hover h4{color:var(--acc)}
@@ -112,9 +112,9 @@ nav{background:#0B0B0C!important}
 </head>
 <body>
 <nav><div class="wrap">
-  <a class="mark" href="index.html">NORTHPOINT<small>Ideas</small></a>
+  <a class="mark" href="index.html">NORTHPOINT<small>Coffee Morning</small></a>
   <div class="links">
-    <a href="overview.html">Ideas</a><a href="overview.html#memos">Memos</a><a href="equipo.html">Equipo</a><a href="index.html">NORTHPOINT</a>
+    <a href="overview.html">Coffee Morning</a><a href="overview.html#memos">Memos</a><a href="equipo.html">Equipo</a><a href="index.html">NORTHPOINT</a>
     <a class="btn" href="overview.html#boletin">Suscribirme</a>
   </div>
 </div></nav>
@@ -124,15 +124,14 @@ nav{background:#0B0B0C!important}
 <section class="mas"><div class="wrap"><h3>Más memos</h3><div class="mas-g" id="mas"></div></div></section>
 
 <footer><div class="wrap">
-  <span class="mark">NORTHPOINT<small>Ideas</small></span>
+  <span class="mark">NORTHPOINT<small>Coffee Morning</small></span>
   <p>Los memos <b>no son asesoría financiera</b>. Son un marco de análisis técnico para la toma de decisiones propias. Operar futuros implica apalancamiento y puede perder todo su capital.</p>
-  <p><a href="overview.html" style="color:#fff">← Volver a Ideas</a> · <a href="index.html" style="color:#fff">NORTHPOINT</a> · <a href="privacidad.html" style="color:#fff">Aviso de privacidad</a></p>
+  <p><a href="overview.html" style="color:#fff">← Volver al Coffee Morning</a> · <a href="index.html" style="color:#fff">NORTHPOINT</a> · <a href="privacidad.html" style="color:#fff">Aviso de privacidad</a></p>
 </div></footer>
 <div class="lb" id="lb"><img alt=""></div>
 
 <script>
 const BASE = "https://northpointcapital.io/memos/";
-const FOTOS = ["img/np-memo-1.jpg","img/np-memo-2.jpg","img/np-ideas-mesa.jpg","img/np-ideas-plan.jpg","img/np-ideas-fijo.jpg","img/np-ideas-ia.jpg"];   // portadas propias, en orden de publicación
 const $ = s => document.querySelector(s);
 const slug = new URLSearchParams(location.search).get("m") || "";
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
@@ -151,7 +150,6 @@ function pinta(html, url){
   const meta = tapa ? [...tapa.querySelectorAll(".meta span:not(.sep)")].map(s => s.textContent.trim()).filter(t => t && t[0] !== "@") : [];
   $("#mt").innerHTML = `<img src="img/goyo.jpg" alt=""><span><b style="font-weight:500">Gregorio Sánchez Calderón</b> · Cofundador</span><span>${esc(meta.join(" · "))}</span>`;
   const idx = Math.max(0, LISTA.findIndex(x => x.slug === slug));
-  $("#hero").style.backgroundImage = `url(${FOTOS[idx % FOTOS.length]})`;
   let out = "";
   const ficha = tapa && tapa.querySelector(".ficha"); if(ficha) out += `<div class="ficha">${abs(ficha).innerHTML}</div>`;
   const aviso = tapa && tapa.querySelector(".aviso"); if(aviso) out += `<p class="aviso">${aviso.innerHTML}</p>`;
@@ -165,7 +163,7 @@ function pinta(html, url){
 $("#lb").onclick = () => $("#lb").classList.remove("on");
 
 function mas(){ const o = LISTA.filter(x => x.slug !== slug);
-  $("#mas").innerHTML = o.map(x => `<a href="memo.html?m=${x.slug}"><div class="im" style="background-image:url(${FOTOS[LISTA.indexOf(x) % FOTOS.length]})"></div><div><div class="micro" style="color:var(--acc)">${esc(x.k)}</div><h4>${esc(x.t)}</h4><div class="micro" style="text-transform:none;letter-spacing:0;font-weight:400">${esc(x.f)}</div></div></a>`).join("") || `<p style="color:#777">Pronto habrá más memos.</p>`;
+  $("#mas").innerHTML = o.map(x => `<a href="memo.html?m=${x.slug}" class="sinimg"><div><div class="micro" style="color:var(--acc)">${esc(x.k)}</div><h4>${esc(x.t)}</h4><div class="micro" style="text-transform:none;letter-spacing:0;font-weight:400">${esc(x.f)}</div></div></a>`).join("") || `<p style="color:#777">Pronto habrá más memos.</p>`;
   if(!o.length) $("#mas").closest(".mas").style.display = "none"; }
 
 (async function(){
@@ -178,6 +176,6 @@ function mas(){ const o = LISTA.filter(x => x.slug !== slug);
   catch(_){ const s = LISTA.find(x => x.slug === slug); if(s && s.main) pinta(s.main, url); else $("#art").innerHTML = `<div class="estado">No pudimos cargar el memo en este momento. Intente de nuevo en unos minutos.</div>`; }
 })();
 </script>
-<script src="menu.js?v=1790808755"></script>
+<script src="menu.js?v=1790809912"></script>
 </body>
 </html>
