@@ -153,6 +153,20 @@
     gsap.from(kids, { ...from, duration: 1, stagger: .12, ease: EASE, scrollTrigger: { trigger: g, start: "top 85%" } });
   });
   stagger(".roles", { y: 60, opacity: 0 });
+  // la mesa: íconos que se dibujan y pasos que se encienden en orden al bajar
+  $$(".rol-ico").forEach(svg => {
+    const paths = $$("path", svg);
+    paths.forEach(p => { const L = p.getTotalLength(); gsap.set(p, { strokeDasharray: L, strokeDashoffset: L }); });
+    gsap.to(paths, { strokeDashoffset: 0, duration: 1.4, stagger: .15, ease: "power2.inOut", scrollTrigger: { trigger: svg, start: "top 88%" } });
+  });
+  const flow = $(".roles.flow");
+  if(flow){
+    const rs = $$(".rol", flow);
+    ScrollTrigger.create({ trigger: flow, start: "top 70%", end: "bottom 35%", onUpdate: self => {
+      const n = Math.floor(self.progress * (rs.length + .5));
+      rs.forEach((r, i) => r.classList.toggle("lit", i < n));
+    }, onLeaveBack: () => rs.forEach(r => r.classList.remove("lit")) });
+  }
   stagger("#perfilesGrid", { y: 80, opacity: 0, rotateX: 12, transformPerspective: 900 });
   stagger("#nivelesGrid", { y: 80, opacity: 0 });
   stagger("#cards", { y: 60, opacity: 0 });

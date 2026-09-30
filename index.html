@@ -100,6 +100,30 @@ nav .links a:hover{opacity:1}
 @media(max-width:980px){.mesa .feature{grid-template-columns:1fr;gap:32px}.roles{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.roles{grid-template-columns:1fr}}
 
+/* la mesa: recorrido de una operación */
+.flow-head{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:72px;flex-wrap:wrap}
+.live-mesa{display:inline-flex;align-items:center;gap:10px;font-size:14px;color:var(--ink);background:#fff;padding:9px 14px;border:1px solid var(--line)}
+.ldot{width:8px;height:8px;border-radius:50%;background:#9AA0AA;position:relative}
+.ldot.on{background:#1A7F5A}
+.ldot.on:after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid #1A7F5A;animation:ping 1.8s infinite}
+@keyframes ping{from{transform:scale(.6);opacity:1}to{transform:scale(1.6);opacity:0}}
+.roles.flow{position:relative;margin-top:24px}
+.flow-line{position:absolute;left:28px;right:28px;top:52px;height:1px;background:var(--line);z-index:0}
+.flow-line i{position:absolute;top:-3px;left:0;width:60px;height:7px;border-radius:4px;background:linear-gradient(90deg,transparent,var(--blue),transparent);animation:travel 4.5s cubic-bezier(.6,0,.4,1) infinite}
+@keyframes travel{0%{left:0;opacity:0}8%{opacity:1}92%{opacity:1}100%{left:calc(100% - 60px);opacity:0}}
+.rol{position:relative;z-index:1;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s,border-color .35s;overflow:hidden}
+.rol-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.rol-ico{width:44px;height:44px;padding:9px;background:var(--gray);color:var(--navy);transition:background .3s,color .3s}
+.rol-t{font:500 12px ui-monospace,"SF Mono",Menlo,monospace;letter-spacing:.06em;color:var(--muted)}
+.rol-n{font:300 44px/1 var(--serif);color:#D5DAE3;margin-bottom:10px;transition:color .3s}
+.rol-more{max-height:0;opacity:0;overflow:hidden;font-size:14px;color:var(--blue);border-top:1px solid transparent;margin-top:0;padding-top:0;transition:max-height .45s,opacity .35s,margin .35s,padding .35s,border-color .35s}
+.rol:hover{transform:translateY(-6px);box-shadow:0 24px 40px -24px rgba(5,28,44,.35);border-top-color:var(--blue)}
+.rol:hover .rol-ico,.rol.lit .rol-ico{background:var(--navy);color:#fff}
+.rol:hover .rol-n,.rol.lit .rol-n{color:var(--blue)}
+.rol:hover .rol-more{max-height:80px;opacity:1;margin-top:16px;padding-top:14px;border-top-color:var(--line)}
+@media(max-width:980px){.flow-line{display:none}}
+@media(hover:none){.rol-more{max-height:none;opacity:1;margin-top:14px;padding-top:12px;border-top-color:var(--line)}}
+
 /* banda navy */
 .banda{position:relative;background:var(--navy) url(img/estratos.jpg) center/cover no-repeat;color:#fff;padding:140px 0}
 .banda:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,28,44,.9),rgba(5,28,44,.35))}
@@ -297,12 +321,17 @@ footer b{color:#fff;font-weight:500}
       <p style="margin-top:28px"><a class="link" href="#perspectivas">Lea por qué no prometemos un rendimiento fijo</a></p>
     </div>
   </div>
-  <div class="roles">
-    <div class="rol"><h4>Dirección de la mesa</h4><div class="sub">Estrategia y supervisión</div><p>Define el plan de cada sesión y revisa que toda operación cumpla las reglas de la mesa.</p></div>
-    <div class="rol"><h4>Gestión de riesgo</h4><div class="sub">Límites por cuenta</div><p>Vigila en tiempo real cada cuenta y activa el freno del plan cuando el saldo llega a su riesgo mensual.</p></div>
-    <div class="rol"><h4>Operación</h4><div class="sub">Ejecución</div><p>Traders que ejecutan el plan con tamaños calculados según el plan y el saldo de cada cuenta.</p></div>
-    <div class="rol"><h4>Atención a clientes</h4><div class="sub">Acompañamiento</div><p>Resumen mensual, cambios de plan y atención directa por WhatsApp para cada titular.</p></div>
+  <div class="flow-head">
+    <div class="eyebrow">Así viaja una operación por la mesa</div>
+    <div class="live-mesa"><span class="ldot" id="ldot"></span><span id="mesaLive"></span></div>
   </div>
+  <div class="roles flow">
+    <div class="flow-line" aria-hidden="true"><i></i></div>
+    <div class="rol"><div class="rol-top"><svg class="rol-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/><path d="M15 16l2 2 3-4"/></svg><span class="rol-t">07:30</span></div><div class="rol-n">01</div><h4>Dirección de la mesa</h4><div class="sub">Estrategia y supervisión</div><p>Define el plan de cada sesión y revisa que toda operación cumpla las reglas de la mesa.</p><div class="rol-more">Nada se opera sin un plan escrito antes de abrir.</div></div>
+    <div class="rol"><div class="rol-top"><svg class="rol-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg><span class="rol-t">En tiempo real</span></div><div class="rol-n">02</div><h4>Gestión de riesgo</h4><div class="sub">Límites por cuenta</div><p>Vigila en tiempo real cada cuenta y activa el freno del plan cuando el saldo llega a su riesgo mensual.</p><div class="rol-more">El freno es automático: no depende de una decisión en caliente.</div></div>
+    <div class="rol"><div class="rol-top"><svg class="rol-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 3 8-9"/><path d="M15 6h5v5"/></svg><span class="rol-t">07:30 – 14:00</span></div><div class="rol-n">03</div><h4>Operación</h4><div class="sub">Ejecución</div><p>Traders que ejecutan el plan con tamaños calculados según el plan y el saldo de cada cuenta.</p><div class="rol-more">Cada entrada queda registrada y visible en su app.</div></div>
+    <div class="rol"><div class="rol-top"><svg class="rol-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/></svg><span class="rol-t">Cada mes</span></div><div class="rol-n">04</div><h4>Atención a clientes</h4><div class="sub">Acompañamiento</div><p>Resumen mensual, cambios de plan y atención directa por WhatsApp para cada titular.</p><div class="rol-more">Una persona real, no un bot, responde sus dudas.</div></div>
+</div>
 </div></section>
 
 <section class="banda"><div class="wrap">
@@ -462,8 +491,7 @@ $("#nivelesGrid").innerHTML = CONFIG.niveles.map(q => `
     <h3 class="serif" style="margin-top:8px">${q.nombre}</h3>
     <div class="rng">${rango(q)}</div><div class="cap">de saldo</div>
     <ul>${q.items.map(i=>`<li>${i}</li>`).join("")}</ul>
-    <div class="fee">${q.fee}% de la ganancia</div>
-    <p>Sin cuota fija. Solo sobre nuevos máximos de su saldo.</p>
+    <div style="height:8px"></div>
     <a class="btn ${q.dest?"":"line"}" href="#registro" data-nv="${q.id}" style="align-self:flex-start">Empezar en ${q.nombre}</a>
   </div>`).join("");
 
@@ -568,6 +596,19 @@ $("#form").addEventListener("submit", e => {
   }
   $("#ok").style.display = "block"; e.target.reset(); setPerfil(state.perfil);
 });
+
+// estado de la mesa en vivo (hora del centro de México, lunes a viernes 7:30–14:00)
+(function(){
+  const el = document.getElementById("mesaLive"), d = document.getElementById("ldot"); if(!el) return;
+  const tick = () => {
+    const now = new Date(new Date().toLocaleString("en-US",{ timeZone:"America/Mexico_City" }));
+    const w = now.getDay(), m = now.getHours()*60 + now.getMinutes(), on = w>=1 && w<=5 && m>=450 && m<840;
+    const hh = String(now.getHours()).padStart(2,"0")+":"+String(now.getMinutes()).padStart(2,"0");
+    el.textContent = on ? `Mesa en sesión · ${hh} CDMX` : `Fuera de sesión · ${hh} CDMX · abre ${(w===5&&m>=840)||w===6?"el lunes":(w===0||m>=840)?"mañana":"hoy"} a las 7:30`;
+    d.classList.toggle("on", on);
+  };
+  tick(); setInterval(tick, 30000);
+})();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
