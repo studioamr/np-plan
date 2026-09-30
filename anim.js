@@ -259,6 +259,16 @@
     }));
   }
 
+  // preguntas frecuentes: entrada escalonada y apertura suave
+  const qas = $(".qas");
+  if(qas){
+    gsap.from([...qas.children], { y: 30, opacity: 0, stagger: .06, duration: .8, ease: EASE, scrollTrigger: { trigger: qas, start: "top 85%", once: true } });
+    $$(".qa", qas).forEach(d => d.addEventListener("toggle", () => {
+      if(d.open){ const a = $(".qa-a", d); gsap.fromTo(a, { height: 0, opacity: 0 }, { height: "auto", opacity: 1, duration: .45, ease: "power2.out" }); }
+      ScrollTrigger.refresh();
+    }));
+  }
+
   // las fuentes y las imágenes cambian alturas: recalcular
   addEventListener("load", () => ScrollTrigger.refresh());
   if(document.fonts) document.fonts.ready.then(() => ScrollTrigger.refresh());

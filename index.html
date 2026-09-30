@@ -234,6 +234,19 @@ canvas{width:100%;height:300px;display:block}
 .comp p+p{margin-top:18px}
 @media(max-width:900px){.comp .grid{grid-template-columns:1fr;gap:32px}}
 
+/* preguntas frecuentes */
+.qas{border-top:1px solid var(--ink)}
+.qa{border-bottom:1px solid var(--line)}
+.qa summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 0;font:400 clamp(19px,1.9vw,24px)/1.35 var(--serif);color:var(--ink)}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary i{flex:0 0 20px;height:20px;position:relative}
+.qa summary i:before,.qa summary i:after{content:"";position:absolute;left:0;right:0;top:50%;height:1.5px;background:var(--blue);transition:transform .35s}
+.qa summary i:after{transform:rotate(90deg)}
+.qa[open] summary i:after{transform:rotate(0)}
+.qa summary:hover span{color:var(--blue)}
+.qa-a{overflow:hidden}
+.qa-a p{padding:0 48px 26px 0;font-size:17px;line-height:1.7;max-width:820px}
+
 /* registro */
 .registro{background:var(--navy);color:#fff}
 .registro .grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
@@ -244,6 +257,8 @@ form{background:#fff;color:var(--text);padding:36px;display:grid;gap:18px}
 form label{font-size:14px;color:var(--ink);font-weight:500;display:grid;gap:8px}
 input:not([type=range]),select{border:0;border-bottom:1px solid var(--ink);background:transparent;padding:10px 0;font:300 17px var(--sans);color:var(--ink);border-radius:0}
 input:focus,select:focus{outline:none;border-bottom-color:var(--blue);border-bottom-width:2px}
+.consent{font-size:13px;color:var(--muted)}
+.consent a{color:var(--ink)}
 .ok{display:none;color:var(--gain);font-size:15px}
 @media(max-width:900px){.registro .grid{grid-template-columns:1fr;gap:40px}}
 
@@ -275,7 +290,7 @@ footer .mark{color:#fff;display:block;margin-bottom:24px}
 footer p{max-width:900px;margin-bottom:12px}
 footer b{color:#fff;font-weight:500}
 </style>
-<link rel="stylesheet" href="anim.css?v=1790750610">
+<link rel="stylesheet" href="anim.css?v=1790750931">
 <script>document.documentElement.classList.add("js-anim");setTimeout(function(){document.documentElement.classList.add("anim-ready")},3500)</script>
 </head>
 <body>
@@ -480,6 +495,25 @@ footer b{color:#fff;font-weight:500}
   </div>
 </div></section>
 
+<section class="faq" id="faq"><div class="wrap">
+  <div class="sec-head">
+    <div><div class="eyebrow">Preguntas frecuentes</div><h2 class="serif" style="margin-top:12px">Lo que todos preguntan antes de empezar.</h2></div>
+    <p>Si su pregunta no está aquí, escríbanos. Preferimos que entienda todo antes de apartar su lugar.</p>
+  </div>
+  <div class="qas">
+    <details class="qa"><summary><span>¿Dónde está mi dinero?</span><i aria-hidden="true"></i></summary><div class="qa-a"><p>En una cuenta a su nombre en un intermediario regulado. NORTHPOINT nunca recibe ni custodia su dinero: la mesa opera con un mandato limitado que permite operar, pero no retirar ni transferir.</p></div></details>
+    <details class="qa"><summary><span>¿El rendimiento está garantizado?</span><i aria-hidden="true"></i></summary><div class="qa-a"><p>No. Cada plan tiene un objetivo mensual (1.5%, 3% o 6%), que es una meta de la mesa, no una promesa. Habrá meses por arriba del objetivo, meses por debajo y meses negativos.</p></div></details>
+    <details class="qa"><summary><span>¿Qué pasa si la mesa pierde?</span><i aria-hidden="true"></i></summary><div class="qa-a"><p>Su saldo baja ese mes. Para eso existe el freno de cada plan: si la cuenta llega a su riesgo mensual, la mesa deja de operarla hasta el mes siguiente. Usted lo ve en tiempo real en la app.</p></div></details>
+    <details class="qa"><summary><span>¿Cuánto cobran?</span><i aria-hidden="true"></i></summary><div class="qa-a"><p>Solo una parte de la ganancia nueva, entre 20% y 30% según su nivel, y solo cuando su saldo marca un nuevo máximo. No hay cuota fija, ni de apertura, ni por retiro.</p></div></details>
+    <details class="qa"><summary><span>¿Cuál es el monto mínimo?</span><i aria-hidden="true"></i></summary><div class="qa-a"><p>$100 USD. Puede depositar más cuando quiera; no hay aportaciones obligatorias.</p></div></details>
+    <details class="qa"><summary><span>¿Puedo retirar cuando quiera?</span><i aria-hidden="true"></i></summary><div class="qa-a"><p>Sí. Usted retira directo desde su propia cuenta, en los tiempos de operación del intermediario. NORTHPOINT no pone plazos forzosos ni penalizaciones.</p></div></details>
+    <details class="qa"><summary><span>¿Puedo cambiar de plan?</span><i aria-hidden="true"></i></summary><div class="qa-a"><p>Sí. El cambio aplica desde la siguiente sesión de la mesa.</p></div></details>
+    <details class="qa"><summary><span>¿Qué pasa si NORTHPOINT deja de operar?</span><i aria-hidden="true"></i></summary><div class="qa-a"><p>Su dinero sigue en su cuenta, a su nombre. Solo se revoca el mandato de la mesa y usted conserva el control total de su saldo.</p></div></details>
+    <details class="qa"><summary><span>¿Cómo sé qué hace la mesa con mi saldo?</span><i aria-hidden="true"></i></summary><div class="qa-a"><p>Cada operación queda registrada en la app: qué se operó, cuándo y con qué resultado. También recibe un resumen al cierre de cada mes.</p></div></details>
+    <details class="qa"><summary><span>¿Ya puedo invertir?</span><i aria-hidden="true"></i></summary><div class="qa-a"><p>Todavía no. Estamos terminando la estructura legal y eligiendo al intermediario. Registre sus datos en la lista de espera y le avisaremos cuando abramos, en orden de registro.</p></div></details>
+  </div>
+</div></section>
+
 <section class="registro" id="registro"><div class="wrap grid">
   <div>
     <div class="eyebrow">Primera generación</div>
@@ -492,6 +526,7 @@ footer b{color:#fff;font-weight:500}
     <label>¿Con cuánto empezaría?<select name="nivel" id="fNivel"></select></label>
     <label>Plan<select name="perfil" id="fPerfil"></select></label>
     <button class="btn" type="submit" style="justify-self:start;margin-top:8px">Apartar mi lugar</button>
+    <p class="consent">Al enviar acepta nuestro <a href="privacidad.html">Aviso de privacidad</a>.</p>
     <div class="ok" id="ok">Gracias. Su registro quedó guardado y le contactaremos por WhatsApp.</div>
   </form>
 </div></section>
@@ -511,6 +546,7 @@ footer b{color:#fff;font-weight:500}
   <p><b>NORTHPOINT no recibe ni custodia recursos de clientes y no es una institución de crédito.</b> Cada saldo vive en una cuenta a nombre de su titular en un intermediario regulado; la mesa opera con un mandato limitado, sin facultad de retiro.</p>
   <p>El rendimiento es variable, no está garantizado y puede ser negativo. Los rendimientos del simulador son supuestos elegidos por el usuario, no promesas ni resultados históricos. El freno de protección de cada plan se detalla en el contrato, se aplica al cierre de cada operación y puede rebasarse ante movimientos bruscos del mercado.</p>
   <p>Este sitio es una lista de espera y no constituye una oferta de inversión.</p>
+  <p><a href="privacidad.html" style="color:#fff">Aviso de privacidad</a> · <a href="#faq" style="color:#fff">Preguntas frecuentes</a> · <a href="equipo.html" style="color:#fff">El equipo</a></p>
 </div></footer>
 
 <script>
@@ -726,6 +762,6 @@ $("#form").addEventListener("submit", e => {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="anim.js?v=1790750610"></script>
+<script src="anim.js?v=1790750931"></script>
 </body>
 </html>
