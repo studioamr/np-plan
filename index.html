@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NORTHPOINT · Plan Mensual</title>
+<meta name="description" content="Una mesa de trading profesional que ayuda a las personas a construir patrimonio mes con mes, dentro del riesgo que cada una define.">
+<meta property="og:title" content="NORTHPOINT · Plan Mensual">
+<meta property="og:description" content="Construir patrimonio, un mes a la vez. Aportaciones desde $1,000 USD al mes.">
+<meta property="og:image" content="img/hero.jpg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#051C2C; --navy2:#0B2A40; --blue:#2251FF; --blue-dk:#1F40E6; --cyan:#CCF2FF; --cyan-lt:#E6F8FF;
+  --ink:#000; --text:#333; --muted:#757575; --line:#D0D0D0; --gray:#F0F0F0; --white:#fff;
+  --loss:#C0392B; --gain:#1A7F5A;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --sans:"Public Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mw:1280px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--text);font:300 16px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{display:block;max-width:100%}
+.wrap{max-width:var(--mw);margin:0 auto;padding:0 40px}
+@media(max-width:700px){.wrap{padding:0 20px}}
+
+.eyebrow{font:500 14px/1.5 var(--sans);letter-spacing:1.2px;text-transform:uppercase;color:var(--ink)}
+.serif{font-family:var(--serif);font-weight:300;letter-spacing:-.01em;color:var(--ink)}
+h1.serif{font-size:clamp(40px,5.6vw,72px);line-height:1.1}
+h2.serif{font-size:clamp(32px,3.8vw,48px);line-height:1.15}
+h3.serif{font-size:clamp(24px,2.4vw,32px);line-height:1.25}
+.lead{font-size:clamp(18px,1.6vw,20px);line-height:1.6;font-weight:300}
+.ul{background-image:linear-gradient(currentColor,currentColor);background-size:100% 1px;background-repeat:no-repeat;background-position:0 100%;text-decoration:none;padding-bottom:1px}
+.link{font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:8px;color:var(--blue)}
+.link:after{content:"›";font-size:22px;line-height:1;transform:translateY(-1px);transition:transform .2s}
+.link:hover:after{transform:translate(4px,-1px)}
+.btn{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font:400 16px/24px var(--sans);padding:12px 24px;border:0;border-radius:0;cursor:pointer;transition:background .2s}
+.btn:hover{background:var(--blue-dk)}
+.btn.line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.btn.line.inv{color:#fff;box-shadow:inset 0 0 0 1px #fff}
+section{padding:96px 0}
+@media(max-width:700px){section{padding:64px 0}}
+
+/* nav */
+nav{position:absolute;top:0;left:0;right:0;z-index:20;color:#fff}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:80px;gap:24px}
+.mark{font:400 22px var(--serif);letter-spacing:.02em;text-decoration:none;white-space:nowrap}
+.mark small{font:300 13px var(--sans);letter-spacing:.06em;opacity:.8;margin-left:8px}
+nav .links{display:flex;gap:28px;font-size:15px;align-items:center}
+nav .links a{text-decoration:none;opacity:.9}
+nav .links a:hover{opacity:1}
+@media(max-width:980px){nav .links a:not(.btn){display:none}}
+
+/* hero */
+.hero{position:relative;min-height:760px;background:var(--navy) url(img/hero.jpg) center right/cover no-repeat;display:flex;align-items:flex-end;padding:0}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,28,44,.92) 0%,rgba(5,28,44,.55) 45%,rgba(5,28,44,0) 75%)}
+.hero .wrap{position:relative;width:100%;padding-bottom:96px}
+.hero .box{max-width:640px;color:#fff}
+.hero .eyebrow{color:#fff;opacity:.85;text-transform:none;letter-spacing:0;font-weight:300;font-size:16px}
+.hero h1{color:#fff;margin:8px 0 24px}
+.hero .lead{color:#fff;opacity:.92}
+@media(max-width:700px){.hero{min-height:640px;background-position:70% center}.hero:before{background:linear-gradient(0deg,rgba(5,28,44,.95) 30%,rgba(5,28,44,.35))}}
+
+/* intro */
+.intro .lead{max-width:880px;font-size:clamp(20px,2vw,24px);color:var(--ink)}
+.intro .lead+.lead{margin-top:24px;color:var(--text);font-size:clamp(18px,1.6vw,20px)}
+
+/* anuncio */
+.anuncio{background:var(--cyan);padding:56px 0}
+.anuncio .wrap{display:grid;grid-template-columns:1.2fr 1fr auto;gap:40px;align-items:center}
+.anuncio p{font-size:18px}
+@media(max-width:900px){.anuncio .wrap{grid-template-columns:1fr;gap:20px}}
+
+/* pasos */
+.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:56px}
+.sec-head p{font-size:18px}
+@media(max-width:900px){.sec-head{grid-template-columns:1fr;gap:16px}}
+.pasos{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink)}
+.paso{padding:28px 28px 0 0}
+.paso .n{font:300 44px/1 var(--serif);color:var(--blue)}
+.paso h3{font:500 18px/1.4 var(--sans);color:var(--ink);margin:20px 0 10px}
+@media(max-width:900px){.pasos{grid-template-columns:1fr 1fr;gap:0 24px}}
+@media(max-width:560px){.pasos{grid-template-columns:1fr}}
+
+/* la mesa */
+.mesa{background:var(--gray)}
+.mesa .feature{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;align-items:center}
+.mesa .feature img{width:100%;aspect-ratio:16/10;object-fit:cover;background:var(--navy)}
+.mesa .feature h2{margin:12px 0 20px}
+.roles{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:72px}
+.rol{background:#fff;padding:28px;border-top:4px solid var(--navy)}
+.rol h4{font:400 22px/1.3 var(--serif);color:var(--ink);margin-bottom:6px}
+.rol .sub{font-size:14px;color:var(--muted);margin-bottom:14px}
+@media(max-width:980px){.mesa .feature{grid-template-columns:1fr;gap:32px}.roles{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.roles{grid-template-columns:1fr}}
+
+/* banda navy */
+.banda{position:relative;background:var(--navy) url(img/estratos.jpg) center/cover no-repeat;color:#fff;padding:140px 0}
+.banda:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,28,44,.9),rgba(5,28,44,.35))}
+.banda .wrap{position:relative}
+.banda .eyebrow{color:#fff}
+.banda h2{color:#fff;max-width:760px;margin:16px 0 32px}
+
+/* perfiles */
+.perfiles{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.perfil{border:1px solid var(--line);padding:32px;cursor:pointer;transition:border-color .2s,box-shadow .2s;background:#fff}
+.perfil:hover{border-color:var(--ink)}
+.perfil.on{border-color:var(--blue);box-shadow:inset 0 4px 0 var(--blue)}
+.perfil .tope{font:300 64px/1 var(--serif);color:var(--ink);margin:24px 0 6px}
+.perfil .cap{font-size:14px;color:var(--muted)}
+.perfil dl{margin-top:28px}
+.perfil dl div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-top:1px solid var(--line);font-size:15px}
+.perfil dt{color:var(--muted)}
+.perfil dd{text-align:right;color:var(--ink)}
+@media(max-width:900px){.perfiles{grid-template-columns:1fr}}
+
+/* paquetes */
+.paquetes-sec{background:var(--gray)}
+.paquetes{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.pq{background:#fff;padding:36px 32px;display:flex;flex-direction:column}
+.pq.dest{background:var(--navy);color:#fff}
+.pq.dest .serif,.pq.dest .eyebrow{color:#fff}
+.pq .rng{font:300 40px/1.1 var(--serif);margin:18px 0 4px;color:inherit}
+.pq.dest .rng{color:#fff}
+.pq .cap{font-size:14px;opacity:.7}
+.pq ul{list-style:none;margin:28px 0;flex:1}
+.pq li{padding:12px 0;border-top:1px solid rgba(0,0,0,.12);font-size:15px}
+.pq.dest li{border-color:rgba(255,255,255,.18)}
+.pq .fee{font:300 28px var(--serif);color:var(--ink)}
+.pq.dest .fee{color:#fff}
+.pq .fee+p{font-size:14px;opacity:.75;margin:4px 0 28px}
+@media(max-width:900px){.paquetes{grid-template-columns:1fr}}
+
+/* simulador */
+.sim{display:grid;grid-template-columns:380px 1fr;gap:0;border:1px solid var(--line)}
+.ctrl{padding:36px;border-right:1px solid var(--line);display:grid;gap:32px;align-content:start;background:var(--cyan-lt)}
+.ctrl .row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.ctrl .row span{font-size:14px;color:var(--ink);font-weight:500}
+.ctrl .row b{font:300 26px var(--serif);color:var(--ink);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--blue)}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);box-shadow:inset 0 0 0 1px var(--ink)}
+.seg button{background:none;border:0;padding:12px 0;font:400 14px var(--sans);cursor:pointer;color:var(--ink)}
+.seg button.on{background:var(--ink);color:#fff}
+.out{padding:36px;min-width:0}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding-bottom:28px;border-bottom:1px solid var(--line);margin-bottom:28px}
+.kpis span{font-size:14px;color:var(--muted)}
+.kpis b{display:block;font:300 32px/1.2 var(--serif);color:var(--ink);font-variant-numeric:tabular-nums;margin-top:4px}
+.kpis .pos{color:var(--gain)} .kpis .neg{color:var(--loss)}
+canvas{width:100%;height:300px;display:block}
+.legend{display:flex;gap:24px;margin-top:14px;font-size:14px;color:var(--muted);flex-wrap:wrap}
+.legend i{display:inline-block;width:12px;height:12px;margin-right:8px;vertical-align:-1px}
+.nota{margin-top:24px;font-size:15px;border-left:3px solid var(--blue);padding-left:16px;color:var(--text)}
+@media(max-width:980px){.sim{grid-template-columns:1fr}.ctrl{border-right:0;border-bottom:1px solid var(--line)}.kpis{grid-template-columns:1fr 1fr}}
+
+/* perspectivas */
+.persp{background:var(--gray)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{background:#fff;padding:32px;display:flex;flex-direction:column;cursor:pointer;border-bottom:4px solid transparent;transition:border-color .2s}
+.card:hover{border-bottom-color:var(--blue)}
+.card .tipo{font-size:14px;color:var(--muted);margin-bottom:16px}
+.card h3{font:400 24px/1.3 var(--serif);color:var(--ink);margin-bottom:16px}
+.card .fecha{font-size:14px;color:var(--muted);margin-top:auto;padding-top:16px}
+.card .cuerpo{display:none;font-size:15px;line-height:1.65;margin-bottom:8px}
+.card .cuerpo p+p{margin-top:12px}
+.card.open .cuerpo{display:block}
+.card.open .resumen{display:none}
+.card .mas{margin-top:16px}
+@media(max-width:900px){.cards{grid-template-columns:1fr}}
+
+/* portal */
+.portal{border:1px solid var(--line)}
+.pbar{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;background:var(--navy);color:#fff;gap:16px;flex-wrap:wrap}
+.pbar .mark{font-size:18px}
+.demo{font-size:13px;border:1px solid rgba(255,255,255,.5);padding:4px 12px}
+.pgrid{display:grid;grid-template-columns:1.2fr 1fr}
+.pgrid>div{padding:32px 28px}
+.pgrid>div+div{border-left:1px solid var(--line)}
+.bal{font:300 56px/1.1 var(--serif);color:var(--ink);margin:10px 0 28px}
+.lim{height:6px;background:var(--gray);margin:12px 0 8px}
+.lim i{display:block;height:100%;width:22%;background:var(--blue)}
+table{width:100%;border-collapse:collapse;font-size:15px;font-variant-numeric:tabular-nums;margin-top:8px}
+td{padding:12px 0;border-top:1px solid var(--line)}
+td:last-child{text-align:right}
+@media(max-width:800px){.pgrid{grid-template-columns:1fr}.pgrid>div+div{border-left:0;border-top:1px solid var(--line)}}
+
+/* compromiso */
+.comp .grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.comp img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--navy)}
+.comp h2{margin:12px 0 24px}
+.comp p{font-size:18px;line-height:1.65}
+.comp p+p{margin-top:18px}
+@media(max-width:900px){.comp .grid{grid-template-columns:1fr;gap:32px}}
+
+/* registro */
+.registro{background:var(--navy);color:#fff}
+.registro .grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.registro .eyebrow,.registro .serif{color:#fff}
+.registro h2{margin:12px 0 24px}
+.registro p{font-size:18px;opacity:.9}
+form{background:#fff;color:var(--text);padding:36px;display:grid;gap:18px}
+form label{font-size:14px;color:var(--ink);font-weight:500;display:grid;gap:8px}
+input:not([type=range]),select{border:0;border-bottom:1px solid var(--ink);background:transparent;padding:10px 0;font:300 17px var(--sans);color:var(--ink);border-radius:0}
+input:focus,select:focus{outline:none;border-bottom-color:var(--blue);border-bottom-width:2px}
+.ok{display:none;color:var(--gain);font-size:15px}
+@media(max-width:900px){.registro .grid{grid-template-columns:1fr;gap:40px}}
+
+/* oficinas + footer */
+.oficinas .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;margin-top:40px}
+.oficinas h4{font:400 22px var(--serif);color:var(--ink);margin-bottom:12px}
+.oficinas p{font-size:15px;line-height:1.7}
+@media(max-width:900px){.oficinas .grid{grid-template-columns:1fr}}
+footer{background:var(--navy);color:rgba(255,255,255,.75);padding:56px 0 64px;font-size:14px;line-height:1.7}
+footer .mark{color:#fff;display:block;margin-bottom:24px}
+footer p{max-width:900px;margin-bottom:12px}
+footer b{color:#fff;font-weight:500}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="mark" href="#">NORTHPOINT<small>Plan Mensual</small></a>
+  <div class="links">
+    <a href="#como">Cómo trabajamos</a><a href="#mesa">La mesa</a><a href="#perfiles">Perfiles</a><a href="#paquetes">Paquetes</a><a href="#perspectivas">Perspectivas</a>
+    <a class="btn" href="#registro">Apartar lugar</a>
+  </div>
+</div></nav>
+
+<header class="hero"><div class="wrap"><div class="box">
+  <div class="eyebrow">Bienvenido a</div>
+  <h1 class="serif">NORTHPOINT Plan Mensual</h1>
+  <p class="lead">Somos una mesa de trading profesional que trabaja con personas de todo México para <a class="ul" href="#como">construir patrimonio de forma disciplinada</a>, mes con mes, dentro del riesgo que cada una decide asumir.</p>
+</div></div></header>
+
+<section class="intro"><div class="wrap">
+  <p class="lead serif" style="font-weight:300">Acompañamos a quienes ahorran cada mes a convertir su aportación en patrimonio. Lo hacemos con la disciplina de una mesa institucional, con límites de pérdida que se respetan y con una transparencia total sobre cada operación.</p>
+  <p class="lead">Durante años, la gestión profesional estuvo reservada para grandes patrimonios. Creemos que la constancia de muchos vale tanto como el capital de pocos, y por eso abrimos la mesa a aportaciones mensuales.</p>
+</div></section>
+
+<div class="anuncio"><div class="wrap">
+  <h3 class="serif">Presentamos el Plan Mensual, con aportaciones desde $1,000 USD</h3>
+  <p>La disciplina de una mesa profesional, disponible por primera vez a través de una aportación mensual.</p>
+  <a class="btn line" href="#paquetes">Conozca los paquetes</a>
+</div></div>
+
+<section id="como"><div class="wrap">
+  <div class="sec-head">
+    <div><div class="eyebrow">Cómo trabajamos</div><h2 class="serif" style="margin-top:12px">Su dinero permanece a su nombre. Siempre.</h2></div>
+    <p>No recibimos transferencias ni custodiamos fondos de clientes. Cada cuenta vive en un intermediario regulado, a nombre de su titular, y la mesa opera con un mandato limitado que no permite retiros.</p>
+  </div>
+  <div class="pasos">
+    <div class="paso"><div class="n">01</div><h3>Apertura de cuenta</h3><p>El cliente abre una cuenta a su nombre en el intermediario regulado con el que trabajamos. Solo el titular puede retirar.</p></div>
+    <div class="paso"><div class="n">02</div><h3>Perfil y paquete</h3><p>El perfil define cuánto puede perder la cuenta en un mes. El paquete define la aportación mensual y el nivel de servicio.</p></div>
+    <div class="paso"><div class="n">03</div><h3>Aportación mensual</h3><p>El cliente deposita directamente en su propia cuenta, en cualquier momento del mes. El plan crece con cada aportación.</p></div>
+    <div class="paso"><div class="n">04</div><h3>Operación con límites</h3><p>Si una cuenta alcanza el límite de pérdida del mes, la mesa deja de operarla hasta el mes siguiente. El cliente lo ve en su portal.</p></div>
+  </div>
+</div></section>
+
+<section class="mesa" id="mesa"><div class="wrap">
+  <div class="feature">
+    <img src="img/mesa.jpg" alt="Oficina de la mesa de trading al anochecer" loading="lazy">
+    <div>
+      <div class="eyebrow">La mesa</div>
+      <h2 class="serif">Disciplina con propósito</h2>
+      <p class="lead">Nuestra mesa opera futuros de índices bursátiles de Estados Unidos con reglas escritas antes de cada sesión. Cada operación tiene una razón, un riesgo definido y un registro que el cliente puede consultar.</p>
+      <p style="margin-top:28px"><a class="link" href="#perspectivas">Lea cómo medimos el riesgo</a></p>
+    </div>
+  </div>
+  <div class="roles">
+    <div class="rol"><h4>Dirección de la mesa</h4><div class="sub">Estrategia y supervisión</div><p>Define el plan de cada sesión y revisa que toda operación cumpla las reglas de la mesa.</p></div>
+    <div class="rol"><h4>Gestión de riesgo</h4><div class="sub">Límites por cuenta</div><p>Vigila en tiempo real el límite de pérdida de cada perfil y detiene la operación cuando se alcanza.</p></div>
+    <div class="rol"><h4>Operación</h4><div class="sub">Ejecución</div><p>Traders que ejecutan el plan con tamaños calculados según el perfil y el saldo de cada cuenta.</p></div>
+    <div class="rol"><h4>Relación con clientes</h4><div class="sub">Acompañamiento</div><p>Reportes mensuales, cambios de perfil y atención directa por WhatsApp para cada titular.</p></div>
+  </div>
+</div></section>
+
+<section class="banda"><div class="wrap">
+  <div class="eyebrow">Construir patrimonio</div>
+  <h2 class="serif">Hacemos que la constancia rinda, para que las personas ahorren, los hogares prosperen y el patrimonio avance.</h2>
+  <a class="btn line inv" href="#simulador">Vea cómo lo hacemos</a>
+</div></section>
+
+<section id="perfiles"><div class="wrap">
+  <div class="sec-head">
+    <div><div class="eyebrow">Perfiles de riesgo</div><h2 class="serif" style="margin-top:12px">La agresividad se mide en lo que se puede perder.</h2></div>
+    <p>Nadie puede garantizar cuánto rendirá una cuenta. Lo que sí podemos comprometer es el límite de pérdida mensual de cada perfil, y ese límite se respeta.</p>
+  </div>
+  <div class="perfiles" id="perfilesGrid"></div>
+</div></section>
+
+<section class="paquetes-sec" id="paquetes"><div class="wrap">
+  <div class="sec-head">
+    <div><div class="eyebrow">Paquetes</div><h2 class="serif" style="margin-top:12px">Un plan para cada nivel de aportación.</h2></div>
+    <p>Aportación mensual en dólares estadounidenses. Sin cuota fija: la mesa solo cobra una parte de la ganancia, y la parte es menor mientras mayor es la aportación.</p>
+  </div>
+  <div class="paquetes" id="paquetesGrid"></div>
+</div></section>
+
+<section id="simulador"><div class="wrap">
+  <div class="sec-head">
+    <div><div class="eyebrow">Simulador</div><h2 class="serif" style="margin-top:12px">Proyecte su plan.</h2></div>
+    <p>El rendimiento lo elige usted: es un supuesto para hacer la cuenta, no una promesa. Llévelo a terreno negativo para ver cómo actúa el límite de pérdida en un año adverso.</p>
+  </div>
+  <div class="sim">
+    <div class="ctrl">
+      <label><div class="row"><span>Aportación mensual</span><b id="vAporte"></b></div><input id="aporte" type="range" min="100" max="10000" step="100" value="2000"></label>
+      <label><div class="row"><span>Plazo</span><b id="vMeses"></b></div><input id="meses" type="range" min="6" max="120" step="6" value="36"></label>
+      <label><div class="row"><span>Rendimiento mensual supuesto</span><b id="vRend"></b></div><input id="rend" type="range" min="-3" max="4" step="0.25" value="1"></label>
+      <div><div class="row"><span>Perfil</span></div><div class="seg" id="seg"></div></div>
+    </div>
+    <div class="out">
+      <div class="kpis">
+        <div><span>Aportado</span><b id="kAport"></b></div>
+        <div><span>Valor estimado</span><b id="kValor"></b></div>
+        <div><span>Ganancia neta</span><b id="kGan"></b></div>
+        <div><span>Comisión de la mesa</span><b id="kFee"></b></div>
+      </div>
+      <canvas id="chart"></canvas>
+      <div class="legend"><span><i style="background:#D0D0D0"></i>Aportado</span><span><i style="background:var(--blue)"></i>Valor estimado</span></div>
+      <p class="nota" id="nota"></p>
+    </div>
+  </div>
+</div></section>
+
+<section class="persp" id="perspectivas"><div class="wrap">
+  <div class="sec-head">
+    <div><div class="eyebrow">Perspectivas</div><h2 class="serif" style="margin-top:12px">Ideas de la mesa</h2></div>
+    <p>Cómo pensamos el riesgo, la constancia y la custodia. Escrito por la mesa, para quien quiere entender antes de invertir.</p>
+  </div>
+  <div class="cards" id="cards"></div>
+</div></section>
+
+<section id="portal"><div class="wrap">
+  <div class="sec-head">
+    <div><div class="eyebrow">Portal del cliente</div><h2 class="serif" style="margin-top:12px">Todo a la vista, en todo momento.</h2></div>
+    <p>Saldo, aportaciones, cada operación de la mesa y el margen restante del límite mensual. Así se verá el portal de cada titular.</p>
+  </div>
+  <div class="portal">
+    <div class="pbar"><span class="mark">NORTHPOINT<small>Mi plan</small></span><span class="demo">Vista previa con datos de ejemplo</span></div>
+    <div class="pgrid">
+      <div>
+        <div class="eyebrow">Saldo · perfil Moderado</div>
+        <div class="bal">$14,380</div>
+        <div class="eyebrow">Límite de pérdida del mes</div>
+        <div class="lim"><i></i></div>
+        <p style="font-size:14px;color:var(--muted)">Utilizado: −1.3% de −6.0% permitido. La mesa continúa operando.</p>
+      </div>
+      <div>
+        <div class="eyebrow">Movimientos recientes</div>
+        <table>
+          <tr><td>Futuro S&amp;P 500 · compra</td><td style="color:var(--gain)">+$212</td></tr>
+          <tr><td>Futuro Nasdaq 100 · venta</td><td style="color:var(--loss)">−$96</td></tr>
+          <tr><td>Futuro S&amp;P 500 · compra</td><td style="color:var(--gain)">+$140</td></tr>
+          <tr><td>Aportación mensual</td><td>+$2,000</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="comp" style="padding-top:0"><div class="wrap grid">
+  <img src="img/ciudad.jpg" alt="Ciudad de México al amanecer" loading="lazy">
+  <div>
+    <div class="eyebrow">Nuestro compromiso</div>
+    <h2 class="serif">Llevar la gestión profesional a más hogares de México</h2>
+    <p>Estamos comprometidos con contribuir de manera significativa a la forma en que las familias mexicanas construyen su patrimonio. Eso empieza por tres principios que no negociamos: la custodia separada, los límites de pérdida escritos y la información completa para el cliente.</p>
+    <p>Preferimos crecer con quinientas personas que aportan cada mes que depender de unos cuantos grandes capitales. Un modelo así nos obliga a ser consistentes, transparentes y a merecer cada renovación.</p>
+  </div>
+</div></section>
+
+<section class="registro" id="registro"><div class="wrap grid">
+  <div>
+    <div class="eyebrow">Primera generación</div>
+    <h2 class="serif">Aparte su lugar</h2>
+    <p>Aún no aceptamos recursos. Estamos concluyendo la estructura legal y la selección del intermediario. Registre sus datos y le contactaremos, en orden de registro, cuando abramos los primeros lugares.</p>
+  </div>
+  <form id="form">
+    <label>Nombre completo<input name="nombre" required autocomplete="name"></label>
+    <label>WhatsApp<input name="whatsapp" required inputmode="tel" autocomplete="tel"></label>
+    <label>Paquete de interés<select name="paquete" id="fPaquete"></select></label>
+    <label>Perfil de riesgo<select name="perfil" id="fPerfil"></select></label>
+    <button class="btn" type="submit" style="justify-self:start;margin-top:8px">Apartar mi lugar</button>
+    <div class="ok" id="ok">Gracias. Su registro quedó guardado y le contactaremos por WhatsApp.</div>
+  </form>
+</div></section>
+
+<section class="oficinas" id="contacto"><div class="wrap">
+  <div class="eyebrow">Nuestras oficinas</div>
+  <h2 class="serif" style="margin-top:12px">Contacto</h2>
+  <div class="grid">
+    <div><h4>Oficina de la mesa</h4><p id="oficina"></p></div>
+    <div><h4>Atención a clientes</h4><p id="contactoTxt"></p></div>
+    <div><h4>Horario de la mesa</h4><p>Lunes a viernes<br>Sesión de Nueva York, 7:30 a 14:00 (hora del centro de México)</p></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <span class="mark">NORTHPOINT<small>Plan Mensual</small></span>
+  <p><b>NORTHPOINT no recibe ni custodia recursos de clientes.</b> Cada cliente abre una cuenta a su nombre en un intermediario regulado; la mesa opera con un mandato limitado, sin facultad de retiro.</p>
+  <p>La operación con futuros implica riesgo de pérdida. Los rendimientos del simulador son supuestos elegidos por el usuario, no promesas ni resultados históricos. Los límites de pérdida se aplican al cierre de cada operación y pueden rebasarse ante movimientos bruscos del mercado.</p>
+  <p>Este sitio es una lista de espera y no constituye una oferta de inversión.</p>
+</div></footer>
+
+<script>
+const CONFIG = {
+  whatsapp: "",          // número de NORTHPOINT con lada, ej. 5214431234567 (vacío = el registro se guarda local)
+  oficina: "",           // dirección de la oficina de la mesa (vacío = "por anunciar")
+  email: "",
+  perfiles: [
+    { id:"cons", nombre:"Conservador", tope:3,  riesgoOp:"0.25%", freq:"2 a 3 sesiones por semana", estilo:"Solo las operaciones más claras" },
+    { id:"mod",  nombre:"Moderado",    tope:6,  riesgoOp:"0.5%",  freq:"3 a 4 sesiones por semana", estilo:"El equilibrio de la mesa" },
+    { id:"agr",  nombre:"Agresivo",    tope:12, riesgoOp:"1%",    freq:"Todas las sesiones",        estilo:"Mayor exposición y volatilidad" }
+  ],
+  paquetes: [
+    { id:"basico", nombre:"Básico", min:1000, max:2000, fee:30, items:["Portal con cada operación","Reporte mensual","Atención por WhatsApp"] },
+    { id:"pro",    nombre:"Pro",    min:2000, max:5000, fee:25, dest:true, items:["Todo lo del paquete Básico","Revisión trimestral con su trader","Cambio de perfil cada mes"] },
+    { id:"elite",  nombre:"Élite",  min:5000, max:null, fee:20, items:["Todo lo del paquete Pro","Trader asignado","Visita a la oficina de la mesa"] }
+  ],
+  perspectivas: [
+    { tipo:"Nota de la mesa", titulo:"Por qué medimos la agresividad en pérdida máxima, y no en rendimiento esperado", fecha:"29 de septiembre de 2026",
+      resumen:"El rendimiento es una estimación; la pérdida máxima es una regla. Explicamos por qué construimos cada perfil a partir de lo que el cliente puede perder.",
+      cuerpo:["Cualquier proyección de rendimiento depende del mercado, y el mercado no firma contratos. Una regla de pérdida, en cambio, depende de nosotros: se escribe antes de operar y se cumple.","Por eso cada perfil de NORTHPOINT se define por su límite mensual. Cuando una cuenta lo alcanza, la mesa deja de operarla hasta el mes siguiente. El cliente sabe desde el primer día cuál es el peor mes que su perfil permite."] },
+    { tipo:"Artículo", titulo:"La aritmética de la constancia: aportar cada mes frente a invertir una sola vez", fecha:"22 de septiembre de 2026",
+      resumen:"Aportar cada mes reparte el riesgo de entrar en un mal momento y convierte el ahorro en un hábito medible.",
+      cuerpo:["Quien invierte una sola vez depende del momento en que entra. Quien aporta cada mes entra en muchos momentos distintos, y los meses malos pesan menos sobre el total.","La constancia también cambia el comportamiento: un plan mensual se revisa, se ajusta y se sostiene. En nuestra experiencia, esa disciplina importa tanto como cualquier estrategia."] },
+    { tipo:"Artículo", titulo:"Custodia separada: por qué su dinero nunca debería pasar por quien lo opera", fecha:"15 de septiembre de 2026",
+      resumen:"La separación entre quien custodia y quien opera es la protección más simple y más importante para un inversionista.",
+      cuerpo:["En NORTHPOINT el cliente abre su cuenta a su nombre en un intermediario regulado. La mesa recibe un mandato para operar, pero no para retirar ni transferir.","Si alguien le pide depositar en una cuenta a nombre de una persona o de una empresa que va a operar por usted, desconfíe. La custodia separada no es un detalle técnico: es la primera pregunta que debe hacer."] }
+  ]
+};
+
+const $ = s => document.querySelector(s);
+const usd = n => (n<0?"−":"") + "$" + Math.round(Math.abs(n)).toLocaleString("en-US");
+const state = { perfil:"mod" };
+
+$("#perfilesGrid").innerHTML = CONFIG.perfiles.map(p => `
+  <div class="perfil" data-id="${p.id}">
+    <div class="eyebrow">${p.nombre}</div>
+    <div class="tope">−${p.tope}%</div><div class="cap">Pérdida máxima por mes</div>
+    <dl>
+      <div><dt>Riesgo por operación</dt><dd>${p.riesgoOp}</dd></div>
+      <div><dt>Frecuencia</dt><dd>${p.freq}</dd></div>
+      <div><dt>Estilo</dt><dd>${p.estilo}</dd></div>
+    </dl>
+  </div>`).join("");
+$("#seg").innerHTML = CONFIG.perfiles.map(p => `<button type="button" data-id="${p.id}">${p.nombre}</button>`).join("");
+
+$("#paquetesGrid").innerHTML = CONFIG.paquetes.map(q => `
+  <div class="pq ${q.dest?"dest":""}">
+    <div class="eyebrow">${q.dest?"Paquete recomendado":"Paquete"}</div>
+    <h3 class="serif" style="margin-top:8px">${q.nombre}</h3>
+    <div class="rng">${usd(q.min)}${q.max?" – "+usd(q.max):" o más"}</div><div class="cap">de aportación mensual</div>
+    <ul>${q.items.map(i=>`<li>${i}</li>`).join("")}</ul>
+    <div class="fee">${q.fee}% de la ganancia</div>
+    <p>Sin cuota fija. Solo sobre nuevos máximos de la cuenta.</p>
+    <a class="btn ${q.dest?"":"line"}" href="#registro" data-pq="${q.id}" style="align-self:flex-start">Elegir ${q.nombre}</a>
+  </div>`).join("");
+
+$("#cards").innerHTML = CONFIG.perspectivas.map(c => `
+  <article class="card">
+    <div class="tipo">${c.tipo}</div>
+    <h3>${c.titulo}</h3>
+    <p class="resumen">${c.resumen}</p>
+    <div class="cuerpo">${c.cuerpo.map(t=>`<p>${t}</p>`).join("")}</div>
+    <span class="link mas">Leer</span>
+    <div class="fecha">${c.fecha}</div>
+  </article>`).join("");
+document.querySelectorAll(".card").forEach(c => c.addEventListener("click", () => {
+  c.classList.toggle("open"); c.querySelector(".mas").textContent = c.classList.contains("open") ? "Cerrar" : "Leer";
+}));
+
+$("#oficina").innerHTML = CONFIG.oficina || "Dirección por anunciar";
+$("#contactoTxt").innerHTML = [CONFIG.whatsapp && `WhatsApp: +${CONFIG.whatsapp}`, CONFIG.email].filter(Boolean).join("<br>") || "Por medio del registro de esta página";
+
+$("#fPaquete").innerHTML = CONFIG.paquetes.map(q=>`<option value="${q.id}">${q.nombre} · ${usd(q.min)}${q.max?"–"+usd(q.max):"+"} al mes</option>`).join("");
+$("#fPerfil").innerHTML = CONFIG.perfiles.map(p=>`<option value="${p.id}">${p.nombre} · límite −${p.tope}% al mes</option>`).join("");
+document.querySelectorAll("[data-pq]").forEach(a => a.addEventListener("click", () => $("#fPaquete").value = a.dataset.pq));
+
+function setPerfil(id){
+  state.perfil = id;
+  document.querySelectorAll(".perfil").forEach(e => e.classList.toggle("on", e.dataset.id===id));
+  document.querySelectorAll("#seg button").forEach(e => e.classList.toggle("on", e.dataset.id===id));
+  $("#fPerfil").value = id;
+  sim();
+}
+document.querySelectorAll(".perfil,#seg button").forEach(e => e.addEventListener("click", () => setPerfil(e.dataset.id)));
+
+const paqueteDe = a => CONFIG.paquetes.slice().reverse().find(q => a >= q.min) || CONFIG.paquetes[0];
+
+// comisión sobre nuevos máximos (high-water mark), cobrada mes a mes
+function sim(){
+  const aporte = +$("#aporte").value, meses = +$("#meses").value, r = +$("#rend").value;
+  const p = CONFIG.perfiles.find(x=>x.id===state.perfil);
+  const rEf = Math.max(r, -p.tope);
+  const pq = paqueteDe(aporte), fee = pq.fee/100;
+  let bal = 0, aportado = 0, hwm = 0, fees = 0; const serie = [];
+  for(let m=1; m<=meses; m++){
+    bal += aporte; aportado += aporte; hwm += aporte;
+    bal *= 1 + rEf/100;
+    if(bal > hwm){ const f = (bal-hwm)*fee; fees += f; bal -= f; hwm = bal; }
+    serie.push([aportado, bal]);
+  }
+  const gan = bal - aportado;
+  $("#vAporte").textContent = usd(aporte);
+  $("#vMeses").textContent = meses<24 ? meses+" meses" : (meses/12)+" años";
+  $("#vRend").textContent = (r>0?"+":"")+r+"%";
+  $("#kAport").textContent = usd(aportado);
+  $("#kValor").textContent = usd(bal);
+  $("#kGan").textContent = (gan>=0?"+":"")+usd(gan);
+  $("#kGan").className = gan>=0?"pos":"neg";
+  $("#kFee").textContent = usd(fees);
+  $("#nota").innerHTML = r < -p.tope
+    ? `El supuesto de ${r}% mensual rebasa el límite del perfil ${p.nombre}; la mesa detiene la operación en −${p.tope}%, que es la pérdida máxima de cada mes. Paquete aplicado: <b>${pq.nombre}</b>, ${pq.fee}% de la ganancia.`
+    : `En el peor mes que permite el perfil ${p.nombre}, este saldo podría perder hasta ${usd(bal*p.tope/100)} (−${p.tope}%). Paquete aplicado: <b>${pq.nombre}</b>, ${pq.fee}% de la ganancia.`;
+  draw(serie);
+}
+
+function draw(serie){
+  const c = $("#chart"), dpr = window.devicePixelRatio||1, W = c.clientWidth, H = c.clientHeight;
+  c.width = W*dpr; c.height = H*dpr;
+  const g = c.getContext("2d"); g.scale(dpr,dpr); g.clearRect(0,0,W,H);
+  const max = Math.max(...serie.map(s=>Math.max(s[0],s[1])))*1.08 || 1;
+  const pl=56, pb=24, w=W-pl-8, h=H-pb-8;
+  const x = i => pl + (i/(serie.length-1||1))*w, y = v => 8 + h - (v/max)*h;
+  g.font = "300 12px 'Public Sans',sans-serif"; g.fillStyle = "#757575"; g.strokeStyle = "#E6E6E6"; g.lineWidth = 1;
+  for(let k=0;k<=4;k++){ const v=max*k/4, yy=y(v); g.beginPath(); g.moveTo(pl,yy); g.lineTo(W-8,yy); g.stroke();
+    g.fillText(v>=1e6?"$"+(v/1e6).toFixed(1)+"M":"$"+Math.round(v/1000)+"k", 4, yy+4); }
+  const bw = Math.max(1, w/serie.length - 2);
+  g.fillStyle = "#D0D0D0";
+  serie.forEach((s,i)=> g.fillRect(x(i)-bw/2, y(s[0]), bw, 8+h-y(s[0])));
+  g.strokeStyle = "#2251FF"; g.lineWidth = 2.5; g.beginPath();
+  serie.forEach((s,i)=> i?g.lineTo(x(i),y(s[1])):g.moveTo(x(i),y(s[1]))); g.stroke();
+}
+
+["aporte","meses","rend"].forEach(id => $("#"+id).addEventListener("input", sim));
+window.addEventListener("resize", sim);
+setPerfil("mod");
+
+$("#form").addEventListener("submit", e => {
+  e.preventDefault();
+  const d = Object.fromEntries(new FormData(e.target));
+  const pq = CONFIG.paquetes.find(q=>q.id===d.paquete), pf = CONFIG.perfiles.find(p=>p.id===d.perfil);
+  try{ const l = JSON.parse(localStorage.getItem("np-plan-espera")||"[]"); l.push({...d, fecha:new Date().toISOString()}); localStorage.setItem("np-plan-espera", JSON.stringify(l)); }catch(_){}
+  if(CONFIG.whatsapp){
+    const msg = `Hola NORTHPOINT, quiero apartar mi lugar en el Plan Mensual.\nNombre: ${d.nombre}\nPaquete: ${pq.nombre}\nPerfil: ${pf.nombre}`;
+    window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
+  }
+  $("#ok").style.display = "block"; e.target.reset(); setPerfil(state.perfil);
+});
+</script>
+</body>
+</html>
