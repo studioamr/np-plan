@@ -143,6 +143,10 @@ form.inm input:focus,form.inm select:focus{outline:none;border-bottom:2px solid 
 .mclose{position:absolute;right:12px;top:10px;z-index:2;background:#fff;border:0;width:38px;height:38px;border-radius:50%;font-size:24px;cursor:pointer}
 @media(max-width:1000px){.grid{grid-template-columns:1fr 1fr}.modal-box{grid-template-columns:1fr}.mimg{min-height:260px}}
 @media(max-width:600px){.grid{grid-template-columns:1fr}.phero-cap{display:none}}
+/* sin portada: la página abre directo en el catálogo, con barra sólida */
+nav{background:rgba(5,28,44,.96)!important}
+.catalog{padding-top:130px!important}
+@media(max-width:600px){.catalog{padding-top:104px!important}}
 </style>
 </head>
 <body>
@@ -151,39 +155,13 @@ form.inm input:focus,form.inm select:focus{outline:none;border-bottom:2px solid 
 <nav><div class="wrap">
   <a class="mark" href="index.html">NORTHPOINT<small>Activos</small></a>
   <div class="links">
-    <a href="#catalogo">Catálogo</a><a href="#activos">Categorías</a><a href="#servicios">Servicios</a><a href="#como">Cómo trabajamos</a><a href="#contacto-inm">Contacto</a><a href="index.html">NORTHPOINT</a>
+    <a href="#catalogo">Catálogo</a><a href="#servicios">Servicios</a><a href="#como">Cómo trabajamos</a><a href="#contacto-inm">Contacto</a><a href="index.html">NORTHPOINT</a>
     <a class="btn" href="#contacto-inm">Quiero información</a>
   </div>
 </div></nav>
 
-<header class="phero">
-  <div class="phero-bg" style="background-image:url(img/villa.jpg)"></div>
-  <div class="phero-cap" id="heroCap">Villa frente al mar · Los Cabos, B.C.S. · Ejemplo</div>
-  <div class="wrap"><div class="box">
-    <div class="kick"><span>NORTHPOINT Activos</span><span>Próximamente</span></div>
-    <h1 class="serif">Patrimonio que se aprecia.</h1>
-    <p class="lead">Inmuebles, embarcaciones, arte y piezas de colección. Le ayudamos a comprar, vender, valuar y cuidar activos reales, con la misma disciplina y transparencia con la que nuestra mesa cuida el ahorro de cada cliente.</p>
-    <div class="hero-line">Inmuebles · Embarcaciones · Arte · Colección</div>
-    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:26px"><a class="btn" href="#catalogo">Ver el catálogo</a><a class="btn line inv" href="#valuar">Valuar mi activo</a></div>
-    <a class="back" href="index.html">← Volver a NORTHPOINT</a>
-  </div></div>
-</header>
-
-<section id="activos"><div class="wrap">
-  <div class="sec-head">
-    <div><div class="eyebrow">Activos</div><h2 class="serif" style="margin-top:12px">Lo que se toca, también se invierte.</h2></div>
-    <p>Cuatro familias de activos reales, cada una con su propio mercado, sus propios riesgos y sus propios especialistas. Nosotros los coordinamos por usted.</p>
-  </div>
-  <div class="cats">
-    <div class="cat" data-f="inmuebles"><div class="ph" style="background-image:url(img/villa.jpg)"></div><div class="bd"><h4>Inmuebles</h4><p>Residencial, comercial y desarrollos en preventa.</p><ul><li>Casas y departamentos</li><li>Locales, oficinas y naves</li><li>Desarrollos en construcción</li></ul></div></div>
-    <div class="cat" data-f="embarcaciones"><div class="ph" style="background-image:url(img/yate.jpg)"></div><div class="bd"><h4>Embarcaciones</h4><p>Yates y veleros, nuevos y seminuevos.</p><ul><li>Compra y venta</li><li>Inspección y valuación</li><li>Amarre, seguro y administración</li></ul></div></div>
-    <div class="cat" data-f="arte"><div class="ph" style="background-image:url(img/arte.jpg)"></div><div class="bd"><h4>Arte</h4><p>Pintura, escultura y obra gráfica.</p><ul><li>Adquisición en galerías y subastas</li><li>Autenticación y procedencia</li><li>Resguardo y seguro de obra</li></ul></div></div>
-    <div class="cat" data-f="coleccion"><div class="ph" style="background-image:url(img/auto.jpg)"></div><div class="bd"><h4>Colección</h4><p>Relojes, autos clásicos y otras piezas.</p><ul><li>Búsqueda de piezas específicas</li><li>Verificación de autenticidad</li><li>Venta a coleccionistas</li></ul></div></div>
-  </div>
-</div></section>
-
 <section class="catalog" id="catalogo"><div class="wrap">
-  <div class="crumbs"><a href="index.html">NORTHPOINT</a> / <a href="#activos">Activos</a> / Catálogo</div>
+  <div class="crumbs"><a href="index.html">NORTHPOINT</a> / Activos / Catálogo</div>
   <div class="cat-head">
     <div><h2 class="serif">Catálogo de activos</h2><div class="count" id="count"></div></div>
     <label class="sort">Ordenar por <select id="sort"><option value="dest">Destacados</option><option value="asc">Precio: menor a mayor</option><option value="desc">Precio: mayor a menor</option></select></label>
