@@ -197,6 +197,43 @@ canvas{width:100%;height:300px;display:block}
 @keyframes playpulse{0%{box-shadow:0 0 0 0 rgba(34,81,255,.45)}70%{box-shadow:0 0 0 14px rgba(34,81,255,0)}100%{box-shadow:0 0 0 0 rgba(34,81,255,0)}}
 #simPlay:not(.playing){animation:playpulse 2.2s infinite}
 
+/* el costo de esperar */
+.urge{background:#fff}
+.urge-ctrl{display:flex;gap:40px;flex-wrap:wrap;margin-bottom:28px}
+.urge-ctrl span{display:block;font-size:13px;color:var(--muted);margin-bottom:8px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chips button{border:1px solid var(--line);background:#fff;padding:9px 14px;font:400 14px var(--sans);cursor:pointer;color:var(--ink);transition:background .2s,color .2s,border-color .2s}
+.chips button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.urge-stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink);border-bottom:1px solid var(--line);margin-bottom:32px}
+.urge-stats>div{padding:22px 20px 22px 0}
+.urge-stats span{display:block;font-size:13px;color:var(--muted)}
+.urge-stats b{display:block;font:300 34px/1.15 var(--serif);color:var(--ink);margin-top:6px;font-variant-numeric:tabular-nums}
+.urge-stats b.neg{color:#C0392B}
+.cal{display:grid;gap:10px}
+.cal-row{display:grid;grid-template-columns:70px repeat(12,1fr);gap:6px;align-items:stretch}
+.cal-y{font:300 22px var(--serif);color:var(--ink);align-self:center}
+.cm{position:relative;border:1px solid var(--line);padding:10px 8px 9px;min-height:74px;display:flex;flex-direction:column;justify-content:space-between;background:#fff}
+.cm i{font-style:normal;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.cm b{font:500 12.5px var(--sans);font-variant-numeric:tabular-nums;color:var(--ink)}
+.cm.past{background:#FBEDEA;border-color:#F0C9C1}
+.cm.past i{color:#B04632}
+.cm.past b{color:#C0392B}
+.cm.past:after{content:"";position:absolute;left:8px;right:8px;top:50%;height:1px;background:#C0392B;opacity:.35;transform:rotate(-8deg)}
+.cm.now{border:2px solid var(--blue);background:#EEF2FF;animation:nowp 1.8s infinite}
+.cm.now i{color:var(--blue);font-weight:600}
+@keyframes nowp{0%{box-shadow:0 0 0 0 rgba(34,81,255,.35)}70%{box-shadow:0 0 0 10px rgba(34,81,255,0)}100%{box-shadow:0 0 0 0 rgba(34,81,255,0)}}
+.cm.fut b{color:#1A7F5A}
+.urge-cta{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-top:32px;padding:26px 30px;background:var(--navy);color:#fff;flex-wrap:wrap}
+.urge-cta p{font:300 22px/1.35 var(--serif);max-width:760px}
+.urge-note{font-size:13px;color:var(--muted);margin-top:14px}
+@media(max-width:900px){
+  .urge-stats{grid-template-columns:1fr 1fr}
+  .cal-row{grid-template-columns:repeat(6,1fr)}
+  .cal-y{grid-column:1/-1;margin-top:10px}
+  .cm{min-height:62px;padding:8px 6px}
+  .cm b{font-size:11px}
+}
+
 /* perspectivas */
 .persp{background:var(--gray)}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -290,7 +327,7 @@ footer .mark{color:#fff;display:block;margin-bottom:24px}
 footer p{max-width:900px;margin-bottom:12px}
 footer b{color:#fff;font-weight:500}
 </style>
-<link rel="stylesheet" href="anim.css?v=1790751228">
+<link rel="stylesheet" href="anim.css?v=1790751751">
 <script>document.documentElement.classList.add("js-anim");setTimeout(function(){document.documentElement.classList.add("anim-ready")},3500)</script>
 </head>
 <body>
@@ -298,7 +335,7 @@ footer b{color:#fff;font-weight:500}
 <nav><div class="wrap">
   <a class="mark" href="#">NORTHPOINT</a>
   <div class="links">
-    <a href="#como">Cómo funciona</a><a href="#app">La app</a><a href="#perfiles">Planes</a><a href="equipo.html">Equipo</a><a href="activos.html">Activos</a><a href="fundacion.html">Fundación</a>
+    <a href="#como">Cómo funciona</a><a href="#app">La app</a><a href="#perfiles">Planes</a><a href="#tiempo">El costo de esperar</a><a href="equipo.html">Equipo</a><a href="activos.html">Activos</a><a href="fundacion.html">Fundación</a>
     <a class="btn" href="#registro">Apartar lugar</a>
   </div>
 </div></nav>
@@ -311,38 +348,25 @@ footer b{color:#fff;font-weight:500}
       <p class="lead">Somos una mesa de trading profesional que ayuda a personas de todo México a <a class="ul" href="#como">hacer que su ahorro trabaje</a>. Usted guarda su dinero, lo ve en la app y cada mes recibe el resultado de nuestra operación, dentro del riesgo que decide asumir.</p>
       <a class="btn" href="#perfiles">Ver los planes</a>
     </div></div></div>
-    <div class="hs hs-team" data-i="1" data-href="equipo.html"><div class="hs-bg team-bg"></div>
-      <div class="team-cards">
-        <figure><img src="img/andre.jpg" alt="André Macouzet Ruiz"><figcaption><b>André Macouzet Ruiz</b><span>Cofundador · Mercados y tecnología</span></figcaption></figure>
-        <figure><img src="img/pablo.jpg" alt="Pablo Ochoa Macouzet"><figcaption><b>Pablo Ochoa Macouzet</b><span>Cofundador · Estrategia y riesgo</span></figcaption></figure>
-        <figure><img src="img/goyo.jpg" alt="Gregorio Sánchez Calderón"><figcaption><b>Gregorio Sánchez Calderón</b><span>Cofundador · Inversiones y patrimonio</span></figcaption></figure>
-        <figure><img src="img/gerardo.jpg" alt="Gerardo Andaluz Contreras"><figcaption><b>Gerardo Andaluz Contreras</b><span>Trader · Mesa de futuros</span></figcaption></figure>
-      </div>
-      <div class="wrap"><div class="box">
-      <div class="hs-k"><span>El equipo</span></div>
-      <h2 class="serif">Las personas detrás de la mesa.</h2>
-      <p class="lead">Cofundadores y traders que operan con las mismas reglas que le pedimos a su ahorro.</p>
-      <a class="btn line inv" href="equipo.html">Conocer al equipo</a>
-    </div></div></div>
-    <div class="hs" data-i="2"><div class="hs-bg" style="background-image:url(img/privado.jpg);background-position:center"></div><div class="wrap"><div class="box">
+    <div class="hs" data-i="1"><div class="hs-bg" style="background-image:url(img/privado.jpg);background-position:center"></div><div class="wrap"><div class="box">
       <div class="hs-k"><span>NORTHPOINT Privado</span></div>
       <h2 class="serif">¿Quiere invertir un capital importante? Hablemos.</h2>
       <p class="lead">Para patrimonios y empresas, un trato directo con la dirección de la mesa: estrategia a la medida de su objetivo, reportes personales y reuniones en nuestra oficina. Su dinero, siempre a su nombre.</p>
       <a class="btn" id="privBtn" href="#contacto">Agendar una conversación</a>
     </div></div></div>
-    <div class="hs" data-i="3" data-href="activos.html"><div class="hs-bg" style="background-image:url(img/inmobiliario.jpg)"></div><div class="wrap"><div class="box">
+    <div class="hs" data-i="2" data-href="activos.html"><div class="hs-bg" style="background-image:url(img/inmobiliario.jpg)"></div><div class="wrap"><div class="box">
       <div class="hs-k"><span>NORTHPOINT Activos</span><span class="hs-pill">Próximamente</span></div>
       <h2 class="serif">Patrimonio que se aprecia.</h2>
       <p class="lead">Inmuebles, embarcaciones, arte y piezas de colección: le ayudamos a comprar, vender, valuar y cuidar activos reales.</p>
       <a class="btn line inv" href="activos.html">Conocer NORTHPOINT Activos</a>
     </div></div></div>
-    <div class="hs" data-i="4" data-href="https://northpointcapital.io/bootcamp.html"><div class="hs-bg" style="background-image:url(img/academia.jpg)"></div><div class="wrap"><div class="box">
+    <div class="hs" data-i="3" data-href="https://northpointcapital.io/bootcamp.html"><div class="hs-bg" style="background-image:url(img/academia.jpg)"></div><div class="wrap"><div class="box">
       <div class="hs-k"><span>Academia NORTHPOINT · The Bootcamp</span></div>
       <h2 class="serif">Aprenda a operar como nuestra mesa.</h2>
       <p class="lead">Futuros desde cero: 8 módulos y más de 48 horas de video, con el mismo lenguaje, estructura y disciplina con los que opera nuestra mesa.</p>
       <a class="btn line inv" href="https://northpointcapital.io/bootcamp.html" target="_blank" rel="noopener">Conocer el Bootcamp</a>
     </div></div></div>
-    <div class="hs hs-fund" data-i="5" data-href="fundacion.html"><div class="hs-bg" style="background-image:url(img/fundacion-abierta.jpg);background-position:right 85%;inset:-1.5%"></div><div class="wrap"><div class="box">
+    <div class="hs hs-fund" data-i="4" data-href="fundacion.html"><div class="hs-bg" style="background-image:url(img/fundacion-abierta.jpg);background-position:right 85%;inset:-1.5%"></div><div class="wrap"><div class="box">
       <div class="hs-k"><span>Fundación NORTHPOINT</span><span class="hs-pill">En formación</span></div>
       <h2 class="serif">Ningún niño debería enfrentar la leucemia sin su familia al lado.</h2>
       <p class="lead">Una parte de cada resultado de la mesa acompaña a familias de niños con leucemia durante su tratamiento.</p>
@@ -351,11 +375,10 @@ footer b{color:#fff;font-weight:500}
   </div>
   <div class="hs-index" aria-label="Divisiones de NORTHPOINT">
     <button data-i="0" class="on"><span>Ahorro</span><i><em></em></i></button>
-    <button data-i="1"><span>Equipo</span><i><em></em></i></button>
-    <button data-i="2"><span>Privado</span><i><em></em></i></button>
-    <button data-i="3"><span>Activos</span><i><em></em></i></button>
-    <button data-i="4"><span>Academia</span><i><em></em></i></button>
-    <button data-i="5"><span>Fundación</span><i><em></em></i></button>
+    <button data-i="1"><span>Privado</span><i><em></em></i></button>
+    <button data-i="2"><span>Activos</span><i><em></em></i></button>
+    <button data-i="3"><span>Academia</span><i><em></em></i></button>
+    <button data-i="4"><span>Fundación</span><i><em></em></i></button>
   </div>
   <div class="hs-arrows"><button type="button" data-d="-1" aria-label="Anterior">←</button><button type="button" data-d="1" aria-label="Siguiente">→</button></div>
   <div class="hs-cue">Deslice a un lado<i></i></div>
@@ -475,6 +498,29 @@ footer b{color:#fff;font-weight:500}
       <p class="nota" id="nota"></p>
     </div>
   </div>
+</div></section>
+
+<section class="urge" id="tiempo"><div class="wrap">
+  <div class="sec-head">
+    <div><div class="eyebrow">El costo de esperar</div><h2 class="serif" style="margin-top:12px">Cada mes que no empieza, no vuelve.</h2></div>
+    <p>Así se ve el tiempo. Los meses en rojo ya pasaron: cada uno muestra lo que su ahorro pudo haber generado si hubiera empezado en enero. Los que siguen muestran cómo crecería si empieza este mes.</p>
+  </div>
+  <div class="urge-ctrl">
+    <div><span>Si empieza con</span><div class="chips" id="uMonto"></div></div>
+    <div><span>En el plan</span><div class="chips" id="uPlan"></div></div>
+  </div>
+  <div class="urge-stats">
+    <div><span>Meses que ya pasaron este año</span><b id="uPast"></b></div>
+    <div><span>Lo que dejó de generar</span><b class="neg" id="uLost"></b></div>
+    <div><span>Cada mes más que espere</span><b class="neg" id="uMes"></b></div>
+    <div><span>Para que termine este mes</span><b id="uClock"></b></div>
+  </div>
+  <div class="cal" id="cal"></div>
+  <div class="urge-cta">
+    <p id="uLine"></p>
+    <a class="btn" href="#registro">Empezar este mes</a>
+  </div>
+  <p class="urge-note">Cálculo con el objetivo mensual del plan, ya descontada la comisión. Es una meta, no un rendimiento garantizado.</p>
 </div></section>
 
 <section class="persp" id="perspectivas"><div class="wrap">
@@ -758,10 +804,57 @@ $("#form").addEventListener("submit", e => {
 (function(){ const b = document.getElementById("fundBtn"); if(b && CONFIG.whatsapp){ b.href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent("Hola, quiero ayudar a la Fundación NORTHPOINT (niños con leucemia).")}`; b.target = "_blank"; } })();
 
 (function(){ const b = document.getElementById("privBtn"); if(b && CONFIG.whatsapp){ b.href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent("Hola, me interesa NORTHPOINT Privado. Quiero agendar una conversación sobre invertir un capital.")}`; b.target = "_blank"; } })();
+
+// ── el costo de esperar: calendario de meses ──
+(function(){
+  const cal = document.getElementById("cal"); if(!cal) return;
+  const MES = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
+  const montos = [500, 1000, 5000, 10000];
+  let D = 1000, P = CONFIG.perfiles.find(p=>p.id==="mod") || CONFIG.perfiles[1];
+  const chips = (el, items, on, lbl, pick) => { el.innerHTML = items.map((x,i)=>`<button type="button" data-k="${i}" class="${x===on?"on":""}">${lbl(x)}</button>`).join("");
+    el.querySelectorAll("button").forEach(b => b.onclick = () => { pick(items[+b.dataset.k]); el.querySelectorAll("button").forEach(x=>x.classList.toggle("on", x===b)); draw(); }); };
+  chips(document.getElementById("uMonto"), montos, D, m => usd(m), m => D = m);
+  chips(document.getElementById("uPlan"), CONFIG.perfiles, P, p => `${p.nombre} · +${p.objetivo}%`, p => P = p);
+  function draw(){
+    const now = new Date(), y0 = now.getFullYear(), m0 = now.getMonth();
+    const fee = (nivelDe(D).fee || 25) / 100, r = P.objetivo / 100 * (1 - fee);
+    const lost = D * (Math.pow(1 + r, m0) - 1);
+    document.getElementById("uPast").textContent = m0 + (m0 === 1 ? " mes" : " meses");
+    document.getElementById("uLost").textContent = "−" + usd(lost);
+    document.getElementById("uMes").textContent = "−" + usd(D * r);
+    let html = "";
+    for(let y = y0; y <= y0 + 2; y++){
+      html += `<div class="cal-row"><div class="cal-y">${y}</div>`;
+      for(let m = 0; m < 12; m++){
+        const k = (y - y0) * 12 + m - m0;           // meses desde hoy
+        if(k < 0){ const g = D * Math.pow(1 + r, m) * r; html += `<div class="cm past"><i>${MES[m]}</i><b>−${usd(g)}</b></div>`; }
+        else if(k === 0){ html += `<div class="cm now"><i>${MES[m]} · hoy</i><b>${usd(D)}</b></div>`; }
+        else { html += `<div class="cm fut"><i>${MES[m]}</i><b>${usd(D * Math.pow(1 + r, k))}</b></div>`; }
+      }
+      html += `</div>`;
+    }
+    cal.innerHTML = html;
+    const fin = D * Math.pow(1 + r, 24);
+    document.getElementById("uLine").innerHTML = `Si empieza este mes con ${usd(D)}, en dos años su saldo podría llegar a <b>${usd(fin)}</b>. Si espera tres meses más, esos tres meses no regresan.`;
+    if(window.gsap && !matchMedia("(prefers-reduced-motion: reduce)").matches && cal.dataset.seen) gsap.from(".cm", { opacity: 0, y: 8, stagger: .012, duration: .35, ease: "power2.out" });
+  }
+  function clock(){
+    const now = new Date(), end = new Date(now.getFullYear(), now.getMonth() + 1, 1), ms = end - now;
+    const d = Math.floor(ms / 864e5), h = Math.floor(ms % 864e5 / 36e5), mi = Math.floor(ms % 36e5 / 6e4);
+    document.getElementById("uClock").textContent = `${d} d ${String(h).padStart(2,"0")} h ${String(mi).padStart(2,"0")} m`;
+  }
+  draw(); clock(); setInterval(clock, 30000);
+  // entrada: los meses pasados se "tachan" uno por uno al aparecer
+  if("IntersectionObserver" in window && window.gsap && !matchMedia("(prefers-reduced-motion: reduce)").matches){
+    const io = new IntersectionObserver(es => { if(!es[0].isIntersecting) return; io.disconnect(); cal.dataset.seen = 1;
+      gsap.from(".cm", { opacity: 0, scale: .85, stagger: .025, duration: .45, ease: "back.out(1.6)" }); }, { threshold: .3 });
+    io.observe(cal);
+  }
+})();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="anim.js?v=1790751035"></script>
+<script src="anim.js?v=1790751751"></script>
 </body>
 </html>

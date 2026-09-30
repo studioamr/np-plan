@@ -12,8 +12,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="base.css?v=1790751228">
-<link rel="stylesheet" href="anim.css?v=1790751228">
+<link rel="stylesheet" href="base.css?v=1790751751">
+<link rel="stylesheet" href="anim.css?v=1790751751">
 <script>document.documentElement.classList.add("js-anim");setTimeout(function(){document.documentElement.classList.add("anim-ready")},3500)</script>
 <style>
 /* página de división: portada propia */
@@ -86,6 +86,63 @@ form.inm input:focus,form.inm select:focus{outline:none;border-bottom:2px solid 
 @media(max-width:1100px){.cats{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.cats{grid-template-columns:1fr}}
 @media(max-width:900px){.why{grid-template-columns:1fr;gap:24px}}
+.phero-cap{position:absolute;right:max(24px,calc((100vw - 1280px)/2 + 40px));bottom:34px;z-index:3;color:rgba(255,255,255,.8);font:500 11px var(--sans);letter-spacing:.14em;text-transform:uppercase;transition:opacity .5s}
+.hero-line{font:500 12px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-top:6px}
+.catalog{background:#fff}
+.crumbs{font-size:13px;color:var(--muted);margin-bottom:14px}
+.crumbs a{color:var(--muted);text-decoration:none}
+.cat-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.cat-head h2{font-size:clamp(32px,3.6vw,46px)}
+.count{font-size:14px;color:var(--muted);margin-top:6px}
+.sort{font-size:14px;color:var(--muted);display:flex;align-items:center;gap:10px}
+.sort select{border:1px solid var(--line);padding:9px 12px;font:400 14px var(--sans);background:#fff;color:var(--ink)}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0 16px}
+.pills button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 16px;font:400 14px var(--sans);cursor:pointer;color:var(--ink);transition:all .2s}
+.pills button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.pills button small{opacity:.6;margin-left:6px}
+.notice{background:#FFF8E6;border:1px solid #F2DFA8;padding:12px 16px;font-size:14px;margin-bottom:26px}
+.notice a{color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px 22px}
+.card-a{cursor:pointer;display:flex;flex-direction:column}
+.card-a .ph{position:relative;aspect-ratio:4/3;background:var(--navy) center/cover no-repeat;overflow:hidden}
+.card-a .ph:after{content:"";position:absolute;inset:0;background:inherit;background-size:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1);z-index:0}
+.card-a:hover .ph:after{transform:scale(1.06)}
+.badges{position:relative;z-index:1;display:flex;gap:6px;flex-wrap:wrap}
+.card-a .badges{position:absolute;left:12px;top:12px}
+.badges span{background:#fff;color:var(--ink);font:500 11px var(--sans);letter-spacing:.04em;padding:4px 8px}
+.badges span.ej{background:var(--navy);color:#fff}
+.fav{position:absolute;right:12px;top:12px;z-index:2;width:36px;height:36px;border-radius:50%;border:0;background:#fff;cursor:pointer;font-size:17px;line-height:36px;color:var(--ink)}
+.fav.on{color:#C0392B}
+.card-a .info{padding:16px 2px 4px}
+.price{font:400 24px var(--serif);color:var(--ink)}
+.specs{font-size:14px;color:var(--ink);margin-top:6px}
+.loc{font-size:14px;color:var(--muted);margin-top:4px}
+.card-a .row{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.card-a .row b{color:var(--blue);font-weight:500}
+.promo{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;background:#E6F3F6;padding:24px 28px}
+.promo h4{font:400 24px var(--serif);color:var(--ink)}
+.promo p{font-size:14px;color:var(--text);margin-top:4px}
+.valuar{background:var(--navy);color:#fff}
+.valuar .eyebrow,.valuar h2{color:#fff}
+.valuar-in{display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap}
+.valuar p{opacity:.85;font-size:18px;margin-top:16px;max-width:680px}
+.cat[data-f]{cursor:pointer}
+.modal{position:fixed;inset:0;z-index:90;background:rgba(5,28,44,.7);display:none;align-items:center;justify-content:center;padding:20px}
+.modal.on{display:flex}
+.modal-box{position:relative;background:#fff;max-width:1040px;width:100%;max-height:92vh;overflow:auto;display:grid;grid-template-columns:1.2fr 1fr}
+.mimg{min-height:420px;background:var(--navy) center/cover no-repeat}
+.mbody{padding:32px}
+.mbody .badges{margin-bottom:14px}
+.mbody .badges span{background:var(--gray)}
+.mprice{font:400 34px var(--serif);color:var(--ink)}
+.mbody h3{font-size:24px;margin-top:6px}
+.mloc{color:var(--muted);font-size:14px;margin-top:4px}
+.mspecs{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;margin:20px 0;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:14px}
+.mspecs span{color:var(--muted);display:block;font-size:12px}
+.mfine{font-size:12px;color:var(--muted);margin-top:14px}
+.mclose{position:absolute;right:12px;top:10px;z-index:2;background:#fff;border:0;width:38px;height:38px;border-radius:50%;font-size:24px;cursor:pointer}
+@media(max-width:1000px){.grid{grid-template-columns:1fr 1fr}.modal-box{grid-template-columns:1fr}.mimg{min-height:260px}}
+@media(max-width:600px){.grid{grid-template-columns:1fr}.phero-cap{display:none}}
 </style>
 </head>
 <body>
@@ -94,17 +151,20 @@ form.inm input:focus,form.inm select:focus{outline:none;border-bottom:2px solid 
 <nav><div class="wrap">
   <a class="mark" href="index.html">NORTHPOINT<small>Activos</small></a>
   <div class="links">
-    <a href="#activos">Activos</a><a href="#servicios">Servicios</a><a href="#como">Cómo trabajamos</a><a href="#contacto-inm">Contacto</a><a href="index.html">NORTHPOINT</a>
+    <a href="#catalogo">Catálogo</a><a href="#activos">Categorías</a><a href="#servicios">Servicios</a><a href="#como">Cómo trabajamos</a><a href="#contacto-inm">Contacto</a><a href="index.html">NORTHPOINT</a>
     <a class="btn" href="#contacto-inm">Quiero información</a>
   </div>
 </div></nav>
 
 <header class="phero">
-  <div class="phero-bg" style="background-image:url(img/inmobiliario.jpg)"></div>
+  <div class="phero-bg" style="background-image:url(img/villa.jpg)"></div>
+  <div class="phero-cap" id="heroCap">Villa frente al mar · Los Cabos, B.C.S. · Ejemplo</div>
   <div class="wrap"><div class="box">
     <div class="kick"><span>NORTHPOINT Activos</span><span>Próximamente</span></div>
     <h1 class="serif">Patrimonio que se aprecia.</h1>
     <p class="lead">Inmuebles, embarcaciones, arte y piezas de colección. Le ayudamos a comprar, vender, valuar y cuidar activos reales, con la misma disciplina y transparencia con la que nuestra mesa cuida el ahorro de cada cliente.</p>
+    <div class="hero-line">Inmuebles · Embarcaciones · Arte · Colección</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:26px"><a class="btn" href="#catalogo">Ver el catálogo</a><a class="btn line inv" href="#valuar">Valuar mi activo</a></div>
     <a class="back" href="index.html">← Volver a NORTHPOINT</a>
   </div></div>
 </header>
@@ -115,12 +175,38 @@ form.inm input:focus,form.inm select:focus{outline:none;border-bottom:2px solid 
     <p>Cuatro familias de activos reales, cada una con su propio mercado, sus propios riesgos y sus propios especialistas. Nosotros los coordinamos por usted.</p>
   </div>
   <div class="cats">
-    <div class="cat"><div class="ph" style="background-image:url(img/inmobiliario.jpg)"></div><div class="bd"><h4>Inmuebles</h4><p>Residencial, comercial y desarrollos en preventa.</p><ul><li>Casas y departamentos</li><li>Locales, oficinas y naves</li><li>Desarrollos en construcción</li></ul></div></div>
-    <div class="cat"><div class="ph" style="background-image:url(img/yate.jpg)"></div><div class="bd"><h4>Embarcaciones</h4><p>Yates y veleros, nuevos y seminuevos.</p><ul><li>Compra y venta</li><li>Inspección y valuación</li><li>Amarre, seguro y administración</li></ul></div></div>
-    <div class="cat"><div class="ph" style="background-image:url(img/arte.jpg)"></div><div class="bd"><h4>Arte</h4><p>Pintura, escultura y obra gráfica.</p><ul><li>Adquisición en galerías y subastas</li><li>Autenticación y procedencia</li><li>Resguardo y seguro de obra</li></ul></div></div>
-    <div class="cat"><div class="ph" style="background-image:url(img/coleccion.jpg)"></div><div class="bd"><h4>Colección</h4><p>Relojes, autos clásicos y otras piezas.</p><ul><li>Búsqueda de piezas específicas</li><li>Verificación de autenticidad</li><li>Venta a coleccionistas</li></ul></div></div>
+    <div class="cat" data-f="inmuebles"><div class="ph" style="background-image:url(img/villa.jpg)"></div><div class="bd"><h4>Inmuebles</h4><p>Residencial, comercial y desarrollos en preventa.</p><ul><li>Casas y departamentos</li><li>Locales, oficinas y naves</li><li>Desarrollos en construcción</li></ul></div></div>
+    <div class="cat" data-f="embarcaciones"><div class="ph" style="background-image:url(img/yate.jpg)"></div><div class="bd"><h4>Embarcaciones</h4><p>Yates y veleros, nuevos y seminuevos.</p><ul><li>Compra y venta</li><li>Inspección y valuación</li><li>Amarre, seguro y administración</li></ul></div></div>
+    <div class="cat" data-f="arte"><div class="ph" style="background-image:url(img/arte.jpg)"></div><div class="bd"><h4>Arte</h4><p>Pintura, escultura y obra gráfica.</p><ul><li>Adquisición en galerías y subastas</li><li>Autenticación y procedencia</li><li>Resguardo y seguro de obra</li></ul></div></div>
+    <div class="cat" data-f="coleccion"><div class="ph" style="background-image:url(img/auto.jpg)"></div><div class="bd"><h4>Colección</h4><p>Relojes, autos clásicos y otras piezas.</p><ul><li>Búsqueda de piezas específicas</li><li>Verificación de autenticidad</li><li>Venta a coleccionistas</li></ul></div></div>
   </div>
 </div></section>
+
+<section class="catalog" id="catalogo"><div class="wrap">
+  <div class="crumbs"><a href="index.html">NORTHPOINT</a> / <a href="#activos">Activos</a> / Catálogo</div>
+  <div class="cat-head">
+    <div><h2 class="serif">Catálogo de activos</h2><div class="count" id="count"></div></div>
+    <label class="sort">Ordenar por <select id="sort"><option value="dest">Destacados</option><option value="asc">Precio: menor a mayor</option><option value="desc">Precio: mayor a menor</option></select></label>
+  </div>
+  <div class="pills" id="pills"></div>
+  <div class="notice">Estos anuncios son <b>ejemplos</b> del formato del catálogo: las fotos y las cifras son ilustrativas. El inventario real se publicará próximamente. Si busca algo en particular, <a href="#contacto-inm">díganos qué</a>.</div>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<div class="modal" id="modal" aria-hidden="true"><div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <button class="mclose" id="mclose" aria-label="Cerrar">×</button>
+  <div class="mimg" id="mimg"></div>
+  <div class="mbody">
+    <div class="badges" id="mbadges"></div>
+    <div class="mprice" id="mprice"></div>
+    <h3 class="serif" id="mTitle"></h3>
+    <div class="mloc" id="mloc"></div>
+    <div class="mspecs" id="mspecs"></div>
+    <p id="mdesc"></p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:22px"><a class="btn" id="mask" href="#contacto-inm">Solicitar información</a><button class="btn line" id="mfav" type="button">♡ Guardar</button></div>
+    <p class="mfine">Ejemplo ilustrativo. No es una oferta real.</p>
+  </div>
+</div></div>
 
 <section class="warm" id="porque"><div class="wrap why">
   <div><div class="eyebrow">Por qué activos reales</div><h2 class="serif" style="margin-top:12px">Un patrimonio que no depende solo de la pantalla.</h2></div>
@@ -128,6 +214,12 @@ form.inm input:focus,form.inm select:focus{outline:none;border-bottom:2px solid 
     <p>Una parte del patrimonio en activos tangibles diversifica lo que vive en los mercados financieros. Algunos activos reales han conservado su valor frente a la inflación a lo largo del tiempo, y otros se han apreciado.</p>
     <p>Pero no todos se aprecian, y cada uno tiene costos de mantenimiento, seguro y venta. Por eso empezamos siempre con una valuación independiente y con los números completos a la vista, antes de que usted decida.</p>
   </div>
+</div></section>
+
+<section class="valuar" id="valuar"><div class="wrap valuar-in">
+  <div><div class="eyebrow">Valuación</div><h2 class="serif" style="margin-top:12px">¿Cuánto vale realmente su activo?</h2>
+  <p>Casa, yate, obra de arte o pieza de colección: la valuamos con peritos independientes de cada especialidad antes de que usted decida vender, rentar o asegurar.</p></div>
+  <a class="btn" href="#contacto-inm" data-tipo="Valuar">Solicitar valuación</a>
 </div></section>
 
 <section id="servicios"><div class="wrap">
@@ -190,11 +282,93 @@ document.getElementById("formInm").addEventListener("submit", e => {
   if(CONFIG.whatsapp) window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(`Hola NORTHPOINT Activos.\nNombre: ${d.nombre}\nMe interesa: ${d.activo}\nQuiero: ${d.tipo}\nZona: ${d.zona||"-"}\nPresupuesto: ${d.presupuesto}`)}`, "_blank");
   document.getElementById("okInm").style.display = "block"; e.target.reset();
 });
+
+// ── catálogo estilo marketplace (ejemplos ilustrativos) ──
+const CATALOGO = [
+  { id:1, cat:"inmuebles", tipo:"Villa", titulo:"Villa frente al mar", loc:"Los Cabos, Baja California Sur", precio:4850000, img:"villa.jpg", badges:["Destacado","Video"], specs:[["Recámaras","5"],["Baños","6"],["Construcción","780 m²"],["Terreno","1,450 m²"]], desc:"Arquitectura contemporánea en piedra y blanco, alberca infinita frente al Pacífico y acceso a playa. Ideal como residencia o para renta vacacional de alto valor." },
+  { id:2, cat:"embarcaciones", tipo:"Yate a motor", titulo:"Yate a motor de 24 m", loc:"Puerto Vallarta, Jalisco", precio:3900000, img:"yate.jpg", badges:["Inspección disponible"], specs:[["Eslora","24 m"],["Camarotes","4"],["Año","2019"],["Motores","2 × diésel"]], desc:"Embarcación en excelente estado, con mantenimiento documentado y amarre en marina. Se entrega con inspección independiente." },
+  { id:3, cat:"inmuebles", tipo:"Penthouse", titulo:"Penthouse en Polanco", loc:"Ciudad de México", precio:2100000, img:"penthouse.jpg", badges:["Nuevo"], specs:[["Recámaras","3"],["Baños","4"],["Construcción","420 m²"],["Estacionamiento","3 lugares"]], desc:"Doble altura con vista a la ciudad, acabados en nogal y travertino, en uno de los corredores con mayor plusvalía del país." },
+  { id:4, cat:"arte", tipo:"Pintura", titulo:"Óleo abstracto, azul y oro", loc:"Colección privada · Ciudad de México", precio:65000, img:"arte.jpg", badges:["Procedencia verificada"], specs:[["Técnica","Óleo sobre tela"],["Medidas","180 × 140 cm"],["Año","2021"],["Certificado","Sí"]], desc:"Obra de gran formato de artista contemporáneo mexicano, con certificado de autenticidad y procedencia documentada." },
+  { id:5, cat:"inmuebles", tipo:"Casa", titulo:"Casa en la selva", loc:"Tulum, Quintana Roo", precio:1350000, img:"tulum.jpg", badges:["Video"], specs:[["Recámaras","4"],["Baños","4"],["Construcción","360 m²"],["Terreno","900 m²"]], desc:"Muros de chukum y madera, alberca privada rodeada de vegetación, a minutos de la playa. Con historial de renta disponible." },
+  { id:6, cat:"coleccion", tipo:"Auto clásico", titulo:"Deportivo clásico de 1967", loc:"Guadalajara, Jalisco", precio:420000, img:"auto.jpg", badges:["Restaurado"], specs:[["Año","1967"],["Estado","Restauración completa"],["Kilometraje","42,000 km"],["Documentos","En regla"]], desc:"Restauración de concurso con documentación completa. Pieza para colección o exhibición." },
+  { id:7, cat:"embarcaciones", tipo:"Velero", titulo:"Velero de 16 m", loc:"La Paz, Baja California Sur", precio:890000, img:"velero.jpg", badges:[], specs:[["Eslora","16 m"],["Camarotes","3"],["Año","2017"],["Casco","Fibra de vidrio"]], desc:"Velero de crucero listo para navegar el Mar de Cortés, con equipo de navegación reciente." },
+  { id:8, cat:"inmuebles", tipo:"Local comercial", titulo:"Locales en desarrollo comercial", loc:"Querétaro, Querétaro", precio:380000, desde:true, img:"inmobiliario.jpg", badges:["Preventa","Directo del desarrollador"], specs:[["Superficie","Desde 85 m²"],["Entrega","2028"],["Etapa","Obra negra"],["Esquema","Preventa"]], desc:"Desarrollo comercial en construcción sobre avenida principal. Precio de preventa por local, con plan de pagos durante la obra." },
+  { id:9, cat:"coleccion", tipo:"Reloj", titulo:"Reloj de alta relojería", loc:"Monterrey, Nuevo León", precio:38000, img:"reloj.jpg", badges:["Caja y papeles"], specs:[["Movimiento","Automático"],["Carátula","Azul solar"],["Caja","Acero, 40 mm"],["Estado","Como nuevo"]], desc:"Reloj mecánico con caja y papeles originales, verificado por relojero independiente." }
+];
+const CATS = [["todos","Todos"],["inmuebles","Inmuebles"],["embarcaciones","Embarcaciones"],["arte","Arte"],["coleccion","Colección"]];
+const money = n => "$" + n.toLocaleString("en-US") + " USD";
+let filtro = "todos", orden = "dest", favs = [];
+try{ favs = JSON.parse(localStorage.getItem("np-favs")||"[]"); }catch(_){}
+const saveFavs = () => { try{ localStorage.setItem("np-favs", JSON.stringify(favs)); }catch(_){} };
+function pills(){
+  document.getElementById("pills").innerHTML = CATS.map(([k,t]) => `<button type="button" data-k="${k}" class="${k===filtro?"on":""}">${t}<small>${k==="todos"?CATALOGO.length:CATALOGO.filter(a=>a.cat===k).length}</small></button>`).join("");
+  document.querySelectorAll("#pills button").forEach(b => b.onclick = () => { filtro = b.dataset.k; render(); });
+}
+function card(a){
+  const fav = favs.includes(a.id);
+  return `<article class="card-a" data-id="${a.id}">
+    <div class="ph" style="background-image:url(img/${a.img})"><div class="badges"><span class="ej">Ejemplo</span>${a.badges.map(b=>`<span>${b}</span>`).join("")}</div>
+      <button class="fav ${fav?"on":""}" data-fav="${a.id}" aria-label="Guardar">${fav?"♥":"♡"}</button></div>
+    <div class="info"><div class="price">${a.desde?"Desde ":""}${money(a.precio)}</div>
+      <div class="specs">${a.specs.slice(0,3).map(s=>s[1]).join(" · ")}</div>
+      <div class="loc">${a.tipo} en ${a.loc}</div>
+      <div class="row"><span>NORTHPOINT Activos</span><b>Ver detalles →</b></div></div>
+  </article>`;
+}
+function render(){
+  pills();
+  let L = CATALOGO.filter(a => filtro==="todos" || a.cat===filtro);
+  if(orden==="asc") L = [...L].sort((x,y)=>x.precio-y.precio);
+  if(orden==="desc") L = [...L].sort((x,y)=>y.precio-x.precio);
+  document.getElementById("count").textContent = `${L.length} ${L.length===1?"activo":"activos"} · ejemplos ilustrativos`;
+  const html = L.map(card);
+  if(html.length > 3) html.splice(3, 0, `<div class="promo"><div><h4>¿Cuánto vale realmente su activo?</h4><p>Valuación independiente de inmuebles, embarcaciones, arte y colección.</p></div><a class="btn" href="#valuar">Solicitar valuación</a></div>`);
+  document.getElementById("grid").innerHTML = html.join("");
+  if(window.gsap && !matchMedia("(prefers-reduced-motion: reduce)").matches) gsap.from("#grid > *", { y: 30, opacity: 0, stagger: .06, duration: .6, ease: "power3.out" });
+}
+document.getElementById("sort").onchange = e => { orden = e.target.value; render(); };
+document.getElementById("grid").addEventListener("click", e => {
+  const f = e.target.closest("[data-fav]");
+  if(f){ e.stopPropagation(); const id = +f.dataset.fav; favs = favs.includes(id) ? favs.filter(x=>x!==id) : [...favs, id]; saveFavs(); f.classList.toggle("on"); f.textContent = favs.includes(id) ? "♥" : "♡"; return; }
+  const c = e.target.closest(".card-a"); if(c) openModal(+c.dataset.id);
+});
+document.querySelectorAll(".cat[data-f]").forEach(c => c.addEventListener("click", () => { filtro = c.dataset.f; render(); document.getElementById("catalogo").scrollIntoView({ behavior:"smooth" }); }));
+const modal = document.getElementById("modal");
+function openModal(id){
+  const a = CATALOGO.find(x=>x.id===id);
+  document.getElementById("mimg").style.backgroundImage = `url(img/${a.img})`;
+  document.getElementById("mbadges").innerHTML = `<span>Ejemplo</span>` + a.badges.map(b=>`<span>${b}</span>`).join("");
+  document.getElementById("mprice").textContent = (a.desde?"Desde ":"") + money(a.precio);
+  document.getElementById("mTitle").textContent = a.titulo;
+  document.getElementById("mloc").textContent = a.loc;
+  document.getElementById("mspecs").innerHTML = a.specs.map(s=>`<div><span>${s[0]}</span>${s[1]}</div>`).join("");
+  document.getElementById("mdesc").textContent = a.desc;
+  const fb = document.getElementById("mfav"); const upd = () => fb.textContent = favs.includes(id) ? "♥ Guardado" : "♡ Guardar"; upd();
+  fb.onclick = () => { favs = favs.includes(id) ? favs.filter(x=>x!==id) : [...favs, id]; saveFavs(); upd(); render(); };
+  document.getElementById("mask").onclick = () => { closeModal(); pre(a.cat, "Comprar", a.titulo); };
+  modal.classList.add("on"); modal.setAttribute("aria-hidden","false");
+}
+function closeModal(){ modal.classList.remove("on"); modal.setAttribute("aria-hidden","true"); }
+document.getElementById("mclose").onclick = closeModal;
+modal.addEventListener("click", e => { if(e.target === modal) closeModal(); });
+addEventListener("keydown", e => { if(e.key === "Escape") closeModal(); });
+// prellenar el formulario desde el catálogo o la valuación
+const catMap = { inmuebles:"Inmuebles", embarcaciones:"Embarcaciones", arte:"Arte", coleccion:"Piezas de colección" };
+function pre(cat, tipo, titulo){
+  const f = document.getElementById("formInm");
+  if(cat) f.activo.value = catMap[cat]; if(tipo) f.tipo.value = tipo;
+  if(titulo) f.zona.value = "Interesado en: " + titulo;
+}
+document.querySelectorAll('[data-tipo="Valuar"]').forEach(b => b.addEventListener("click", () => pre(null, "Valuar")));
+// pie de la portada que rota
+(function(){ const el = document.getElementById("heroCap"); if(!el) return; let i = 0;
+  setInterval(() => { i = (i+1) % CATALOGO.length; const a = CATALOGO[i]; el.style.opacity = 0; setTimeout(() => { el.textContent = `${a.titulo} · ${a.loc} · Ejemplo`; el.style.opacity = 1; }, 450); }, 4500); })();
+render();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="anim.js?v=1790751035"></script>
-<script src="pagina.js?v=1790751035"></script>
+<script src="anim.js?v=1790751751"></script>
+<script src="pagina.js?v=1790751751"></script>
 </body>
 </html>
