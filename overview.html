@@ -12,8 +12,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="base.css?v=1790788159">
-<link rel="stylesheet" href="anim.css?v=1790788159">
+<link rel="stylesheet" href="base.css?v=1790788438">
+<link rel="stylesheet" href="anim.css?v=1790788438">
 <script>document.documentElement.classList.add("js-anim");setTimeout(function(){document.documentElement.classList.add("anim-ready")},3500)</script>
 <!--
   OVERVIEW v2 · 30-sep-2026 · "NORTHPOINT Ideas", formato revista (identidad propia, distinta a la landing):
@@ -299,17 +299,19 @@ function render(){
 }
 // ── memos REALES: northpointcapital.io/memos.html (captura en data/memos.json + lectura en vivo) ──
 const MEMOS_URL = "https://northpointcapital.io/memos.html";
+const FOTOS = ["img/academia.jpg","img/arte.jpg","img/mesa.jpg","img/estratos.jpg","img/ciudad.jpg","img/privado.jpg"];   // portadas propias (mismas que memo.html)
+const slugDe = l => (l.match(/memos\/([^\/]+)\.html/)||[])[1] || "";
 function pintaMemos(ms){
   if(!ms || !ms.length) return;
-  const c = ms[0], img = c.img || "img/academia.jpg";
-  $("#cover").innerHTML = `<a href="${c.l}" target="_blank" rel="noopener" style="position:absolute;inset:0;z-index:3" aria-label="Leer ${c.t}"></a><div class="bg" style="background-image:url(${img})"></div><div class="in"><div class="kicker">${c.k}</div><h2>${c.t}</h2><p>${c.r}</p>${by("goyo")}<div class="meta" style="color:#bbb;margin-top:6px">${c.f} · Leer el memo completo ›</div></div>`;
-  $("#mgrid").innerHTML = ms.map(x=>`<a class="memo" href="${x.l}" target="_blank" rel="noopener" style="text-decoration:none"><div class="im" style="background-image:url(${x.img || "img/academia.jpg"})"></div><div class="bd"><div class="kicker">${x.k}</div><h4>${x.t}</h4><blockquote>${x.r}</blockquote>${by("goyo")}<div class="meta" style="color:#aaa;margin-top:10px">${x.f} · Leer el memo ›</div></div></a>`).join("");
+  const foto = i => FOTOS[i % FOTOS.length];   // el más reciente lleva la foto de portada de siempre
+  const c = ms[0];
+  $("#cover").innerHTML = `<a href="memo.html?m=${slugDe(c.l)}" style="position:absolute;inset:0;z-index:3" aria-label="Leer ${c.t}"></a><div class="bg" style="background-image:url(${foto(0)})"></div><div class="in"><div class="kicker">${c.k}</div><h2>${c.t}</h2><p>${c.r}</p>${by("goyo")}<div class="meta" style="color:#bbb;margin-top:6px">${c.f} · Leer el memo ›</div></div>`;
+  $("#mgrid").innerHTML = ms.map((x,i)=>`<a class="memo" href="memo.html?m=${slugDe(x.l)}" style="text-decoration:none"><div class="im" style="background-image:url(${foto(i)})"></div><div class="bd"><div class="kicker">${x.k}</div><h4>${x.t}</h4><blockquote>${x.r}</blockquote>${by("goyo")}<div class="meta" style="color:#aaa;margin-top:10px">${x.f} · Leer el memo ›</div></div></a>`).join("");
 }
 fetch("data/memos.json", { cache:"no-cache" }).then(r=>r.json()).then(d=>pintaMemos(d.items)).catch(()=>{});
 fetch(MEMOS_URL, { cache:"no-cache" }).then(r=>r.text()).then(async h => {
   const doc = new DOMParser().parseFromString(h, "text/html"), T = (el,sel) => ((el.querySelector(sel)||{}).textContent||"").trim().replace(/\s+/g," ");
   const ms = [...doc.querySelectorAll("a.ix.memo")].map(a => ({ k:T(a,".memo-k"), t:T(a,".nm"), f:T(a,".fr"), r:T(a,".memo-s"), l:new URL(a.getAttribute("href"), MEMOS_URL).href, img:"" }));
-  await Promise.all(ms.map(m => fetch(m.l).then(r=>r.text()).then(p => { const im = new DOMParser().parseFromString(p,"text/html").querySelector('img[src*="assets/images/memos/"]'); if(im) m.img = new URL(im.getAttribute("src"), m.l).href; }).catch(()=>{})));
   if(ms.length) pintaMemos(ms);
 }).catch(()=>{});
 function leer(i){ const x = IDEAS[i];
@@ -367,7 +369,7 @@ render();
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="anim.js?v=1790788159"></script>
-<script src="menu.js?v=1790788159"></script>
+<script src="anim.js?v=1790788438"></script>
+<script src="menu.js?v=1790788438"></script>
 </body>
 </html>

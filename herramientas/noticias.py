@@ -59,12 +59,13 @@ def memos():
     for m in re.finditer(r'<a class="ix memo" href="([^"]+)">(.*?)</a>', t, re.S):
         href, b = m.group(1), m.group(2)
         g = lambda cls: html.unescape(re.sub(r"<[^>]+>", "", (re.search(r'class="%s"[^>]*>(.*?)</(?:span|p)>' % cls, b, re.S) or [None, ""])[1])).strip()
-        url = base + href; img = ""
+        url = base + href; img = ""; main = ""
         try:
             p = get(url); im = re.search(r'src="([^"]*assets/images/memos/[^"]+)"', p)
             if im: img = urllib.parse.urljoin(url, im.group(1))
+            mm = re.search(r"<main.*?</main>", p, re.S); main = mm.group(0) if mm else ""
         except Exception: pass
-        out.append({"k": g("memo-k"), "t": g("nm"), "f": g("fr"), "r": g("memo-s"), "a": g("memo-a"), "l": url, "img": img})
+        out.append({"k": g("memo-k"), "t": g("nm"), "f": g("fr"), "r": g("memo-s"), "a": g("memo-a"), "l": url, "img": img, "main": main})
     return out
 
 if __name__ == "__main__":
