@@ -172,7 +172,7 @@ table.tb{width:100%;border-collapse:collapse;font-size:13.5px}
 .tl.off{opacity:0}
 @media(min-width:981px){.tl{bottom:24px}}
 /* en cámara rápida la gráfica sube junto al saldo */
-body.tlm .g12>*{order:2}body.tlm .g12>:nth-child(1){order:0}body.tlm .g12>:nth-child(3){order:1}
+body.tlm .g12>*,html.emb .g12>*{order:2}body.tlm .g12>:nth-child(1),html.emb .g12>:nth-child(1){order:0}body.tlm .g12>:nth-child(3),html.emb .g12>:nth-child(3){order:1}
 body.tlm .top{margin-bottom:10px}
 /* dentro del iPhone de la landing: barra de estado propia, rayita de inicio y sin barra de scroll */
 html.emb{scrollbar-width:none}html.emb::-webkit-scrollbar,html.emb body::-webkit-scrollbar{display:none}
