@@ -15,7 +15,7 @@
   // ── scroll suave ──
   let lenis = null;
   if(window.Lenis){
-    lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+    lenis = new Lenis({ lerp: 0.14, smoothWheel: true, wheelMultiplier: 1 });
     lenis.on("scroll", ScrollTrigger.update);
     gsap.ticker.add(t => lenis.raf(t * 1000));
     gsap.ticker.lagSmoothing(0);
@@ -99,7 +99,6 @@
       stage.classList.remove("drag"); dragX = null; go(stage.scrollLeft > startL ? (d > .15 ? Math.ceil(f) : Math.floor(f)) : (d < .85 ? Math.floor(f) : Math.ceil(f))); });
     addEventListener("keydown", e => { const r = hero.getBoundingClientRect(); if(r.bottom < 100) return; if(e.key === "ArrowRight"){ stop(); go(cur + 1); } if(e.key === "ArrowLeft"){ stop(); go(cur - 1); } });
     // parallax vertical suave de la portada completa
-    gsap.to(stage, { yPercent: 12, ease: "none", scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true } });
     if(FINE){
       const bgs = $$(".hs-bg", hero);
       const qx = gsap.quickTo(bgs, "x", { duration: 1.2, ease: "power3" }), qy = gsap.quickTo(bgs, "y", { duration: 1.2, ease: "power3" });
@@ -127,11 +126,8 @@
   gsap.to(bar, { scaleX: 1, ease: "none", scrollTrigger: { start: 0, end: "max", scrub: .3 } });
 
   // ── 4. la historia: frase que se enciende palabra por palabra ──
-  $$(".intro .lead.serif, .banda h2").forEach(el => {
-    const w = split(el);
-    gsap.fromTo(w, { opacity: .14 }, { opacity: 1, stagger: .08, ease: "none",
-      scrollTrigger: { trigger: el, start: "top 82%", end: "bottom 45%", scrub: true } });
-  });
+  $$(".intro .lead.serif, .banda h2").forEach(el =>
+    gsap.from(el, { y: 36, opacity: 0, duration: 1.2, ease: EASE, scrollTrigger: { trigger: el, start: "top 88%", once: true } }));
   $$(".intro .lead:not(.serif)").forEach(el => gsap.from(el, { y: 30, opacity: 0, duration: 1, ease: EASE, scrollTrigger: { trigger: el, start: "top 88%" } }));
 
   // ── 5. cinta que acelera con la velocidad del scroll ──
@@ -146,41 +142,28 @@
   $$("section h2.serif, .anuncio h3.serif").forEach(h => {
     if(h.closest(".banda") || h.closest(".hero")) return;
     const w = split(h);
-    gsap.from(w, { yPercent: 105, duration: 1, stagger: .035, ease: EASE, scrollTrigger: { trigger: h, start: "top 86%" } });
+    gsap.from(w, { yPercent: 105, duration: 1, stagger: .035, ease: EASE, scrollTrigger: { trigger: h, start: "top 88%", once: true } });
   });
   $$("section .eyebrow, .anuncio .eyebrow").forEach(e => {
     if(e.closest(".hero")) return;
-    gsap.from(e, { opacity: 0, letterSpacing: "0.5em", duration: 1.1, ease: EASE, scrollTrigger: { trigger: e, start: "top 90%" } });
+    gsap.from(e, { opacity: 0, letterSpacing: "0.5em", duration: 1.1, ease: EASE, scrollTrigger: { trigger: e, start: "top 92%", once: true } });
   });
   $$(".fund .lead, .sec-head p, .appsec .lead, .mesa .lead, .comp p, .registro p, .anuncio p, .anuncio .btn, .banda .btn, .mesa .link").forEach(p =>
-    gsap.from(p, { y: 28, opacity: 0, duration: 1, ease: EASE, scrollTrigger: { trigger: p, start: "top 90%" } }));
+    gsap.from(p, { y: 28, opacity: 0, duration: 1, ease: EASE, scrollTrigger: { trigger: p, start: "top 92%", once: true } }));
 
   // ── 7. "Cómo funciona": sección fija mientras avanzan los 4 pasos ──
   const pasos = $(".pasos"), como = $("#como");
   if(pasos && como){
     const line = document.createElement("i"); line.className = "pasos-line"; pasos.appendChild(line);
     const items = $$(".paso", pasos);
-    ScrollTrigger.matchMedia({
-      "(min-width: 900px)": () => {
-        const tl = gsap.timeline({ scrollTrigger: { trigger: como, start: "top top", end: "+=170%", pin: true, scrub: .6, anticipatePin: 1 } });
-        tl.to(line, { scaleX: 1, ease: "none", duration: items.length }, 0);
-        items.forEach((p, i) => {
-          tl.fromTo(p, { opacity: .12, y: 50 }, { opacity: 1, y: 0, duration: .6, ease: "power2.out" }, i)
-            .fromTo($(".n", p), { color: "#B8C2D6" }, { color: "#2251FF", duration: .4 }, i);
-        });
-      },
-      "(max-width: 899px)": () => {
-        items.forEach(p => gsap.from(p, { y: 40, opacity: 0, duration: .9, ease: EASE, scrollTrigger: { trigger: p, start: "top 88%" } }));
-        gsap.to(line, { scaleX: 1, ease: "none", scrollTrigger: { trigger: pasos, start: "top 85%", end: "bottom 50%", scrub: true } });
-      }
-    });
+    gsap.to(line, { scaleX: 1, duration: 1.6, ease: "power2.inOut", scrollTrigger: { trigger: pasos, start: "top 82%", once: true } });
+    gsap.from(items, { y: 40, opacity: 0, stagger: .15, duration: .9, ease: EASE, scrollTrigger: { trigger: pasos, start: "top 82%", once: true } });
   }
 
   // ── 8. la app: el iPhone sube y se endereza; la lista entra ──
   const phone = $(".iphone");
   if(phone){
-    gsap.fromTo(phone, { rotateX: 22, rotateZ: -4, y: 140, scale: .9, transformPerspective: 1400 },
-      { rotateX: 0, rotateZ: 0, y: 0, scale: 1, ease: "none", scrollTrigger: { trigger: "#app", start: "top 95%", end: "center 55%", scrub: .8 } });
+    gsap.from(phone, { rotateX: 16, y: 90, opacity: 0, transformPerspective: 1400, duration: 1.3, ease: EASE, scrollTrigger: { trigger: "#app", start: "top 80%", once: true } });
     if(FINE){
       const rx = gsap.quickTo(phone, "rotateY", { duration: .8, ease: "power3" }), ry = gsap.quickTo(phone, "rotateX", { duration: .8, ease: "power3" });
       const box = phone.parentElement;
@@ -193,7 +176,7 @@
   // ── 9. tarjetas: entran escalonadas + números que cuentan ──
   const stagger = (sel, from) => $$(sel).forEach(g => {
     const kids = [...g.children];
-    gsap.from(kids, { ...from, duration: 1, stagger: .12, ease: EASE, scrollTrigger: { trigger: g, start: "top 85%" } });
+    gsap.from(kids, { ...from, duration: 1, stagger: .12, ease: EASE, scrollTrigger: { trigger: g, start: "top 88%", once: true } });
   });
   stagger(".roles", { y: 60, opacity: 0 });
   // la mesa: íconos que se dibujan y pasos que se encienden en orden al bajar
@@ -241,11 +224,11 @@
 
   // ── 11. banda y compromiso: parallax y recorte ──
   const banda = $(".banda");
-  if(banda) gsap.fromTo(banda, { backgroundPositionY: "20%" }, { backgroundPositionY: "80%", ease: "none", scrollTrigger: { trigger: banda, start: "top bottom", end: "bottom top", scrub: true } });
+
   const cimg = $(".comp .grid>img");
   if(cimg){
-    gsap.fromTo(cimg, { clipPath: "inset(18% 12% 18% 12%)", scale: 1.15 }, { clipPath: "inset(0% 0% 0% 0%)", scale: 1, ease: "none",
-      scrollTrigger: { trigger: cimg, start: "top 92%", end: "center 55%", scrub: .8 } });
+    gsap.fromTo(cimg, { clipPath: "inset(10% 8% 10% 8%)", opacity: 0 }, { clipPath: "inset(0% 0% 0% 0%)", opacity: 1, duration: 1.4, ease: "power3.inOut",
+      scrollTrigger: { trigger: cimg, start: "top 85%", once: true } });
   }
 
   // ── 12. simulador y registro ──

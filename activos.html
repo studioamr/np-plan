@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NORTHPOINT Activos · Patrimonio que se aprecia</title>
+<meta name="description" content="NORTHPOINT Activos: inmuebles, embarcaciones, arte y piezas de colección. Compra, venta, valuación y resguardo de activos que se aprecian.">
+<meta property="og:title" content="NORTHPOINT Activos">
+<meta property="og:description" content="Patrimonio que se aprecia: inmuebles, barcos, arte y colección.">
+<meta property="og:image" content="img/inmobiliario.jpg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="anim.css">
+<script>document.documentElement.classList.add("js-anim");setTimeout(function(){document.documentElement.classList.add("anim-ready")},3500)</script>
+<style>
+/* página de división: portada propia */
+.phero{position:relative;min-height:88vh;display:flex;align-items:flex-end;background:var(--navy);color:#fff;overflow:hidden}
+.phero-bg{position:absolute;inset:-4%;background:center/cover no-repeat;will-change:transform}
+.phero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,28,44,.94) 0%,rgba(5,28,44,.62) 48%,rgba(5,28,44,.1) 80%)}
+.phero .wrap{position:relative;z-index:2;width:100%;padding-bottom:96px}
+.phero .box{max-width:700px}
+.phero .kick{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font:500 13px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.82)}
+.phero .kick span+span{font-size:11px;letter-spacing:.08em;border:1px solid rgba(255,255,255,.55);padding:3px 9px}
+.phero h1{color:#fff;margin:16px 0 22px;font-size:clamp(38px,5vw,66px);line-height:1.08}
+.phero .lead{color:#fff;opacity:.9}
+.back{display:inline-flex;gap:8px;margin-top:30px;color:#fff;opacity:.75;text-decoration:none;font-size:14px}
+.back:hover{opacity:1}
+.phero-bg{background-position:60% center}
+.stat3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:48px}
+.stat3>div{background:#fff;padding:30px}
+.stat3 b{display:block;font:300 44px/1 var(--serif);color:var(--ink);margin-bottom:10px}
+.stat3 small{display:block;font-size:12px;color:var(--muted);margin-top:10px}
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.fp{background:#fff;padding:32px;border-top:3px solid var(--navy);transition:translate .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s,border-color .35s}
+.fp:hover{translate:0 -6px;box-shadow:0 24px 40px -24px rgba(5,28,44,.3);border-top-color:var(--blue)}
+.fp-n{font:300 40px/1 var(--serif);color:#D5DAE3;margin-bottom:16px;transition:color .3s}
+.fp:hover .fp-n{color:var(--blue)}
+.fp h4{font:400 22px/1.3 var(--serif);color:var(--ink);margin-bottom:10px}
+.warm{background:#F7F4EF}
+.ledger{width:100%;border-collapse:collapse;background:#fff;font-variant-numeric:tabular-nums}
+.ledger th,.ledger td{padding:16px 20px;text-align:left;border-bottom:1px solid var(--line);font-size:15px}
+.ledger th{font:500 12px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.ledger td:last-child,.ledger th:last-child{text-align:right}
+.ledger .pend{color:var(--muted)}
+.help{background:var(--navy);color:#fff}
+.help .eyebrow,.help h2{color:#fff}
+.help .cols3>div{border-top:1px solid rgba(255,255,255,.2);padding-top:22px}
+.help h4{font:400 24px var(--serif);margin-bottom:10px}
+.help p{opacity:.85}
+.help .btn{margin-top:18px}
+@media(max-width:900px){.cols3,.stat3{grid-template-columns:1fr}}
+.svc{background:#fff;padding:32px;border-top:3px solid var(--navy);display:flex;flex-direction:column;gap:12px;transition:translate .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s,border-color .35s}
+.svc:hover{translate:0 -6px;box-shadow:0 24px 40px -24px rgba(5,28,44,.3);border-top-color:var(--blue)}
+.svc svg{width:40px;height:40px;color:var(--navy)}
+.svc h4{font:400 24px var(--serif);color:var(--ink)}
+.cols4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.steps4{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink)}
+.steps4>div{padding:26px 26px 0 0}
+.steps4 .n{font:300 44px/1 var(--serif);color:var(--blue)}
+.steps4 h3{font:500 18px/1.4 var(--sans);color:var(--ink);margin:18px 0 8px}
+.soon{background:var(--navy);color:#fff;display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center}
+.soon .eyebrow,.soon h2{color:#fff}
+.soon p{opacity:.88;font-size:18px;margin-top:18px}
+form.inm{background:#fff;color:var(--text);padding:34px;display:grid;gap:16px}
+form.inm label{font-size:14px;color:var(--ink);font-weight:500;display:grid;gap:8px}
+form.inm input,form.inm select{border:0;border-bottom:1px solid var(--ink);background:transparent;padding:10px 0;font:300 17px var(--sans);color:var(--ink);border-radius:0}
+form.inm input:focus,form.inm select:focus{outline:none;border-bottom:2px solid var(--blue)}
+.ok{display:none;color:#1A7F5A;font-size:15px}
+@media(max-width:1000px){.cols4,.steps4{grid-template-columns:1fr 1fr}.soon{grid-template-columns:1fr;gap:36px}}
+@media(max-width:600px){.cols4,.steps4{grid-template-columns:1fr}}
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.cat{background:#fff;display:flex;flex-direction:column;transition:translate .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+.cat:hover{translate:0 -6px;box-shadow:0 24px 40px -24px rgba(5,28,44,.35)}
+.cat .ph{aspect-ratio:4/3;background:var(--navy) center/cover no-repeat;overflow:hidden}
+.cat .bd{padding:24px 24px 28px;display:flex;flex-direction:column;gap:10px;flex:1}
+.cat h4{font:400 24px var(--serif);color:var(--ink)}
+.cat ul{list-style:none;display:grid;gap:6px;margin-top:4px}
+.cat li{font-size:14px;color:var(--text);padding-left:14px;position:relative}
+.cat li:before{content:"";position:absolute;left:0;top:10px;width:6px;height:1px;background:var(--blue)}
+.why{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.why p{font-size:18px;line-height:1.65}
+.why p+p{margin-top:16px}
+@media(max-width:1100px){.cats{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.cats{grid-template-columns:1fr}}
+@media(max-width:900px){.why{grid-template-columns:1fr;gap:24px}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><symbol id="star" viewBox="0 0 64 64"><path fill="currentColor" d="M32 1 37.2 26.8 63 32 37.2 37.2 32 63 26.8 37.2 1 32 26.8 26.8Z"/></symbol></svg>
+
+<nav><div class="wrap">
+  <a class="mark" href="index.html">NORTHPOINT<small>Activos</small></a>
+  <div class="links">
+    <a href="#activos">Activos</a><a href="#servicios">Servicios</a><a href="#como">Cómo trabajamos</a><a href="#contacto-inm">Contacto</a><a href="index.html">NORTHPOINT</a>
+    <a class="btn" href="#contacto-inm">Quiero información</a>
+  </div>
+</div></nav>
+
+<header class="phero">
+  <div class="phero-bg" style="background-image:url(img/inmobiliario.jpg)"></div>
+  <div class="wrap"><div class="box">
+    <div class="kick"><span>NORTHPOINT Activos</span><span>Próximamente</span></div>
+    <h1 class="serif">Patrimonio que se aprecia.</h1>
+    <p class="lead">Inmuebles, embarcaciones, arte y piezas de colección. Le ayudamos a comprar, vender, valuar y cuidar activos reales, con la misma disciplina y transparencia con la que nuestra mesa cuida el ahorro de cada cliente.</p>
+    <a class="back" href="index.html">← Volver a NORTHPOINT</a>
+  </div></div>
+</header>
+
+<section id="activos"><div class="wrap">
+  <div class="sec-head">
+    <div><div class="eyebrow">Activos</div><h2 class="serif" style="margin-top:12px">Lo que se toca, también se invierte.</h2></div>
+    <p>Cuatro familias de activos reales, cada una con su propio mercado, sus propios riesgos y sus propios especialistas. Nosotros los coordinamos por usted.</p>
+  </div>
+  <div class="cats">
+    <div class="cat"><div class="ph" style="background-image:url(img/inmobiliario.jpg)"></div><div class="bd"><h4>Inmuebles</h4><p>Residencial, comercial y desarrollos en preventa.</p><ul><li>Casas y departamentos</li><li>Locales, oficinas y naves</li><li>Desarrollos en construcción</li></ul></div></div>
+    <div class="cat"><div class="ph" style="background-image:url(img/yate.jpg)"></div><div class="bd"><h4>Embarcaciones</h4><p>Yates y veleros, nuevos y seminuevos.</p><ul><li>Compra y venta</li><li>Inspección y valuación</li><li>Amarre, seguro y administración</li></ul></div></div>
+    <div class="cat"><div class="ph" style="background-image:url(img/arte.jpg)"></div><div class="bd"><h4>Arte</h4><p>Pintura, escultura y obra gráfica.</p><ul><li>Adquisición en galerías y subastas</li><li>Autenticación y procedencia</li><li>Resguardo y seguro de obra</li></ul></div></div>
+    <div class="cat"><div class="ph" style="background-image:url(img/coleccion.jpg)"></div><div class="bd"><h4>Colección</h4><p>Relojes, autos clásicos y otras piezas.</p><ul><li>Búsqueda de piezas específicas</li><li>Verificación de autenticidad</li><li>Venta a coleccionistas</li></ul></div></div>
+  </div>
+</div></section>
+
+<section class="warm" id="porque"><div class="wrap why">
+  <div><div class="eyebrow">Por qué activos reales</div><h2 class="serif" style="margin-top:12px">Un patrimonio que no depende solo de la pantalla.</h2></div>
+  <div>
+    <p>Una parte del patrimonio en activos tangibles diversifica lo que vive en los mercados financieros. Algunos activos reales han conservado su valor frente a la inflación a lo largo del tiempo, y otros se han apreciado.</p>
+    <p>Pero no todos se aprecian, y cada uno tiene costos de mantenimiento, seguro y venta. Por eso empezamos siempre con una valuación independiente y con los números completos a la vista, antes de que usted decida.</p>
+  </div>
+</div></section>
+
+<section id="servicios"><div class="wrap">
+  <div class="sec-head">
+    <div><div class="eyebrow">Servicios</div><h2 class="serif" style="margin-top:12px">Un solo equipo para todo el camino.</h2></div>
+    <p>Desde la primera búsqueda hasta la firma y el resguardo. Cada activo que presentamos tiene su documentación y su valuación revisadas antes de mostrarse.</p>
+  </div>
+  <div class="cols4">
+    <div class="svc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 4l9 7v9H3z"/><path d="M9 20v-6h6v6"/></svg><h4>Adquisición</h4><p>Buscamos el activo que se ajusta a su objetivo y presupuesto, y negociamos por usted.</p></div>
+    <div class="svc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16v13H4z"/><path d="M8 7V4h8v3M9 13h6"/></svg><h4>Venta</h4><p>Preparación, difusión discreta y filtro de compradores calificados.</p></div>
+    <div class="svc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8h14M7 8l-3 7h6zM17 8l-3 7h6z"/></svg><h4>Valuación</h4><p>Valuación independiente con peritos de cada especialidad antes de comprar o vender.</p></div>
+    <div class="svc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg><h4>Resguardo</h4><p>Seguro, custodia, mantenimiento y administración con aliados especializados.</p></div>
+  </div>
+</div></section>
+
+<section class="warm" id="como"><div class="wrap">
+  <div class="sec-head">
+    <div><div class="eyebrow">Cómo trabajamos</div><h2 class="serif" style="margin-top:12px">Cuatro pasos, sin sorpresas.</h2></div>
+    <p>La misma regla que en la mesa: primero el plan, después la operación, y todo por escrito.</p>
+  </div>
+  <div class="steps4">
+    <div><div class="n">01</div><h3>Diagnóstico</h3><p>Qué busca, para qué y con qué presupuesto. Sin esa claridad no mostramos nada.</p></div>
+    <div><div class="n">02</div><h3>Selección</h3><p>Solo activos con documentación en orden, comparados con precios reales de su mercado.</p></div>
+    <div><div class="n">03</div><h3>Negociación</h3><p>Negociamos precio y condiciones por usted y le explicamos cada punto del contrato.</p></div>
+    <div><div class="n">04</div><h3>Cierre</h3><p>Acompañamiento hasta la firma, la entrega y el resguardo del activo.</p></div>
+  </div>
+</div></section>
+
+<section id="contacto-inm" style="padding:0"><div class="soon" style="padding:96px max(40px,calc((100vw - 1280px)/2 + 40px))">
+  <div>
+    <div class="eyebrow">Próximamente</div>
+    <h2 class="serif" style="margin-top:12px">Cuéntenos qué busca.</h2>
+    <p>Muy pronto publicaremos los primeros activos. Déjenos sus datos y le escribiremos cuando tengamos algo que se ajuste a lo que busca, o para valuar lo que quiere vender.</p>
+  </div>
+  <form class="inm" id="formInm">
+    <label>Nombre completo<input name="nombre" required autocomplete="name"></label>
+    <label>WhatsApp<input name="whatsapp" required inputmode="tel" autocomplete="tel"></label>
+    <label>Me interesa<select name="activo"><option>Inmuebles</option><option>Embarcaciones</option><option>Arte</option><option>Piezas de colección</option></select></label>
+    <label>Quiero<select name="tipo"><option>Comprar</option><option>Vender</option><option>Valuar</option><option>Rentar</option></select></label>
+    <label>Ciudad o zona<input name="zona" placeholder="Ej. Morelia, Polanco, Tulum"></label>
+    <label>Presupuesto o valor aproximado<select name="presupuesto"><option>Menos de $100,000 USD</option><option>$100,000 a $500,000 USD</option><option>$500,000 a $2 millones USD</option><option>Más de $2 millones USD</option><option>Aún no lo sé</option></select></label>
+    <button class="btn" type="submit" style="justify-self:start;margin-top:6px">Quiero información</button>
+    <div class="ok" id="okInm">Gracias. Le escribiremos por WhatsApp.</div>
+  </form>
+</div></section>
+
+<footer><div class="wrap">
+  <span class="mark">NORTHPOINT<small>Activos</small></span>
+  <p><b>NORTHPOINT Activos está por abrir.</b> Todavía no publicamos activos; esta página es para registrar su interés. El valor de los activos reales puede subir o bajar y no está garantizado.</p>
+  <p><a href="index.html" style="color:#fff">← Volver a NORTHPOINT</a></p>
+</div></footer>
+
+<script>
+const CONFIG = { whatsapp: "" };   // mismo número que en index.html
+document.getElementById("formInm").addEventListener("submit", e => {
+  e.preventDefault();
+  const d = Object.fromEntries(new FormData(e.target));
+  try{ const l = JSON.parse(localStorage.getItem("np-activos-interes")||"[]"); l.push({...d, fecha:new Date().toISOString()}); localStorage.setItem("np-activos-interes", JSON.stringify(l)); }catch(_){}
+  if(CONFIG.whatsapp) window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(`Hola NORTHPOINT Activos.\nNombre: ${d.nombre}\nMe interesa: ${d.activo}\nQuiero: ${d.tipo}\nZona: ${d.zona||"-"}\nPresupuesto: ${d.presupuesto}`)}`, "_blank");
+  document.getElementById("okInm").style.display = "block"; e.target.reset();
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="anim.js"></script>
+<script src="pagina.js"></script>
+</body>
+</html>
