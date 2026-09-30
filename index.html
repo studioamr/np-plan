@@ -66,6 +66,28 @@ nav .links a:hover{opacity:1}
 .hero .lead{color:#fff;opacity:.92}
 @media(max-width:700px){.hero{min-height:640px;background-position:70% center}.hero:before{background:linear-gradient(0deg,rgba(5,28,44,.95) 30%,rgba(5,28,44,.35))}}
 
+/* portada: inmersión */
+.dive{position:relative;height:340vh;background:#010307}
+.dive-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+#sea{position:absolute;inset:0;width:100%;height:100%;display:block}
+.dive-deep{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% center;opacity:0;pointer-events:none;will-change:opacity,transform}
+.dive-copy{position:absolute;left:0;right:0;bottom:12vh;margin:0 auto;color:#fff;pointer-events:none;will-change:opacity,transform}
+.dive-copy .box{max-width:640px;pointer-events:auto}
+.dive-copy .eyebrow{color:#fff;opacity:.8;text-transform:none;letter-spacing:0;font-weight:300;font-size:16px}
+.dive-copy h1,.dive-copy h2{color:#fff;margin:8px 0 24px}
+.dive-copy .lead{color:#fff;opacity:.9}
+.dive-copy2{opacity:0;bottom:auto;top:40vh}
+.dive-copy2 .eyebrow{font:500 12px var(--sans);letter-spacing:.2em;text-transform:uppercase;opacity:.6}
+.depth{position:absolute;right:32px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;color:rgba(255,255,255,.7);font:500 11px ui-monospace,"SF Mono",Menlo,monospace;letter-spacing:.08em}
+.depth i{display:block;width:1px;height:34vh;background:rgba(255,255,255,.15);position:relative}
+.depth b{position:absolute;left:-2px;top:0;width:5px;height:5px;border-radius:50%;background:#fff;box-shadow:0 0 10px rgba(180,210,255,.8)}
+.depth-max{opacity:.45}
+.cue{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);color:rgba(255,255,255,.55);font:400 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:10px}
+.cue i{width:1px;height:34px;background:linear-gradient(rgba(255,255,255,.6),transparent);animation:cue 2s ease-in-out infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media(max-width:700px){.depth{right:10px;top:34%}.depth i{height:18vh}.dive-copy{bottom:8vh}.dive-copy .box{padding-right:28px}.cue{display:none}.dive-copy .lead{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.cue i{animation:none}}
+
 /* intro */
 .intro .lead{max-width:880px;font-size:clamp(20px,2vw,24px);color:var(--ink)}
 .intro .lead+.lead{margin-top:24px;color:var(--text);font-size:clamp(18px,1.6vw,20px)}
@@ -145,7 +167,7 @@ nav .links a:hover{opacity:1}
 /* niveles: tarjetas de miembro */
 .tiers-l{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .tier-l{background:#fff;display:flex;flex-direction:column}
-.tier-l .pic{aspect-ratio:4/3;background:var(--navy) center/cover no-repeat}
+.tier-l .pic{aspect-ratio:4/3;background:var(--navy) 72% center/cover no-repeat}
 .tier-l .body{padding:22px 22px 26px;display:flex;flex-direction:column;gap:14px;flex:1}
 .tier-l .body .tc{margin-top:-64px;box-shadow:0 14px 30px -14px rgba(5,28,44,.55)}
 .tier-l h3{font:400 26px/1.2 var(--serif);color:var(--ink)}
@@ -157,29 +179,37 @@ nav .links a:hover{opacity:1}
 .incluye li:before{content:"";position:absolute;left:0;top:10px;width:8px;height:1px;background:var(--blue)}
 @media(max-width:1100px){.tiers-l{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.tiers-l{grid-template-columns:1fr}.incluye ul{grid-template-columns:1fr}}
-/* tarjeta digital de miembro */
-.tc{position:relative;aspect-ratio:1.586;border-radius:16px;padding:18px 20px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;font-family:"Inter",system-ui,sans-serif;isolation:isolate;box-shadow:0 1px 2px rgba(14,16,19,.06),0 12px 28px -14px rgba(14,16,19,.35)}
-.tc-lines{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
-.tc-top,.tc-bot{display:flex;justify-content:space-between;align-items:flex-end}
-.tc-top{align-items:center}
-.tc-brand{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:.18em}
-.tc-brand svg{width:12px;height:12px}
-.tc-kind{font-size:9.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;opacity:.6}
-.tc-name{font-size:26px;font-weight:600;letter-spacing:-.02em;line-height:1}
-.tc-prof{font-size:10.5px;letter-spacing:.06em;opacity:.6;margin-top:6px;font-variant-numeric:tabular-nums}
-.tc-holder{font-size:11.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase}
-.tc-since{font-size:9.5px;opacity:.55;margin-top:3px;letter-spacing:.04em}
-.tc-num{font-size:11px;letter-spacing:.14em;opacity:.7;font-variant-numeric:tabular-nums}
-.tc-barracuda{background:linear-gradient(135deg,#FAFBFC,#E6E9ED);color:#0E1013;border:1px solid rgba(14,16,19,.08)}
-.tc-barracuda .tc-lines{stroke:rgba(14,16,19,.10)}
-.tc-tiburon{background:linear-gradient(135deg,#6B737E,#3F454D);color:#F3F4F6}
-.tc-tiburon .tc-lines{stroke:rgba(255,255,255,.14)}
-.tc-orca{background:radial-gradient(ellipse 15% 10% at 82% 68%,#F1F2F4 97%,transparent 100%),linear-gradient(160deg,#1A1C20,#0E1013);color:#F3F4F6}
-.tc-orca .tc-lines{stroke:rgba(255,255,255,.10)}
-.tc-megalodon{background:radial-gradient(120% 90% at 85% 110%,#1B1812 0%,#07080A 55%);color:#E9E4D8}
-.tc-megalodon .tc-lines{stroke:rgba(201,178,128,.22)}
-.tc-megalodon .tc-name{color:#D8C49A}
-.tc.lock{filter:grayscale(1);opacity:.45}
+/* tarjeta digital de miembro · metal */
+.tc{position:relative;aspect-ratio:1.586;border-radius:14px;padding:7% 7.5%;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;font-family:"Inter",system-ui,sans-serif;isolation:isolate;container-type:inline-size;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(0,0,0,.25),0 1px 2px rgba(0,0,0,.2),0 18px 36px -18px rgba(0,0,0,.55)}
+.tc:before{content:"";position:absolute;inset:0;z-index:-1;background:var(--tex,none);opacity:var(--texo,1)}
+.tc-sheen{position:absolute;inset:-40% -60%;z-index:0;pointer-events:none;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,var(--sh,.22)) 50%,transparent 60%);transform:translateX(-18%);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.tc:hover .tc-sheen{transform:translateX(18%)}
+.tc-top,.tc-bot{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center}
+.tc-brand{display:flex;align-items:center;gap:1.8cqw;font-size:3.4cqw;font-weight:600;letter-spacing:.26em}
+.tc-brand svg{width:3.6cqw;height:3.6cqw}
+.tc-tier{font-size:2.9cqw;font-weight:500;letter-spacing:.3em;text-transform:uppercase;opacity:.75}
+.tc-chip{position:relative;z-index:1;display:flex;align-items:center;gap:3cqw}
+.tc-chip .chip{width:12.5cqw;height:9.4cqw}
+.tc-chip .nfc{width:5.2cqw;height:5.2cqw;opacity:.55}
+.tc-holder{font-size:3.7cqw;font-weight:500;letter-spacing:.14em;text-transform:uppercase;text-shadow:var(--emb)}
+.tc-num{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:3.4cqw;letter-spacing:.18em;opacity:.8;text-shadow:var(--emb)}
+.tc-mark{position:absolute;z-index:0;pointer-events:none}
+/* Barracuda · plata cepillada */
+.tc-barracuda{color:#2A2E34;background:linear-gradient(120deg,#F3F4F6 0%,#D4D8DE 38%,#EEF0F3 58%,#C3C8CF 100%);
+  --tex:repeating-linear-gradient(90deg,rgba(255,255,255,.18) 0 1px,rgba(0,0,0,.025) 1px 3px);--emb:0 1px 0 rgba(255,255,255,.8),0 -1px 0 rgba(0,0,0,.12);--sh:.55}
+/* Tiburón · titanio */
+.tc-tiburon{color:#E8EBEF;background:linear-gradient(120deg,#7A828C 0%,#4A5058 42%,#646B73 62%,#363B41 100%);
+  --tex:repeating-linear-gradient(90deg,rgba(255,255,255,.06) 0 1px,rgba(0,0,0,.05) 1px 3px);--emb:0 1px 0 rgba(0,0,0,.45),0 -1px 0 rgba(255,255,255,.12);--sh:.25}
+/* Orca · negro mate con silla blanca */
+.tc-orca{color:#EDEFF2;background:linear-gradient(135deg,#1A1C1F,#0B0C0E);--emb:0 1px 0 rgba(0,0,0,.6),0 -1px 0 rgba(255,255,255,.08);--sh:.12}
+.tc-orca .tc-mark{right:-6%;bottom:-18%;width:62%;height:70%}
+/* Megalodón · carbono y bronce */
+.tc-megalodon{color:#CDB88E;background:radial-gradient(130% 100% at 100% 100%,#221C12 0%,#0A0A0B 55%,#050506 100%);
+  --tex:repeating-linear-gradient(45deg,rgba(255,255,255,.025) 0 2px,transparent 2px 4px),repeating-linear-gradient(-45deg,rgba(0,0,0,.25) 0 2px,transparent 2px 4px);--emb:0 1px 0 rgba(0,0,0,.7),0 -1px 0 rgba(255,230,180,.08);--sh:.14}
+.tc-megalodon .tc-brand,.tc-megalodon .tc-num{color:#E6DCC6}
+.tc.lock{filter:grayscale(1) brightness(.95);opacity:.5}
+
 
 /* simulador */
 .sim{display:grid;grid-template-columns:380px 1fr;gap:0;border:1px solid var(--line)}
@@ -275,11 +305,23 @@ footer b{color:#fff;font-weight:500}
   </div>
 </div></nav>
 
-<header class="hero"><div class="wrap"><div class="box">
-  <div class="eyebrow">Bienvenido a</div>
-  <h1 class="serif">NORTHPOINT</h1>
-  <p class="lead">Los mercados son un océano. Somos una mesa de trading profesional que se mueve en ellos con la disciplina de un depredador, para que <a class="ul" href="#como">el ahorro de personas de todo México trabaje</a> cada mes, dentro del riesgo que cada una decide asumir.</p>
-</div></div></header>
+<header class="dive" id="dive">
+  <div class="dive-stage">
+    <canvas id="sea" aria-hidden="true"></canvas>
+    <img class="dive-deep" id="diveDeep" src="img/megalodon.jpg" alt="" aria-hidden="true">
+    <div class="wrap dive-copy" id="diveCopy"><div class="box">
+      <div class="eyebrow">Bienvenido a</div>
+      <h1 class="serif">NORTHPOINT</h1>
+      <p class="lead">Los mercados son un océano. Somos una mesa de trading profesional que se mueve en ellos con la disciplina de un depredador, para que <a class="ul" href="#como">el ahorro de personas de todo México trabaje</a> cada mes, dentro del riesgo que cada una decide asumir.</p>
+    </div></div>
+    <div class="wrap dive-copy dive-copy2" id="diveCopy2"><div class="box">
+      <div class="eyebrow">Profundidad</div>
+      <h2 class="serif">Entre más profundo llega su ahorro, más grande el depredador.</h2>
+    </div></div>
+    <div class="depth" aria-hidden="true"><span id="depthNum">0 m</span><i><b id="depthBar"></b></i><span class="depth-max">−11,000 m</span></div>
+    <div class="cue" id="cue">Deslice para sumergirse<i></i></div>
+  </div>
+</header>
 
 <section class="intro"><div class="wrap">
   <p class="lead serif" style="font-weight:300">En el océano, lo que no se mueve se hunde. Creemos que un ahorro tampoco debería quedarse quieto. Por eso ponemos la disciplina de una mesa institucional al servicio de cualquier saldo, desde cien dólares, con un freno de protección en cada plan y transparencia total sobre cada operación.</p>
@@ -325,7 +367,7 @@ footer b{color:#fff;font-weight:500}
 
 <section class="mesa" id="mesa"><div class="wrap">
   <div class="feature">
-    <img src="img/mesa.jpg" alt="Oficina de la mesa de trading al anochecer" loading="lazy">
+    <img src="img/tiburon-hero.jpg" alt="Tiburón blanco en aguas profundas" loading="lazy">
     <div>
       <div class="eyebrow">La mesa</div>
       <h2 class="serif">Disciplina con propósito</h2>
@@ -497,36 +539,28 @@ const TIERS = [
   { id:"orca",      nombre:"Orca",      min:10000, prof:"3,000 m",  lema:"Estrategia de manada" },
   { id:"megalodon", nombre:"Megalodón", min:50000, prof:"11,000 m", lema:"La leyenda del fondo" }
 ];
-function sonar(seed){
-  // líneas de contorno tipo batimetría, deterministas por nivel
-  let d = "", r = seed;
-  const rnd = () => (r = (r*9301 + 49297) % 233280) / 233280;
-  for(let k=0;k<11;k++){
-    const y = 30 + k*17, a = 5 + rnd()*9, f = 0.8 + rnd()*1.4, ph = rnd()*6;
-    let p = "";
-    for(let x=0;x<=340;x+=10){ const yy = y + Math.sin(x/340*Math.PI*2*f + ph)*a + Math.sin(x/37+ph)*1.6; p += (x?"L":"M")+x+","+yy.toFixed(1); }
-    d += `<path d="${p}"/>`;
-  }
-  return d;
-}
+const CHIP = (oro) => `<svg class="chip" viewBox="0 0 40 30"><defs><linearGradient id="ch${oro?1:0}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${oro?"#E9D3A0":"#E4E6EA"}"/><stop offset=".5" stop-color="${oro?"#B8955A":"#A9AEB6"}"/><stop offset="1" stop-color="${oro?"#DCC089":"#D5D8DD"}"/></linearGradient></defs><rect x=".5" y=".5" width="39" height="29" rx="5" fill="url(#ch${oro?1:0})" stroke="rgba(0,0,0,.25)"/><path d="M0 10h12M0 20h12M28 10h12M28 20h12M12 0v30M28 0v30M12 15h16" stroke="rgba(0,0,0,.28)" stroke-width=".8" fill="none"/></svg>`;
+const NFC = `<svg class="nfc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M8 7c1.5 3 1.5 7 0 10M12 5c2.2 4.2 2.2 9.8 0 14M16 3c3 5.5 3 12.5 0 18"/></svg>`;
+const ORCA_MARK = `<svg class="tc-mark" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M8 100 C 20 55, 55 30, 100 22 L100 100 Z" fill="#F2F3F5" opacity=".94"/></svg>`;
 function tarjetaHTML(t, nombre, desde, numero, bloqueada){
-  const i = TIERS.indexOf(t);
+  const oro = t.id==="megalodon" || t.id==="orca";
+  const ult = (numero||"").replace(/\D/g,"").slice(-4) || "0000";
   return `<div class="tc tc-${t.id} ${bloqueada?"lock":""}">
-    <svg class="tc-lines" viewBox="0 0 340 214" preserveAspectRatio="none" fill="none" stroke-width=".7">${sonar(17+i*31)}</svg>
-    <div class="tc-top"><span class="tc-brand"><svg><use href="#star"/></svg>NORTHPOINT</span><span class="tc-kind">Miembro</span></div>
-    <div class="tc-mid"><div class="tc-name">${t.nombre}</div><div class="tc-prof">−${t.prof} · ${t.lema}</div></div>
-    <div class="tc-bot"><div><div class="tc-holder">${bloqueada ? "Desde " + "$" + t.min.toLocaleString("en-US") : nombre}</div><div class="tc-since">${bloqueada ? "de saldo" : "Miembro desde " + desde}</div></div><div class="tc-num">${bloqueada ? "BLOQUEADA" : numero}</div></div>
+    ${t.id==="orca" ? ORCA_MARK : ""}<div class="tc-sheen"></div>
+    <div class="tc-top"><span class="tc-brand"><svg><use href="#star"/></svg>NORTHPOINT</span><span class="tc-tier">${t.nombre}</span></div>
+    <div class="tc-chip">${CHIP(oro)}${NFC}</div>
+    <div class="tc-bot"><span class="tc-holder">${nombre || "Su nombre"}</span><span class="tc-num" ${t.id==="orca"?'style="color:#15171A;text-shadow:none"':""}>•••• ${ult}</span></div>
   </div>`;
 }
 
-const IMG = { barracuda:"img/ciudad.jpg", tiburon:"img/mesa.jpg", orca:"img/estratos.jpg", megalodon:"img/hero.jpg" };
+const IMG = { barracuda:"img/barracuda.jpg", tiburon:"img/tiburon.jpg", orca:"img/orca.jpg", megalodon:"img/megalodon.jpg" };
 CONFIG.niveles = TIERS.map((t,i)=>({ ...t, max: TIERS[i+1] ? TIERS[i+1].min-1 : null }));
 const rango = q => usd(q.min) + (q.max ? " – " + usd(q.max) : " o más");
 $("#nivelesGrid").innerHTML = CONFIG.niveles.map(q => `
   <div class="tier-l">
     <div class="pic" style="background-image:url(${IMG[q.id]})"></div>
     <div class="body">
-      ${tarjetaHTML(q, "Su nombre", "2026", "NP 0000 0000", false)}
+      ${tarjetaHTML(q, "Su nombre", "", "4821", false)}
       <h3>${q.nombre}</h3>
       <div class="rng">${rango(q)} de saldo</div>
     </div>
@@ -634,6 +668,95 @@ $("#form").addEventListener("submit", e => {
   }
   $("#ok").style.display = "block"; e.target.reset(); setPerfil(state.perfil);
 });
+
+// ── portada: cielo con la estrella, superficie y descenso al fondo del mar ──
+(function(){
+  const cv = document.getElementById("sea"); if(!cv) return;
+  const g = cv.getContext("2d"), dive = document.getElementById("dive");
+  const c1 = document.getElementById("diveCopy"), c2 = document.getElementById("diveCopy2"), cue = document.getElementById("cue");
+  const dn = document.getElementById("depthNum"), db = document.getElementById("depthBar"), deepImg = document.getElementById("diveDeep");
+  const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let W=0, H=0, D=1, P=0, T=0;
+  let s = 11; const rnd = () => (s = (s*16807) % 2147483647) / 2147483647;
+  const stars = Array.from({length:160}, () => ({ x:rnd(), y:rnd()*0.55, r:rnd()*1.1+0.2, a:rnd()*0.6+0.15, f:rnd()*3+1 }));
+  const snow  = Array.from({length:170}, () => ({ x:rnd(), y:rnd(), z:rnd()*0.8+0.2, r:rnd()*1.4+0.4, v:rnd()*0.4+0.2 }));
+  const glint = Array.from({length:70},  () => ({ y:rnd(), w:rnd()*26+6, o:rnd()*6.28 }));
+  function size(){ D = Math.min(2, window.devicePixelRatio||1); W = cv.clientWidth; H = cv.clientHeight; cv.width = W*D; cv.height = H*D; g.setTransform(D,0,0,D,0,0); }
+  function prog(){ const r = dive.getBoundingClientRect(); const tot = dive.offsetHeight - innerHeight; return Math.max(0, Math.min(1, -r.top / tot)); }
+  const mix = (a,b,t) => a + (b-a)*t;
+  const col = (c1,c2,t) => `rgb(${mix(c1[0],c2[0],t)|0},${mix(c1[1],c2[1],t)|0},${mix(c1[2],c2[2],t)|0})`;
+  function starShape(x,y,R,r){ g.beginPath(); for(let i=0;i<8;i++){ const a = i*Math.PI/4 - Math.PI/2, rr = i%2 ? r : R; g.lineTo(x+Math.cos(a)*rr, y+Math.sin(a)*rr); } g.closePath(); }
+  function frame(now){
+    T = now/1000; P = prog();
+    const cam = P * H * 2.6;                     // cuánto ha bajado la cámara
+    const sea = H*0.6 - cam;                     // línea de la superficie en pantalla
+    const deep = Math.max(0, Math.min(1, (P-0.2)/0.8));
+    // cielo
+    if(sea > 0){
+      const sk = g.createLinearGradient(0, -cam, 0, sea);
+      sk.addColorStop(0, "#01030A"); sk.addColorStop(0.7, "#06101E"); sk.addColorStop(1, "#0C1C2E");
+      g.fillStyle = sk; g.fillRect(0, 0, W, sea);
+      for(const st of stars){ const y = st.y*H*0.95 - cam; if(y<0||y>sea-4) continue; g.globalAlpha = st.a*(0.6+0.4*Math.sin(T*st.f+st.x*40)); g.fillStyle="#DDE7F5"; g.beginPath(); g.arc(st.x*W, y, st.r, 0, 6.283); g.fill(); }
+      g.globalAlpha = 1;
+      // la estrella del norte
+      const sx = W*0.5, sy = H*0.2 - cam, tw = 1 + 0.06*Math.sin(T*1.7);
+      const halo = g.createRadialGradient(sx,sy,0,sx,sy,Math.min(W,H)*0.32);
+      halo.addColorStop(0,"rgba(190,215,255,.35)"); halo.addColorStop(0.25,"rgba(120,160,230,.10)"); halo.addColorStop(1,"rgba(0,0,0,0)");
+      g.fillStyle = halo; g.fillRect(0, 0, W, sea);
+      g.save(); g.globalCompositeOperation = "lighter";
+      for(const [len,wd,al] of [[Math.min(W,H)*0.28,1.2,.5],[Math.min(W,H)*0.12,2.4,.35]]){
+        for(const ang of [0, Math.PI/2]){ g.save(); g.translate(sx,sy); g.rotate(ang); const lg = g.createLinearGradient(-len,0,len,0); lg.addColorStop(0,"rgba(200,225,255,0)"); lg.addColorStop(.5,`rgba(230,240,255,${al})`); lg.addColorStop(1,"rgba(200,225,255,0)"); g.fillStyle=lg; g.fillRect(-len,-wd/2,len*2,wd); g.restore(); }
+      }
+      g.fillStyle = "#FFFFFF"; starShape(sx, sy, 16*tw, 3.2*tw); g.fill();
+      g.restore();
+    }
+    // agua
+    const wtop = Math.max(0, sea);
+    const wg = g.createLinearGradient(0, wtop, 0, H);
+    wg.addColorStop(0, col([12,34,52],[2,8,16],deep)); wg.addColorStop(1, col([3,12,22],[1,2,5],deep));
+    g.fillStyle = wg; g.fillRect(0, wtop, W, H - wtop);
+    if(sea > 0 && sea < H){
+      // oleaje con perspectiva y reflejo de la estrella
+      g.lineWidth = 1;
+      for(let k=0;k<14;k++){
+        const y0 = sea + Math.pow(k/13, 1.7)*H*0.42; if(y0 > H) break;
+        g.strokeStyle = `rgba(160,190,220,${0.14 - k*0.007})`; g.beginPath();
+        for(let x=0;x<=W;x+=12){ const y = y0 + Math.sin(x*0.012*(1+k*0.15) + T*(0.8+k*0.05) + k)*(1+k*0.35); x?g.lineTo(x,y):g.moveTo(x,y); }
+        g.stroke();
+      }
+      g.save(); g.globalCompositeOperation = "lighter";
+      for(const gl of glint){ const y = sea + 4 + gl.y*H*0.36; if(y>H) continue; const a = (0.5+0.5*Math.sin(T*3+gl.o)) * (1-gl.y) * 0.5; const w = gl.w*(1-gl.y*0.6); g.fillStyle = `rgba(220,232,250,${a})`; g.fillRect(W*0.5 - w/2 + Math.sin(T+gl.o)*6, y, w, 1.2); }
+      g.restore();
+    }
+    if(sea < H){
+      // rayos de luz desde la superficie (se apagan con la profundidad)
+      const ra = Math.max(0, 1 - deep*1.3);
+      if(ra > 0){ g.save(); g.globalCompositeOperation = "lighter"; g.filter = "blur(22px)";
+        const top = Math.max(sea, 0), cx = W*0.5;
+        for(let i=0;i<5;i++){ const off = (i-2)*W*0.07 + Math.sin(T*0.25+i*1.7)*W*0.02, w = W*0.035 + i%2*W*0.02;
+          const lg = g.createLinearGradient(0, top, 0, top + H*1.1); lg.addColorStop(0, `rgba(150,190,230,${0.10*ra})`); lg.addColorStop(1, "rgba(150,190,230,0)");
+          g.fillStyle = lg; g.beginPath(); g.moveTo(cx+off-w*0.4, top); g.lineTo(cx+off+w*0.4, top); g.lineTo(cx+off*2.2+w*1.6, top+H*1.1); g.lineTo(cx+off*2.2-w*1.6, top+H*1.1); g.closePath(); g.fill(); }
+        g.filter = "none"; g.restore(); }
+      // nieve marina (sube despacio, con paralaje)
+      g.fillStyle = "#B9C9DA";
+      for(const p of snow){ let y = ((p.y*H*1.4 - cam*p.z*0.35 - T*12*p.v*p.z) % (H*1.4) + H*1.4) % (H*1.4) - H*0.2; if(y < wtop+6) continue; g.globalAlpha = 0.28*p.z*(1-deep*0.4); g.beginPath(); g.arc(p.x*W + Math.sin(T*0.5+p.x*9)*6, y, p.r*p.z, 0, 6.283); g.fill(); }
+      g.globalAlpha = 1;
+    }
+    // viñeta
+    const vg = g.createRadialGradient(W/2,H/2,Math.min(W,H)*0.3,W/2,H/2,Math.max(W,H)*0.75); vg.addColorStop(0,"rgba(0,0,0,0)"); vg.addColorStop(1,"rgba(0,0,0,.45)"); g.fillStyle=vg; g.fillRect(0,0,W,H);
+    // texto y medidor
+    const o1 = Math.max(0, 1 - P/0.16); c1.style.opacity = o1; c1.style.transform = `translateY(${-P*120}px)`; c1.style.visibility = o1>0 ? "visible" : "hidden";
+    const o2 = Math.max(0, Math.min(1, (P-0.42)/0.1, (0.72-P)/0.08)); c2.style.opacity = o2; c2.style.transform = `translateY(${(1-o2)*20}px)`;
+    cue.style.opacity = Math.max(0, 1 - P/0.05);
+    const od = Math.max(0, Math.min(1, (P-0.8)/0.17)); deepImg.style.opacity = (od*od*(3-2*od)*0.85).toFixed(3); deepImg.style.transform = `scale(${1.08 - od*0.08})`;
+    const m = Math.round(Math.max(0, (P-0.18)/0.82) * 11000);
+    dn.textContent = m ? `−${m.toLocaleString("en-US")} m` : "0 m"; db.style.top = (Math.max(0,(P-0.18)/0.82)*100) + "%";
+    if(!RM || Math.abs(P - (frame.lastP ?? -1)) > 1e-4) {}
+    frame.lastP = P;
+    requestAnimationFrame(frame);
+  }
+  size(); addEventListener("resize", size); requestAnimationFrame(frame);
+})();
 </script>
 </body>
 </html>
