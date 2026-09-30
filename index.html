@@ -290,7 +290,7 @@ footer .mark{color:#fff;display:block;margin-bottom:24px}
 footer p{max-width:900px;margin-bottom:12px}
 footer b{color:#fff;font-weight:500}
 </style>
-<link rel="stylesheet" href="anim.css?v=1790789230">
+<link rel="stylesheet" href="anim.css?v=1790789613">
 <script>document.documentElement.classList.add("js-anim");setTimeout(function(){document.documentElement.classList.add("anim-ready")},3500)</script>
 </head>
 <body>
@@ -329,7 +329,7 @@ footer b{color:#fff;font-weight:500}
     </div></div></div>
     <div class="hs" data-i="3" data-href="activos.html"><div class="hs-bg" style="background-image:url(img/inmobiliario.jpg)"></div><div class="wrap"><div class="box">
       <div class="hs-k"><span>NORTHPOINT Activos</span><span class="hs-pill">Próximamente</span></div>
-      <h2 class="serif">Activos que ganan valor con el tiempo.</h2>
+      <h2 class="serif">Invierta en lo que se puede tocar.</h2>
       <p class="lead">Inmuebles, embarcaciones, arte y piezas de colección: le ayudamos a comprar, vender, valuar y cuidar activos reales.</p>
       <a class="btn line inv" href="activos.html">Conocer activos</a>
     </div></div></div>
@@ -339,7 +339,7 @@ footer b{color:#fff;font-weight:500}
       <p class="lead">Trading, inteligencia artificial aplicada a mercados y finanzas: clases a su ritmo y programas con certificado, enseñados por la mesa.</p>
       <a class="btn line inv" href="academia.html">Ver la academia</a>
     </div></div></div>
-    <div class="hs hs-nexus" data-i="5" data-href="https://nexus-digital-production.up.railway.app/"><div class="hs-bg" style="background-image:url(img/nexus.jpg?v=1790789230);background-position:60% center"></div>
+    <div class="hs hs-nexus" data-i="5" data-href="https://nexus-digital-production.up.railway.app/"><div class="hs-bg" style="background-image:url(img/nexus.jpg?v=1790789613);background-position:60% center"></div>
       <div class="wrap"><div class="box">
       <div class="hs-k"><span>Nexus NORTHPOINT</span><span class="hs-pill">Auditoría digital</span></div>
       <h2 class="serif">¿Su negocio se ve como debería en internet?</h2>
@@ -348,8 +348,8 @@ footer b{color:#fff;font-weight:500}
     </div></div></div>
     <div class="hs hs-fund" data-i="6" data-href="fundacion.html"><div class="hs-bg" style="background-image:url(img/fundacion-abierta.jpg);background-position:right 85%;inset:-1.5%"></div><div class="wrap"><div class="box">
       <div class="hs-k"><span>Fundación NORTHPOINT</span><span class="hs-pill">En formación</span></div>
-      <h2 class="serif">Ningún niño debería enfrentar la leucemia sin su familia al lado.</h2>
-      <p class="lead">Una parte de cada resultado de la mesa acompaña a familias de niños con leucemia durante su tratamiento.</p>
+      <h2 class="serif">Una parte de cada resultado, para quien más lo necesita.</h2>
+      <p class="lead">Niños con leucemia, mares y arrecifes, agua limpia en África, misiones de servicio y animales. Cada causa con cuentas claras.</p>
       <a class="btn line inv" href="fundacion.html">Conocer la fundación</a>
     </div></div></div>
   </div>
@@ -363,7 +363,7 @@ footer b{color:#fff;font-weight:500}
     <button data-i="6"><span>Fundación</span><i><em></em></i></button>
   </div>
   <div class="hs-arrows"><button type="button" data-d="-1" aria-label="Anterior">←</button><button type="button" data-d="1" aria-label="Siguiente">→</button></div>
-  <div class="hs-cue">Deslice a un lado<i></i></div>
+  <button class="hs-next" type="button" id="hsNext" aria-label="Ver la siguiente sección"><span class="c" id="hsCount">1 / 7</span><span class="t"><small>Siguiente</small><b id="hsName">Ahorro</b></span><i aria-hidden="true">→</i></button>
 </header>
 
 <section class="intro"><div class="wrap">
@@ -405,7 +405,7 @@ footer b{color:#fff;font-weight:500}
     </ul>
   </div>
   <div>
-    <div class="iphone"><div class="iph-screen"><iframe src="app.html?muestra=1&v=1790789230" title="Demo de la app NORTHPOINT" loading="lazy"></iframe><div class="iph-island"></div></div></div>
+    <div class="iphone"><div class="iph-screen"><iframe src="app.html?muestra=1&v=1790789613" title="Demo de la app NORTHPOINT" loading="lazy"></iframe><div class="iph-island"></div></div></div>
     <span class="demo">Pruébela aquí: es la app real en modo demostración, sin dinero real. <a class="link" href="app.html" style="font-size:13px">Abrir en pantalla completa</a></span>
   </div>
 </div></section>
@@ -756,7 +756,7 @@ $("#form").addEventListener("submit", e => {
 })();
 
 // botón de la fundación: WhatsApp si ya está configurado
-(function(){ const b = document.getElementById("fundBtn"); if(b && CONFIG.whatsapp){ b.href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent("Hola, quiero ayudar a la Fundación NORTHPOINT (niños con leucemia).")}`; b.target = "_blank"; } })();
+(function(){ const b = document.getElementById("fundBtn"); if(b && CONFIG.whatsapp){ b.href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent("Hola, quiero ayudar a la Fundación NORTHPOINT.")}`; b.target = "_blank"; } })();
 
 (function(){ const b = document.getElementById("privBtn"); if(b && CONFIG.whatsapp){ b.href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent("Hola, me interesa NORTHPOINT Privado. Quiero agendar una conversación sobre invertir un capital.")}`; b.target = "_blank"; } })();
 
@@ -764,7 +764,7 @@ $("#form").addEventListener("submit", e => {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="anim.js?v=1790789230"></script>
-<script src="menu.js?v=1790789230"></script>
+<script src="anim.js?v=1790789613"></script>
+<script src="menu.js?v=1790789613"></script>
 </body>
 </html>
