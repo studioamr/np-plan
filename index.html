@@ -288,30 +288,37 @@ footer b{color:#fff;font-weight:500}
       <p class="lead">Somos una mesa de trading profesional que ayuda a personas de todo México a <a class="ul" href="#como">hacer que su ahorro trabaje</a>. Usted guarda su dinero, lo ve en la app y cada mes recibe el resultado de nuestra operación, dentro del riesgo que decide asumir.</p>
       <a class="btn" href="#perfiles">Ver los planes</a>
     </div></div></div>
-    <div class="hs" data-i="1" data-href="inmobiliario.html"><div class="hs-bg" style="background-image:url(img/inmobiliario.jpg)"></div><div class="wrap"><div class="box">
-      <div class="hs-k"><span>02 · NORTHPOINT Inmobiliario</span><span class="hs-pill">Próximamente</span></div>
+    <div class="hs" data-i="1"><div class="hs-bg" style="background-image:url(img/mesa.jpg)"></div><div class="wrap"><div class="box">
+      <div class="hs-k"><span>NORTHPOINT Privado</span></div>
+      <h2 class="serif">¿Quiere invertir un capital importante? Hablemos.</h2>
+      <p class="lead">Para patrimonios y empresas, un trato directo con la dirección de la mesa: estrategia a la medida de su objetivo, reportes personales y reuniones en nuestra oficina. Su dinero, siempre a su nombre.</p>
+      <a class="btn" id="privBtn" href="#contacto">Agendar una conversación</a>
+    </div></div></div>
+    <div class="hs" data-i="2" data-href="inmobiliario.html"><div class="hs-bg" style="background-image:url(img/inmobiliario.jpg)"></div><div class="wrap"><div class="box">
+      <div class="hs-k"><span>NORTHPOINT Inmobiliario</span><span class="hs-pill">Próximamente</span></div>
       <h2 class="serif">Propiedades que construyen patrimonio.</h2>
       <p class="lead">Compra, venta y renta de propiedades en México, con la misma disciplina y transparencia de nuestra mesa.</p>
       <a class="btn line inv" href="inmobiliario.html">Conocer NORTHPOINT Inmobiliario</a>
     </div></div></div>
-    <div class="hs" data-i="2" data-href="https://northpointcapital.io/family-office.html"><div class="hs-bg" style="background-image:url(img/ciudad.jpg)"></div><div class="wrap"><div class="box">
-      <div class="hs-k"><span>03 · NORTHPOINT Family Office</span></div>
-      <h2 class="serif">La oficina privada para el patrimonio de su familia.</h2>
-      <p class="lead">Inversiones, inmuebles, negocio, impuestos y herencia, con un solo equipo.</p>
-      <a class="btn line inv" href="https://northpointcapital.io/family-office.html" target="_blank" rel="noopener">Conocer Family Office</a>
+    <div class="hs" data-i="3" data-href="https://northpointcapital.io/bootcamp.html"><div class="hs-bg" style="background-image:url(img/academia.jpg)"></div><div class="wrap"><div class="box">
+      <div class="hs-k"><span>Academia NORTHPOINT · The Bootcamp</span></div>
+      <h2 class="serif">Aprenda a operar como nuestra mesa.</h2>
+      <p class="lead">Futuros desde cero: 8 módulos y más de 48 horas de video, con el mismo lenguaje, estructura y disciplina con los que opera nuestra mesa.</p>
+      <a class="btn line inv" href="https://northpointcapital.io/bootcamp.html" target="_blank" rel="noopener">Conocer el Bootcamp</a>
     </div></div></div>
-    <div class="hs" data-i="3" data-href="fundacion.html"><div class="hs-bg" style="background-image:url(img/fundacion.jpg)"></div><div class="wrap"><div class="box">
-      <div class="hs-k"><span>04 · Fundación NORTHPOINT</span><span class="hs-pill">En formación</span></div>
+    <div class="hs" data-i="4" data-href="fundacion.html"><div class="hs-bg" style="background-image:url(img/fundacion-abierta.jpg);background-position:right 85%;inset:-1.5%"></div><div class="wrap"><div class="box">
+      <div class="hs-k"><span>Fundación NORTHPOINT</span><span class="hs-pill">En formación</span></div>
       <h2 class="serif">Ningún niño debería enfrentar la leucemia sin su familia al lado.</h2>
       <p class="lead">Una parte de cada resultado de la mesa acompaña a familias de niños con leucemia durante su tratamiento.</p>
       <a class="btn line inv" href="fundacion.html">Conocer la fundación</a>
     </div></div></div>
   </div>
   <div class="hs-index" aria-label="Divisiones de NORTHPOINT">
-    <button data-i="0" class="on"><b>01</b><span>Ahorro</span><i><em></em></i></button>
-    <button data-i="1"><b>02</b><span>Inmobiliario</span><i><em></em></i></button>
-    <button data-i="2"><b>03</b><span>Family Office</span><i><em></em></i></button>
-    <button data-i="3"><b>04</b><span>Fundación</span><i><em></em></i></button>
+    <button data-i="0" class="on"><span>Ahorro</span><i><em></em></i></button>
+    <button data-i="1"><span>Privado</span><i><em></em></i></button>
+    <button data-i="2"><span>Inmobiliario</span><i><em></em></i></button>
+    <button data-i="3"><span>Academia</span><i><em></em></i></button>
+    <button data-i="4"><span>Fundación</span><i><em></em></i></button>
   </div>
   <div class="hs-arrows"><button type="button" data-d="-1" aria-label="Anterior">←</button><button type="button" data-d="1" aria-label="Siguiente">→</button></div>
   <div class="hs-cue">Deslice a un lado<i></i></div>
@@ -661,6 +668,8 @@ $("#form").addEventListener("submit", e => {
 
 // botón de la fundación: WhatsApp si ya está configurado
 (function(){ const b = document.getElementById("fundBtn"); if(b && CONFIG.whatsapp){ b.href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent("Hola, quiero ayudar a la Fundación NORTHPOINT (niños con leucemia).")}`; b.target = "_blank"; } })();
+
+(function(){ const b = document.getElementById("privBtn"); if(b && CONFIG.whatsapp){ b.href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent("Hola, me interesa NORTHPOINT Privado. Quiero agendar una conversación sobre invertir un capital.")}`; b.target = "_blank"; } })();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
