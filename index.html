@@ -256,9 +256,9 @@ canvas{width:100%;height:300px;display:block}
 .appsec li{padding:18px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:160px 1fr;gap:16px;font-size:16px}
 .appsec li b{font-weight:500;color:var(--ink)}
 .iphone{width:100%;max-width:393px;margin:0 auto;aspect-ratio:393/852;max-height:852px;border-radius:58px;padding:12px;background:linear-gradient(145deg,#2b2d33,#0d0e11 40%,#1d1f24);box-shadow:0 0 0 1.5px #3a3c42,0 40px 80px -30px rgba(5,28,44,.55);position:relative}
-.iph-screen{position:relative;width:100%;height:100%;border-radius:46px;overflow:hidden;background:#F5F6F8}
-.iph-screen iframe{position:absolute;inset:0;width:100%;height:100%;border:0;padding-top:44px;box-sizing:border-box;background:#F5F6F8}
-.iph-island{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:110px;height:32px;border-radius:20px;background:#000}
+.iph-screen{position:relative;width:100%;height:100%;border-radius:46px;overflow:hidden;background:#080E20}
+.iph-screen iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#080E20}
+.iph-island{position:absolute;z-index:2;top:11px;left:50%;transform:translateX(-50%);width:110px;height:32px;border-radius:20px;background:#000}
 .demo{display:block;text-align:center;font-size:12px;color:var(--muted);margin-top:14px}
 @media(max-width:980px){.appsec .grid{grid-template-columns:1fr;gap:48px}.phone{max-width:420px}}
 @media(max-width:560px){.appsec li{grid-template-columns:1fr;gap:4px}}
@@ -327,7 +327,7 @@ footer .mark{color:#fff;display:block;margin-bottom:24px}
 footer p{max-width:900px;margin-bottom:12px}
 footer b{color:#fff;font-weight:500}
 </style>
-<link rel="stylesheet" href="anim.css?v=1790753657">
+<link rel="stylesheet" href="anim.css?v=1790753860">
 <script>document.documentElement.classList.add("js-anim");setTimeout(function(){document.documentElement.classList.add("anim-ready")},3500)</script>
 </head>
 <body>
@@ -423,7 +423,7 @@ footer b{color:#fff;font-weight:500}
     </ul>
   </div>
   <div>
-    <div class="iphone"><div class="iph-screen"><iframe src="app.html?muestra=1&timelapse=1&v=1790753657" title="Demo de la app NORTHPOINT" loading="lazy"></iframe><div class="iph-island"></div></div></div>
+    <div class="iphone"><div class="iph-screen"><iframe src="app.html?muestra=1&timelapse=1&v=1790753860" title="Demo de la app NORTHPOINT" loading="lazy"></iframe><div class="iph-island"></div></div></div>
     <span class="demo">Pruébela aquí: es la app real en modo demostración, sin dinero real. <a class="link" href="app.html" style="font-size:13px">Abrir en pantalla completa</a></span>
   </div>
 </div></section>
@@ -490,7 +490,7 @@ footer b{color:#fff;font-weight:500}
         <div><span>Depositó</span><b id="kDep"></b></div>
         <div><span>Saldo estimado</span><b id="kValor"></b></div>
         <div><span>Ganancia neta</span><b id="kGan"></b></div>
-        <div><span>Comisión de la mesa</span><b id="kFee"></b></div>
+        <div><span>Crecimiento</span><b id="kFee"></b></div>
       </div>
       <div class="sim-play"><span id="simMes"></span></div>
       <canvas id="chart"></canvas>
@@ -520,7 +520,7 @@ footer b{color:#fff;font-weight:500}
     <p id="uLine"></p>
     <a class="btn" href="#registro">Empezar este mes</a>
   </div>
-  <p class="urge-note">Cálculo con el objetivo mensual del plan, ya descontada la comisión. Es una meta, no un rendimiento garantizado.</p>
+  <p class="urge-note">Cálculo con el objetivo mensual del plan. Es una meta, no un rendimiento garantizado.</p>
 </div></section>
 
 <section class="persp" id="perspectivas"><div class="wrap">
@@ -550,7 +550,7 @@ footer b{color:#fff;font-weight:500}
     <details class="qa"><summary><span>¿Dónde está mi dinero?</span><i aria-hidden="true"></i></summary><div class="qa-a"><p>En una cuenta a su nombre en un intermediario regulado. NORTHPOINT nunca recibe ni custodia su dinero: la mesa opera con un mandato limitado que permite operar, pero no retirar ni transferir.</p></div></details>
     <details class="qa"><summary><span>¿El rendimiento está garantizado?</span><i aria-hidden="true"></i></summary><div class="qa-a"><p>No. Cada plan tiene un objetivo mensual (1.5%, 3% o 6%), que es una meta de la mesa, no una promesa. Habrá meses por arriba del objetivo, meses por debajo y meses negativos.</p></div></details>
     <details class="qa"><summary><span>¿Qué pasa si la mesa pierde?</span><i aria-hidden="true"></i></summary><div class="qa-a"><p>Su saldo baja ese mes. Para eso existe el freno de cada plan: si la cuenta llega a su riesgo mensual, la mesa deja de operarla hasta el mes siguiente. Usted lo ve en tiempo real en la app.</p></div></details>
-    <details class="qa"><summary><span>¿Cuánto cobran?</span><i aria-hidden="true"></i></summary><div class="qa-a"><p>Solo una parte de la ganancia nueva, entre 20% y 30% según su nivel, y solo cuando su saldo marca un nuevo máximo. No hay cuota fija, ni de apertura, ni por retiro.</p></div></details>
+    <details class="qa"><summary><span>¿Cuánto cobran?</span><i aria-hidden="true"></i></summary><div class="qa-a"><p>No le cobramos comisión. Cada mes el resultado de su plan queda en su saldo, y el mes siguiente se vuelve a operar. Tampoco hay cuota de apertura ni por retiro.</p></div></details>
     <details class="qa"><summary><span>¿Cuál es el monto mínimo?</span><i aria-hidden="true"></i></summary><div class="qa-a"><p>$100 USD. Puede depositar más cuando quiera; no hay aportaciones obligatorias.</p></div></details>
     <details class="qa"><summary><span>¿Puedo retirar cuando quiera?</span><i aria-hidden="true"></i></summary><div class="qa-a"><p>Sí. Usted retira directo desde su propia cuenta, en los tiempos de operación del intermediario. NORTHPOINT no pone plazos forzosos ni penalizaciones.</p></div></details>
     <details class="qa"><summary><span>¿Puedo cambiar de plan?</span><i aria-hidden="true"></i></summary><div class="qa-a"><p>Sí. El cambio aplica desde la siguiente sesión de la mesa.</p></div></details>
@@ -608,9 +608,9 @@ const CONFIG = {
   ],
   // nivel por SALDO (no por aportación): cambia solo cuando el saldo cruza el mínimo
   niveles: [
-    { id:"inicial", nombre:"Inicial", min:100,   max:999,  fee:30, items:["App con saldo y cada operación","Resultado mensual","Depósitos y retiros cuando quiera","Atención por WhatsApp"] },
-    { id:"plus",    nombre:"Plus",    min:1000,  max:9999, fee:25, dest:true, items:["Todo lo del nivel Inicial","Revisión trimestral con su trader","Cambio de plan cada mes"] },
-    { id:"privado", nombre:"Privado", min:10000, max:null, fee:20, items:["Todo lo del nivel Plus","Trader asignado","Visita a la oficina de la mesa"] }
+    { id:"inicial", nombre:"Inicial", min:100,   max:999,  fee:0, items:["App con saldo y cada operación","Resultado mensual","Depósitos y retiros cuando quiera","Atención por WhatsApp"] },
+    { id:"plus",    nombre:"Plus",    min:1000,  max:9999, fee:0, dest:true, items:["Todo lo del nivel Inicial","Revisión trimestral con su trader","Cambio de plan cada mes"] },
+    { id:"privado", nombre:"Privado", min:10000, max:null, fee:0, items:["Todo lo del nivel Plus","Trader asignado","Visita a la oficina de la mesa"] }
   ],
   saldos: [100,200,300,500,750,1000,1500,2000,3000,5000,7500,10000,15000,20000,30000,50000,75000,100000],
   perspectivas: [
@@ -689,7 +689,7 @@ document.querySelectorAll(".perfil,#seg button").forEach(e => e.addEventListener
 
 const nivelDe = s => CONFIG.niveles.slice().reverse().find(q => s >= q.min) || CONFIG.niveles[0];
 
-// un depósito que se queda trabajando; comisión sobre nuevos máximos (high-water mark), mes a mes,
+// un depósito que se queda trabajando, mes a mes, sin comisión,
 // con el % del nivel que corresponde al saldo de ese mes
 function sim(){
   const dep = CONFIG.saldos[+$("#saldo").value], meses = +$("#meses").value, r = +$("#rend").value;
@@ -713,14 +713,14 @@ function sim(){
   $("#kValor").textContent = usd(bal);
   $("#kGan").textContent = (gan>=0?"+":"")+usd(gan);
   $("#kGan").className = gan>=0?"pos":"neg";
-  $("#kFee").textContent = usd(fees);
+  $("#kFee").textContent = (gan>=0?"+":"")+(gan/dep*100).toFixed(1)+"%";
   const mes1 = serie[0][0];
   $("#nota").innerHTML = (r < -p.riesgo
     ? `En un mes así, el freno del plan ${p.nombre} detiene la operación al llegar a su riesgo mensual de ${p.riesgo}%. `
     : r === p.objetivo
-    ? `Si la mesa cumple el objetivo del plan ${p.nombre} (+${p.objetivo}% al mes), el primer mes su saldo crecería ${usd(mes1)} ya descontada la comisión. `
-    : `Con este supuesto, el primer mes su saldo cambiaría ${mes1>=0?"+":""}${usd(mes1)} ya descontada la comisión. `)
-    + `Nivel al empezar: <b>${nv.nombre}</b>, ${nv.fee}% de la ganancia. El objetivo es una meta, no un rendimiento garantizado.`;
+    ? `Si la mesa cumple el objetivo del plan ${p.nombre} (+${p.objetivo}% al mes), el primer mes su saldo crecería ${usd(mes1)}. `
+    : `Con este supuesto, el primer mes su saldo cambiaría ${mes1>=0?"+":""}${usd(mes1)}. `)
+    + `Nivel al empezar: <b>${nv.nombre}</b>. El objetivo es una meta, no un rendimiento garantizado.`;
   draw(serie, dep);
 }
 
@@ -737,7 +737,7 @@ function playSim(){
     draw(serie, dep, k);
     $("#kValor").textContent = usd(bal);
     $("#kGan").textContent = (gan>=0?"+":"")+usd(gan); $("#kGan").className = gan>=0?"pos":"neg";
-    $("#kFee").textContent = usd(feeCum[k-1]);
+    $("#kFee").textContent = (gan>=0?"+":"")+(gan/dep*100).toFixed(1)+"%";
     $("#simMes").innerHTML = `Mes <b>${k}</b> de ${N} · saldo <b>${usd(bal)}</b>`;
     if(p < 1) window.__simAnim = requestAnimationFrame(step); else { window.__simAnim = null; setPlayBtn(false); }
   };
@@ -817,7 +817,7 @@ $("#form").addEventListener("submit", e => {
   chips(document.getElementById("uPlan"), CONFIG.perfiles, P, p => `${p.nombre} · +${p.objetivo}%`, p => P = p);
   function draw(){
     const now = new Date(), y0 = now.getFullYear(), m0 = now.getMonth();
-    const fee = (nivelDe(D).fee || 25) / 100, r = P.objetivo / 100 * (1 - fee);
+    const r = P.objetivo / 100;   // sin comisión
     const lost = D * (Math.pow(1 + r, m0) - 1);
     document.getElementById("uPast").textContent = m0 + (m0 === 1 ? " mes" : " meses");
     document.getElementById("uLost").textContent = "−" + usd(lost);
@@ -855,7 +855,7 @@ $("#form").addEventListener("submit", e => {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="anim.js?v=1790753657"></script>
-<script src="menu.js?v=1790753657"></script>
+<script src="anim.js?v=1790753860"></script>
+<script src="menu.js?v=1790753860"></script>
 </body>
 </html>

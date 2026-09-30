@@ -174,6 +174,24 @@ table.tb{width:100%;border-collapse:collapse;font-size:13.5px}
 /* en cámara rápida la gráfica sube junto al saldo */
 body.tlm .g12>*{order:2}body.tlm .g12>:nth-child(1){order:0}body.tlm .g12>:nth-child(3){order:1}
 body.tlm .top{margin-bottom:10px}
+/* dentro del iPhone de la landing: barra de estado propia, rayita de inicio y sin barra de scroll */
+html.emb{scrollbar-width:none}html.emb::-webkit-scrollbar,html.emb body::-webkit-scrollbar{display:none}
+.sbar{display:none}
+html.emb .sbar{display:flex;position:absolute;top:0;left:0;right:0;height:46px;align-items:center;justify-content:space-between;padding:4px 30px 0 34px;color:#fff;font-size:14px;font-weight:600;letter-spacing:-.01em}
+html.emb .sbar span{display:flex;gap:5px;align-items:center}
+html.emb .sbar svg{height:11px;width:auto;fill:#fff}
+html.emb .mtop{height:104px;padding:46px 18px 0;align-items:center}
+html.emb .main{padding-top:118px;padding-bottom:120px}
+html.emb .tabs{padding-bottom:28px}
+html.emb .tabs:after{content:"";position:absolute;left:50%;bottom:8px;transform:translateX(-50%);width:120px;height:5px;border-radius:5px;background:rgba(255,255,255,.85)}
+html.emb .tl{bottom:104px}
+html.emb .scrim{padding:56px 12px 34px}
+html.emb .top p{display:none}html.emb .top h1{font-size:20px}
+html.emb .hero{padding:16px 18px}html.emb .hero .saldo{font-size:34px;margin:4px 0 8px}
+html.emb .hero .acts{margin-top:14px;gap:8px;flex-wrap:nowrap}html.emb .hero .acts .btn{height:36px;padding:0 12px;font-size:13px}
+html.emb .hero .acts .btn:last-child{display:none}
+html.emb .hero .meta{margin-top:14px;padding-top:12px}
+html.emb .chart{height:170px}
 .toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);z-index:95;background:var(--navy);color:#fff;padding:12px 16px;border-radius:12px;font-size:13.5px;font-weight:600;opacity:0;transition:all .3s;pointer-events:none}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 @media(max-width:980px){
@@ -221,7 +239,7 @@ body.tlm .top{margin-bottom:10px}
       <div class="me"><div class="av" id="meAv">NP</div><div><b id="meName"></b><span id="meSub"></span></div></div>
     </div>
   </aside>
-  <header class="mtop"><div class="logo"><svg><use href="#star"/></svg>NORTHPOINT</div><div class="mode"><button data-mode="cliente" class="on">Cliente</button><button data-mode="mesa">Mesa</button></div></header>
+  <header class="mtop"><div class="sbar"><b>9:41</b><span><svg viewBox="0 0 18 11"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="6" rx="1"/><rect x="10" y="2.5" width="3" height="8.5" rx="1"/><rect x="15" y="0" width="3" height="11" rx="1"/></svg><svg viewBox="0 0 16 11"><path d="M8 2.2c2.3 0 4.4.9 6 2.4l1.3-1.4A10.6 10.6 0 0 0 8 .2C5.2.2 2.6 1.3.7 3.2L2 4.6a8.6 8.6 0 0 1 6-2.4Zm0 3.9c1.3 0 2.5.5 3.4 1.3l1.4-1.4A6.8 6.8 0 0 0 8 4.1c-1.8 0-3.5.7-4.8 1.9l1.4 1.4c.9-.8 2.1-1.3 3.4-1.3Zm0 3.8c-.5 0-.9.2-1.2.5L8 11.6l1.2-1.2c-.3-.3-.7-.5-1.2-.5Z"/></svg><svg viewBox="0 0 27 12"><rect x=".5" y=".5" width="23" height="11" rx="3.5" fill="none" stroke="#fff" opacity=".5"/><rect x="2" y="2" width="18" height="8" rx="2"/><rect x="24.5" y="4" width="2" height="4" rx="1" opacity=".5"/></svg></span></div><div class="logo"><svg><use href="#star"/></svg>NORTHPOINT</div><div class="mode"><button data-mode="cliente" class="on">Cliente</button><button data-mode="mesa">Mesa</button></div></header>
   <main class="main" id="main"></main>
 </div>
 <nav class="tabs" id="tabsM"></nav>
@@ -237,9 +255,9 @@ const CONFIG = {
     { id:"mod", nombre:"Moderado", color:"#2251FF", objetivo:3,   riesgo:3,   lema:"Crecimiento equilibrado" },
     { id:"agr", nombre:"Agresivo", color:"#7C5CFF", objetivo:6,   riesgo:6,   lema:"Máximo potencial" }
   ],
-  niveles: [ { nombre:"Inicial", min:100, fee:30 }, { nombre:"Plus", min:1000, fee:25 }, { nombre:"Privado", min:10000, fee:20 } ],
+  niveles: [ { nombre:"Inicial", min:100 }, { nombre:"Plus", min:1000 }, { nombre:"Privado", min:10000 } ],   // sin comisión: el resultado del mes es todo del cliente
   traders: ["André Macouzet", "Pablo Ochoa", "Gerardo Andaluz"],
-  KEY: "np-app-v6", minimo: 100
+  KEY: "np-app-v7", minimo: 100
 };
 const MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
@@ -269,7 +287,8 @@ const ICO = {
 
 // ═════════════ estado ═════════════
 const MUESTRA = new URLSearchParams(location.search).has("muestra");
-if(MUESTRA) CONFIG.KEY = "np-app-v6-muestra";
+try{ if(window.top !== window.self) document.documentElement.classList.add("emb"); }catch(_){ document.documentElement.classList.add("emb"); }
+if(MUESTRA) CONFIG.KEY = "np-app-v7-muestra";
 let S = null, MODE = "cliente", VIEW = "inicio";
 const load = () => { try{ S = JSON.parse(localStorage.getItem(CONFIG.KEY)); }catch(_){ S = null; } };
 // CÁMARA RÁPIDA (?timelapse=1, el iPhone de la landing): el reloj de la app se mueve 12 meses en 10 s y vuelve a empezar
@@ -289,7 +308,6 @@ function crearCuenta(nombre, plan, monto, seed){
     const ret = Math.max(p.objetivo*.75 + p.riesgo*.75*normal(r), -p.riesgo);
     const antes = bal; bal *= 1 + ret/100;
     movs.push({ tipo:"res", fecha:fin.toISOString(), monto:bal-antes, pct:ret, mes:fin.getMonth(), anio:fin.getFullYear() });
-    if(bal > hwm){ const fee = nivelDe(antes).fee, f = (bal-hwm)*fee/100; bal -= f; hwm = bal; movs.push({ tipo:"fee", fecha:new Date(fin.getTime()+6e4).toISOString(), monto:-f, nota:`${fee}% de la ganancia de ${MESES[fin.getMonth()]}` }); }
   }
   const frac = Math.min(1, hoy.getDate()/30), retMes = Math.max(p.objetivo*.7 + p.riesgo*.5*normal(r), -p.riesgo)*frac;
   const ops = []; const n = 6 + Math.floor(r()*6); let rest = bal*retMes/100;
@@ -306,7 +324,6 @@ function crearCuenta(nombre, plan, monto, seed){
 const opsMes = () => S.ops.reduce((a,o)=>a+o.monto,0);
 const saldo = () => S.movs.reduce((a,m)=>a+m.monto,0) + opsMes();
 const depositado = () => S.movs.filter(m=>m.tipo==="dep"||m.tipo==="ret").reduce((a,m)=>a+m.monto,0);
-const comisiones = () => -S.movs.filter(m=>m.tipo==="fee").reduce((a,m)=>a+m.monto,0);
 const resultados = () => S.movs.filter(m=>m.tipo==="res").sort((a,b)=>a.fecha<b.fecha?-1:1);
 function serie(){ const pts = []; let acc = 0; [...S.movs].sort((a,b)=>a.fecha<b.fecha?-1:1).forEach(m => { acc += m.monto; pts.push({ t:new Date(m.fecha), v:acc }); }); pts.push({ t:nowD(), v:saldo() }); return pts; }
 function cumOps(){ let a = 0; return [...S.ops].sort((x,y)=>x.fecha<y.fecha?-1:1).map(o => a += o.monto); }
@@ -384,7 +401,7 @@ document.addEventListener("click", e => {
 // ═════════════ vistas del cliente ═════════════
 let RANGO = "todo", FILT = "todos";
 const kpi = (c, ic, l, v, s) => `<div class="kpi"><div class="kic ${c}">${I(ic)}</div><div><div class="lbl">${l}</div><div class="num" style="font-size:19px;font-weight:700;margin-top:2px">${v}</div><div class="sub" style="margin-top:1px">${s}</div></div></div>`;
-function metaInfo(m){ const bal = saldo(), p = planDe(S.plan), net = p.objetivo/100*(1-nivelDe(bal).fee/100);
+function metaInfo(m){ const bal = saldo(), p = planDe(S.plan), net = p.objetivo/100;
   return { v: Math.min(1, bal/m.objetivo), meses: bal >= m.objetivo ? 0 : Math.ceil(Math.log(m.objetivo/bal)/Math.log(1+net)) }; }
 function metaRow(m){ const bal = saldo(), k = metaInfo(m);
   return `<div style="display:flex;justify-content:space-between;gap:10px;font-size:14px"><b>${m.nombre}</b><span class="num m">${usd0(Math.min(bal,m.objetivo))} / ${usd0(m.objetivo)}</span></div>
@@ -421,16 +438,16 @@ function vInicio(){
       ${kpi(gan>=0?"g":"r",ICO.trend,"Ganancia total",`<span data-count="${Math.abs(gan).toFixed(2)}" data-dec="2" data-pre="${gan>=0?"+$":"−$"}">$0</span>`, pct(dep?gan/dep*100:0)+" sobre lo depositado")}
       ${kpi("b",ICO.clock,"Promedio mensual",pct(prom),`${res.length} meses con la mesa`)}
       ${kpi("v",ICO.flag,"Mejor mes",pct(mejor.pct||0),Mes(mejor.mes||0))}
-      ${kpi("a",ICO.pctI,"Comisión pagada",usd(comisiones()),`${nv.fee}% solo de la ganancia nueva`)}</div></div>
+      ${kpi("a",ICO.cash,"Meses positivos",`${res.filter(r=>r.pct>=0).length} de ${res.length}`,"Sin comisión: el resultado es suyo")}</div></div>
     <div class="card c7"><div class="hd"><h3>Últimos movimientos</h3><button class="link" data-go="movimientos">Ver todos</button></div><ul class="list">${movList().slice(0,5).map(movLi).join("")}</ul></div>
     <div class="card c5"><div class="hd"><h3>Sus metas</h3><button class="link" data-go="metas">Ver metas</button></div>${S.metas.slice(0,2).map(m=>`<div style="margin-bottom:16px">${metaRow(m)}</div>`).join("") || `<div class="empty">Cree su primera meta.</div>`}
       <div class="planc"><div><div class="lbl">Próximo resumen mensual</div><b style="font-size:14px">${fecha(prox)} ${prox.getFullYear()}</b></div><span class="pill n">Automático</span></div></div>
   </div>`;
 }
 function vMovimientos(){
-  const res = resultados().slice(-12), F = [["todos","Todos"],["res","Resultados"],["dep","Depósitos"],["ret","Retiros"],["fee","Comisiones"]];
+  const res = resultados().slice(-12), F = [["todos","Todos"],["res","Resultados"],["dep","Depósitos"],["ret","Retiros"]];
   const L = movList().filter(m => FILT==="todos" || m.tipo===FILT || (FILT==="res" && m.tipo==="mes"));
-  return `<div class="top"><div><h1>Movimientos</h1><p>Resultados de cada mes, depósitos, retiros y comisiones.</p></div></div>
+  return `<div class="top"><div><h1>Movimientos</h1><p>Resultados de cada mes, depósitos y retiros.</p></div></div>
   <div class="grid g12">
     <div class="card c12"><div class="hd"><h3>Resultado por mes</h3><span class="pill g">${res.filter(r=>r.pct>=0).length} de ${res.length} meses positivos</span></div><div class="chart" id="chBars" style="height:200px"></div></div>
     <div class="card c12"><div class="hd"><div class="seg" id="filt">${F.map(([k,t])=>`<button data-f="${k}" class="${k===FILT?"on":""}">${t}</button>`).join("")}</div></div>
@@ -459,7 +476,7 @@ function vMetas(){
     return `<div class="card c6"><div class="goalrow"><div class="ring">${ring(k.v, m.color)}<div class="c"><div><b class="num">${Math.round(k.v*100)}%</b><span>avance</span></div></div></div>
     <div style="flex:1;min-width:0">${metaRow(m)}<button class="link" data-sheet="delmeta" data-arg="${i}" style="margin-top:10px">Quitar meta</button></div></div></div>`; }).join("")}
     ${S.metas.length?"":`<div class="card c12 empty">Todavía no tiene metas. Cree la primera.</div>`}
-    <div class="card c12" style="background:var(--sky);box-shadow:none"><div class="kpi"><div class="kic b">${I(ICO.meta)}</div><div><b style="font-size:14px">¿Cómo se calcula?</b><div class="sub">Con su saldo actual y el objetivo mensual de su plan, ya descontada la comisión. Depositar más acorta el tiempo. Es una proyección, no una garantía.</div></div></div></div></div>`;
+    <div class="card c12" style="background:var(--sky);box-shadow:none"><div class="kpi"><div class="kic b">${I(ICO.meta)}</div><div><b style="font-size:14px">¿Cómo se calcula?</b><div class="sub">Con su saldo actual y el objetivo mensual de su plan. Depositar más acorta el tiempo. Es una proyección, no una garantía.</div></div></div></div></div>`;
 }
 function vCuenta(){
   const bal = saldo(), p = planDe(S.plan), nv = nivelDe(bal), res = resultados().slice().reverse();
@@ -469,7 +486,7 @@ function vCuenta(){
   <div class="grid g12">
     <div class="card c6"><div class="hd"><h3>Plan actual</h3><button class="link" data-sheet="plan">Cambiar</button></div>
       <div class="planc" style="border-color:${p.color}"><div><span class="dotp" style="background:${p.color}"></span><b>${p.nombre}</b><div class="sub">${p.lema} · riesgo mensual ${p.riesgo}%</div></div><div style="text-align:right"><div style="font-size:22px;font-weight:800;color:${p.color}">+${p.objetivo}%</div><div class="sub">al mes · +${(p.objetivo*12).toFixed(0)}% al año</div></div></div>
-      <div style="display:grid;gap:10px;margin-top:16px;font-size:14px">${row("Titular",S.nombre)}${row("Nivel",`${nv.nombre} · ${nv.fee}% de la ganancia nueva`)}${row("Cuenta abierta",`${fecha(new Date(S.creado))} ${new Date(S.creado).getFullYear()}`)}${row("Custodia","Cuenta a su nombre")}${row("Mandato de la mesa","Operar, sin retirar")}</div></div>
+      <div style="display:grid;gap:10px;margin-top:16px;font-size:14px">${row("Titular",S.nombre)}${row("Nivel",nv.nombre)}${row("Comisión","Ninguna")}${row("Cuenta abierta",`${fecha(new Date(S.creado))} ${new Date(S.creado).getFullYear()}`)}${row("Custodia","Cuenta a su nombre")}${row("Mandato de la mesa","Operar, sin retirar")}</div></div>
     <div class="card c6"><div class="hd"><h3>Estados de cuenta</h3><span class="pill n">Mensuales</span></div>
       <ul class="list">${res.slice(0,5).map(r=>`<li><div class="kic b">${I(ICO.doc)}</div><div><div class="t">${Mes(r.mes)} ${r.anio}</div><div class="d">Resultado ${pct(r.pct)}</div></div><button class="link" data-sheet="doc">PDF</button></li>`).join("")}</ul></div>
     <div class="card c6"><div class="hd"><h3>Notificaciones</h3></div>${tog("resultados","Resultado mensual","Al cierre de cada mes",S.notif.resultados)}${tog("operaciones","Cada operación","Aviso en tiempo real",S.notif.operaciones)}${tog("freno","Freno de protección","Si la cuenta se acerca a su riesgo mensual",S.notif.freno)}</div>
@@ -497,14 +514,14 @@ const TEAM = (function(){
 let SORTK = "saldo", SORTD = -1, Q = "";
 function vResumen(){
   const cl = TEAM.clientes, aum = cl.reduce((a,c)=>a+c.saldo,0), res = cl.reduce((a,c)=>a+c.saldo*c.mes/100,0), resP = res/aum*100;
-  const com = cl.reduce((a,c)=>a + Math.max(0,c.saldo*c.mes/100)*nivelDe(c.saldo).fee/100, 0), nuevos = cl.filter(c=>c.estado==="Nuevo").length;
+  const pag = cl.reduce((a,c)=>a + Math.max(0,c.saldo*c.mes/100), 0), nuevos = cl.filter(c=>c.estado==="Nuevo").length;
   const top = [...cl].sort((a,b)=>b.saldo-a.saldo).slice(0,5);
   return `<div class="top"><div><h1>Resumen de la mesa</h1><p>Vista del equipo · datos de ejemplo.</p></div><span class="live"><span class="ldot ${estadoMesa().on?"on":""}"></span>${estadoMesa().on?"Mesa en sesión":"Fuera de sesión"}</span></div>
   <div class="grid g12">
     <div class="card c3">${kpi("b",ICO.cash,"Capital administrado",`<span data-count="${aum}" data-pre="$">$0</span>`,"En cuentas a nombre de cada cliente")}</div>
     <div class="card c3">${kpi("t",ICO.users,"Clientes",`${cl.length}`,`${cl.length-nuevos} activos · ${nuevos} nuevos`)}</div>
     <div class="card c3">${kpi(res>=0?"g":"r",ICO.trend,"Resultado del mes",`<span class="${res>=0?"g":"r"}">${pct(resP,2)}</span>`,`${sg(res)}${usd0(res)} en conjunto`)}</div>
-    <div class="card c3">${kpi("a",ICO.pctI,"Comisiones del mes",usd0(com),"Solo sobre ganancias nuevas")}</div>
+    <div class="card c3">${kpi("a",ICO.cash,"Rendimiento a clientes",usd0(pag),"Resultado positivo del mes, íntegro")}</div>
     <div class="card c8"><div class="hd"><h3>Crecimiento del capital administrado</h3><span class="pill g" id="aumPill"></span></div><div class="chart" id="chAum"></div></div>
     <div class="card c4"><div class="hd"><h3>Capital por plan</h3></div><div id="dnPlan"></div></div>
     <div class="card c6"><div class="hd"><h3>Clientes más grandes</h3><button class="link" data-go="clientes">Ver todos</button></div>
