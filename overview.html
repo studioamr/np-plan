@@ -7,13 +7,13 @@
 <meta name="description" content="NORTHPOINT Ideas: la revista de la mesa. Memos, blog y artículos sobre mercados, ahorro, patrimonio e inteligencia artificial, y el equipo que los escribe.">
 <meta property="og:title" content="NORTHPOINT Ideas">
 <meta property="og:description" content="La revista de la mesa: memos, blog y artículos del equipo de NORTHPOINT.">
-<meta property="og:image" content="img/academia.jpg">
+<meta property="og:image" content="img/np-memo-1.jpg">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="base.css?v=1790790233">
-<link rel="stylesheet" href="anim.css?v=1790790233">
+<link rel="stylesheet" href="base.css?v=1790808755">
+<link rel="stylesheet" href="anim.css?v=1790808755">
 <script>document.documentElement.classList.add("js-anim");setTimeout(function(){document.documentElement.classList.add("anim-ready")},3500)</script>
 <!--
   OVERVIEW v2 · 30-sep-2026 · "NORTHPOINT Ideas", formato revista (identidad propia, distinta a la landing):
@@ -114,7 +114,7 @@ nav{background:#0B0B0C!important}
 .memo .byline{margin-top:auto;padding-top:20px}
 
 .feat{display:grid;grid-template-columns:1fr 1fr;min-height:80vh}
-.feat .im{background:#111 center/cover no-repeat url(img/mesa.jpg)}
+.feat .im{background:#111 center/cover no-repeat url(img/np-ideas-mesa.jpg)}
 .feat .tx{background:#fff;padding:80px max(40px,calc((100vw - 1280px)/2 + 40px)) 80px 60px;display:flex;flex-direction:column;justify-content:center}
 .feat h3{font:400 clamp(34px,4vw,56px)/1.05 "Playfair Display",serif;color:var(--ink2);margin:14px 0 20px}
 .feat p{font:300 19px/1.6 "Source Serif 4",serif;color:#333}
@@ -249,31 +249,31 @@ const SEC = { mercados:"Mercados", ahorro:"Ahorro", ia:"IA y datos", patrimonio:
 const TIPO = { memo:"Memo", blog:"Blog", articulo:"Artículo" };
 // borradores escritos para el sitio (revisar con cada autor)
 const IDEAS = [
-  { tipo:"blog", sec:"ia", au:"andre", f:"26 de septiembre de 2026", img:"img/mesa.jpg",
+  { tipo:"blog", sec:"ia", au:"andre", f:"26 de septiembre de 2026", img:"img/np-ideas-ia.jpg",
     t:"Cómo usamos la inteligencia artificial en la mesa (y cómo no)", r:"La IA no adivina el mercado. Nos ayuda a revisar, filtrar y decir que no más rápido.",
     q:"La IA filtra; la persona decide y responde por la decisión.",
     c:["Hay una idea muy extendida de que la inteligencia artificial puede predecir hacia dónde va el precio. En la mesa la usamos para algo mucho más modesto y mucho más útil: revisar lo que hacemos.","Nuestros modelos leen el registro de cada operación en el Terminal y nos señalan patrones: a qué hora nos equivocamos más, qué condiciones repetimos antes de una buena operación y en qué días conviene no operar.","Lo que no hacemos es darle a un modelo la decisión final. La entrada, el tamaño y el riesgo los define el plan escrito de la sesión."] },
-  { tipo:"articulo", sec:"ahorro", au:"mesa", f:"24 de septiembre de 2026", img:"img/estratos.jpg",
+  { tipo:"articulo", sec:"ahorro", au:"mesa", f:"24 de septiembre de 2026", img:"img/np-ideas-fijo.jpg",
     t:"Por qué no prometemos un rendimiento fijo", r:"Un rendimiento fijo sobre un ahorro que se opera en el mercado es una promesa que nadie puede cumplir.",
     q:"El resultado de cada mes es el que salió: a veces positivo, a veces negativo.",
     c:["Los mercados no pagan lo mismo cada mes. Cualquiera que le prometa un porcentaje fijo sobre un dinero que se opera, o tiene una licencia bancaria y respalda ese pago con su propio capital, o está pagando rendimientos con el dinero de otros clientes.","En NORTHPOINT el resultado de cada mes es el que salió. Lo que sí comprometemos es el freno de protección de su plan y que usted vea cada operación en la app."] },
-  { tipo:"blog", sec:"ahorro", au:"pablo", f:"22 de septiembre de 2026", img:"img/hero.jpg",
+  { tipo:"blog", sec:"ahorro", au:"pablo", f:"22 de septiembre de 2026", img:"img/np-ideas-planes.jpg",
     t:"Tres planes, una misma disciplina", r:"Básico, Moderado y Agresivo no son tres mesas distintas: es la misma mesa buscando tres objetivos.",
     q:"Elegir plan es elegir un objetivo con su riesgo a la vista.",
     c:["Cada sesión empieza con un plan escrito. Lo que cambia entre planes no es la estrategia sino el tamaño y la frecuencia: el Básico solo entra en las operaciones más claras; el Agresivo participa en todas las sesiones con mayor exposición.","Cada plan arriesga lo mismo que busca ganar en el mes. Si el mes se complica y el saldo llega a ese riesgo, la mesa deja de operar esa cuenta hasta el mes siguiente."] },
-  { tipo:"articulo", sec:"ahorro", au:"mesa", f:"15 de septiembre de 2026", img:"img/privado.jpg",
+  { tipo:"articulo", sec:"ahorro", au:"mesa", f:"15 de septiembre de 2026", img:"img/np-ideas-custodia.jpg",
     t:"Custodia separada: su dinero nunca debería pasar por quien lo opera", r:"La separación entre quien custodia y quien opera es la protección más simple para cualquier ahorrador.",
     q:"La custodia separada no es un detalle técnico: es la primera pregunta que debe hacer.",
     c:["En NORTHPOINT usted abre su cuenta a su nombre en un intermediario regulado. La mesa recibe un mandato para operar, pero no para retirar ni transferir.","Si alguien le pide depositar en una cuenta a nombre de la persona o empresa que va a operar por usted, desconfíe."] },
-  { tipo:"articulo", sec:"disciplina", au:"gerardo", f:"12 de septiembre de 2026", img:"img/reloj.jpg",
+  { tipo:"articulo", sec:"disciplina", au:"gerardo", f:"12 de septiembre de 2026", img:"img/np-ideas-plan.jpg",
     t:"El plan escrito: la herramienta más subestimada del trading", r:"Si no está escrito antes de abrir, no es un plan: es una reacción.",
     q:"La subjetividad entra por las grietas del plan; por eso lo escribimos completo.",
     c:["Antes de cada sesión escribimos el mapa del día: niveles importantes, condiciones que buscamos y, sobre todo, qué tendría que pasar para no operar. Parece burocracia; es lo que separa una decisión de un impulso.","Durante la sesión el trabajo es simple: comparar lo que pasa con lo que está escrito. Si coincide, se ejecuta con el riesgo definido. Si no coincide, se espera."] },
-  { tipo:"blog", sec:"ahorro", au:"pablo", f:"8 de septiembre de 2026", img:"img/cien.jpg",
+  { tipo:"blog", sec:"ahorro", au:"pablo", f:"8 de septiembre de 2026", img:"img/np-ideas-cien.jpg",
     t:"Cien dólares: por qué empezar chico es la mejor forma de empezar", r:"El mejor momento para aprender cómo se comporta su ahorro es cuando todavía es pequeño.",
     q:"El tiempo y la constancia hacen más que el monto inicial.",
     c:["Mucha gente espera a tener una cantidad grande para empezar a invertir. El problema es que llega a ese momento sin saber cómo se siente un mes negativo, cómo funciona un freno de riesgo o cómo leer su propio estado de cuenta.","Empezar con cien dólares le permite aprender todo eso con poco en juego. Después, cada depósito se hace con conocimiento y no con fe."] },
-  { tipo:"articulo", sec:"disciplina", au:"mesa", f:"1 de septiembre de 2026", img:"img/ciudad.jpg",
+  { tipo:"articulo", sec:"disciplina", au:"mesa", f:"1 de septiembre de 2026", img:"img/np-ideas-freno.jpg",
     t:"Qué es el freno de protección y por qué existe", r:"Cada plan tiene un límite de pérdida mensual. Al llegar, la mesa deja de operar esa cuenta.",
     q:"Su función es que un mal mes no se convierta en un mal año.",
     c:["El freno de protección es la regla que dice cuánto puede perder una cuenta en un mes. En el plan Moderado, por ejemplo, el riesgo mensual es del 3%: si el saldo cae ese porcentaje, la mesa deja de operarlo hasta el mes siguiente.","El freno se aplica al cierre de cada operación y está en el contrato. Ante movimientos muy bruscos del mercado puede rebasarse ligeramente; por eso lo explicamos siempre."] }
@@ -299,7 +299,7 @@ function render(){
 }
 // ── memos REALES: northpointcapital.io/memos.html (captura en data/memos.json + lectura en vivo) ──
 const MEMOS_URL = "https://northpointcapital.io/memos.html";
-const FOTOS = ["img/academia.jpg","img/arte.jpg","img/mesa.jpg","img/estratos.jpg","img/ciudad.jpg","img/privado.jpg"];   // portadas propias (mismas que memo.html)
+const FOTOS = ["img/np-memo-1.jpg","img/np-memo-2.jpg","img/np-ideas-mesa.jpg","img/np-ideas-plan.jpg","img/np-ideas-fijo.jpg","img/np-ideas-ia.jpg"];   // portadas propias (mismas que memo.html)
 const slugDe = l => (l.match(/memos\/([^\/]+)\.html/)||[])[1] || "";
 function pintaMemos(ms){
   if(!ms || !ms.length) return;
@@ -369,7 +369,7 @@ render();
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="anim.js?v=1790790233"></script>
-<script src="menu.js?v=1790790233"></script>
+<script src="anim.js?v=1790808755"></script>
+<script src="menu.js?v=1790808755"></script>
 </body>
 </html>
