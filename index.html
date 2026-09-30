@@ -238,6 +238,24 @@ input:focus,select:focus{outline:none;border-bottom-color:var(--blue);border-bot
 .ok{display:none;color:var(--gain);font-size:15px}
 @media(max-width:900px){.registro .grid{grid-template-columns:1fr;gap:40px}}
 
+/* fundación */
+.fund{background:#F7F4EF}
+.fund-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:center}
+.fund-img{overflow:hidden;background:var(--navy)}
+.fund-img img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:72% center;display:block}
+.fund-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.pill-f{font:500 12px var(--sans);letter-spacing:.06em;color:var(--blue);border:1px solid var(--blue);padding:4px 10px}
+.fund h2{margin:16px 0 22px}
+.fund-prog{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px}
+.fp{background:#fff;padding:30px;border-top:3px solid var(--navy);transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s,border-color .35s}
+.fp:hover{transform:translateY(-6px);box-shadow:0 24px 40px -24px rgba(5,28,44,.3);border-top-color:var(--blue)}
+.fp-n{font:300 40px/1 var(--serif);color:#D5DAE3;margin-bottom:16px;transition:color .3s}
+.fp:hover .fp-n{color:var(--blue)}
+.fp h4{font:400 22px/1.3 var(--serif);color:var(--ink);margin-bottom:10px}
+.fund-cta{display:flex;justify-content:space-between;align-items:center;gap:32px;margin-top:40px;padding:28px 32px;background:var(--navy);color:#fff}
+.fund-cta p{max-width:720px;opacity:.9}
+@media(max-width:900px){.fund-grid,.fund-prog{grid-template-columns:1fr;gap:32px}.fund-cta{flex-direction:column;align-items:flex-start}}
+
 /* oficinas + footer */
 .oficinas .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;margin-top:40px}
 .oficinas h4{font:400 22px var(--serif);color:var(--ink);margin-bottom:12px}
@@ -256,7 +274,7 @@ footer b{color:#fff;font-weight:500}
 <nav><div class="wrap">
   <a class="mark" href="#">NORTHPOINT</a>
   <div class="links">
-    <a href="#como">Cómo funciona</a><a href="#app">La app</a><a href="#mesa">La mesa</a><a href="#perfiles">Planes</a><a href="#niveles">Niveles</a><a href="#perspectivas">Perspectivas</a>
+    <a href="#como">Cómo funciona</a><a href="#app">La app</a><a href="#mesa">La mesa</a><a href="#perfiles">Planes</a><a href="#niveles">Niveles</a><a href="#perspectivas">Perspectivas</a><a href="#fundacion">Fundación</a>
     <a href="app.html">Ver la app</a>
     <a class="btn" href="#registro">Apartar lugar</a>
   </div>
@@ -414,6 +432,26 @@ footer b{color:#fff;font-weight:500}
     <button class="btn" type="submit" style="justify-self:start;margin-top:8px">Apartar mi lugar</button>
     <div class="ok" id="ok">Gracias. Su registro quedó guardado y le contactaremos por WhatsApp.</div>
   </form>
+</div></section>
+
+<section class="fund" id="fundacion"><div class="wrap">
+  <div class="fund-grid">
+    <div class="fund-img"><img src="img/fundacion.jpg" alt="Niño sonriendo en la puerta de su casa, en blanco y negro" loading="lazy"></div>
+    <div>
+      <div class="fund-top"><span class="eyebrow">Fundación NORTHPOINT</span><span class="pill-f">En formación</span></div>
+      <h2 class="serif">Ningún niño debería enfrentar la leucemia sin su familia al lado.</h2>
+      <p class="lead">La leucemia es el cáncer más común en la infancia, y en México muchas familias viajan cientos de kilómetros y dejan de trabajar para que sus hijos reciban tratamiento. La Fundación NORTHPOINT nace para acompañarlas.</p>
+    </div>
+  </div>
+  <div class="fund-prog">
+    <div class="fp"><div class="fp-n">01</div><h4>Una parte de cada resultado</h4><p>Una parte de la comisión que cobra la mesa se destina a la fundación, mes con mes. Cuando nuestros clientes ganan, un niño también gana.</p></div>
+    <div class="fp"><div class="fp-n">02</div><h4>Familias acompañadas</h4><p>Apoyo para transporte, hospedaje y alimentos durante el tratamiento, para que ningún niño lo interrumpa por falta de recursos.</p></div>
+    <div class="fp"><div class="fp-n">03</div><h4>Cuentas claras</h4><p>Cada peso recibido y entregado se publicará en esta página, con fecha y comprobante. La misma transparencia que pedimos para su ahorro.</p></div>
+  </div>
+  <div class="fund-cta">
+    <p>Estamos constituyendo la fundación y eligiendo a los hospitales y organizaciones con los que trabajaremos. Si quiere sumarse como aliado, voluntario o donante, escríbanos.</p>
+    <a class="btn" id="fundBtn" href="#contacto">Quiero ayudar</a>
+  </div>
 </div></section>
 
 <section class="oficinas" id="contacto"><div class="wrap">
@@ -609,6 +647,9 @@ $("#form").addEventListener("submit", e => {
   };
   tick(); setInterval(tick, 30000);
 })();
+
+// botón de la fundación: WhatsApp si ya está configurado
+(function(){ const b = document.getElementById("fundBtn"); if(b && CONFIG.whatsapp){ b.href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent("Hola, quiero ayudar a la Fundación NORTHPOINT (niños con leucemia).")}`; b.target = "_blank"; } })();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>

@@ -109,7 +109,7 @@
     if(e.closest(".hero")) return;
     gsap.from(e, { opacity: 0, letterSpacing: "0.5em", duration: 1.1, ease: EASE, scrollTrigger: { trigger: e, start: "top 90%" } });
   });
-  $$(".sec-head p, .appsec .lead, .mesa .lead, .comp p, .registro p, .anuncio p, .anuncio .btn, .banda .btn, .mesa .link").forEach(p =>
+  $$(".fund .lead, .sec-head p, .appsec .lead, .mesa .lead, .comp p, .registro p, .anuncio p, .anuncio .btn, .banda .btn, .mesa .link").forEach(p =>
     gsap.from(p, { y: 28, opacity: 0, duration: 1, ease: EASE, scrollTrigger: { trigger: p, start: "top 90%" } }));
 
   // ── 7. "Cómo funciona": sección fija mientras avanzan los 4 pasos ──
@@ -170,6 +170,11 @@
   stagger("#perfilesGrid", { y: 80, opacity: 0, rotateX: 12, transformPerspective: 900 });
   stagger("#nivelesGrid", { y: 80, opacity: 0 });
   stagger("#cards", { y: 60, opacity: 0 });
+  stagger(".fund-prog", { y: 70, opacity: 0 });
+  const fimg = $(".fund-img img");
+  if(fimg) gsap.fromTo(fimg, { scale: 1.25, yPercent: -6 }, { scale: 1, yPercent: 6, ease: "none", scrollTrigger: { trigger: ".fund-img", start: "top bottom", end: "bottom top", scrub: true } });
+  const fcta = $(".fund-cta");
+  if(fcta) gsap.from(fcta, { y: 50, opacity: 0, duration: 1, ease: EASE, scrollTrigger: { trigger: fcta, start: "top 90%" } });
   $$(".perfil .obj").forEach(el => {
     const m = el.textContent.match(/([+−-]?)(\d+(?:\.\d+)?)%/); if(!m) return;
     const end = parseFloat(m[2]), dec = (m[2].split(".")[1]||"").length, o = { v: 0 };
