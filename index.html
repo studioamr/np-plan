@@ -475,7 +475,7 @@ $("#perfilesGrid").innerHTML = CONFIG.perfiles.map(p => `
     <div class="riesgo" aria-label="Nivel de riesgo ${p.nivel} de 5">${[1,2,3,4,5].map(i=>`<i class="${i<=p.nivel?"on":""}"></i>`).join("")}<span>Riesgo ${p.nivel} de 5</span></div>
     <p class="ideal">${p.ideal}</p>
     <dl>
-      <div><dt>Objetivo al año</dt><dd>+${(Math.pow(1+p.objetivo/100,12)*100-100).toFixed(0)}% compuesto</dd></div>
+      <div><dt>Objetivo al año</dt><dd>+${+(p.objetivo*12).toFixed(1)}% (${p.objetivo}% × 12)</dd></div>
       <div><dt>Riesgo mensual</dt><dd>${p.riesgo}%</dd></div>
       <div><dt>Horizonte sugerido</dt><dd>${p.horizonte}</dd></div>
       <div><dt>Actividad de la mesa</dt><dd>${p.freq}</dd></div>

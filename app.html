@@ -393,7 +393,8 @@ const sgn = n => n>=0 ? "+" : "";
 const perfilDe = id => CONFIG.perfiles.find(p=>p.id===id) || CONFIG.perfiles[1];
 const nivelDe = s => CONFIG.niveles.slice().reverse().find(q => s >= q.min) || CONFIG.niveles[0];
 const fechaTxt = d => `${d.getDate()} ${MESES[d.getMonth()].slice(0,3)}`;
-const anual = p => (Math.pow(1+p.objetivo/100,12)*100-100).toFixed(0);
+// objetivo anual SIMPLE (mensual × 12, sin interés compuesto), como lo pidió André
+const anual = p => +(p.objetivo*12).toFixed(1);
 
 // ── estado ──
 let S = null;
@@ -656,7 +657,7 @@ function onboarding(){
         $("#next").disabled = v < CONFIG.minimo;
         $("#oProy").innerHTML = `<div class="row"><span class="lbl">Plan ${p.nombre} · <span class="o">${nv.nombre}</span></span><span class="sub" style="margin:0">comisión <b class="o">${nv.fee}%</b></span></div>
           <div class="row" style="margin-top:12px;align-items:flex-end"><div><div class="sub" style="margin:0">Si cumple el objetivo, al mes</div><div class="stat num g">+${usd(v*neto)}</div></div>
-          <div style="text-align:right"><div class="sub" style="margin:0">En un año</div><div class="stat num b">+${usd(v*(Math.pow(1+neto,12)-1),0)}</div></div></div>
+          <div style="text-align:right"><div class="sub" style="margin:0">En un año</div><div class="stat num b">+${usd(v*neto*12,0)}</div></div></div>
           <p class="fine">Ya descontada la comisión. Es una meta, no una garantía.</p>`; };
       a.oninput = upd; In.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{ a.value=b.dataset.q; upd(); }); upd();
     }
