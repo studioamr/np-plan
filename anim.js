@@ -16,6 +16,7 @@
   let lenis = null;
   if(window.Lenis){
     lenis = new Lenis({ lerp: 0.14, smoothWheel: true, wheelMultiplier: 1 });
+    window.__lenis = lenis;   // para pruebas
     lenis.on("scroll", ScrollTrigger.update);
     gsap.ticker.add(t => lenis.raf(t * 1000));
     gsap.ticker.lagSmoothing(0);
