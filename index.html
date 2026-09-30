@@ -290,7 +290,7 @@ footer .mark{color:#fff;display:block;margin-bottom:24px}
 footer p{max-width:900px;margin-bottom:12px}
 footer b{color:#fff;font-weight:500}
 </style>
-<link rel="stylesheet" href="anim.css?v=1790789613">
+<link rel="stylesheet" href="anim.css?v=1790789927">
 <script>document.documentElement.classList.add("js-anim");setTimeout(function(){document.documentElement.classList.add("anim-ready")},3500)</script>
 </head>
 <body>
@@ -305,7 +305,13 @@ footer b{color:#fff;font-weight:500}
 
 <header class="hero" id="top">
   <div class="hs-stage">
-    <div class="hs hs-cien" data-i="0"><div class="hs-bg cien-bg"></div>
+    <div class="hs" data-i="0"><div class="hs-bg" style="background-image:url(img/hero.jpg)"></div><div class="wrap"><div class="box">
+      <div class="eyebrow">Bienvenido a</div>
+      <h1 class="serif">NORTHPOINT</h1>
+      <p class="lead">Somos una mesa de trading profesional que ayuda a personas de todo México a <a class="ul" href="#como">hacer que su ahorro trabaje</a>. Usted guarda su dinero, lo ve en la app y cada mes recibe el resultado de nuestra operación, dentro del riesgo que decide asumir.</p>
+      <a class="btn" href="#perfiles">Ver los planes</a>
+    </div></div></div>
+    <div class="hs hs-cien" data-i="1"><div class="hs-bg cien-bg"></div>
       <div class="devs" aria-hidden="true">
         <div class="mac"><div class="mac-scr"><img src="img/app-desk.jpg" alt=""></div><div class="mac-base"></div></div>
         <div class="iph"><i class="ib ib1"></i><i class="ib ib2"></i><i class="ib ib3"></i><i class="ib ib4"></i><div class="iph-bz"><div class="iph-in"><img src="img/app-cel.jpg" alt=""><span class="iph-isl"></span></div></div></div>
@@ -314,12 +320,6 @@ footer b{color:#fff;font-weight:500}
       <h2 class="serif">Empiece a ahorrar con $100 dólares.</h2>
       <p class="lead">Sin mensualidades ni plazos forzosos. Abra su cuenta, elija su plan y vea en la app cómo trabaja su ahorro cada mes. Deposite más cuando quiera y retire cuando lo necesite.</p>
       <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn" href="#registro">Apartar mi lugar</a><a class="btn line inv" href="#perfiles">Ver los planes</a></div>
-    </div></div></div>
-    <div class="hs" data-i="1"><div class="hs-bg" style="background-image:url(img/hero.jpg)"></div><div class="wrap"><div class="box">
-      <div class="eyebrow">Bienvenido a</div>
-      <h1 class="serif">NORTHPOINT</h1>
-      <p class="lead">Somos una mesa de trading profesional que ayuda a personas de todo México a <a class="ul" href="#como">hacer que su ahorro trabaje</a>. Usted guarda su dinero, lo ve en la app y cada mes recibe el resultado de nuestra operación, dentro del riesgo que decide asumir.</p>
-      <a class="btn" href="#perfiles">Ver los planes</a>
     </div></div></div>
     <div class="hs" data-i="2"><div class="hs-bg" style="background-image:url(img/privado.jpg);background-position:center"></div><div class="wrap"><div class="box">
       <div class="hs-k"><span>NORTHPOINT Privado</span></div>
@@ -339,7 +339,7 @@ footer b{color:#fff;font-weight:500}
       <p class="lead">Trading, inteligencia artificial aplicada a mercados y finanzas: clases a su ritmo y programas con certificado, enseñados por la mesa.</p>
       <a class="btn line inv" href="academia.html">Ver la academia</a>
     </div></div></div>
-    <div class="hs hs-nexus" data-i="5" data-href="https://nexus-digital-production.up.railway.app/"><div class="hs-bg" style="background-image:url(img/nexus.jpg?v=1790789613);background-position:60% center"></div>
+    <div class="hs hs-nexus" data-i="5" data-href="https://nexus-digital-production.up.railway.app/"><div class="hs-bg" style="background-image:url(img/nexus.jpg?v=1790789927);background-position:60% center"></div>
       <div class="wrap"><div class="box">
       <div class="hs-k"><span>Nexus NORTHPOINT</span><span class="hs-pill">Auditoría digital</span></div>
       <h2 class="serif">¿Su negocio se ve como debería en internet?</h2>
@@ -354,8 +354,8 @@ footer b{color:#fff;font-weight:500}
     </div></div></div>
   </div>
   <div class="hs-index" aria-label="Divisiones de NORTHPOINT">
-    <button data-i="0" class="on"><span>Desde $100</span><i><em></em></i></button>
-    <button data-i="1"><span>Ahorro</span><i><em></em></i></button>
+    <button data-i="0" class="on"><span>Ahorro</span><i><em></em></i></button>
+    <button data-i="1"><span>Desde $100</span><i><em></em></i></button>
     <button data-i="2"><span>Privado</span><i><em></em></i></button>
     <button data-i="3"><span>Activos</span><i><em></em></i></button>
     <button data-i="4"><span>Academia</span><i><em></em></i></button>
@@ -363,8 +363,14 @@ footer b{color:#fff;font-weight:500}
     <button data-i="6"><span>Fundación</span><i><em></em></i></button>
   </div>
   <div class="hs-arrows"><button type="button" data-d="-1" aria-label="Anterior">←</button><button type="button" data-d="1" aria-label="Siguiente">→</button></div>
-  <button class="hs-next" type="button" id="hsNext" aria-label="Ver la siguiente sección"><span class="c" id="hsCount">1 / 7</span><span class="t"><small>Siguiente</small><b id="hsName">Ahorro</b></span><i aria-hidden="true">→</i></button>
+  <div class="hs-cue">Siga bajando<i></i></div>
 </header>
+
+<section class="pregunta" id="pregunta"><div class="wrap">
+  <p class="pq-k">Antes de seguir</p>
+  <h2 class="pq-t">¿Cuánto tiempo más va a dejar su ahorro sin trabajar?</h2>
+  <a class="pq-l" href="#como">Vea cómo funciona <span>↓</span></a>
+</div></section>
 
 <section class="intro"><div class="wrap">
   <p class="lead serif" style="font-weight:300">Creemos que un ahorro no debería quedarse quieto. Por eso ponemos la disciplina de una mesa institucional al servicio de cualquier saldo, desde cien dólares, con un freno de protección en cada plan y transparencia total sobre cada operación.</p>
@@ -405,7 +411,7 @@ footer b{color:#fff;font-weight:500}
     </ul>
   </div>
   <div>
-    <div class="iphone"><div class="iph-screen"><iframe src="app.html?muestra=1&v=1790789613" title="Demo de la app NORTHPOINT" loading="lazy"></iframe><div class="iph-island"></div></div></div>
+    <div class="iphone"><div class="iph-screen"><iframe src="app.html?muestra=1&v=1790789927" title="Demo de la app NORTHPOINT" loading="lazy"></iframe><div class="iph-island"></div></div></div>
     <span class="demo">Pruébela aquí: es la app real en modo demostración, sin dinero real. <a class="link" href="app.html" style="font-size:13px">Abrir en pantalla completa</a></span>
   </div>
 </div></section>
@@ -764,7 +770,7 @@ $("#form").addEventListener("submit", e => {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="anim.js?v=1790789613"></script>
-<script src="menu.js?v=1790789613"></script>
+<script src="anim.js?v=1790789927"></script>
+<script src="menu.js?v=1790789927"></script>
 </body>
 </html>

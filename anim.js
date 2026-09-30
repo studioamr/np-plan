@@ -68,11 +68,10 @@
     // tocar una división abre su página (si no fue un arrastre)
     let downX = 0;
     stage.addEventListener("pointerdown", e => downX = e.clientX);
-    slides.forEach(sl => { if(!sl.dataset.href) return; sl.style.cursor = "pointer";
-      sl.addEventListener("click", e => { if(e.target.closest("a,button") || Math.abs(e.clientX - downX) > 8) return;
-        const u = sl.dataset.href; u.startsWith("http") ? window.open(u, "_blank", "noopener") : location.href = u; }); });
+    // (ya no se abre la página al tocar cualquier parte de la diapositiva: con la portada fija, un toque para frenar el scroll la abría sin querer; cada una tiene su botón)
     let cur = 0, auto = null, userTouched = false;
-    const go = i => { i = (i + n) % n; stage.scrollTo({ left: i * stage.clientWidth, behavior: "smooth" }); };
+    const go = i => { i = Math.max(0, Math.min(n - 1, i)); const y = PIN.start + (PIN.end - PIN.start) * i / (n - 1);   // ir a una división = bajar hasta su lugar
+      lenis ? lenis.scrollTo(y, { duration: 1.1 }) : scrollTo({ top: y, behavior: "smooth" }); };
     const enter = s => { gsap.fromTo([...$(".box", s).children], { y: 50, opacity: 0 }, { y: 0, opacity: 1, stagger: .07, duration: .8, ease: EASE, overwrite: true });
                          gsap.fromTo($(".hs-bg", s), { scale: 1.15 }, { scale: 1, duration: 1.8, ease: "power2.out", overwrite: "auto" }); };
     const mark = () => {
@@ -90,11 +89,17 @@
       const em = $("em", idx[cur]);
       auto = gsap.fromTo(em, { scaleX: 0 }, { scaleX: 1, duration: 7, ease: "none", onComplete: () => { go(cur + 1); gsap.delayedCall(.9, run); } });
     };
-    gsap.delayedCall(2, run);
+    // la portada se queda fija y el scroll vertical pasa de una división a otra; al terminar la última, sigue la página
+    stage.classList.add("pinned");
+    const PIN = ScrollTrigger.create({
+      trigger: hero, start: "top top", end: () => "+=" + (n - 1) * innerHeight, pin: true, anticipatePin: 1, invalidateOnRefresh: true,
+      snap: { snapTo: 1 / (n - 1), duration: { min: .3, max: .8 }, delay: .06, ease: "power2.inOut" },
+      onUpdate: self => { stage.scrollLeft = self.progress * (n - 1) * stage.clientWidth; }
+    });
     ["wheel", "touchstart", "pointerdown", "keydown"].forEach(ev => stage.addEventListener(ev, e => { if(ev !== "wheel" || Math.abs(e.deltaX) > Math.abs(e.deltaY)) stop(); }, { passive: true }));
     // arrastrar con el mouse
     let dragX = null, startL = 0;
-    stage.addEventListener("pointerdown", e => { if(e.pointerType !== "mouse" || e.target.closest("a,button")) return; dragX = e.clientX; startL = stage.scrollLeft; stage.classList.add("drag"); });
+    stage.addEventListener("pointerdown", e => { if(stage.classList.contains("pinned") || e.pointerType !== "mouse" || e.target.closest("a,button")) return; dragX = e.clientX; startL = stage.scrollLeft; stage.classList.add("drag"); });
     addEventListener("pointermove", e => { if(dragX === null) return; stage.scrollLeft = startL - (e.clientX - dragX); });
     addEventListener("pointerup", () => { if(dragX === null) return; const f = stage.scrollLeft / stage.clientWidth, d = f - Math.floor(f);
       stage.classList.remove("drag"); dragX = null; go(stage.scrollLeft > startL ? (d > .15 ? Math.ceil(f) : Math.floor(f)) : (d < .85 ? Math.floor(f) : Math.ceil(f))); });
