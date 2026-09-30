@@ -90,6 +90,7 @@ nav .links a:hover{opacity:1}
 /* la mesa */
 .mesa{background:var(--gray)}
 .mesa .feature{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;align-items:center}
+.mesa .feature.solo{grid-template-columns:1fr;max-width:860px}
 .mesa .feature img{width:100%;aspect-ratio:16/10;object-fit:cover;background:var(--navy)}
 .mesa .feature h2{margin:12px 0 20px}
 .roles{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:72px}
@@ -223,6 +224,8 @@ footer .mark{color:#fff;display:block;margin-bottom:24px}
 footer p{max-width:900px;margin-bottom:12px}
 footer b{color:#fff;font-weight:500}
 </style>
+<link rel="stylesheet" href="anim.css">
+<script>document.documentElement.classList.add("js-anim");setTimeout(function(){document.documentElement.classList.add("anim-ready")},3500)</script>
 </head>
 <body>
 
@@ -235,7 +238,7 @@ footer b{color:#fff;font-weight:500}
   </div>
 </div></nav>
 
-<header class="hero"><div class="wrap"><div class="box">
+<header class="hero"><div class="hero-bg" aria-hidden="true"></div><div class="wrap"><div class="box">
   <div class="eyebrow">Bienvenido a</div>
   <h1 class="serif">NORTHPOINT</h1>
   <p class="lead">Somos una mesa de trading profesional que ayuda a personas de todo México a <a class="ul" href="#como">hacer que su ahorro trabaje</a>. Usted guarda su dinero, lo ve en la app y cada mes recibe el resultado de nuestra operación, dentro del riesgo que decide asumir.</p>
@@ -245,6 +248,8 @@ footer b{color:#fff;font-weight:500}
   <p class="lead serif" style="font-weight:300">Creemos que un ahorro no debería quedarse quieto. Por eso ponemos la disciplina de una mesa institucional al servicio de cualquier saldo, desde cien dólares, con un freno de protección en cada plan y transparencia total sobre cada operación.</p>
   <p class="lead">Durante años, la gestión profesional estuvo reservada para grandes patrimonios. Nuestro compromiso es abrirla a quien quiera empezar, sin montos mínimos inalcanzables, sin plazos forzosos y sin letras pequeñas.</p>
 </div></section>
+
+<div class="ticker" aria-hidden="true"><div class="ticker-track"><span>Custodia a su nombre</span><span>Freno de protección en cada plan</span><span>Desde $100 USD</span><span>Retiros cuando quiera</span><span>Cada operación visible</span><span>Sin cuota fija</span><span>Custodia a su nombre</span><span>Freno de protección en cada plan</span><span>Desde $100 USD</span><span>Retiros cuando quiera</span><span>Cada operación visible</span><span>Sin cuota fija</span></div></div>
 
 <div class="anuncio"><div class="wrap">
   <h3 class="serif">Presentamos la app de ahorro NORTHPOINT, desde $100 USD</h3>
@@ -284,8 +289,7 @@ footer b{color:#fff;font-weight:500}
 </div></section>
 
 <section class="mesa" id="mesa"><div class="wrap">
-  <div class="feature">
-    <img src="img/mesa.jpg" alt="Oficina de la mesa de trading al anochecer" loading="lazy">
+  <div class="feature solo">
     <div>
       <div class="eyebrow">La mesa</div>
       <h2 class="serif">Disciplina con propósito</h2>
@@ -565,5 +569,9 @@ $("#form").addEventListener("submit", e => {
   $("#ok").style.display = "block"; e.target.reset(); setPerfil(state.perfil);
 });
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="anim.js"></script>
 </body>
 </html>
