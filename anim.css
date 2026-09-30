@@ -136,3 +136,24 @@ html.cur-out .cur-dot,html.cur-out .cur-ring{opacity:0}
   .phero .wrap{padding-bottom:56px!important}
   .phero h1{font-size:34px!important}
 }
+
+/* menú (botón + panel) bajo 1240px, cuando los enlaces del nav se esconden */
+.menu-btn{display:none;width:44px!important;height:44px!important;min-width:44px;padding:0!important;border:0;background:none;color:#fff;cursor:pointer;position:relative;flex:0 0 44px;margin-left:-12px}
+.menu-btn i{position:absolute;left:11px;right:11px;height:1.5px;background:currentColor;transition:transform .35s cubic-bezier(.2,.7,.2,1),top .35s}
+.menu-btn i:first-child{top:17px}.menu-btn i:last-child{top:26px}
+html.menu-on .menu-btn i:first-child{top:21.5px;transform:rotate(45deg)}
+html.menu-on .menu-btn i:last-child{top:21.5px;transform:rotate(-45deg)}
+.menu-panel{position:fixed;inset:0;z-index:19;background:rgba(5,28,44,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;overflow:auto}
+html.menu-on .menu-panel{opacity:1;visibility:visible}
+html.menu-on,html.menu-on body{overflow:hidden}
+html.menu-on nav{transform:none!important;background:transparent!important;backdrop-filter:none!important}
+.menu-in{display:flex;flex-direction:column;padding:110px 24px 40px;gap:4px}
+.menu-in a{color:#fff;text-decoration:none;font:300 30px/1.2 var(--serif);padding:12px 0;border-bottom:1px solid rgba(255,255,255,.12);opacity:0;transform:translateY(14px);transition:opacity .4s,transform .4s}
+html.menu-on .menu-in a{opacity:1;transform:none}
+html.menu-on .menu-in a:nth-child(2){transition-delay:.04s}html.menu-on .menu-in a:nth-child(3){transition-delay:.08s}html.menu-on .menu-in a:nth-child(4){transition-delay:.12s}html.menu-on .menu-in a:nth-child(5){transition-delay:.16s}html.menu-on .menu-in a:nth-child(6){transition-delay:.2s}html.menu-on .menu-in a:nth-child(7){transition-delay:.24s}html.menu-on .menu-in a:nth-child(8){transition-delay:.28s}
+.menu-in a.btn{margin-top:26px;border:0;font:500 16px var(--sans);text-align:center;padding:16px;background:var(--blue)}
+@media(max-width:1240px){
+  .menu-btn{display:block}
+  nav .wrap{gap:14px}
+  nav .links{margin-left:auto}
+}
