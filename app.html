@@ -265,7 +265,7 @@ const CONFIG = {
   ],
   niveles: [ { nombre:"Inicial", min:100 }, { nombre:"Plus", min:1000 }, { nombre:"Privado", min:10000 } ],   // sin comisión: el resultado del mes es todo del cliente
   traders: ["André Macouzet", "Pablo Ochoa", "Gerardo Andaluz"],
-  KEY: "np-app-v7", minimo: 100
+  KEY: "np-app-v8", minimo: 100
 };
 const MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
@@ -296,7 +296,7 @@ const ICO = {
 // ═════════════ estado ═════════════
 const MUESTRA = new URLSearchParams(location.search).has("muestra");
 try{ if(window.top !== window.self) document.documentElement.classList.add("emb"); }catch(_){ document.documentElement.classList.add("emb"); }
-if(MUESTRA) CONFIG.KEY = "np-app-v7-muestra";
+if(MUESTRA) CONFIG.KEY = "np-app-v8-muestra";
 let S = null, MODE = "cliente", VIEW = "inicio";
 const load = () => { try{ S = JSON.parse(localStorage.getItem(CONFIG.KEY)); }catch(_){ S = null; } };
 // CÁMARA RÁPIDA (?timelapse=1, el iPhone de la landing): el reloj de la app se mueve 12 meses en 10 s y vuelve a empezar
@@ -329,6 +329,14 @@ function crearCuenta(nombre, plan, monto, seed){
     notif:{ resultados:true, operaciones:false, freno:true }, dosPasos:false };
   save();
 }
+// la cuenta de ejemplo se ajusta para que el saldo de hoy sea exactamente DEMO_SALDO
+const DEMO_SALDO = 1285;
+function demo(){ crearCuenta("Mariana López","mod",1000,20260929);
+  const k = DEMO_SALDO / (S.movs.reduce((a,m)=>a+m.monto,0) + S.ops.reduce((a,o)=>a+o.monto,0));
+  S.movs.forEach(m => { m.monto = Math.round(m.monto*k*100)/100; }); S.ops.forEach(o => { o.monto = Math.round(o.monto*k*100)/100; });
+  const dif = DEMO_SALDO - (S.movs.reduce((a,m)=>a+m.monto,0) + S.ops.reduce((a,o)=>a+o.monto,0)); S.movs[0].monto = Math.round((S.movs[0].monto + dif)*100)/100;
+  S.metas = [ { nombre:"Viaje a Europa", objetivo:3000, color:"#2251FF" }, { nombre:"Fondo de emergencia", objetivo:1500, color:"#12A150" } ];
+  save(); }
 const opsMes = () => S.ops.reduce((a,o)=>a+o.monto,0);
 const saldo = () => S.movs.reduce((a,m)=>a+m.monto,0) + opsMes();
 const depositado = () => S.movs.filter(m=>m.tipo==="dep"||m.tipo==="ret").reduce((a,m)=>a+m.monto,0);
@@ -679,7 +687,7 @@ function welcome(){
       <label class="field">Monto inicial (USD)<input id="mt" inputmode="decimal" value="${O.monto}"></label>
       <div class="btns" style="margin-top:18px"><button class="btn btn-w" id="next">Abrir mi cuenta demo</button><button class="btn btn-gl" id="back">Atrás</button></div>`;
     const d = $("#demo"), c = $("#crear"), n = $("#next"), bk = $("#back");
-    if(d) d.onclick = () => { crearCuenta("Mariana López","mod",12400,20260929); finish(); };
+    if(d) d.onclick = () => { demo(); finish(); };
     if(c) c.onclick = () => { O.paso = 1; paint(); };
     if(bk) bk.onclick = () => { O.paso--; paint(); };
     b.querySelectorAll("[data-pl]").forEach(x=>x.onclick=()=>{ O.plan = x.dataset.pl; b.querySelectorAll("[data-pl]").forEach(y=>y.classList.toggle("on", y===x)); });
@@ -695,7 +703,7 @@ function welcome(){
 // ═════════════ arranque ═════════════
 load();
 // abre directo en el dashboard con la cuenta de ejemplo; la bienvenida queda en Cuenta → "Crear mi propia cuenta demo"
-if(!S || !S.movs){ crearCuenta("Mariana López","mod",12400,20260929); setMode("cliente"); }
+if(!S || !S.movs){ demo(); setMode("cliente"); }
 else { let st = ["cliente","inicio"]; try{ st = (sessionStorage.getItem("np6")||"cliente|inicio").split("|"); }catch(_){}
   MODE = NAV[st[0]] ? st[0] : "cliente"; go(VIEWS[st[1]] && NAV[MODE].some(x=>x[0]===st[1]) ? st[1] : NAV[MODE][0][0]); }
 if(TL) (function(){
