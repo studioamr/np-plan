@@ -111,7 +111,13 @@ nav .links a:hover{opacity:1}
 .perfil{border:1px solid var(--line);padding:32px;cursor:pointer;transition:border-color .2s,box-shadow .2s;background:#fff}
 .perfil:hover{border-color:var(--ink)}
 .perfil.on{border-color:var(--blue);box-shadow:inset 0 4px 0 var(--blue)}
-.perfil .tope{font:300 64px/1 var(--serif);color:var(--ink);margin:24px 0 6px}
+.perfil .obj{font:300 64px/1 var(--serif);color:var(--gain);margin:22px 0 6px}
+.perfil .cap{margin-bottom:18px}
+.riesgo{display:flex;align-items:center;gap:5px}
+.riesgo i{width:26px;height:6px;background:var(--gray)}
+.riesgo i.on{background:var(--blue)}
+.riesgo span{font-size:13px;color:var(--muted);margin-left:10px}
+.perfil .ideal{margin-top:18px;font-size:15px;min-height:48px}
 .perfil .cap{font-size:14px;color:var(--muted)}
 .perfil dl{margin-top:28px}
 .perfil dl div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-top:1px solid var(--line);font-size:15px}
@@ -239,7 +245,8 @@ footer b{color:#fff;font-weight:500}
 <nav><div class="wrap">
   <a class="mark" href="#">NORTHPOINT</a>
   <div class="links">
-    <a href="#como">Cómo funciona</a><a href="#app">La app</a><a href="#mesa">La mesa</a><a href="#perfiles">Perfiles</a><a href="#niveles">Niveles</a><a href="#perspectivas">Perspectivas</a>
+    <a href="#como">Cómo funciona</a><a href="#app">La app</a><a href="#mesa">La mesa</a><a href="#perfiles">Planes</a><a href="#niveles">Niveles</a><a href="#perspectivas">Perspectivas</a>
+    <a href="app.html">Ver la app</a>
     <a class="btn" href="#registro">Apartar lugar</a>
   </div>
 </div></nav>
@@ -251,14 +258,14 @@ footer b{color:#fff;font-weight:500}
 </div></div></header>
 
 <section class="intro"><div class="wrap">
-  <p class="lead serif" style="font-weight:300">Creemos que un ahorro no debería quedarse quieto. Por eso ponemos la disciplina de una mesa institucional al servicio de cualquier saldo, desde cien dólares, con límites de pérdida que se respetan y transparencia total sobre cada operación.</p>
+  <p class="lead serif" style="font-weight:300">Creemos que un ahorro no debería quedarse quieto. Por eso ponemos la disciplina de una mesa institucional al servicio de cualquier saldo, desde cien dólares, con un freno de protección en cada plan y transparencia total sobre cada operación.</p>
   <p class="lead">Durante años, la gestión profesional estuvo reservada para grandes patrimonios. Nuestro compromiso es abrirla a quien quiera empezar, sin montos mínimos inalcanzables, sin plazos forzosos y sin letras pequeñas.</p>
 </div></section>
 
 <div class="anuncio"><div class="wrap">
   <h3 class="serif">Presentamos la app de ahorro NORTHPOINT, desde $100 USD</h3>
   <p>Abra su cuenta con cien dólares, siga su saldo en la app y vea cada mes lo que generó. Deposite más o retire cuando quiera.</p>
-  <a class="btn line" href="#app">Conozca la app</a>
+  <a class="btn line" href="app.html">Pruebe la app</a>
 </div></div>
 
 <section id="como"><div class="wrap">
@@ -268,9 +275,9 @@ footer b{color:#fff;font-weight:500}
   </div>
   <div class="pasos">
     <div class="paso"><div class="n">01</div><h3>Abra su cuenta</h3><p>Desde $100 USD, a su nombre, en el intermediario regulado con el que trabajamos. Solo usted puede retirar.</p></div>
-    <div class="paso"><div class="n">02</div><h3>Elija su perfil</h3><p>El perfil define cuánto puede bajar su saldo en un mes. Es la única decisión que tiene que tomar.</p></div>
+    <div class="paso"><div class="n">02</div><h3>Elija su plan</h3><p>Básico, Moderado o Agresivo: cada plan tiene su objetivo mensual. Es la única decisión que tiene que tomar.</p></div>
     <div class="paso"><div class="n">03</div><h3>Deje trabajar su ahorro</h3><p>La mesa opera su saldo. Deposite más cuando quiera y retire cuando lo necesite: no hay aportaciones obligatorias ni plazos.</p></div>
-    <div class="paso"><div class="n">04</div><h3>Resultado cada mes</h3><p>Al cierre de cada mes, la app le muestra lo que ganó o perdió su saldo. Si toca el límite de su perfil, la mesa se detiene hasta el mes siguiente.</p></div>
+    <div class="paso"><div class="n">04</div><h3>Resultado cada mes</h3><p>Al cierre de cada mes, la app le muestra lo que ganó o perdió su saldo. Si el mes se complica, el freno de su plan detiene la operación.</p></div>
   </div>
 </div></section>
 
@@ -278,7 +285,7 @@ footer b{color:#fff;font-weight:500}
   <div>
     <div class="eyebrow">La app</div>
     <h2 class="serif">Su saldo y su resultado del mes, en una sola pantalla.</h2>
-    <p class="lead">Abra la app y sepa exactamente cuánto tiene, cuánto generó este mes y cuánto margen le queda del límite de su perfil.</p>
+    <p class="lead">Abra la app y sepa exactamente cuánto tiene, cuánto generó este mes y cómo va contra el objetivo de su plan.</p>
     <ul>
       <li><b>Saldo en vivo</b><span>El valor de su cuenta, actualizado con cada operación de la mesa.</span></li>
       <li><b>Resultado mensual</b><span>Al cierre de cada mes, lo que ganó o perdió, en dólares y en porcentaje.</span></li>
@@ -290,16 +297,16 @@ footer b{color:#fff;font-weight:500}
     <div class="phone"><div class="screen">
       <div class="scr-top">
         <span class="mark">NORTHPOINT</span>
-        <div class="lbl">Su saldo · perfil Moderado</div>
+        <div class="lbl">Su saldo · plan Moderado</div>
         <div class="saldo">$1,257.36</div>
         <div class="mes">Resultado de septiembre <b>+$17.36 · +1.4%</b></div>
         <div class="acts"><span>Depositar</span><span>Retirar</span></div>
       </div>
       <div class="scr-body">
         <div class="scr-card">
-          <div class="t">Límite de pérdida del mes</div>
-          <div class="lim"><i></i></div>
-          <small>Utilizado −1.3% de −6.0%. La mesa continúa operando.</small>
+          <div class="t">Objetivo del mes · +3%</div>
+          <div class="lim"><i style="width:47%"></i></div>
+          <small>Lleva +1.4% de +3%. La mesa continúa operando.</small>
         </div>
         <div class="scr-card">
           <div class="t">Resultados mensuales</div>
@@ -312,7 +319,7 @@ footer b{color:#fff;font-weight:500}
         </div>
       </div>
     </div></div>
-    <span class="demo">Vista previa con datos de ejemplo, no son resultados reales.</span>
+    <span class="demo">Vista previa con datos de ejemplo, no son resultados reales. <a class="link" href="app.html" style="font-size:13px">Abrir la demo</a></span>
   </div>
 </div></section>
 
@@ -328,9 +335,9 @@ footer b{color:#fff;font-weight:500}
   </div>
   <div class="roles">
     <div class="rol"><h4>Dirección de la mesa</h4><div class="sub">Estrategia y supervisión</div><p>Define el plan de cada sesión y revisa que toda operación cumpla las reglas de la mesa.</p></div>
-    <div class="rol"><h4>Gestión de riesgo</h4><div class="sub">Límites por cuenta</div><p>Vigila en tiempo real el límite de pérdida de cada perfil y detiene la operación cuando se alcanza.</p></div>
-    <div class="rol"><h4>Operación</h4><div class="sub">Ejecución</div><p>Traders que ejecutan el plan con tamaños calculados según el perfil y el saldo de cada cuenta.</p></div>
-    <div class="rol"><h4>Atención a clientes</h4><div class="sub">Acompañamiento</div><p>Resumen mensual, cambios de perfil y atención directa por WhatsApp para cada titular.</p></div>
+    <div class="rol"><h4>Gestión de riesgo</h4><div class="sub">Límites por cuenta</div><p>Vigila en tiempo real cada cuenta y activa el freno del plan cuando el saldo llega a su riesgo mensual.</p></div>
+    <div class="rol"><h4>Operación</h4><div class="sub">Ejecución</div><p>Traders que ejecutan el plan con tamaños calculados según el plan y el saldo de cada cuenta.</p></div>
+    <div class="rol"><h4>Atención a clientes</h4><div class="sub">Acompañamiento</div><p>Resumen mensual, cambios de plan y atención directa por WhatsApp para cada titular.</p></div>
   </div>
 </div></section>
 
@@ -342,8 +349,8 @@ footer b{color:#fff;font-weight:500}
 
 <section id="perfiles"><div class="wrap">
   <div class="sec-head">
-    <div><div class="eyebrow">Perfiles de riesgo</div><h2 class="serif" style="margin-top:12px">Usted decide cuánto puede bajar su saldo.</h2></div>
-    <p>Nadie puede garantizar cuánto rendirá un ahorro en el mercado. Lo que sí podemos comprometer es el límite de pérdida mensual de cada perfil, y ese límite se respeta.</p>
+    <div><div class="eyebrow">Planes</div><h2 class="serif" style="margin-top:12px">Elija el objetivo de su ahorro.</h2></div>
+    <p>Tres planes, del más estable al de mayor potencial. Cada uno tiene un objetivo mensual y un riesgo del mismo tamaño: la mesa busca el objetivo sin arriesgar más de lo que el plan permite. El objetivo es una meta, no un rendimiento garantizado.</p>
   </div>
   <div class="perfiles" id="perfilesGrid"></div>
 </div></section>
@@ -359,14 +366,14 @@ footer b{color:#fff;font-weight:500}
 <section id="simulador"><div class="wrap">
   <div class="sec-head">
     <div><div class="eyebrow">Simulador</div><h2 class="serif" style="margin-top:12px">Si deja su ahorro trabajando.</h2></div>
-    <p>El rendimiento lo elige usted: es un supuesto para hacer la cuenta, no una promesa. Llévelo a terreno negativo para ver cómo actúa el límite de pérdida en un periodo adverso.</p>
+    <p>El rendimiento lo elige usted: es un supuesto para hacer la cuenta, no una promesa. Llévelo a terreno negativo para ver cómo actúa el freno de protección en un periodo adverso.</p>
   </div>
   <div class="sim">
     <div class="ctrl">
       <label><div class="row"><span>Saldo que deja</span><b id="vSaldo"></b></div><input id="saldo" type="range" min="0" max="17" step="1" value="3"></label>
       <label><div class="row"><span>Tiempo</span><b id="vMeses"></b></div><input id="meses" type="range" min="6" max="60" step="6" value="24"></label>
       <label><div class="row"><span>Rendimiento mensual supuesto</span><b id="vRend"></b></div><input id="rend" type="range" min="-3" max="4" step="0.25" value="1"></label>
-      <div><div class="row"><span>Perfil</span></div><div class="seg" id="seg"></div></div>
+      <div><div class="row"><span>Plan</span></div><div class="seg" id="seg"></div></div>
     </div>
     <div class="out">
       <div class="kpis">
@@ -395,7 +402,7 @@ footer b{color:#fff;font-weight:500}
   <div>
     <div class="eyebrow">Nuestro compromiso</div>
     <h2 class="serif">Llevar la gestión profesional a más hogares de México</h2>
-    <p>Estamos comprometidos con contribuir de manera significativa a la forma en que las familias mexicanas hacen crecer su ahorro. Eso empieza por tres principios que no negociamos: la custodia separada, los límites de pérdida escritos y la información completa para cada titular.</p>
+    <p>Estamos comprometidos con contribuir de manera significativa a la forma en que las familias mexicanas hacen crecer su ahorro. Eso empieza por tres principios que no negociamos: la custodia separada, el freno de protección en cada plan y la información completa para cada titular.</p>
     <p>Preferimos crecer con miles de personas que empiezan con cien dólares que depender de unos cuantos grandes capitales. Un modelo así nos obliga a ser consistentes, transparentes y a merecer, cada mes, que usted deje ahí su ahorro.</p>
   </div>
 </div></section>
@@ -410,7 +417,7 @@ footer b{color:#fff;font-weight:500}
     <label>Nombre completo<input name="nombre" required autocomplete="name"></label>
     <label>WhatsApp<input name="whatsapp" required inputmode="tel" autocomplete="tel"></label>
     <label>¿Con cuánto empezaría?<select name="nivel" id="fNivel"></select></label>
-    <label>Perfil de riesgo<select name="perfil" id="fPerfil"></select></label>
+    <label>Plan<select name="perfil" id="fPerfil"></select></label>
     <button class="btn" type="submit" style="justify-self:start;margin-top:8px">Apartar mi lugar</button>
     <div class="ok" id="ok">Gracias. Su registro quedó guardado y le contactaremos por WhatsApp.</div>
   </form>
@@ -429,7 +436,7 @@ footer b{color:#fff;font-weight:500}
 <footer><div class="wrap">
   <span class="mark">NORTHPOINT</span>
   <p><b>NORTHPOINT no recibe ni custodia recursos de clientes y no es una institución de crédito.</b> Cada saldo vive en una cuenta a nombre de su titular en un intermediario regulado; la mesa opera con un mandato limitado, sin facultad de retiro.</p>
-  <p>El rendimiento es variable, no está garantizado y puede ser negativo. Los rendimientos del simulador son supuestos elegidos por el usuario, no promesas ni resultados históricos. Los límites de pérdida se aplican al cierre de cada operación y pueden rebasarse ante movimientos bruscos del mercado.</p>
+  <p>El rendimiento es variable, no está garantizado y puede ser negativo. Los rendimientos del simulador son supuestos elegidos por el usuario, no promesas ni resultados históricos. El freno de protección de cada plan se detalla en el contrato, se aplica al cierre de cada operación y puede rebasarse ante movimientos bruscos del mercado.</p>
   <p>Este sitio es una lista de espera y no constituye una oferta de inversión.</p>
 </div></footer>
 
@@ -439,24 +446,25 @@ const CONFIG = {
   oficina: "",           // dirección de la oficina de la mesa (vacío = "por anunciar")
   email: "",
   perfiles: [
-    { id:"cons", nombre:"Conservador", tope:3,  riesgoOp:"0.25%", freq:"2 a 3 sesiones por semana", estilo:"Solo las operaciones más claras" },
-    { id:"mod",  nombre:"Moderado",    tope:6,  riesgoOp:"0.5%",  freq:"3 a 4 sesiones por semana", estilo:"El equilibrio de la mesa" },
-    { id:"agr",  nombre:"Agresivo",    tope:12, riesgoOp:"1%",    freq:"Todas las sesiones",        estilo:"Mayor exposición y volatilidad" }
+    // objetivo = meta mensual de la mesa (NO garantizada); riesgo = riesgo mensual del plan, también es el freno de protección
+    { id:"bas", nombre:"Básico",   lema:"Estabilidad primero",     nivel:1, objetivo:1.5, riesgo:1.5, horizonte:"6 meses o más",  freq:"2 a 3 sesiones por semana", ideal:"Para ver su saldo crecer con calma y moverse poco." },
+    { id:"mod", nombre:"Moderado", lema:"Crecimiento equilibrado", nivel:3, objetivo:3,   riesgo:3,   horizonte:"12 meses o más", freq:"3 a 4 sesiones por semana", ideal:"Para que su ahorro crezca a buen ritmo sin sobresaltos grandes." },
+    { id:"agr", nombre:"Agresivo", lema:"Máximo potencial",        nivel:5, objetivo:6,   riesgo:6,   horizonte:"24 meses o más", freq:"Todas las sesiones",        ideal:"Para pensar a largo plazo y buscar el mayor crecimiento." }
   ],
   // nivel por SALDO (no por aportación): cambia solo cuando el saldo cruza el mínimo
   niveles: [
     { id:"inicial", nombre:"Inicial", min:100,   max:999,  fee:30, items:["App con saldo y cada operación","Resultado mensual","Depósitos y retiros cuando quiera","Atención por WhatsApp"] },
-    { id:"plus",    nombre:"Plus",    min:1000,  max:9999, fee:25, dest:true, items:["Todo lo del nivel Inicial","Revisión trimestral con su trader","Cambio de perfil cada mes"] },
+    { id:"plus",    nombre:"Plus",    min:1000,  max:9999, fee:25, dest:true, items:["Todo lo del nivel Inicial","Revisión trimestral con su trader","Cambio de plan cada mes"] },
     { id:"privado", nombre:"Privado", min:10000, max:null, fee:20, items:["Todo lo del nivel Plus","Trader asignado","Visita a la oficina de la mesa"] }
   ],
   saldos: [100,200,300,500,750,1000,1500,2000,3000,5000,7500,10000,15000,20000,30000,50000,75000,100000],
   perspectivas: [
     { tipo:"Nota de la mesa", titulo:"Por qué no prometemos un rendimiento fijo", fecha:"29 de septiembre de 2026",
       resumen:"Un rendimiento fijo sobre un ahorro que se opera en el mercado es una promesa que nadie puede cumplir. Explicamos qué ofrecemos en su lugar.",
-      cuerpo:["Los mercados no pagan lo mismo cada mes. Cualquiera que le prometa un porcentaje fijo sobre un dinero que se opera, o tiene una licencia bancaria y respalda ese pago con su propio capital, o está pagando rendimientos con el dinero de otros clientes.","En NORTHPOINT el resultado de cada mes es el que salió: a veces positivo, a veces negativo. Lo que sí comprometemos es el límite de pérdida de su perfil y que usted vea cada operación en la app."] },
-    { tipo:"Artículo", titulo:"Por qué medimos el riesgo en pérdida máxima, y no en rendimiento esperado", fecha:"22 de septiembre de 2026",
-      resumen:"El rendimiento es una estimación; la pérdida máxima es una regla. Por eso cada perfil se construye a partir de lo que el cliente puede perder.",
-      cuerpo:["Una proyección de rendimiento depende del mercado. Una regla de pérdida depende de nosotros: se escribe antes de operar y se cumple.","Cada perfil de NORTHPOINT se define por su límite mensual. Cuando una cuenta lo alcanza, la mesa deja de operarla hasta el mes siguiente. Usted sabe desde el primer día cuál es el peor mes que su perfil permite."] },
+      cuerpo:["Los mercados no pagan lo mismo cada mes. Cualquiera que le prometa un porcentaje fijo sobre un dinero que se opera, o tiene una licencia bancaria y respalda ese pago con su propio capital, o está pagando rendimientos con el dinero de otros clientes.","En NORTHPOINT el resultado de cada mes es el que salió: a veces positivo, a veces negativo. Lo que sí comprometemos es el freno de protección de su plan y que usted vea cada operación en la app."] },
+    { tipo:"Artículo", titulo:"Tres planes, una misma disciplina", fecha:"22 de septiembre de 2026",
+      resumen:"Básico, Moderado y Agresivo no son tres mesas distintas: es la misma mesa, con el mismo plan de sesión, buscando tres objetivos distintos.",
+      cuerpo:["Cada sesión empieza con un plan escrito. Lo que cambia entre planes no es la estrategia sino el tamaño y la frecuencia: el Básico solo entra en las operaciones más claras; el Agresivo participa en todas las sesiones con mayor exposición.","Cada plan arriesga lo mismo que busca ganar en el mes. Si el mes se complica y el saldo llega a ese riesgo, la mesa deja de operar esa cuenta hasta el mes siguiente. Elegir plan es elegir un objetivo con su riesgo a la vista."] },
     { tipo:"Artículo", titulo:"Custodia separada: por qué su dinero nunca debería pasar por quien lo opera", fecha:"15 de septiembre de 2026",
       resumen:"La separación entre quien custodia y quien opera es la protección más simple y más importante para cualquier ahorrador.",
       cuerpo:["En NORTHPOINT usted abre su cuenta a su nombre en un intermediario regulado. La mesa recibe un mandato para operar, pero no para retirar ni transferir.","Si alguien le pide depositar en una cuenta a nombre de la persona o empresa que va a operar por usted, desconfíe. La custodia separada no es un detalle técnico: es la primera pregunta que debe hacer."] }
@@ -469,12 +477,16 @@ const state = { perfil:"mod" };
 
 $("#perfilesGrid").innerHTML = CONFIG.perfiles.map(p => `
   <div class="perfil" data-id="${p.id}">
-    <div class="eyebrow">${p.nombre}</div>
-    <div class="tope">−${p.tope}%</div><div class="cap">Baja máxima del saldo por mes</div>
+    <div class="eyebrow">Plan ${p.nombre}</div>
+    <div class="obj">+${p.objetivo}%</div><div class="cap">Objetivo mensual · ${p.lema.toLowerCase()}</div>
+    <div class="riesgo" aria-label="Nivel de riesgo ${p.nivel} de 5">${[1,2,3,4,5].map(i=>`<i class="${i<=p.nivel?"on":""}"></i>`).join("")}<span>Riesgo ${p.nivel} de 5</span></div>
+    <p class="ideal">${p.ideal}</p>
     <dl>
-      <div><dt>Riesgo por operación</dt><dd>${p.riesgoOp}</dd></div>
-      <div><dt>Frecuencia</dt><dd>${p.freq}</dd></div>
-      <div><dt>Estilo</dt><dd>${p.estilo}</dd></div>
+      <div><dt>Objetivo al año</dt><dd>+${(Math.pow(1+p.objetivo/100,12)*100-100).toFixed(0)}% compuesto</dd></div>
+      <div><dt>Riesgo mensual</dt><dd>${p.riesgo}%</dd></div>
+      <div><dt>Horizonte sugerido</dt><dd>${p.horizonte}</dd></div>
+      <div><dt>Actividad de la mesa</dt><dd>${p.freq}</dd></div>
+      <div><dt>Freno de protección</dt><dd>Incluido</dd></div>
     </dl>
   </div>`).join("");
 $("#seg").innerHTML = CONFIG.perfiles.map(p => `<button type="button" data-id="${p.id}">${p.nombre}</button>`).join("");
@@ -508,7 +520,7 @@ $("#oficina").innerHTML = CONFIG.oficina || "Dirección por anunciar";
 $("#contactoTxt").innerHTML = [CONFIG.whatsapp && `WhatsApp: +${CONFIG.whatsapp}`, CONFIG.email].filter(Boolean).join("<br>") || "Por medio del registro de esta página";
 
 $("#fNivel").innerHTML = CONFIG.niveles.map(q=>`<option value="${q.id}">${rango(q)} · nivel ${q.nombre}</option>`).join("");
-$("#fPerfil").innerHTML = CONFIG.perfiles.map(p=>`<option value="${p.id}">${p.nombre} · límite −${p.tope}% al mes</option>`).join("");
+$("#fPerfil").innerHTML = CONFIG.perfiles.map(p=>`<option value="${p.id}">${p.nombre} · objetivo +${p.objetivo}% al mes</option>`).join("");
 document.querySelectorAll("[data-nv]").forEach(a => a.addEventListener("click", () => $("#fNivel").value = a.dataset.nv));
 
 function setPerfil(id){
@@ -516,6 +528,7 @@ function setPerfil(id){
   document.querySelectorAll(".perfil").forEach(e => e.classList.toggle("on", e.dataset.id===id));
   document.querySelectorAll("#seg button").forEach(e => e.classList.toggle("on", e.dataset.id===id));
   $("#fPerfil").value = id;
+  $("#rend").value = CONFIG.perfiles.find(x=>x.id===id).objetivo;   // el simulador arranca en el objetivo del plan
   sim();
 }
 document.querySelectorAll(".perfil,#seg button").forEach(e => e.addEventListener("click", () => setPerfil(e.dataset.id)));
@@ -527,7 +540,7 @@ const nivelDe = s => CONFIG.niveles.slice().reverse().find(q => s >= q.min) || C
 function sim(){
   const dep = CONFIG.saldos[+$("#saldo").value], meses = +$("#meses").value, r = +$("#rend").value;
   const p = CONFIG.perfiles.find(x=>x.id===state.perfil);
-  const rEf = Math.max(r, -p.tope);
+  const rEf = Math.max(r, -p.riesgo);
   let bal = dep, hwm = dep, fees = 0; const serie = [];
   for(let m=1; m<=meses; m++){
     const antes = bal;
@@ -545,10 +558,12 @@ function sim(){
   $("#kGan").className = gan>=0?"pos":"neg";
   $("#kFee").textContent = usd(fees);
   const mes1 = serie[0][0];
-  $("#nota").innerHTML = (r < -p.tope
-    ? `El supuesto de ${r}% mensual rebasa el límite del perfil ${p.nombre}; la mesa se detiene en −${p.tope}%, que es la baja máxima de cada mes. `
-    : `Con este supuesto, el primer mes su saldo cambiaría ${mes1>=0?"+":""}${usd(mes1)} ya descontada la comisión. En el peor mes que permite el perfil ${p.nombre}, bajaría hasta ${usd(dep*p.tope/100)} (−${p.tope}%). `)
-    + `Nivel al empezar: <b>${nv.nombre}</b>, ${nv.fee}% de la ganancia.`;
+  $("#nota").innerHTML = (r < -p.riesgo
+    ? `En un mes así, el freno del plan ${p.nombre} detiene la operación al llegar a su riesgo mensual de ${p.riesgo}%. `
+    : r === p.objetivo
+    ? `Si la mesa cumple el objetivo del plan ${p.nombre} (+${p.objetivo}% al mes), el primer mes su saldo crecería ${usd(mes1)} ya descontada la comisión. `
+    : `Con este supuesto, el primer mes su saldo cambiaría ${mes1>=0?"+":""}${usd(mes1)} ya descontada la comisión. `)
+    + `Nivel al empezar: <b>${nv.nombre}</b>, ${nv.fee}% de la ganancia. El objetivo es una meta, no un rendimiento garantizado.`;
   draw(serie, dep);
 }
 
@@ -584,7 +599,7 @@ $("#form").addEventListener("submit", e => {
   const nv = CONFIG.niveles.find(q=>q.id===d.nivel), pf = CONFIG.perfiles.find(p=>p.id===d.perfil);
   try{ const l = JSON.parse(localStorage.getItem("np-ahorro-espera")||"[]"); l.push({...d, fecha:new Date().toISOString()}); localStorage.setItem("np-ahorro-espera", JSON.stringify(l)); }catch(_){}
   if(CONFIG.whatsapp){
-    const msg = `Hola NORTHPOINT, quiero apartar mi lugar en la app de ahorro.\nNombre: ${d.nombre}\nEmpezaría con: ${rango(nv)}\nPerfil: ${pf.nombre}`;
+    const msg = `Hola NORTHPOINT, quiero apartar mi lugar en la app de ahorro.\nNombre: ${d.nombre}\nEmpezaría con: ${rango(nv)}\nPlan: ${pf.nombre}`;
     window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
   }
   $("#ok").style.display = "block"; e.target.reset(); setPerfil(state.perfil);
