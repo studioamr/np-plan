@@ -162,26 +162,31 @@ html.menu-on .menu-in a:nth-child(2){transition-delay:.04s}html.menu-on .menu-in
 .hs-arrows{top:calc(50% + 220px)}
 @media(max-width:900px){.hs-arrows{top:auto}}
 
-/* portada · "Empiece con $100": la app real en una MacBook y un iPhone */
-.cien-bg{background:radial-gradient(60% 80% at 72% 45%,#17336F 0%,#0A1B3D 45%,#040E1F 100%)!important;inset:0!important}
-.cien-bg:after{content:"";position:absolute;inset:0;background:radial-gradient(40% 40% at 70% 60%,rgba(91,124,255,.35),transparent 70%)}
-.hs-cien:after{background:linear-gradient(90deg,rgba(4,14,31,.92) 0%,rgba(4,14,31,.55) 40%,rgba(4,14,31,0) 62%)}
-.devs{position:absolute;z-index:0;right:max(215px,calc((100vw - 1280px)/2 + 215px));top:50%;transform:translateY(-46%);width:min(36vw,600px);aspect-ratio:1.55/1;pointer-events:none}
-.mac{position:absolute;left:0;top:0;width:88%}
-.mac-scr{position:relative;background:#0B0D12;border-radius:14px 14px 4px 4px;padding:2.2% 2.2% 2.8%;box-shadow:0 0 0 1.5px #2A2D35,0 50px 90px -30px rgba(0,0,0,.8)}
-.mac-scr:before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:13%;height:3.2%;background:#0B0D12;border-radius:0 0 6px 6px;z-index:2}
-.mac-scr img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top left;border-radius:3px}
-.mac-base{position:relative;height:0;padding-top:3.4%;margin:0 -7%;background:linear-gradient(180deg,#C9CCD3 0%,#9EA2AB 55%,#6E727B 100%);border-radius:0 0 18px 18px/0 0 100% 100%}
-.mac-base:before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:16%;height:38%;background:#8A8E97;border-radius:0 0 8px 8px}
-.iph{position:absolute;right:0;bottom:-6%;width:25%;aspect-ratio:9/19.3;background:#1A1C21;border-radius:16% / 7.5%;padding:3%;box-shadow:0 0 0 1.5px #3A3C42,-24px 40px 70px -16px rgba(0,0,0,.9)}
-.iph-in{position:relative;width:100%;height:100%;border-radius:13% / 6.2%;overflow:hidden;background:#080E20}
+/* portada · "Empiece con $100": la app real en una MacBook y un iPhone, como foto de producto */
+.cien-bg{background:radial-gradient(46% 58% at 68% 50%,#20242C 0%,#0C0E12 55%,#050607 100%)!important;inset:0!important}
+.hs-cien:after{background:linear-gradient(90deg,rgba(5,6,7,.9) 0%,rgba(5,6,7,.5) 36%,rgba(5,6,7,0) 58%)}
+.devs{position:absolute;z-index:0;right:max(215px,calc((100vw - 1280px)/2 + 215px));top:50%;transform:translateY(-44%);width:min(38vw,640px);aspect-ratio:1.5/1;pointer-events:none}
+.devs:after{content:"";position:absolute;left:4%;right:-6%;bottom:-11%;height:12%;background:radial-gradient(50% 50% at 50% 50%,rgba(0,0,0,.75),transparent 70%);filter:blur(6px);z-index:-1}
+.mac{position:absolute;left:0;top:0;width:86%}
+.mac-scr{position:relative;background:#0A0A0C;border-radius:3.2% 3.2% .6% .6% / 5% 5% 1% 1%;padding:2% 2% 2.6%;box-shadow:0 0 0 1px #3B3E45,0 0 0 2.5px #1A1B1F,0 60px 90px -40px rgba(0,0,0,.9)}
+.mac-scr:before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:12%;height:3%;background:#0A0A0C;border-radius:0 0 8px 8px;z-index:2}
+.mac-scr:after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(115deg,rgba(255,255,255,.07) 0%,rgba(255,255,255,0) 38%);pointer-events:none}
+.mac-scr img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top left;border-radius:2px}
+.mac-base{position:relative;height:0;padding-top:3.6%;margin:0 -8%;background:linear-gradient(180deg,#E3E5E9 0%,#B9BCC3 40%,#8C9098 75%,#5E6168 100%);border-radius:0 0 22px 22px / 0 0 100% 100%;box-shadow:0 10px 20px -6px rgba(0,0,0,.7)}
+.mac-base:before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:15%;height:34%;background:linear-gradient(180deg,#9A9EA6,#B7BAC1);border-radius:0 0 10px 10px}
+.iph{position:absolute;right:-3%;bottom:-9%;width:27%;aspect-ratio:1/2.07;padding:1.1%;border-radius:19% / 9.2%;background:linear-gradient(135deg,#8A8D93 0%,#3C3E43 22%,#6B6E74 50%,#2E3034 78%,#77797F 100%);box-shadow:-30px 40px 60px -20px rgba(0,0,0,.95),0 0 0 .5px rgba(255,255,255,.25) inset}
+.iph-bz{width:100%;height:100%;background:#000;border-radius:17.5% / 8.5%;padding:3.2%}
+.iph-in{position:relative;width:100%;height:100%;border-radius:14% / 6.8%;overflow:hidden;background:#080E20}
 .iph-in img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
-.iph-isl{position:absolute;top:2.2%;left:50%;transform:translateX(-50%);width:32%;height:3.6%;background:#000;border-radius:20px}
+.iph-in:after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(255,255,255,.12) 0%,rgba(255,255,255,0) 35%);pointer-events:none}
+.iph-isl{position:absolute;top:2.1%;left:50%;transform:translateX(-50%);width:31%;height:3.4%;background:#000;border-radius:40px;z-index:2}
+.ib{position:absolute;width:1.6%;background:linear-gradient(90deg,#55585E,#8E9197);border-radius:2px}
+.ib1{left:-1.2%;top:17%;height:5%}.ib2{left:-1.2%;top:26%;height:9%}.ib3{left:-1.2%;top:37%;height:9%}.ib4{right:-1.2%;top:28%;height:14%}
 @media(max-width:900px){
-  .devs{right:50%;transform:translateX(50%);top:96px;width:min(84vw,400px)}
-  .hs-cien .hs-bg{background-position:center!important}
-  .hs-cien:after{background:linear-gradient(0deg,rgba(4,14,31,.97) 0%,rgba(4,14,31,.9) 42%,rgba(4,14,31,0) 62%)}
+  .devs{right:50%;transform:translateX(52%);top:100px;width:min(80vw,380px)}
+  .hs-cien:after{background:linear-gradient(0deg,rgba(5,6,7,.97) 0%,rgba(5,6,7,.9) 42%,rgba(5,6,7,0) 62%)}
 }
-@media(max-width:900px) and (max-height:700px){.devs{width:min(70vw,320px)}}
+@media(max-width:900px) and (max-height:700px){.devs{width:min(66vw,300px)}}
 .hs-cien .box{max-width:560px}
 @media(max-width:900px){.hs-cien .box{max-width:none}}
+
