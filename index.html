@@ -188,6 +188,15 @@ canvas{width:100%;height:300px;display:block}
 .nota{margin-top:24px;font-size:15px;border-left:3px solid var(--blue);padding-left:16px;color:var(--text)}
 @media(max-width:980px){.sim{grid-template-columns:1fr}.ctrl{border-right:0;border-bottom:1px solid var(--line)}.kpis{grid-template-columns:1fr 1fr}}
 
+/* play del simulador */
+.sim-play{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:18px}
+.sim-play .btn{display:inline-flex;align-items:center;gap:10px}
+.sim-play .pi{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.2);font-size:10px}
+#simMes{font:500 14px ui-monospace,"SF Mono",Menlo,monospace;color:var(--muted);font-variant-numeric:tabular-nums}
+#simMes b{color:var(--blue);font-weight:500}
+@keyframes playpulse{0%{box-shadow:0 0 0 0 rgba(34,81,255,.45)}70%{box-shadow:0 0 0 14px rgba(34,81,255,0)}100%{box-shadow:0 0 0 0 rgba(34,81,255,0)}}
+#simPlay:not(.playing){animation:playpulse 2.2s infinite}
+
 /* perspectivas */
 .persp{background:var(--gray)}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -288,25 +297,36 @@ footer b{color:#fff;font-weight:500}
       <p class="lead">Somos una mesa de trading profesional que ayuda a personas de todo México a <a class="ul" href="#como">hacer que su ahorro trabaje</a>. Usted guarda su dinero, lo ve en la app y cada mes recibe el resultado de nuestra operación, dentro del riesgo que decide asumir.</p>
       <a class="btn" href="#perfiles">Ver los planes</a>
     </div></div></div>
-    <div class="hs" data-i="1"><div class="hs-bg" style="background-image:url(img/privado.jpg);background-position:center"></div><div class="wrap"><div class="box">
+    <div class="hs hs-team" data-i="1" data-href="https://northpointcapital.io/socios.html"><div class="hs-bg team-bg"></div>
+      <div class="team-cards">
+        <figure><img src="img/andre.jpg" alt="André Macouzet Ruiz"><figcaption><b>André Macouzet Ruiz</b><span>Cofundador · Mercados, datos y tecnología</span></figcaption></figure>
+        <figure><img src="img/goyo.jpg" alt="Gregorio Sánchez Calderón"><figcaption><b>Gregorio Sánchez Calderón</b><span>Cofundador · Inversiones y protección patrimonial</span></figcaption></figure>
+      </div>
+      <div class="wrap"><div class="box">
+      <div class="hs-k"><span>El equipo</span></div>
+      <h2 class="serif">Las personas detrás de la mesa.</h2>
+      <p class="lead">André opera futuros del Nasdaq con un proceso sistemático y construyó el Terminal donde se registra cada operación y se mide el riesgo en tiempo real. Gregorio, abogado patrimonial, diseña las carteras de largo plazo y la protección del patrimonio.</p>
+      <a class="btn line inv" href="https://northpointcapital.io/socios.html" target="_blank" rel="noopener">Conocer al equipo</a>
+    </div></div></div>
+    <div class="hs" data-i="2"><div class="hs-bg" style="background-image:url(img/privado.jpg);background-position:center"></div><div class="wrap"><div class="box">
       <div class="hs-k"><span>NORTHPOINT Privado</span></div>
       <h2 class="serif">¿Quiere invertir un capital importante? Hablemos.</h2>
       <p class="lead">Para patrimonios y empresas, un trato directo con la dirección de la mesa: estrategia a la medida de su objetivo, reportes personales y reuniones en nuestra oficina. Su dinero, siempre a su nombre.</p>
       <a class="btn" id="privBtn" href="#contacto">Agendar una conversación</a>
     </div></div></div>
-    <div class="hs" data-i="2" data-href="activos.html"><div class="hs-bg" style="background-image:url(img/inmobiliario.jpg)"></div><div class="wrap"><div class="box">
+    <div class="hs" data-i="3" data-href="activos.html"><div class="hs-bg" style="background-image:url(img/inmobiliario.jpg)"></div><div class="wrap"><div class="box">
       <div class="hs-k"><span>NORTHPOINT Activos</span><span class="hs-pill">Próximamente</span></div>
       <h2 class="serif">Patrimonio que se aprecia.</h2>
       <p class="lead">Inmuebles, embarcaciones, arte y piezas de colección: le ayudamos a comprar, vender, valuar y cuidar activos reales.</p>
       <a class="btn line inv" href="activos.html">Conocer NORTHPOINT Activos</a>
     </div></div></div>
-    <div class="hs" data-i="3" data-href="https://northpointcapital.io/bootcamp.html"><div class="hs-bg" style="background-image:url(img/academia.jpg)"></div><div class="wrap"><div class="box">
+    <div class="hs" data-i="4" data-href="https://northpointcapital.io/bootcamp.html"><div class="hs-bg" style="background-image:url(img/academia.jpg)"></div><div class="wrap"><div class="box">
       <div class="hs-k"><span>Academia NORTHPOINT · The Bootcamp</span></div>
       <h2 class="serif">Aprenda a operar como nuestra mesa.</h2>
       <p class="lead">Futuros desde cero: 8 módulos y más de 48 horas de video, con el mismo lenguaje, estructura y disciplina con los que opera nuestra mesa.</p>
       <a class="btn line inv" href="https://northpointcapital.io/bootcamp.html" target="_blank" rel="noopener">Conocer el Bootcamp</a>
     </div></div></div>
-    <div class="hs" data-i="4" data-href="fundacion.html"><div class="hs-bg" style="background-image:url(img/fundacion-abierta.jpg);background-position:right 85%;inset:-1.5%"></div><div class="wrap"><div class="box">
+    <div class="hs hs-fund" data-i="5" data-href="fundacion.html"><div class="hs-bg" style="background-image:url(img/fundacion-abierta.jpg);background-position:right 85%;inset:-1.5%"></div><div class="wrap"><div class="box">
       <div class="hs-k"><span>Fundación NORTHPOINT</span><span class="hs-pill">En formación</span></div>
       <h2 class="serif">Ningún niño debería enfrentar la leucemia sin su familia al lado.</h2>
       <p class="lead">Una parte de cada resultado de la mesa acompaña a familias de niños con leucemia durante su tratamiento.</p>
@@ -315,10 +335,11 @@ footer b{color:#fff;font-weight:500}
   </div>
   <div class="hs-index" aria-label="Divisiones de NORTHPOINT">
     <button data-i="0" class="on"><span>Ahorro</span><i><em></em></i></button>
-    <button data-i="1"><span>Privado</span><i><em></em></i></button>
-    <button data-i="2"><span>Activos</span><i><em></em></i></button>
-    <button data-i="3"><span>Academia</span><i><em></em></i></button>
-    <button data-i="4"><span>Fundación</span><i><em></em></i></button>
+    <button data-i="1"><span>Equipo</span><i><em></em></i></button>
+    <button data-i="2"><span>Privado</span><i><em></em></i></button>
+    <button data-i="3"><span>Activos</span><i><em></em></i></button>
+    <button data-i="4"><span>Academia</span><i><em></em></i></button>
+    <button data-i="5"><span>Fundación</span><i><em></em></i></button>
   </div>
   <div class="hs-arrows"><button type="button" data-d="-1" aria-label="Anterior">←</button><button type="button" data-d="1" aria-label="Siguiente">→</button></div>
   <div class="hs-cue">Deslice a un lado<i></i></div>
@@ -431,6 +452,7 @@ footer b{color:#fff;font-weight:500}
         <div><span>Ganancia neta</span><b id="kGan"></b></div>
         <div><span>Comisión de la mesa</span><b id="kFee"></b></div>
       </div>
+      <div class="sim-play"><button type="button" class="btn" id="simPlay"><span class="pi">▶</span> Ver cómo crece mes a mes</button><span id="simMes"></span></div>
       <canvas id="chart"></canvas>
       <div class="legend"><span><i style="background:#D0D0D0"></i>Resultado neto de cada mes</span><span><i style="background:var(--blue)"></i>Saldo estimado</span></div>
       <p class="nota" id="nota"></p>
@@ -589,13 +611,16 @@ function sim(){
   const dep = CONFIG.saldos[+$("#saldo").value], meses = +$("#meses").value, r = +$("#rend").value;
   const p = CONFIG.perfiles.find(x=>x.id===state.perfil);
   const rEf = Math.max(r, -p.riesgo);
-  let bal = dep, hwm = dep, fees = 0; const serie = [];
+  let bal = dep, hwm = dep, fees = 0; const serie = [], feeCum = [];
   for(let m=1; m<=meses; m++){
     const antes = bal;
     bal *= 1 + rEf/100;
     if(bal > hwm){ const f = (bal-hwm)*nivelDe(antes).fee/100; fees += f; bal -= f; hwm = bal; }
-    serie.push([bal-antes, bal]);
+    serie.push([bal-antes, bal]); feeCum.push(fees);
   }
+  sim.last = { serie, feeCum, dep };
+  if(window.__simAnim){ cancelAnimationFrame(window.__simAnim); window.__simAnim = null; setPlayBtn(false); }
+  $("#simMes").innerHTML = `${meses} meses · saldo final <b>${usd(bal)}</b>`;
   const gan = bal - dep, nv = nivelDe(dep);
   $("#vSaldo").textContent = usd(dep);
   $("#vMeses").textContent = meses<24 ? meses+" meses" : (meses/12)+" años";
@@ -615,7 +640,28 @@ function sim(){
   draw(serie, dep);
 }
 
-function draw(serie, dep){
+// ▶ reproduce el crecimiento mes a mes
+function setPlayBtn(on){ const b = $("#simPlay"); b.classList.toggle("playing", on); b.innerHTML = on ? '<span class="pi">❚❚</span> Pausar' : '<span class="pi">▶</span> Ver cómo crece mes a mes'; }
+function playSim(){
+  if(window.__simAnim){ cancelAnimationFrame(window.__simAnim); window.__simAnim = null; setPlayBtn(false); return; }
+  const { serie, feeCum, dep } = sim.last, N = serie.length, dur = Math.min(6500, Math.max(2800, N * 110));
+  let t0 = null; setPlayBtn(true);
+  const step = now => {
+    if(t0 === null) t0 = now;
+    const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 2), k = Math.max(1, Math.round(e * N));
+    const bal = serie[k-1][1], gan = bal - dep;
+    draw(serie, dep, k);
+    $("#kValor").textContent = usd(bal);
+    $("#kGan").textContent = (gan>=0?"+":"")+usd(gan); $("#kGan").className = gan>=0?"pos":"neg";
+    $("#kFee").textContent = usd(feeCum[k-1]);
+    $("#simMes").innerHTML = `Mes <b>${k}</b> de ${N} · saldo <b>${usd(bal)}</b>`;
+    if(p < 1) window.__simAnim = requestAnimationFrame(step); else { window.__simAnim = null; setPlayBtn(false); }
+  };
+  window.__simAnim = requestAnimationFrame(step);
+}
+
+function draw(serie, dep, upto){
+  upto = upto || serie.length;
   const c = $("#chart"), dpr = window.devicePixelRatio||1, W = c.clientWidth, H = c.clientHeight;
   c.width = W*dpr; c.height = H*dpr;
   const g = c.getContext("2d"); g.scale(dpr,dpr); g.clearRect(0,0,W,H);
@@ -630,14 +676,18 @@ function draw(serie, dep){
   // barras: resultado neto de cada mes (abajo)
   const mx = Math.max(...serie.map(s=>Math.abs(s[0])))||1, base = top+lh+gap+bh/2, bw = Math.max(1, w/serie.length-2);
   g.strokeStyle="#E6E6E6"; g.beginPath(); g.moveTo(pl,base); g.lineTo(W-8,base); g.stroke();
-  serie.forEach((s,i)=>{ const hh=(s[0]/mx)*(bh/2); g.fillStyle = s[0]>=0 ? "#D0D0D0" : "#E8A99F"; g.fillRect(x(i)-bw/2, hh>=0?base-hh:base, bw, Math.abs(hh)); });
+  serie.slice(0, upto).forEach((s,i)=>{ const hh=(s[0]/mx)*(bh/2); g.fillStyle = s[0]>=0 ? "#D0D0D0" : "#E8A99F"; g.fillRect(x(i)-bw/2, hh>=0?base-hh:base, bw, Math.abs(hh)); });
   g.fillStyle="#757575"; g.fillText("por mes", 4, base+4);
   // línea: saldo
   g.strokeStyle = "#2251FF"; g.lineWidth = 2.5; g.beginPath();
-  g.moveTo(pl, y(dep)); serie.forEach((s,i)=> g.lineTo(x(i),y(s[1]))); g.stroke();
+  g.moveTo(pl, y(dep)); serie.slice(0, upto).forEach((s,i)=> g.lineTo(x(i),y(s[1]))); g.stroke();
+  if(upto < serie.length){ const s = serie[upto-1]; g.fillStyle = "#2251FF"; g.beginPath(); g.arc(x(upto-1), y(s[1]), 5, 0, 6.283); g.fill(); }
 }
 
 ["saldo","meses","rend"].forEach(id => $("#"+id).addEventListener("input", sim));
+$("#simPlay").addEventListener("click", playSim);
+// se reproduce solo la primera vez que el simulador aparece en pantalla
+if("IntersectionObserver" in window){ const io = new IntersectionObserver(es => { if(es[0].isIntersecting){ io.disconnect(); setTimeout(() => { if(!window.__simAnim) playSim(); }, 500); } }, { threshold: .45 }); io.observe($(".sim")); }
 window.addEventListener("resize", sim);
 setPerfil("mod");
 
