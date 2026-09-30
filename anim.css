@@ -190,16 +190,13 @@ html.menu-on .menu-in a:nth-child(2){transition-delay:.04s}html.menu-on .menu-in
 .hs-cien .box{max-width:560px}
 @media(max-width:900px){.hs-cien .box{max-width:none}}
 
-/* portada fija: el scroll vertical pasa de una división a otra */
-.hs-stage.pinned{overflow:hidden!important;scroll-snap-type:none!important;cursor:default}
-.hs-cue{flex-direction:column}
-.hs-cue i{width:1px!important;height:34px!important;background:linear-gradient(180deg,rgba(255,255,255,.8),transparent)!important;animation:cue 2s ease-in-out infinite!important}
-@media(max-width:900px){.hs-cue{display:flex!important;bottom:18px}.hs .wrap{padding-bottom:96px}}
-
-/* la pregunta antes de seguir */
-.pregunta{min-height:100vh;min-height:100svh;display:flex;align-items:center;background:var(--navy);color:#fff;padding:120px 0}
-.pq-k{font:500 13px var(--sans);letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:26px}
-.pq-t{font:300 clamp(44px,7.4vw,118px)/1.02 var(--serif);letter-spacing:-.02em;color:#fff;max-width:1150px}
-.pq-l{display:inline-flex;gap:10px;margin-top:44px;color:#fff;text-decoration:none;font:400 17px var(--sans);border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:6px}
-.pq-l span{display:inline-block;animation:pqd 1.6s ease-in-out infinite}
-@keyframes pqd{0%,100%{transform:none}50%{transform:translateY(5px)}}
+/* portada: solo puntitos abajo; rota sola en bucle */
+.hs-index{top:auto!important;right:auto!important;left:50%!important;bottom:30px!important;transform:translateX(-50%)!important;flex-direction:row!important;gap:10px!important;align-items:center}
+.hs-index button{min-width:0!important;width:9px;height:9px;padding:0;border-radius:999px;background:rgba(255,255,255,.4)!important;display:block!important;overflow:hidden;position:relative;transition:width .35s cubic-bezier(.2,.7,.2,1),background .3s;font-size:0!important}
+.hs-index button span{display:none}
+.hs-index button i{position:absolute!important;inset:0;height:auto!important;width:auto!important;background:transparent!important}
+.hs-index button em{background:#fff!important}
+.hs-index button.on{width:34px;background:rgba(255,255,255,.35)!important}
+.hs-index button:hover{background:rgba(255,255,255,.7)!important}
+.hs-arrows,.hs-cue{display:none!important}
+@media(max-width:900px){.hs-index{bottom:22px!important}.hs .wrap{padding-bottom:70px}}

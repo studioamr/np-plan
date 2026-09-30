@@ -63,47 +63,42 @@
       .from($(".btn", first), { y: 20, opacity: 0, duration: .8 }, 1.1)
       .from(".hs-index button", { x: 30, opacity: 0, stagger: .08, duration: .8 }, 1)
       .from(".hs-arrows button", { scale: .6, opacity: 0, stagger: .08, duration: .6 }, 1.2);
-    // carrusel horizontal: una división por pantalla
+    // carrusel horizontal que rota solo y en bucle: al final va una copia de la primera división
+    // y al llegar a ella se regresa a la primera sin que se note
     const stage = $(".hs-stage", hero), n = slides.length;
-    // tocar una división abre su página (si no fue un arrastre)
-    let downX = 0;
-    stage.addEventListener("pointerdown", e => downX = e.clientX);
-    // (ya no se abre la página al tocar cualquier parte de la diapositiva: con la portada fija, un toque para frenar el scroll la abría sin querer; cada una tiene su botón)
-    let cur = 0, auto = null, userTouched = false;
-    const go = i => { i = Math.max(0, Math.min(n - 1, i)); const y = PIN.start + (PIN.end - PIN.start) * i / (n - 1);   // ir a una división = bajar hasta su lugar
-      lenis ? lenis.scrollTo(y, { duration: 1.1 }) : scrollTo({ top: y, behavior: "smooth" }); };
+    const clone = slides[0].cloneNode(true); clone.setAttribute("aria-hidden", "true"); clone.classList.add("hs-clone");
+    clone.querySelectorAll("a,button").forEach(x => x.tabIndex = -1); stage.appendChild(clone);
+    const W = () => stage.clientWidth || 1, pos = () => Math.round(stage.scrollLeft / W());
+    let cur = 0, auto = null, pausa = null, settle = null;
+    const go = i => { stage.classList.remove("drag"); stage.scrollTo({ left: Math.max(0, Math.min(n, i)) * W(), behavior: "smooth" }); };
     const enter = s => { gsap.fromTo([...$(".box", s).children], { y: 50, opacity: 0 }, { y: 0, opacity: 1, stagger: .07, duration: .8, ease: EASE, overwrite: true });
                          gsap.fromTo($(".hs-bg", s), { scale: 1.15 }, { scale: 1, duration: 1.8, ease: "power2.out", overwrite: "auto" }); };
     const mark = () => {
-      const f = stage.scrollLeft / stage.clientWidth, i = Math.round(f);
-      idx.forEach((b, k) => { b.classList.toggle("on", k === i); gsap.set($("em", b), { scaleX: k < i ? 1 : k === i ? 1 : 0 }); });
-      if(i !== cur){ cur = i; enter(slides[i]); }
+      const r = pos(), i = r % n;
+      idx.forEach((b, k) => b.classList.toggle("on", k === i));
+      if(i !== cur){ cur = i; enter(r === n ? clone : slides[i]); }
+      clearTimeout(settle);
+      settle = setTimeout(() => { if(pos() === n){ stage.classList.add("drag"); stage.scrollLeft = 0; requestAnimationFrame(() => stage.classList.remove("drag")); } }, 160);
     };
     stage.addEventListener("scroll", () => requestAnimationFrame(mark), { passive: true });
-    idx.forEach((b, i) => b.addEventListener("click", () => { stop(); go(i); }));
-    $$(".hs-arrows button", hero).forEach(b => b.addEventListener("click", () => { stop(); go(cur + (+b.dataset.d)); }));
-    // barra de avance del índice y cambio automático cada 7 s hasta que la persona interactúe
-    const stop = () => { userTouched = true; if(auto){ auto.kill(); auto = null; } };
-    const run = () => {
-      if(userTouched) return;
-      const em = $("em", idx[cur]);
-      auto = gsap.fromTo(em, { scaleX: 0 }, { scaleX: 1, duration: 7, ease: "none", onComplete: () => { go(cur + 1); gsap.delayedCall(.9, run); } });
-    };
-    // la portada se queda fija y el scroll vertical pasa de una división a otra; al terminar la última, sigue la página
-    stage.classList.add("pinned");
-    const PIN = ScrollTrigger.create({
-      trigger: hero, start: "top top", end: () => "+=" + (n - 1) * innerHeight, pin: true, anticipatePin: 1, invalidateOnRefresh: true,
-      snap: { snapTo: 1 / (n - 1), duration: { min: .3, max: .8 }, delay: .06, ease: "power2.inOut" },
-      onUpdate: self => { stage.scrollLeft = self.progress * (n - 1) * stage.clientWidth; }
-    });
-    ["wheel", "touchstart", "pointerdown", "keydown"].forEach(ev => stage.addEventListener(ev, e => { if(ev !== "wheel" || Math.abs(e.deltaX) > Math.abs(e.deltaY)) stop(); }, { passive: true }));
+    // rota cada 5 s; si la persona toca, espera 6 s y sigue
+    const DUR = 5;
+    const run = () => { if(auto) auto.kill(); idx.forEach(b => gsap.set($("em", b), { scaleX: 0 }));
+      auto = gsap.fromTo($("em", idx[cur]), { scaleX: 0 }, { scaleX: 1, duration: DUR, ease: "none", onComplete: () => { go(pos() + 1); gsap.delayedCall(1, run); } }); };
+    const pause = () => { if(auto){ auto.kill(); auto = null; } clearTimeout(pausa); pausa = setTimeout(run, 6000); };
+    gsap.delayedCall(2.4, run);
+    document.addEventListener("visibilitychange", () => { if(!auto) return; document.hidden ? auto.pause() : auto.resume(); });
+    idx.forEach((b, i) => b.addEventListener("click", () => { pause(); go(i); }));
+    $$(".hs-arrows button", hero).forEach(b => b.addEventListener("click", () => { pause(); go(pos() + (+b.dataset.d)); }));
+    ["touchstart", "pointerdown", "keydown"].forEach(ev => stage.addEventListener(ev, pause, { passive: true }));
+    stage.addEventListener("wheel", e => { if(Math.abs(e.deltaX) > Math.abs(e.deltaY)) pause(); }, { passive: true });
     // arrastrar con el mouse
     let dragX = null, startL = 0;
-    stage.addEventListener("pointerdown", e => { if(stage.classList.contains("pinned") || e.pointerType !== "mouse" || e.target.closest("a,button")) return; dragX = e.clientX; startL = stage.scrollLeft; stage.classList.add("drag"); });
+    stage.addEventListener("pointerdown", e => { if(e.pointerType !== "mouse" || e.target.closest("a,button")) return; dragX = e.clientX; startL = stage.scrollLeft; stage.classList.add("drag"); });
     addEventListener("pointermove", e => { if(dragX === null) return; stage.scrollLeft = startL - (e.clientX - dragX); });
-    addEventListener("pointerup", () => { if(dragX === null) return; const f = stage.scrollLeft / stage.clientWidth, d = f - Math.floor(f);
+    addEventListener("pointerup", () => { if(dragX === null) return; const f = stage.scrollLeft / W(), d = f - Math.floor(f);
       stage.classList.remove("drag"); dragX = null; go(stage.scrollLeft > startL ? (d > .15 ? Math.ceil(f) : Math.floor(f)) : (d < .85 ? Math.floor(f) : Math.ceil(f))); });
-    addEventListener("keydown", e => { const r = hero.getBoundingClientRect(); if(r.bottom < 100) return; if(e.key === "ArrowRight"){ stop(); go(cur + 1); } if(e.key === "ArrowLeft"){ stop(); go(cur - 1); } });
+    addEventListener("keydown", e => { const r = hero.getBoundingClientRect(); if(r.bottom < 100) return; if(e.key === "ArrowRight"){ pause(); go(pos() + 1); } if(e.key === "ArrowLeft"){ pause(); go(pos() - 1); } });
     // parallax vertical suave de la portada completa
     if(FINE){
       const bgs = $$(".hs-bg", hero);
