@@ -157,3 +157,21 @@ html.menu-on .menu-in a:nth-child(2){transition-delay:.04s}html.menu-on .menu-in
   nav .wrap{gap:14px}
   nav .links{margin-left:auto}
 }
+
+/* portada · Nexus Digital: fondo propio y tarjeta de auditoría de ejemplo */
+.nx-bg{background:radial-gradient(70% 90% at 78% 40%,#16306E 0%,#0A1A3E 45%,#051226 100%)!important}
+.nx-bg:after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(60% 70% at 75% 45%,#000,transparent)}
+.hs-nexus:after{background:linear-gradient(90deg,rgba(5,18,38,.9) 0%,rgba(5,18,38,.45) 45%,rgba(5,18,38,0) 70%)}
+.nx-card{position:absolute;z-index:2;right:max(230px,calc((100vw - 1280px)/2 + 260px));top:50%;transform:translateY(-50%) rotate(-2deg);width:330px;padding:24px;background:rgba(255,255,255,.96);color:#0B1220;box-shadow:0 40px 80px -30px rgba(0,0,0,.7);font:400 13px var(--sans)}
+.nx-h{display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#64708A}
+.nx-h em{font-style:normal;font-size:10px;letter-spacing:.08em;background:#FFF3D6;color:#8A5A00;padding:3px 7px}
+.nx-url{font:500 15px ui-monospace,Menlo,monospace;margin:8px 0 14px;color:#0B1220}
+.nx-score{display:flex;align-items:baseline;gap:4px;margin-bottom:14px}
+.nx-score b{font:300 58px/1 var(--serif);color:#0B1220}.nx-score span{color:#64708A;font-size:16px}
+.nx-row{display:grid;grid-template-columns:104px 1fr 26px;gap:10px;align-items:center;padding:7px 0;border-top:1px solid #EEF1F6}
+.nx-row i{display:block;height:6px;background:#EEF1F6;overflow:hidden}.nx-row u{display:block;height:100%}
+.nx-row b{text-align:right;font-weight:600}
+.nx-f{margin-top:12px;font-size:12.5px;color:#2251FF;font-weight:600}
+.hs-arrows{top:calc(50% + 200px)}
+@media(max-width:1180px){.nx-card{display:none}}
+@media(max-width:900px){.hs-arrows{top:auto}}
