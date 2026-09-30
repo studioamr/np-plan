@@ -461,7 +461,7 @@ function vCuenta(){
       ${tog("dosPasos","Verificación en dos pasos","Código por WhatsApp al entrar y al retirar",S.dosPasos)}
       <div class="planc" style="margin-top:10px"><div><b style="font-size:14px">Atención por WhatsApp</b><div class="sub">Una persona real de la mesa</div></div><span class="kic t" style="width:34px;height:34px;flex-basis:34px">${I(ICO.chat)}</span></div>
       <div class="planc" style="margin-top:10px"><div><b style="font-size:14px">Invite a alguien</b><div class="sub">Comparta su enlace de invitación</div></div><span class="kic v" style="width:34px;height:34px;flex-basis:34px">${I(ICO.gift)}</span></div>
-      <div class="btns" style="margin-top:16px"><a class="btn btn-p" href="index.html#registro" target="_top">Apartar mi lugar real</a><button class="btn btn-s" id="reset">Reiniciar la demo</button></div></div>
+      <div class="btns" style="margin-top:16px"><a class="btn btn-p" href="index.html#registro" target="_top">Apartar mi lugar real</a><button class="btn btn-s" id="reset">Crear mi propia cuenta demo</button></div></div>
   </div>`;
 }
 
@@ -653,7 +653,8 @@ function welcome(){
 
 // ═════════════ arranque ═════════════
 load();
-if(!S || !S.movs){ if(MUESTRA){ crearCuenta("Mariana López","mod",12400,20260929); setMode("cliente"); } else welcome(); }
+// abre directo en el dashboard con la cuenta de ejemplo; la bienvenida queda en Cuenta → "Crear mi propia cuenta demo"
+if(!S || !S.movs){ crearCuenta("Mariana López","mod",12400,20260929); setMode("cliente"); }
 else { let st = ["cliente","inicio"]; try{ st = (sessionStorage.getItem("np6")||"cliente|inicio").split("|"); }catch(_){}
   MODE = NAV[st[0]] ? st[0] : "cliente"; go(VIEWS[st[1]] && NAV[MODE].some(x=>x[0]===st[1]) ? st[1] : NAV[MODE][0][0]); }
 let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(()=>{ if(VIEW==="inicio") drawGrow(); if(VIEW==="resumen") afterResumen(); }, 200); });
