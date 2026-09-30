@@ -165,6 +165,15 @@ table.tb{width:100%;border-collapse:collapse;font-size:13.5px}
 .wbox .btn{height:50px;font-size:15px}
 .wbox .field{color:rgba(255,255,255,.8)}
 .wfine{font-size:12px;opacity:.6;margin-top:18px;text-align:center}
+.tl{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 76px);transform:translateX(-50%);z-index:45;display:flex;align-items:center;gap:9px;background:rgba(11,27,63,.92);color:#fff;padding:7px 12px;border-radius:999px;font-size:12px;box-shadow:0 10px 24px -10px rgba(11,27,63,.6);transition:opacity .3s;pointer-events:none;white-space:nowrap}
+.tl b{font-weight:700;min-width:62px;text-transform:capitalize}
+.tl-dot{width:7px;height:7px;border-radius:50%;background:#7CF0B0;animation:ping 1.6s infinite}
+.tl-bar{width:56px;height:3px;border-radius:3px;background:rgba(255,255,255,.2);overflow:hidden}.tl-bar i{display:block;height:100%;background:#7CF0B0}
+.tl.off{opacity:0}
+@media(min-width:981px){.tl{bottom:24px}}
+/* en cámara rápida la gráfica sube junto al saldo */
+body.tlm .g12>*{order:2}body.tlm .g12>:nth-child(1){order:0}body.tlm .g12>:nth-child(3){order:1}
+body.tlm .top{margin-bottom:10px}
 .toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);z-index:95;background:var(--navy);color:#fff;padding:12px 16px;border-radius:12px;font-size:13.5px;font-weight:600;opacity:0;transition:all .3s;pointer-events:none}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 @media(max-width:980px){
@@ -261,7 +270,11 @@ const MUESTRA = new URLSearchParams(location.search).has("muestra");
 if(MUESTRA) CONFIG.KEY = "np-app-v6-muestra";
 let S = null, MODE = "cliente", VIEW = "inicio";
 const load = () => { try{ S = JSON.parse(localStorage.getItem(CONFIG.KEY)); }catch(_){ S = null; } };
-const save = () => { try{ localStorage.setItem(CONFIG.KEY, JSON.stringify(S)); }catch(_){} };
+// CÁMARA RÁPIDA (?timelapse=1, el iPhone de la landing): el reloj de la app se mueve 12 meses en 10 s y vuelve a empezar
+const TL = new URLSearchParams(location.search).has("timelapse");
+let NOWT = null, FAST = false;
+const nowD = () => NOWT ? new Date(NOWT) : new Date();
+const save = () => { if(TL) return; try{ localStorage.setItem(CONFIG.KEY, JSON.stringify(S)); }catch(_){} };
 
 function crearCuenta(nombre, plan, monto, seed){
   const p = planDe(plan), r = rng(seed || Date.now()%1e9), hoy = new Date(), N = 12;
@@ -293,7 +306,7 @@ const saldo = () => S.movs.reduce((a,m)=>a+m.monto,0) + opsMes();
 const depositado = () => S.movs.filter(m=>m.tipo==="dep"||m.tipo==="ret").reduce((a,m)=>a+m.monto,0);
 const comisiones = () => -S.movs.filter(m=>m.tipo==="fee").reduce((a,m)=>a+m.monto,0);
 const resultados = () => S.movs.filter(m=>m.tipo==="res").sort((a,b)=>a.fecha<b.fecha?-1:1);
-function serie(){ const pts = []; let acc = 0; [...S.movs].sort((a,b)=>a.fecha<b.fecha?-1:1).forEach(m => { acc += m.monto; pts.push({ t:new Date(m.fecha), v:acc }); }); pts.push({ t:new Date(), v:saldo() }); return pts; }
+function serie(){ const pts = []; let acc = 0; [...S.movs].sort((a,b)=>a.fecha<b.fecha?-1:1).forEach(m => { acc += m.monto; pts.push({ t:new Date(m.fecha), v:acc }); }); pts.push({ t:nowD(), v:saldo() }); return pts; }
 function cumOps(){ let a = 0; return [...S.ops].sort((x,y)=>x.fecha<y.fecha?-1:1).map(o => a += o.monto); }
 function uso(){ const p = planDe(S.plan), base = saldo()-opsMes(), worst = Math.min(0, ...cumOps()); return Math.min(1, Math.abs(worst)/base*100/p.riesgo); }
 
@@ -314,7 +327,7 @@ function area(el, pts, fmt){
     ${ticks.map((t,i)=>`<text x="${i===0?pl:i===4?W-pr:x(+t)}" y="${H-6}" font-size="11" fill="#98A2B8" text-anchor="${i===0?"start":i===4?"end":"middle"}">${fecha(t)}</text>`).join("")}
   </svg><div class="tip"></div><div class="cdot" style="position:absolute;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid #2251FF;transform:translate(-50%,-50%);opacity:0;pointer-events:none"></div>`;
   const svg = el.querySelector("svg"), tip = el.querySelector(".tip"), cx = el.querySelector(".cx"), cd = el.querySelector(".cdot"), path = el.querySelector(".ln");
-  try{ const L = path.getTotalLength(); path.style.strokeDasharray = L; path.style.strokeDashoffset = L; requestAnimationFrame(()=>{ path.style.transition = "stroke-dashoffset 1.2s cubic-bezier(.2,.7,.2,1)"; path.style.strokeDashoffset = 0; }); }catch(_){}
+  if(!FAST) try{ const L = path.getTotalLength(); path.style.strokeDasharray = L; path.style.strokeDashoffset = L; requestAnimationFrame(()=>{ path.style.transition = "stroke-dashoffset 1.2s cubic-bezier(.2,.7,.2,1)"; path.style.strokeDashoffset = 0; }); }catch(_){}
   const show = cxp => { const r = svg.getBoundingClientRect(), fx = (cxp - r.left)/r.width*W, tt = t0 + (fx-pl)/(W-pl-pr)*(t1-t0);
     let best = pts[0]; for(const p of pts) if(Math.abs(+p.t-tt) < Math.abs(+best.t-tt)) best = p;
     const X = x(+best.t), Y = y(best.v); cx.setAttribute("x1",X); cx.setAttribute("x2",X); cx.setAttribute("opacity",.6);
@@ -338,9 +351,10 @@ function donut(el, segs, center){
     </svg><div class="c"><div><b>${center[0]}</b><span>${center[1]}</span></div></div></div>
     <div style="display:grid;gap:10px;flex:1;min-width:140px">${segs.map(s=>`<div style="display:flex;justify-content:space-between;gap:10px;font-size:13.5px"><span><i class="dotp" style="background:${s.c}"></i>${s.l}</span><b class="num">${Math.round(s.v/tot*100)}%</b></div>`).join("")}</div></div>`;
 }
-function ring(v, color){ const C = 2*Math.PI*48, f = Math.max(0, Math.min(1, v)); return `<svg viewBox="0 0 110 110"><circle cx="55" cy="55" r="48" fill="none" stroke="#EEF1F7" stroke-width="10"/><circle class="rg" cx="55" cy="55" r="48" fill="none" stroke="${color||"url(#gRing)"}" stroke-width="10" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C}" data-to="${C*(1-f)}" style="transition:stroke-dashoffset 1.2s cubic-bezier(.2,.7,.2,1)"/></svg>`; }
+function ring(v, color){ const C = 2*Math.PI*48, f = Math.max(0, Math.min(1, v)); return `<svg viewBox="0 0 110 110"><circle cx="55" cy="55" r="48" fill="none" stroke="#EEF1F7" stroke-width="10"/><circle class="rg" cx="55" cy="55" r="48" fill="none" stroke="${color||"url(#gRing)"}" stroke-width="10" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${FAST?C*(1-f):C}" data-to="${C*(1-f)}" style="${FAST?"":"transition:stroke-dashoffset 1.2s cubic-bezier(.2,.7,.2,1)"}"/></svg>`; }
 const animRings = () => requestAnimationFrame(()=>requestAnimationFrame(()=>$$(".rg").forEach(c=>c.style.strokeDashoffset = c.dataset.to)));
 const countUp = () => $$("[data-count]").forEach(el => { const to = +el.dataset.count, dec = +(el.dataset.dec||0), pre = el.dataset.pre||"", t0 = performance.now();
+  if(FAST){ el.textContent = pre + to.toLocaleString("en-US",{minimumFractionDigits:dec,maximumFractionDigits:dec}); return; }
   const f = now => { const p = Math.min(1,(now-t0)/900), e = 1-Math.pow(1-p,3); el.textContent = pre + (to*e).toLocaleString("en-US",{minimumFractionDigits:dec,maximumFractionDigits:dec}); if(p<1) requestAnimationFrame(f); }; requestAnimationFrame(f); });
 
 // ═════════════ navegación ═════════════
@@ -374,24 +388,24 @@ function metaRow(m){ const bal = saldo(), k = metaInfo(m);
   return `<div style="display:flex;justify-content:space-between;gap:10px;font-size:14px"><b>${m.nombre}</b><span class="num m">${usd0(Math.min(bal,m.objetivo))} / ${usd0(m.objetivo)}</span></div>
   <div class="bar" style="margin:8px 0 6px"><i style="width:${Math.round(k.v*100)}%;background:${m.color}"></i></div>
   <div class="sub">${k.meses===0?"Meta alcanzada con su saldo actual.":`Con el objetivo de su plan la alcanzaría en unos ${k.meses} meses, sin depositar más.`}</div>`; }
-function movList(){ const cur = S.ops.length ? [{ tipo:"mes", fecha:new Date().toISOString(), monto:opsMes() }] : []; return [...S.movs, ...cur].sort((a,b)=>a.fecha<b.fecha?1:-1); }
+function movList(){ const cur = S.ops.length ? [{ tipo:"mes", fecha:nowD().toISOString(), monto:opsMes() }] : []; return [...S.movs, ...cur].sort((a,b)=>a.fecha<b.fecha?1:-1); }
 function movLi(m){
-  const M = { dep:["Depósito","b",ICO.down], ret:["Retiro","v",ICO.up], res:[`Resultado de ${MESES[m.mes]}`, m.monto>=0?"g":"r", ICO.trend], fee:["Comisión de la mesa","a",ICO.pctI], mes:[`${Mes(new Date().getMonth())} hasta hoy`, m.monto>=0?"g":"r", ICO.clock] }[m.tipo];
+  const M = { dep:["Depósito","b",ICO.down], ret:["Retiro","v",ICO.up], res:[`Resultado de ${MESES[m.mes]}`, m.monto>=0?"g":"r", ICO.trend], fee:["Comisión de la mesa","a",ICO.pctI], mes:[`${Mes(nowD().getMonth())} hasta hoy`, m.monto>=0?"g":"r", ICO.clock] }[m.tipo];
   const d = m.tipo==="res" ? `${pct(m.pct)} · ${fecha(new Date(m.fecha))}` : m.tipo==="fee" ? m.nota : m.tipo==="mes" ? "En operación" : fecha(new Date(m.fecha));
   return `<li><div class="kic ${M[1]}">${I(M[2])}</div><div><div class="t">${m.tipo==="dep"&&m.nota?m.nota:M[0]}</div><div class="d">${d}</div></div><div class="v num ${m.tipo==="res"||m.tipo==="mes"?(m.monto>=0?"g":"r"):""}">${sg(m.monto)}${usd(m.monto)}</div></li>`;
 }
 function vInicio(){
   const bal = saldo(), dep = depositado(), gan = bal - dep, p = planDe(S.plan), nv = nivelDe(bal), om = opsMes(), base = bal - om, omp = om/base*100;
   const res = resultados(), mejor = res.reduce((a,m)=>m.pct>a.pct?m:a, res[0]||{pct:0,mes:0}), prom = res.reduce((a,m)=>a+m.pct,0)/(res.length||1);
-  const meta = base*p.objetivo/100, av = om/meta, h = new Date().getHours(), [ent, dec] = usd(bal).split("."), u = uso();
-  const prox = new Date(new Date().getFullYear(), new Date().getMonth()+1, 1);
+  const meta = base*p.objetivo/100, av = om/meta, h = nowD().getHours(), [ent, dec] = usd(bal).split("."), u = uso();
+  const prox = new Date(nowD().getFullYear(), nowD().getMonth()+1, 1);
   return `<div class="top"><div><h1>${h<12?"Buenos días":h<19?"Buenas tardes":"Buenas noches"}, ${S.nombre.split(" ")[0]}</h1><p>Este es el estado de su ahorro hoy.</p></div>
     <div class="top-act"><button class="btn btn-s" data-sheet="ret">${I(ICO.up)} Retirar</button><button class="btn btn-p" data-sheet="dep">${I(ICO.down)} Depositar</button></div></div>
   <div class="grid g12">
     <div class="card hero c7"><svg class="star"><use href="#star"/></svg>
       <div class="lbl">Saldo total · plan ${p.nombre}</div>
       <div class="saldo num">${ent}<small>.${dec}</small></div>
-      <span class="chip ${om<0?"neg":""}"><i>${om>=0?"▲":"▼"} ${sg(om)}${usd(om)} · ${pct(omp)}</i> en ${MESES[new Date().getMonth()]}</span>
+      <span class="chip ${om<0?"neg":""}"><i>${om>=0?"▲":"▼"} ${sg(om)}${usd(om)} · ${pct(omp)}</i> en ${MESES[nowD().getMonth()]}</span>
       <div class="acts"><button class="btn btn-w" data-sheet="dep">${I(ICO.down)} Depositar</button><button class="btn btn-gl" data-sheet="ret">${I(ICO.up)} Retirar</button><button class="btn btn-gl" data-sheet="plan">Cambiar plan</button></div>
       <div class="meta"><div><span>Depositado</span><b class="num">${usd0(dep)}</b></div><div><span>Ganancia total</span><b class="num">${sg(gan)}${usd0(gan)}</b></div><div><span>Nivel</span><b>${nv.nombre}</b></div></div>
     </div>
@@ -569,7 +583,7 @@ function render(){
   animRings(); countUp();
 }
 function drawGrow(){
-  const all = serie(), now = Date.now(), cut = { "1M":31, "3M":92, "6M":183, "1A":366 }[RANGO];
+  const all = serie(), now = +nowD(), cut = { "1M":31, "3M":92, "6M":183, "1A":366 }[RANGO];
   const pts = cut ? all.filter(p => now - +p.t <= cut*864e5) : all;
   area($("#chGrow"), pts.length>1 ? pts : all.slice(-2), v=>usd(v));
   $$("#ranges button").forEach(b=>b.onclick=()=>{ RANGO = b.dataset.r; $$("#ranges button").forEach(x=>x.classList.toggle("on", x===b)); drawGrow(); });
@@ -657,6 +671,33 @@ load();
 if(!S || !S.movs){ crearCuenta("Mariana López","mod",12400,20260929); setMode("cliente"); }
 else { let st = ["cliente","inicio"]; try{ st = (sessionStorage.getItem("np6")||"cliente|inicio").split("|"); }catch(_){}
   MODE = NAV[st[0]] ? st[0] : "cliente"; go(VIEWS[st[1]] && NAV[MODE].some(x=>x[0]===st[1]) ? st[1] : NAV[MODE][0][0]); }
+if(TL) (function(){
+  const FULL = JSON.parse(JSON.stringify(S)), t0 = +new Date(FULL.creado), t1 = Date.now(), DUR = 10000, HOLD = 1800;
+  document.body.classList.add("tlm");
+  const tag = document.createElement("div"); tag.className = "tl"; tag.innerHTML = `<span class="tl-dot"></span><b id="tlMes"></b><span class="tl-bar"><i id="tlBar"></i></span>`; document.body.appendChild(tag);
+  let start = performance.now(), on = true, idle;
+  const frame = f => {
+    const cut = t0 + (t1 - t0)*f; NOWT = cut;
+    // el mes en curso se ve como "operaciones del mes" que van creciendo; los meses cerrados ya son movimientos
+    const movs = [], vivo = [];
+    FULL.movs.forEach(m => { const t = +new Date(m.fecha);
+      if(t <= cut) movs.push(m);
+      else if(m.tipo === "res"){ const ini = +new Date(m.anio, m.mes, 1); if(cut > ini){ const k = (cut-ini)/(t-ini); vivo.push({ fecha:new Date(cut).toISOString(), inst:"Nasdaq 100", dir:"Compra", monto:m.monto*k, trader:CONFIG.traders[m.mes%3] }); } } });
+    S = { ...FULL, movs, ops: vivo.length ? vivo : FULL.ops.filter(o => +new Date(o.fecha) <= cut) };
+    FAST = true; render(); FAST = false;
+    const d = new Date(cut); $("#tlMes").textContent = `${MESES[d.getMonth()].slice(0,3)} ${d.getFullYear()}`; $("#tlBar").style.width = (f*100).toFixed(1) + "%";
+  };
+  const tick = now => { if(!on) return;
+    const e = now - start, f = Math.min(1, e/DUR);
+    if(VIEW === "inicio" && MODE === "cliente") frame(1 - Math.pow(1-f, 1.6));
+    if(e > DUR + HOLD) start = now;
+    setTimeout(() => requestAnimationFrame(tick), 110);
+  };
+  const stop = () => { if(on){ on = false; NOWT = null; S = JSON.parse(JSON.stringify(FULL)); tag.classList.add("off"); document.body.classList.remove("tlm"); render(); } clearTimeout(idle);
+    idle = setTimeout(() => { Object.assign(FULL, JSON.parse(JSON.stringify(S))); if(MODE !== "cliente") setMode("cliente"); else go("inicio"); on = true; tag.classList.remove("off"); document.body.classList.add("tlm"); start = performance.now(); requestAnimationFrame(tick); }, 12000); };
+  addEventListener("pointerdown", stop, true); addEventListener("wheel", stop, { passive:true }); addEventListener("touchstart", stop, { passive:true, capture:true });
+  requestAnimationFrame(tick);
+})();
 let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(()=>{ if(VIEW==="inicio") drawGrow(); if(VIEW==="resumen") afterResumen(); }, 200); });
 </script>
 </body>
