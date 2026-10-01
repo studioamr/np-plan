@@ -81,6 +81,7 @@ header.hd .wrap{display:flex;align-items:center;height:76px;gap:18px}
 /* fila 2: principal | titulares | riel */
 .front{display:grid;grid-template-columns:1.62fr 1fr 1fr;gap:16px 18px;border-top:1px solid var(--line)}
 .front>*{padding-top:22px}
+#lead{scroll-margin-top:96px}
 .lead .kick{display:flex;align-items:center;gap:7px}
 .lead .kick:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--acc);animation:lp 1.8s infinite}
 @keyframes lp{0%{box-shadow:0 0 0 0 rgba(34,81,255,.5)}70%{box-shadow:0 0 0 7px rgba(34,81,255,0)}100%{box-shadow:0 0 0 0 rgba(34,81,255,0)}}
@@ -350,6 +351,7 @@ const tvEmbed = (el, name, cfg) => { el.innerHTML = `<div class="tradingview-wid
 (function(){ const f = new Date().toLocaleDateString("es-MX", { timeZone:TZ, weekday:"long", day:"numeric", month:"long", year:"numeric" }); $("#fecha").textContent = f.charAt(0).toUpperCase() + f.slice(1); })();
 $("#bOpen").onclick = () => $("#drawer").classList.add("on");
 $$("[data-close]").forEach(e => e.addEventListener("click", () => $("#drawer").classList.remove("on")));
+if(/shot/.test(location.search)){ $("#trend").remove(); document.body.style.paddingBottom = "0"; }
 $("#tX").onclick = () => { $("#trend").remove(); document.body.style.paddingBottom = "0"; };
 
 // ── lista de seguimiento (en este navegador) ──
