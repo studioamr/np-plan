@@ -131,23 +131,45 @@ nav .links a:hover{opacity:1}
 .banda .eyebrow{color:#fff}
 .banda h2{color:#fff;max-width:760px;margin:16px 0 32px}
 
-/* perfiles */
-.perfiles{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.perfil{border:1px solid var(--line);padding:32px;cursor:pointer;transition:border-color .2s,box-shadow .2s;background:#fff}
-.perfil:hover{border-color:var(--ink)}
-.perfil.on{border-color:var(--blue);box-shadow:inset 0 4px 0 var(--blue)}
-.perfil .obj{font:300 64px/1 var(--serif);color:var(--gain);margin:22px 0 6px}
-.perfil .cap{margin-bottom:18px}
+/* perfiles · cada plan con su color (los mismos de la app), ícono y curva */
+.perfiles{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+.perfil{--c:#2251FF;--c2:#1B3FCC;--tint:rgba(34,81,255,.06);position:relative;border:1px solid var(--line);cursor:pointer;background:#fff;display:flex;flex-direction:column;overflow:hidden;transition:border-color .25s,box-shadow .25s,transform .25s}
+.perfil[data-id="bas"]{--c:#0EA5A4;--c2:#0B7F7E;--tint:rgba(14,165,164,.07)}
+.perfil[data-id="agr"]{--c:#7C5CFF;--c2:#5B3FE0;--tint:rgba(124,92,255,.07)}
+.perfil:hover{border-color:var(--c);box-shadow:0 24px 50px -30px var(--c)}
+.perfil.on{border-color:var(--c);box-shadow:0 0 0 1px var(--c),0 30px 60px -32px var(--c)}
+.pf-top{position:relative;background:linear-gradient(135deg,var(--c) 0%,var(--c2) 100%);color:#fff;padding:26px 28px 24px;overflow:hidden}
+.pf-top:after{content:"";position:absolute;right:-50px;top:-60px;width:200px;height:200px;border-radius:50%;border:34px solid rgba(255,255,255,.09)}
+.pf-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;position:relative;z-index:1}
+.pf-top .eyebrow{color:rgba(255,255,255,.8);font-size:12px}
+.pf-top h3{font:400 30px/1.1 var(--serif);margin-top:6px}
+.pf-top .lema{font-size:14px;opacity:.85;margin-top:4px}
+.pf-ico{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center;flex:0 0 auto}
+.pf-ico svg{width:24px;height:24px}
+.pf-badge{position:absolute;z-index:2;right:28px;bottom:16px;background:#fff;color:var(--c);font:600 11px var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:5px 10px}
+.pf-body{padding:26px 28px 28px;display:flex;flex-direction:column;flex:1;background:linear-gradient(180deg,var(--tint) 0%,#fff 46%)}
+.perfil .obj{font:300 64px/1 var(--serif);color:var(--c);margin:4px 0 6px}
+.perfil .cap{font-size:14px;color:var(--muted);margin-bottom:16px}
 .riesgo{display:flex;align-items:center;gap:5px}
 .riesgo i{width:26px;height:6px;background:var(--gray)}
 .riesgo i.on{background:var(--blue)}
+.perfil .riesgo i.on{background:var(--c)}
 .riesgo span{font-size:13px;color:var(--muted);margin-left:10px}
-.perfil .ideal{margin-top:18px;font-size:15px;min-height:48px}
-.perfil .cap{font-size:14px;color:var(--muted)}
-.perfil dl{margin-top:28px}
-.perfil dl div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-top:1px solid var(--line);font-size:15px}
-.perfil dt{color:var(--muted)}
+.pf-curve{margin:20px 0 4px;border:1px solid var(--line);background:#fff;padding:14px 14px 10px}
+.pf-curve svg{display:block;width:100%;height:74px}
+.pf-curve .lbl{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted)}
+.pf-curve .lbl b{font:500 20px var(--serif);color:var(--ink)}
+.pf-curve small{display:block;font-size:11.5px;color:var(--muted);margin-top:6px}
+.perfil .ideal{margin-top:16px;font-size:15px;min-height:48px;color:var(--text)}
+.perfil dl{margin-top:16px}
+.perfil dl div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-top:1px solid var(--line);font-size:15px}
+.perfil dt{color:var(--muted);display:flex;align-items:center;gap:8px}
+.perfil dt:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--c);flex:0 0 auto}
 .perfil dd{text-align:right;color:var(--ink)}
+.pf-cta{margin-top:auto;padding-top:20px}
+.pf-cta span{display:flex;align-items:center;justify-content:center;gap:8px;height:48px;border:1px solid var(--c);color:var(--c);font:500 15px var(--sans);transition:background .2s,color .2s}
+.perfil:hover .pf-cta span,.perfil.on .pf-cta span{background:var(--c);color:#fff}
+.perfil.on .pf-cta span:before{content:"✓"}
 @media(max-width:900px){.perfiles{grid-template-columns:1fr}}
 
 /* paquetes */
@@ -290,7 +312,7 @@ footer .mark{color:#fff;display:block;margin-bottom:24px}
 footer p{max-width:900px;margin-bottom:12px}
 footer b{color:#fff;font-weight:500}
 </style>
-<link rel="stylesheet" href="anim.css?v=1790818836">
+<link rel="stylesheet" href="anim.css?v=1790819737">
 <script>document.documentElement.classList.add("js-anim");setTimeout(function(){document.documentElement.classList.add("anim-ready")},3500)</script>
 </head>
 <body>
@@ -383,7 +405,7 @@ footer b{color:#fff;font-weight:500}
     </ul>
   </div>
   <div>
-    <div class="iphone"><div class="iph-screen"><iframe src="app.html?muestra=1&v=1790818836" title="Demo de la app NORTHPOINT" loading="lazy"></iframe><div class="iph-island"></div></div></div>
+    <div class="iphone"><div class="iph-screen"><iframe src="app.html?muestra=1&v=1790819737" title="Demo de la app NORTHPOINT" loading="lazy"></iframe><div class="iph-island"></div></div></div>
     <span class="demo">Pruébela aquí: es la app real en modo demostración, sin dinero real. <a class="link" href="app.html" style="font-size:13px">Abrir en pantalla completa</a></span>
   </div>
 </div></section>
@@ -566,19 +588,33 @@ const $ = s => document.querySelector(s);
 const usd = n => (n<0?"−":"") + "$" + Math.round(Math.abs(n)).toLocaleString("en-US");
 const state = { perfil:"mod" };
 
+const PF_ICO = {
+  bas:'<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 8.3-7 9.5C8 19.3 5 15.4 5 11V6z"/><path d="M9 12l2 2 4-4"/></svg>',
+  mod:'<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 3 7-8"/><path d="M15 7h4v4"/></svg>',
+  agr:'<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20l6-9 4 4 8-12"/><path d="M15 3h6v6"/><path d="M3 20h18"/></svg>' };
+const PF_BADGE = { bas:"Para empezar", mod:"Recomendado", agr:"Largo plazo" };
+// curva: cómo crecerían $1,000 en 12 meses SI el objetivo se cumpliera cada mes (ilustración, no promesa)
+const pfCurve = p => { const W = 300, H = 74, pts = [...Array(13)].map((_,m) => 1000*Math.pow(1+p.objetivo/100, m)), max = 1000*Math.pow(1.06,12), y = v => H - 4 - (v-1000)/(max-1000)*(H-12);
+  const d = pts.map((v,m) => `${m?"L":"M"}${(m/12*W).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="g${p.id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--c);stop-opacity:.28"/><stop offset="1" style="stop-color:var(--c);stop-opacity:0"/></linearGradient></defs><path d="${d} L${W},${H} L0,${H}Z" fill="url(#g${p.id})"/><path d="${d}" style="fill:none;stroke:var(--c);stroke-width:2.2" vector-effect="non-scaling-stroke"/><circle cx="${W}" cy="${y(pts[12]).toFixed(1)}" r="3.5" style="fill:var(--c)"/></svg>
+    <div class="lbl"><span>$1,000 hoy</span><span>en 12 meses <b>${usd(pts[12])}</b></span></div><small>Si el objetivo se cumpliera todos los meses. No es un rendimiento garantizado.</small>`; };
 $("#perfilesGrid").innerHTML = CONFIG.perfiles.map(p => `
   <div class="perfil" data-id="${p.id}">
-    <div class="eyebrow">Plan ${p.nombre}</div>
-    <div class="obj">+${p.objetivo}%</div><div class="cap">Objetivo mensual · ${p.lema.toLowerCase()}</div>
-    <div class="riesgo" aria-label="Nivel de riesgo ${p.nivel} de 5">${[1,2,3,4,5].map(i=>`<i class="${i<=p.nivel?"on":""}"></i>`).join("")}<span>Riesgo ${p.nivel} de 5</span></div>
-    <p class="ideal">${p.ideal}</p>
-    <dl>
-      <div><dt>Objetivo al año</dt><dd>+${+(p.objetivo*12).toFixed(1)}%</dd></div>
-      <div><dt>Riesgo mensual</dt><dd>${p.riesgo}%</dd></div>
-      <div><dt>Horizonte sugerido</dt><dd>${p.horizonte}</dd></div>
-      <div><dt>Actividad de la mesa</dt><dd>${p.freq}</dd></div>
-      <div><dt>Freno de protección</dt><dd>Incluido</dd></div>
-    </dl>
+    <div class="pf-top"><div class="pf-row"><div><div class="eyebrow">Plan</div><h3>${p.nombre}</h3><div class="lema">${p.lema}</div></div><div class="pf-ico">${PF_ICO[p.id]||""}</div></div><span class="pf-badge">${PF_BADGE[p.id]||""}</span></div>
+    <div class="pf-body">
+      <div class="obj">+${p.objetivo}%</div><div class="cap">Objetivo mensual</div>
+      <div class="riesgo" aria-label="Nivel de riesgo ${p.nivel} de 5">${[1,2,3,4,5].map(i=>`<i class="${i<=p.nivel?"on":""}"></i>`).join("")}<span>Riesgo ${p.nivel} de 5</span></div>
+      <div class="pf-curve">${pfCurve(p)}</div>
+      <p class="ideal">${p.ideal}</p>
+      <dl>
+        <div><dt>Objetivo al año</dt><dd>+${+(p.objetivo*12).toFixed(1)}%</dd></div>
+        <div><dt>Riesgo mensual</dt><dd>${p.riesgo}%</dd></div>
+        <div><dt>Horizonte sugerido</dt><dd>${p.horizonte}</dd></div>
+        <div><dt>Actividad de la mesa</dt><dd>${p.freq}</dd></div>
+        <div><dt>Freno de protección</dt><dd>Incluido</dd></div>
+      </dl>
+      <div class="pf-cta"><span>Elegir ${p.nombre}</span></div>
+    </div>
   </div>`).join("");
 $("#seg").innerHTML = CONFIG.perfiles.map(p => `<button type="button" data-id="${p.id}">${p.nombre}</button>`).join("");
 
@@ -742,7 +778,7 @@ $("#form").addEventListener("submit", e => {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="anim.js?v=1790818836"></script>
-<script src="menu.js?v=1790818836"></script>
+<script src="anim.js?v=1790819737"></script>
+<script src="menu.js?v=1790819737"></script>
 </body>
 </html>
