@@ -181,7 +181,7 @@
       rs.forEach((r, i) => r.classList.toggle("lit", i < n));
     }, onLeaveBack: () => rs.forEach(r => r.classList.remove("lit")) });
   }
-  stagger("#perfilesGrid", { y: 80, opacity: 0, rotateX: 12, transformPerspective: 900 });
+  stagger("#perfilesGrid", { y: 50, opacity: 0 });
   stagger("#nivelesGrid", { y: 80, opacity: 0 });
   stagger("#cards", { y: 60, opacity: 0 });
   stagger(".fund-prog", { y: 70, opacity: 0 });
@@ -207,7 +207,7 @@
       el.addEventListener("mouseleave", () => { rx(0); ry(0); });
     };
     // se aplica cuando ya existen (las tarjetas se generan con JS)
-    requestAnimationFrame(() => $$(".perfil, .pq, .card, .rol, .fp, .svc").forEach(tilt));
+    requestAnimationFrame(() => $$(".pq, .card, .rol, .fp, .svc").forEach(tilt));
   }
 
   // ── 11. banda y compromiso: parallax y recorte ──
