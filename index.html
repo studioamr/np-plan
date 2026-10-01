@@ -132,9 +132,10 @@ nav .links a:hover{opacity:1}
 .banda h2{color:#fff;max-width:760px;margin:16px 0 32px}
 
 /* perfiles · cada plan con su color (los mismos de la app), ícono y curva */
-.perfiles{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;align-items:stretch;max-width:920px;margin:0 auto}
+.perfiles{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
 .perfil{--c:#2251FF;--c2:#1B3FCC;--tint:rgba(34,81,255,.06);position:relative;border:1px solid var(--line);cursor:pointer;background:#fff;display:flex;flex-direction:column;overflow:hidden;transition:border-color .25s,box-shadow .25s,transform .25s}
 .perfil[data-id="bas"]{--c:#0EA5A4;--c2:#0B7F7E;--tint:rgba(14,165,164,.07)}
+.perfil[data-id="agr"]{--c:#7C5CFF;--c2:#5B3FE0;--tint:rgba(124,92,255,.07)}
 .perfil:hover{border-color:var(--c);box-shadow:0 24px 50px -30px var(--c)}
 .perfil.on{border-color:var(--c);box-shadow:0 0 0 1px var(--c),0 30px 60px -32px var(--c)}
 .pf-top{position:relative;background:linear-gradient(135deg,var(--c) 0%,var(--c2) 100%);color:#fff;padding:26px 28px 24px;overflow:hidden}
@@ -154,11 +155,6 @@ nav .links a:hover{opacity:1}
 .riesgo i.on{background:var(--blue)}
 .perfil .riesgo i.on{background:var(--c)}
 .riesgo span{font-size:13px;color:var(--muted);margin-left:10px}
-.pf-curve{margin:20px 0 4px;border:1px solid var(--line);background:#fff;padding:14px 14px 10px}
-.pf-curve svg{display:block;width:100%;height:74px}
-.pf-curve .lbl{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted)}
-.pf-curve .lbl b{font:500 20px var(--serif);color:var(--ink)}
-.pf-curve small{display:block;font-size:11.5px;color:var(--muted);margin-top:6px}
 .perfil .ideal{margin-top:16px;font-size:15px;min-height:48px;color:var(--text)}
 .perfil dl{margin-top:16px}
 .perfil dl div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-top:1px solid var(--line);font-size:15px}
@@ -311,7 +307,7 @@ footer .mark{color:#fff;display:block;margin-bottom:24px}
 footer p{max-width:900px;margin-bottom:12px}
 footer b{color:#fff;font-weight:500}
 </style>
-<link rel="stylesheet" href="anim.css?v=1790819938">
+<link rel="stylesheet" href="anim.css?v=1790820074">
 <script>document.documentElement.classList.add("js-anim");setTimeout(function(){document.documentElement.classList.add("anim-ready")},3500)</script>
 </head>
 <body>
@@ -385,7 +381,7 @@ footer b{color:#fff;font-weight:500}
   </div>
   <div class="pasos">
     <div class="paso"><div class="n">01</div><h3>Abra su cuenta</h3><p>Desde $100 USD, a su nombre, en el intermediario regulado con el que trabajamos. Solo usted puede retirar.</p></div>
-    <div class="paso"><div class="n">02</div><h3>Elija su plan</h3><p>Básico o Moderado: cada plan tiene su objetivo mensual. Es la única decisión que tiene que tomar.</p></div>
+    <div class="paso"><div class="n">02</div><h3>Elija su plan</h3><p>Básico, Moderado o Agresivo: cada plan tiene su objetivo mensual. Es la única decisión que tiene que tomar.</p></div>
     <div class="paso"><div class="n">03</div><h3>Deje trabajar su ahorro</h3><p>La mesa opera su saldo. Deposite más cuando quiera y retire cuando lo necesite: no hay aportaciones obligatorias ni plazos.</p></div>
     <div class="paso"><div class="n">04</div><h3>Resultado cada mes</h3><p>Al cierre de cada mes, la app le muestra lo que ganó o perdió su saldo. Si el mes se complica, el freno de su plan detiene la operación.</p></div>
   </div>
@@ -404,7 +400,7 @@ footer b{color:#fff;font-weight:500}
     </ul>
   </div>
   <div>
-    <div class="iphone"><div class="iph-screen"><iframe src="app.html?muestra=1&v=1790819938" title="Demo de la app NORTHPOINT" loading="lazy"></iframe><div class="iph-island"></div></div></div>
+    <div class="iphone"><div class="iph-screen"><iframe src="app.html?muestra=1&v=1790820074" title="Demo de la app NORTHPOINT" loading="lazy"></iframe><div class="iph-island"></div></div></div>
     <span class="demo">Pruébela aquí: es la app real en modo demostración, sin dinero real. <a class="link" href="app.html" style="font-size:13px">Abrir en pantalla completa</a></span>
   </div>
 </div></section>
@@ -440,7 +436,7 @@ footer b{color:#fff;font-weight:500}
 <section id="perfiles"><div class="wrap">
   <div class="sec-head">
     <div><div class="eyebrow">Planes</div><h2 class="serif" style="margin-top:12px">Elija el objetivo de su ahorro.</h2></div>
-    <p>Dos planes: uno para la estabilidad y otro para crecer a buen ritmo. Cada uno tiene un objetivo mensual y un riesgo mensual máximo menor que ese objetivo: la mesa busca el objetivo sin arriesgar más de lo que el plan permite. El objetivo es una meta, no un rendimiento garantizado.</p>
+    <p>Tres planes, del más estable al de mayor potencial. Cada uno tiene un objetivo mensual y un riesgo mensual máximo: la mesa busca el objetivo sin arriesgar más de lo que el plan permite. El objetivo es una meta, no un rendimiento garantizado.</p>
   </div>
   <div class="perfiles" id="perfilesGrid"></div>
 </div></section>
@@ -505,7 +501,7 @@ footer b{color:#fff;font-weight:500}
   </div>
   <div class="qas">
     <details class="qa"><summary><span>¿Dónde está mi dinero?</span><i aria-hidden="true"></i></summary><div class="qa-a"><p>En una cuenta a su nombre en un intermediario regulado. NORTHPOINT nunca recibe ni custodia su dinero: la mesa opera con un mandato limitado que permite operar, pero no retirar ni transferir.</p></div></details>
-    <details class="qa"><summary><span>¿El rendimiento está garantizado?</span><i aria-hidden="true"></i></summary><div class="qa-a"><p>No. Cada plan tiene un objetivo mensual (1.5% o 3%), que es una meta de la mesa, no una promesa. Habrá meses por arriba del objetivo, meses por debajo y meses negativos.</p></div></details>
+    <details class="qa"><summary><span>¿El rendimiento está garantizado?</span><i aria-hidden="true"></i></summary><div class="qa-a"><p>No. Cada plan tiene un objetivo mensual (1.5%, 3% o 6%), que es una meta de la mesa, no una promesa. Habrá meses por arriba del objetivo, meses por debajo y meses negativos.</p></div></details>
     <details class="qa"><summary><span>¿Qué pasa si la mesa pierde?</span><i aria-hidden="true"></i></summary><div class="qa-a"><p>Su saldo baja ese mes. Para eso existe el freno de cada plan: si la cuenta llega a su riesgo mensual, la mesa deja de operarla hasta el mes siguiente. Usted lo ve en tiempo real en la app.</p></div></details>
     <details class="qa"><summary><span>¿Cuánto cobran?</span><i aria-hidden="true"></i></summary><div class="qa-a"><p>No le cobramos comisión. Cada mes el resultado de su plan queda en su saldo, y el mes siguiente se vuelve a operar. Tampoco hay cuota de apertura ni por retiro.</p></div></details>
     <details class="qa"><summary><span>¿Cuál es el monto mínimo?</span><i aria-hidden="true"></i></summary><div class="qa-a"><p>$100 USD. Puede depositar más cuando quiera; no hay aportaciones obligatorias.</p></div></details>
@@ -560,7 +556,8 @@ const CONFIG = {
   perfiles: [
     // objetivo = meta mensual de la mesa (NO garantizada); riesgo = riesgo mensual del plan, también es el freno de protección
     { id:"bas", nombre:"Básico",   lema:"Estabilidad primero",     nivel:1, objetivo:1.5, riesgo:1, horizonte:"6 meses o más",  freq:"1 a 2 sesiones al mes", ideal:"Para ver su saldo crecer con calma y moverse poco." },
-    { id:"mod", nombre:"Moderado", lema:"Crecimiento equilibrado", nivel:3, objetivo:3,   riesgo:1.5,   horizonte:"12 meses o más", freq:"3 a 4 sesiones por semana", ideal:"Para que su ahorro crezca a buen ritmo sin sobresaltos grandes." }
+    { id:"mod", nombre:"Moderado", lema:"Crecimiento equilibrado", nivel:3, objetivo:3,   riesgo:1.5,   horizonte:"12 meses o más", freq:"3 a 4 sesiones por semana", ideal:"Para que su ahorro crezca a buen ritmo sin sobresaltos grandes." },
+    { id:"agr", nombre:"Agresivo", lema:"Máximo potencial",        nivel:5, objetivo:6,   riesgo:6,   horizonte:"24 meses o más", freq:"Todas las sesiones",        ideal:"Para pensar a largo plazo y buscar el mayor crecimiento." }
   ],
   // nivel por SALDO (no por aportación): cambia solo cuando el saldo cruza el mínimo
   niveles: [
@@ -573,9 +570,9 @@ const CONFIG = {
     { tipo:"Nota de la mesa", titulo:"Por qué no prometemos un rendimiento fijo", fecha:"29 de septiembre de 2026",
       resumen:"Un rendimiento fijo sobre un ahorro que se opera en el mercado es una promesa que nadie puede cumplir. Explicamos qué ofrecemos en su lugar.",
       cuerpo:["Los mercados no pagan lo mismo cada mes. Cualquiera que le prometa un porcentaje fijo sobre un dinero que se opera, o tiene una licencia bancaria y respalda ese pago con su propio capital, o está pagando rendimientos con el dinero de otros clientes.","En NORTHPOINT el resultado de cada mes es el que salió: a veces positivo, a veces negativo. Lo que sí comprometemos es el freno de protección de su plan y que usted vea cada operación en la app."] },
-    { tipo:"Artículo", titulo:"Dos planes, una misma disciplina", fecha:"22 de septiembre de 2026",
-      resumen:"Básico y Moderado no son dos mesas distintas: es la misma mesa, con el mismo plan de sesión, buscando dos objetivos distintos.",
-      cuerpo:["Cada sesión empieza con un plan escrito. Lo que cambia entre planes no es la estrategia sino el tamaño y la frecuencia: el Básico solo entra en las operaciones más claras; el Moderado participa en más sesiones con mayor exposición.","Cada plan tiene un riesgo mensual máximo menor que su objetivo: 1% en el Básico y 1.5% en el Moderado. Si el mes se complica y el saldo llega a ese riesgo, la mesa deja de operar esa cuenta hasta el mes siguiente. Elegir plan es elegir un objetivo con su riesgo a la vista."] },
+    { tipo:"Artículo", titulo:"Tres planes, una misma disciplina", fecha:"22 de septiembre de 2026",
+      resumen:"Básico, Moderado y Agresivo no son tres mesas distintas: es la misma mesa, con el mismo plan de sesión, buscando tres objetivos distintos.",
+      cuerpo:["Cada sesión empieza con un plan escrito. Lo que cambia entre planes no es la estrategia sino el tamaño y la frecuencia: el Básico solo entra en las operaciones más claras; el Agresivo participa en todas las sesiones con mayor exposición.","Cada plan tiene un riesgo mensual máximo: 1% en el Básico, 1.5% en el Moderado y 6% en el Agresivo. Si el mes se complica y el saldo llega a ese riesgo, la mesa deja de operar esa cuenta hasta el mes siguiente. Elegir plan es elegir un objetivo con su riesgo a la vista."] },
     { tipo:"Artículo", titulo:"Custodia separada: por qué su dinero nunca debería pasar por quien lo opera", fecha:"15 de septiembre de 2026",
       resumen:"La separación entre quien custodia y quien opera es la protección más simple y más importante para cualquier ahorrador.",
       cuerpo:["En NORTHPOINT usted abre su cuenta a su nombre en un intermediario regulado. La mesa recibe un mandato para operar, pero no para retirar ni transferir.","Si alguien le pide depositar en una cuenta a nombre de la persona o empresa que va a operar por usted, desconfíe. La custodia separada no es un detalle técnico: es la primera pregunta que debe hacer."] }
@@ -588,20 +585,15 @@ const state = { perfil:"mod" };
 
 const PF_ICO = {
   bas:'<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 8.3-7 9.5C8 19.3 5 15.4 5 11V6z"/><path d="M9 12l2 2 4-4"/></svg>',
-  mod:'<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 3 7-8"/><path d="M15 7h4v4"/></svg>' };
-const PF_BADGE = { bas:"Para empezar", mod:"Recomendado" };
-// curva: cómo crecerían $1,000 en 12 meses SI el objetivo se cumpliera cada mes (ilustración, no promesa)
-const pfCurve = p => { const W = 300, H = 74, pts = [...Array(13)].map((_,m) => 1000*Math.pow(1+p.objetivo/100, m)), max = 1000*Math.pow(1.03,12), y = v => H - 4 - (v-1000)/(max-1000)*(H-12);
-  const d = pts.map((v,m) => `${m?"L":"M"}${(m/12*W).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
-  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="g${p.id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--c);stop-opacity:.28"/><stop offset="1" style="stop-color:var(--c);stop-opacity:0"/></linearGradient></defs><path d="${d} L${W},${H} L0,${H}Z" fill="url(#g${p.id})"/><path d="${d}" style="fill:none;stroke:var(--c);stroke-width:2.2" vector-effect="non-scaling-stroke"/><circle cx="${W}" cy="${y(pts[12]).toFixed(1)}" r="3.5" style="fill:var(--c)"/></svg>
-    <div class="lbl"><span>$1,000 hoy</span><span>en 12 meses <b>${usd(pts[12])}</b></span></div><small>Si el objetivo se cumpliera todos los meses. No es un rendimiento garantizado.</small>`; };
+  mod:'<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 3 7-8"/><path d="M15 7h4v4"/></svg>',
+  agr:'<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20l6-9 4 4 8-12"/><path d="M15 3h6v6"/><path d="M3 20h18"/></svg>' };
+const PF_BADGE = { bas:"Para empezar", mod:"Recomendado", agr:"Largo plazo" };
 $("#perfilesGrid").innerHTML = CONFIG.perfiles.map(p => `
   <div class="perfil" data-id="${p.id}">
     <div class="pf-top"><div class="pf-row"><div><div class="eyebrow">Plan</div><h3>${p.nombre}</h3><div class="lema">${p.lema}</div></div><div class="pf-ico">${PF_ICO[p.id]||""}</div></div><span class="pf-badge">${PF_BADGE[p.id]||""}</span></div>
     <div class="pf-body">
       <div class="obj">+${p.objetivo}%</div><div class="cap">Objetivo mensual</div>
       <div class="riesgo" aria-label="Nivel de riesgo ${p.nivel} de 5">${[1,2,3,4,5].map(i=>`<i class="${i<=p.nivel?"on":""}"></i>`).join("")}<span>Riesgo ${p.nivel} de 5</span></div>
-      <div class="pf-curve">${pfCurve(p)}</div>
       <p class="ideal">${p.ideal}</p>
       <dl>
         <div><dt>Objetivo al año</dt><dd>+${+(p.objetivo*12).toFixed(1)}%</dd></div>
@@ -775,7 +767,7 @@ $("#form").addEventListener("submit", e => {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="anim.js?v=1790819938"></script>
-<script src="menu.js?v=1790819938"></script>
+<script src="anim.js?v=1790820074"></script>
+<script src="menu.js?v=1790820074"></script>
 </body>
 </html>
