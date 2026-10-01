@@ -351,8 +351,8 @@ const tvEmbed = (el, name, cfg) => { el.innerHTML = `<div class="tradingview-wid
 (function(){ const f = new Date().toLocaleDateString("es-MX", { timeZone:TZ, weekday:"long", day:"numeric", month:"long", year:"numeric" }); $("#fecha").textContent = f.charAt(0).toUpperCase() + f.slice(1); })();
 $("#bOpen").onclick = () => $("#drawer").classList.add("on");
 $$("[data-close]").forEach(e => e.addEventListener("click", () => $("#drawer").classList.remove("on")));
-if(/shot/.test(location.search)){ $("#trend").remove(); document.body.style.paddingBottom = "0"; }
 $("#tX").onclick = () => { $("#trend").remove(); document.body.style.paddingBottom = "0"; };
+if(/shot/.test(location.search)) $("#tX").onclick();
 
 // ── lista de seguimiento (en este navegador) ──
 (function(){
