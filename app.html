@@ -266,8 +266,7 @@ html.emb .chart{height:170px}
 const CONFIG = {
   planes: [
     { id:"bas", nombre:"Básico",   color:"#0EA5A4", objetivo:1.5, riesgo:1, lema:"Estabilidad primero" },
-    { id:"mod", nombre:"Moderado", color:"#2251FF", objetivo:3,   riesgo:1.5,   lema:"Crecimiento equilibrado" },
-    { id:"agr", nombre:"Agresivo", color:"#7C5CFF", objetivo:6,   riesgo:6,   lema:"Máximo potencial" }
+    { id:"mod", nombre:"Moderado", color:"#2251FF", objetivo:3,   riesgo:1.5,   lema:"Crecimiento equilibrado" }
   ],
   niveles: [ { nombre:"Inicial", min:100 }, { nombre:"Plus", min:1000 }, { nombre:"Privado", min:10000 } ],   // sin comisión: el resultado del mes es todo del cliente
   traders: ["André Macouzet", "Pablo Ochoa", "Gerardo Andaluz"],
@@ -524,7 +523,7 @@ function vCuenta(){
 const NOMBRES = ["Mariana López","Carlos Rivera","Sofía Hernández","Diego Martínez","Valeria Gómez","Andrés Torres","Camila Ruiz","Javier Castillo","Daniela Flores","Luis Ortega","Regina Navarro","Santiago Vega","Fernanda Rojas","Emilio Guzmán","Ximena Salinas","Rodrigo Aguilar","Paula Mendoza","Mateo Cordero","Renata Ibarra","Iker Morales","Lucía Paredes","Tomás Villalobos","Natalia Cervantes","Gael Domínguez","Andrea Quiroga","Sebastián Luna","Montserrat Ríos","Patricio Acosta","Elena Barrera","Joaquín Serrano","Isabela Fuentes","Adrián Campos","Ana Paula Treviño","Héctor Cabrera","Mariel Bustos","Octavio Pineda","Carolina Esquivel","Bruno Salazar","Alejandra Pacheco","Nicolás Arriaga"];
 const TEAM = (function(){
   const r = rng(20260930), cl = [];
-  NOMBRES.forEach((n,i) => { const w = r(), plan = w<.35?"bas":w<.8?"mod":"agr", p = planDe(plan);
+  NOMBRES.forEach((n,i) => { const w = r(), plan = w<.45?"bas":"mod", p = planDe(plan);
     const saldoV = Math.round(Math.exp(Math.log(150) + r()*Math.log(60000/150))), mes = Math.max(p.objetivo*.7 + p.riesgo*.8*normal(r), -p.riesgo);
     const freno = Math.min(1, Math.max(0, mes<0 ? Math.abs(mes)/p.riesgo + .15 : r()*.35)), estado = freno>=1 ? "Freno activo" : i%13===5 ? "Nuevo" : "Activo";
     cl.push({ id:i, nombre:n, plan, saldo:saldoV, mes, freno, estado, trader: CONFIG.traders[i%3] }); });
